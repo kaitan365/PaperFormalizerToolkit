@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "owner": {
+    "name": "Jiaying Weng",
+    "email": "338gaga@gmail.com"
+  },
+  "toolkit": {
+    "lib": "Toolkit",
+    "papers_lib": "Papers",
+    "divisions": [
+      "Foundations",
+      "Tricks"
+    ]
+  },
+  "base": [
+    {
+      "name": "Mathlib",
+      "kind": "transitive",
+      "search": [
+        "loogle",
+        "leansearch"
+      ],
+      "summary": "the Lean mathematical library"
+    },
+    {
+      "name": "Causalean",
+      "kind": "path",
+      "path": ".lake/packages/Causalean",
+      "summary": "Causal inference and statistics foundations (identification, estimation, semiparametrics, concentration).",
+      "index": ".lake/packages/Causalean/doc/library_index.json",
+      "alias_file": "../PaperFormalizer/tools/data/aliases/causalean.json",
+      "prompt_notes": "../PaperFormalizer/tools/data/prompt_notes/causalean.md"
+    },
+    {
+      "name": "StatLean",
+      "kind": "path",
+      "path": "../PaperFormalizer/third_party/StatLean",
+      "summary": "Mathematical statistics: estimation, hypothesis testing, asymptotic statistics, nonparametrics, time series (adapted Stat-Lean).",
+      "index": "doc/base_index/StatLean.json"
+    }
+  ],
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.33.0"
+  }
+}
