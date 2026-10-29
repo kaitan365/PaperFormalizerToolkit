@@ -1,0 +1,1124 @@
+{
+  "main_file": "main.tex",
+  "files": [
+    "main.tex",
+    "macros.tex",
+    "main.bbl",
+    "reports/expanded-risk-20261009/risk_means_n1000.tex",
+    "reports/expanded-risk-20261009/bias_n1000.tex",
+    "reports/expanded-risk-20261009/rmse_n1000.tex"
+  ],
+  "newtheorem": {
+    "theorem": "theorem",
+    "thm": "theorem",
+    "lemma": "lemma",
+    "lem": "lemma",
+    "proposition": "proposition",
+    "prop": "proposition",
+    "corollary": "corollary",
+    "cor": "corollary",
+    "definition": "definition",
+    "defn": "definition",
+    "def": "definition",
+    "assumption": "assumption",
+    "assum": "assumption",
+    "assump": "assumption",
+    "ass": "assumption",
+    "cond": "assumption",
+    "hyp": "assumption",
+    "remark": "remark",
+    "rem": "remark",
+    "example": "example",
+    "ex": "example",
+    "algorithm": "other",
+    "algorithmic": "other",
+    "claim": "proposition"
+  },
+  "envs": [
+    {
+      "id": "thm:cpal-complementary-law",
+      "kind": "theorem",
+      "envName": "theorem",
+      "label": "thm:cpal-complementary-law",
+      "title": null,
+      "body": "\\label{thm:cpal-complementary-law}\n\\label{thm:complementary-validation}\nUnder the model above with Gaussian data and $m<n$, any\n$\\calF_{\\bS}$-measurable $\\hbbeta\\in\\R^d$ satisfies\n\\begin{align}\n \\mathcal L(\\bQ_{\\bS}\\bu\\mid\\calF_{\\bS})\n &=\\calN(\\boldzero,R\\bQ_{\\bS}),\\notag\\\\\n \\frac{(n-m)\\widehat R_c}{R}\\,\\bigg|\\,\\calF_{\\bS}\n &\\sim\\chi^2_{n-m}\\quad\\text{on }R>0.\n \\label{eq:cpal-complementary-law}\n\\end{align}\nUnder this regular conditional law,\n$\\E[\\widehat R_c\\mid\\calF_{\\bS}]=R$ and\n$\\operatorname{Var}(\\widehat R_c\\mid\\calF_{\\bS})=2R^2/(n-m)$,\nwithout requiring unconditional moments of $R$.",
+      "proof": "Put $k=n-m>0$ and $\\bQ=\\bQ_{\\bS}$. The full-row-rank\nassumption makes $\\bS\\bS^\\top$ invertible. Hence $\\bQ$ is a Borel\nfunction of $\\bS$, and direct matrix multiplication gives\n\\begin{align*}\n    \\bQ^\\top=\\bQ,\\qquad \\bQ^2=\\bQ,\\qquad\n    \\bS\\bQ=\\boldzero,\\qquad \\operatorname{rank}(\\bQ)=k.\n\\end{align*}\nThe last identity follows because $\\operatorname{range}(\\bQ)=\\ker(\\bS)$.\n     Furthermore, $\\calF_{\\bS}=\\sigma(\\bS,\\bS\\bX,\\bS\\bep)$ because\n$\\bS\\by=\\bS\\bX\\bbeta^*+\\bS\\bep$. \n\nCondition on $\\bS=\\bs$. The blocks\n$(\\bs\\bX,\\bs\\bep)$ and $(\\bQ\\bX,\\bQ\\bep)$ are jointly Gaussian.\nTheir cross-covariances vanish: for feature columns $j,\\ell$,\n\\begin{align*}\n    \\operatorname{Cov}\\!\\left(\n      (\\bs\\bX)_{aj},(\\bQ\\bX)_{i\\ell}\\mid\\bS=\\bs\n    \\right)\n    =\\bSigma_{j\\ell}(\\bs\\bQ)_{ai}=0,\n\\end{align*}\nand the error-block cross-covariance is\n$\\sigma^2\\bs\\bQ=\\boldzero$; design--error cross-covariances vanish by\nindependence. Thus the two blocks are conditionally independent given\n$\\bS$. In particular, after conditioning on the larger field\n$\\calF_{\\bS}$, the complementary block retains its Gaussian law\nconditional on $\\bS$. This law is allowed to depend on $\\bS$ through\n$\\bQ$.\n\nSet $v=\\bbeta^*-\\widetilde{\\bbeta}$. Since $v$ is\n$\\calF_{\\bS}$-measurable and the summary is finite dimensional, the\nDoob--Dynkin lemma represents $v$ as a measurable function of\n$(\\bS,\\bS\\bX,\\bS\\bep)$ almost surely. It is therefore fixed under the\nconditional law. The projected residual is\n\\begin{align*}\n    \\bQ\\widetilde{\\bu}=\\bQ\\bX v+\\bQ\\bep.\n\\end{align*}\nGiven $\\calF_{\\bS}$, this vector is centered Gaussian, with covariance\n\\begin{align*}\n    (v^\\top\\bSigma v)\\bQ\\bQ^\\top\n       +\\sigma^2\\bQ\\bQ^\\top\n    =R(\\widetilde{\\bbeta})\\bQ.\n\\end{align*}\nThe calculation includes $R(\\widetilde{\\bbeta})=0$, when the conditional\nlaw is the point mass at zero. Both $\\bQ$ and $R(\\widetilde{\\bbeta})$ are\n$\\calF_{\\bS}$-measurable, so the following expression defines a measurable\nconditional kernel. For every bounded Borel\nfunction $\\varphi$, the regular conditional law satisfies\n\\begin{align*}\n    \\E[\\varphi(\\bQ\\widetilde{\\bu})\\mid\\calF_{\\bS}]\n    =\\int_{\\R^n}\n      \\varphi\\!\\left(\\sqrt{R(\\widetilde{\\bbeta})}\n        \\bQ z\\right)\\,\\mathrm d\\calN(\\boldzero,\\bI_n)(z)\n    \\quad\\text{almost surely}.\n\\end{align*}\nThus, the Gaussian assertion in \\eqref{eq:cpal-complementary-law} is an\nidentity of measurable conditional probability kernels.\n\nFor each fixed conditional value of $\\bQ$, the spectral theorem gives an\northonormal basis in which $\\bQ$ is diagonal with $k$ ones and $m$ zeros.\nThe calculation depends only on the rank of $\\bQ$, so it does not require\na measurable choice of basis. On the $\\calF_{\\bS}$-measurable event\n$\\{R(\\widetilde{\\bbeta})>0\\}$, the squared norm of the displayed\nGaussian vector divided by $R(\\widetilde{\\bbeta})$ has the conditional\n$\\chi^2_k$ law; on its complement, the criterion is zero. Equivalently,\nthe conditional law of $\\widehat R_c$ is that of\n$(R(\\widetilde{\\bbeta})/k)Z$ for $Z\\sim\\chi^2_k$. Its conditional mean,\nsecond moment, and variance are respectively\n$R(\\widetilde{\\bbeta})$,\n$(1+2/k)R(\\widetilde{\\bbeta})^2$, and\n$2R(\\widetilde{\\bbeta})^2/k$. These are finite for each fixed fitted\nsummary. If $\\E R(\\widetilde{\\bbeta})^2<\\infty$, the same second-moment\nidentity gives $\\widehat R_c\\in L^2$, so these conditional\nmoments coincide with ordinary conditional expectation and variance.\nFinally, the continuous $\\chi^2_k$ distribution has positive\n$\\alpha/2$ and $1-\\alpha/2$ quantiles. Inverting the pivot on\n$\\{R(\\widetilde{\\bbeta})>0\\}$ gives\n\\eqref{eq:cpal-risk-interval}.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 3155,
+        "to": 3233,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 191,
+        "to": 207,
+        "env": "theorem",
+        "label": "thm:cpal-complementary-law"
+      },
+      "refs": [
+        "eq:cpal-complementary-law",
+        "eq:cpal-risk-interval"
+      ]
+    },
+    {
+      "id": "thm:cpal-corrected-accuracy",
+      "kind": "theorem",
+      "envName": "theorem",
+      "label": "thm:cpal-corrected-accuracy",
+      "title": null,
+      "body": "\\label{thm:cpal-corrected-accuracy}\n\\label{thm:R-obs-general}\n\\label{thm:R-sens-general}\nAssume Gaussian design and uniformly sub-Gaussian errors, meaning that\ntheir tails admit a uniform Gaussian bound. For all sufficiently large\n$n$, suppose almost surely that the positive eigenvalues of\n$n\\bA/\\trace(\\bA)$ lie in $[c_-,c_+]$, with fixed\n$0<c_-\\leq c_+<\\infty$, and $m-d\\geq\\kappa n$ for a fixed $\\kappa>0$.\nUnder the model conditions of Section~\\ref{sec:meth}, a constant $C$\nindependent of $n$ satisfies\n\\begin{align}\n \\max\\{\\E|\\hR_o-R|,\\E|\\hR_u-R|\\}\\leq Cn^{-1/2}.\n \\label{eq:cpal-corrected-accuracy}\n\\end{align}",
+      "proof": "Use the trace-normalized representative and coordinates in\nSections~\\ref{app:proof-setup} and~\\ref{app:balanced-transfer-setup}.\n\n% --- the paper gives a further proof of this result ---\n\nBy \\eqref{eq:whitened-divergence},\n\\begin{align*}\n    \\Xi_1&=\\bep^\\top\\bv+\\bep^\\top\\bell,\\\\\n    \\Xi_2&=n\\norm{\\bq}^2-\\norm{\\bv+\\bell}^2.\n\\end{align*}\nSince $\\bu+t_{\\bSigma}\\br=\\bep-\\bv$, direct expansion yields the exact Stein\nrisk identity\n\\begin{align}\n    &n\\norm{\\bq}^2+\\norm{\\bep}^2-\\norm{\\bu+t_{\\bSigma}\\br}^2\\notag\\\\\n    &\\qquad=\n    \\Xi_2+2\\Xi_1+2\\bv^\\top\\bell+\\norm{\\bell}^2\n    -2\\bep^\\top\\bell.\n    \\label{eq:Stein-risk-identity-sketch}\n\\end{align}\nThe first two terms on the right have expected absolute value $O(\\sqrt n)$ by\n\\eqref{eq:Xi-control}.  Cauchy--Schwarz,\n\\eqref{eq:influence-control}, and\n$\\E\\norm{\\bep}^2=n\\sigma^2$ show that\n$\\E|\\bv^\\top\\bell|+\\E|\\bep^\\top\\bell|=O(1)$ and\n$\\E\\norm{\\bell}^2=O(n^{-1})$.  Finally, the case $k=1$ of\n\\eqref{eq:noise-energy-moments} gives\n$\\E|\\norm{\\bep}^2/n-\\sigma^2|=O(n^{-1/2})$.\nDivide \\eqref{eq:Stein-risk-identity-sketch} by $n$, use\n$R=\\sigma^2+\\norm{\\bq}^2$, and take expectations to obtain\nthe $\\hR_u$ bound in \\eqref{eq:cpal-corrected-accuracy}.\n\n% --- the paper gives a further proof of this result ---\n\nThe difference-of-squares identity gives\n\\begin{align*}\n    |\\hR_u-\\hR_o|\n    &\\leq\n    \\left|t_{\\bSigma}-\\frac{d}{b}\\right|B_{\\bA}\n    \\leq \\frac{B_{\\bA}\\mathcal T_{\\bA}}{n}.\n\\end{align*}\nEquation~\\eqref{eq:weighted-Q-bounds} shows that its expectation is\n$O(n^{-1/2})$. Together with the bound for $\\hR_u$ from\nSection~\\ref{app:proof-R-sens-general}, this proves the claim for $\\hR_o$.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 3245,
+        "to": 3249,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 253,
+        "to": 268,
+        "env": "theorem",
+        "label": "thm:cpal-corrected-accuracy"
+      },
+      "refs": [
+        "sec:meth",
+        "app:proof-setup",
+        "app:balanced-transfer-setup",
+        "eq:whitened-divergence",
+        "eq:Xi-control",
+        "eq:influence-control",
+        "eq:noise-energy-moments",
+        "eq:Stein-risk-identity-sketch",
+        "eq:cpal-corrected-accuracy",
+        "eq:weighted-Q-bounds",
+        "app:proof-R-sens-general"
+      ]
+    },
+    {
+      "id": "thm:cpal-risk-benchmarks",
+      "kind": "theorem",
+      "envName": "theorem",
+      "label": "thm:cpal-risk-benchmarks",
+      "title": null,
+      "body": "\\label{thm:cpal-risk-benchmarks}\nUnder Gaussian data with $\\sigma^2>0$ and this regime,\n$R,\\hR_u,\\hR_o\\limp\\calR_j$ and $\\hR_{\\GCV}-R\\limp\\Delta_j$, where\n$j$ identifies the sketch family:\n\\begin{align}\n \\calR_{\\rm SO}&=\\frac{\\sigma^2\\rho}{\\rho-\\gamma},&\n \\Delta_{\\rm SO}&=\n \\frac{\\sigma^2\\gamma^2(1-\\rho)}\n {(\\rho-\\gamma)(1-\\gamma)^2},\\notag\\\\\n \\calR_{\\rm G}&=\\sigma^2\\left\\{\\frac1{1-\\gamma}\n                    +\\frac{\\gamma}{\\rho-\\gamma}\\right\\},&\n \\Delta_{\\rm G}&=\\frac{\\sigma^2\\gamma^2}\n {(1-\\gamma)(\\rho-\\gamma)}.\n \\label{eq:cpal-risk-benchmarks}\n\\end{align}\nHere SO denotes scaled orthogonal sketches and G denotes dense Gaussian sketches\nwith the stated entry law.",
+      "proof": "\\label{app:concrete-underparameterized-proofs}\n\nWe retain the natural scalings of Section~\\ref{sec:underparameterized-transfer}:\n$\\bS\\bS^\\top=c_n\\bI_m$ for scaled orthogonal sketches and\n$S_{ki}\\stackrel{\\mathrm{i.i.d.}}{\\sim}\\calN(0,1/m)$ for dense Gaussian\nsketches. The calculations below also give a finite-sample expected risk\nand the Gaussian trace limits.\n\n% --- the paper gives a further proof of this result ---\n\nCondition on the projector $\\bP_{\\bS}$ and choose an orthogonal matrix that sends\n$\\bP_{\\bS}$ to $\\diag(\\bI_m,\\boldzero)$.  Joint Gaussian rotational invariance\nreduces the problem to ordinary least squares based on the first $m$ rows.\nWrite the rotated design and noise as\n\\begin{align*}\n    \\bZ=\\begin{pmatrix}\\bZ_1\\\\\\bZ_0\\end{pmatrix},\n    \\qquad\n    \\bep=\\begin{pmatrix}\\bep_1\\\\\\bep_0\\end{pmatrix},\n\\end{align*}\nwhere $\\bZ_1\\in\\R^{m\\times d}$.      In this proof, define\n$\\bu_\\perp\\in\\R^{n-m}$ as the coordinates of the complementary residual\n$\\bQ_{\\bS}\\bu$ in this orthonormal basis, so\n$\\norm{\\bu_\\perp}=\\norm{\\bQ_{\\bS}\\bu}$. Put \n\\begin{align*}\n    \\bq&=(\\bZ_1^\\top\\bZ_1)^{-1}\\bZ_1^\\top\\bep_1,\n    & \\bu_1&=\\bep_1-\\bZ_1\\bq,\n    &\n    \\bu_\\perp&:=\\bep_0-\\bZ_0\\bq.\n\\end{align*}\nThen $R=\\sigma^2+\\norm{\\bq}^2$.  Since $\\bA=c_n\\bP_{\\bS}$, we have\n$c_nt_{\\bSigma}=\\trace((\\bZ_1^\\top\\bZ_1)^{-1})$, and hence\n\\begin{align*}\n    \\hR_u\n    &=\\frac{(1+c_nt_{\\bSigma})^2\\norm{\\bu_1}^2+\\norm{\\bu_\\perp}^2}{n},\\\\\n    \\hR_o\n    &=\\frac{\\{m/(m-d)\\}^2\\norm{\\bu_1}^2+\\norm{\\bu_\\perp}^2}{n}.\n\\end{align*}\nLet $\\bW_1=\\bZ_1^\\top\\bZ_1$.  Conditional on $\\bZ_1$,\n$\\bq\\sim\\calN(\\boldzero,\\sigma^2\\bW_1^{-1})$.  If $m>d+1$, the Wishart\nidentity $\\E(\\bW_1^{-1})=\\bI_d/(m-d-1)$ therefore gives\n\\begin{align}\n    \\E R\n    =\\sigma^2+\\E\\norm{\\bq}^2\n    =\\sigma^2\\left(1+\\frac{d}{m-d-1}\\right).\n    \\label{eq:tight-frame-exact-risk}\n\\end{align}\n\nNow assume additionally the proportional conditions in the theorem.\nThe conditional Gaussian law gives\n$\\bq/\\sigma\\stackrel{\\rm d}{=}\\bW_1^{-1/2}\\bg$, where\n$\\bg\\sim\\calN(\\boldzero,\\bI_d)$ is independent of $\\bW_1$.\nThe squared radius $U=\\norm{\\bg}^2\\sim\\chi^2_d$ is independent of its\ndirection and $\\bW_1$. By orthogonal invariance, the inverse quadratic\nform in this direction has the law of $(\\bW_1^{-1})_{11}$.\nThe reciprocal is a Schur complement: the squared norm of the first\nGaussian design column after projection off the remaining $d-1$ columns.\nIt therefore has law $\\chi^2_{m-d+1}$. Writing this reciprocal as $V$,\nwe have $U\\perp V$ and\n\\begin{align*}\n    R\\stackrel{\\rm d}{=}\\sigma^2\\left(1+\\frac UV\\right),\n    \\qquad U\\sim\\chi^2_d,\\quad V\\sim\\chi^2_{m-d+1},\n    \\quad U\\perp V.\n\\end{align*}\nIts inverse chi-square moments yield\n\\begin{align*}\n    \\operatorname{Var}(R)\n    =\\frac{2\\sigma^4d(m-1)}{(m-d-1)^2(m-d-3)}=O(n^{-1}).\n\\end{align*}\nEach diagonal entry of $\\bW_1^{-1}$ has the law of the reciprocal of\n$\\chi^2_{m-d+1}$. Applying Cauchy--Schwarz to their centered sum gives\n\\begin{align*}\n    \\E[c_nt_{\\bSigma}]&=\\frac{d}{m-d-1},\n    &\\operatorname{Var}(c_nt_{\\bSigma})\n      &\\leq\\frac{2d^2}{(m-d-1)^2(m-d-3)}=O(n^{-1}).\n\\end{align*}\nMoreover, $\\bu_1$ is the projection of $\\bep_1$ onto the\n$(m-d)$-dimensional orthogonal complement of\n$\\operatorname{col}(\\bZ_1)$. Thus, conditionally on $\\bZ_1$,\n$\\norm{\\bu_1}^2/\\sigma^2\\sim\\chi^2_{m-d}$.\nThe pair $(\\bZ_0,\\bep_0)$ is independent of $\\bq$, so,\nconditionally on $\\bq$, the coordinates of\n$\\bu_\\perp=\\bep_0-\\bZ_0\\bq$ are independent\n$\\calN(0,\\sigma^2+\\norm{\\bq}^2)$ variables. Hence\n$\\norm{\\bu_\\perp}^2/(\\sigma^2+\\norm{\\bq}^2)\\sim\\chi^2_{n-m}$\nconditionally on $\\bq$; when $m=n$, this is the degenerate\nzero-dimensional term.\nThese identities and Chebyshev's inequality yield\n\\begin{align*}\n    c_nt_{\\bSigma}&=\\frac{d}{m-d}+O_{\\P}(n^{-1/2}),\\\\\n    \\norm{\\bq}^2&=\\frac{\\sigma^2d}{m-d}+O_{\\P}(n^{-1/2}),\\\\\n    \\norm{\\bu_1}^2&=\\sigma^2(m-d)+O_{\\P}(\\sqrt n),\\\\\n    \\frac{\\norm{\\bu_\\perp}^2}{n}\n    &=\\frac{n-m}{n}(\\sigma^2+\\norm{\\bq}^2)\n      +O_{\\P}(n^{-1/2}).\n\\end{align*}\nThese relations prove the scaled orthogonal risk limits in\n\\eqref{eq:cpal-risk-benchmarks}. For the GCV gap,\nnote that\n\\begin{align*}\n    \\frac{\\norm{\\by-\\bX\\hbbeta}^2}{n}\n    \\limp\n    \\sigma^2\\left\\{(\\rho-\\gamma)\n      +(1-\\rho)\\frac{\\rho}{\\rho-\\gamma}\\right\\}.\n\\end{align*}\nDivision by $(1-\\gamma)^2$ and subtraction of $\\calR_{\\rm SO}$\nyield $\\Delta_{\\rm SO}$ in \\eqref{eq:cpal-risk-benchmarks}.\n\n% --- the paper gives a further proof of this result ---\n\nWhiten the features and write the thin polar decomposition\n$\\bZ=\\bU\\bR$, where $\\bR=(\\bZ^\\top\\bZ)^{1/2}$.\nChoose a measurable orthogonal completion $[\\bU,\\bV]$ and define\n\\begin{align*}\n    \\sqrt m\\,\\bS[\\bU,\\bV]=[\\bG,\\bH],\n    \\qquad\n    \\bK=(\\bG^\\top\\bG)^{-1}\\bG^\\top\\bH,\n    \\qquad\n    \\bP_{\\bG}:=\\bG(\\bG^\\top\\bG)^{-1}\\bG^\\top,\n\\end{align*}\nwhere the symbols $\\bG$ and $\\bH$ are local to this proof. Conditional\non $\\bZ$, right-orthogonal invariance of the independent Gaussian\nsketch makes $[\\bG,\\bH]$ a standard Gaussian matrix whose law does not\ndepend on $\\bZ$. Thus $\\bG$ and $\\bH$ are independent of one another\nand of $\\bZ$.      Write $\\ba=\\bU^\\top\\bep$ and $\\bc=\\bV^\\top\\bep$.\nConditional on $\\bZ$, the independently generated Gaussian sketch and noise\nmake $\\bG,\\bH,\\ba,\\bc$ mutually independent, with $\\ba$ and $\\bc$ centered\nGaussian vectors of covariance $\\sigma^2\\bI$ in their respective dimensions.\nTheir joint conditional law does not depend on $\\bZ$, so these blocks are\nalso jointly independent of $\\bZ$. Since $\\bep=\\bU\\ba+\\bV\\bc$, in the\n$[\\bU,\\bV]$ coordinates, \n\\begin{align}\n    \\bu&\\equiv(-\\bK\\bc,\\bc),\n    &\n    \\bA\\bu&\\equiv(\\boldzero,\\bW_{\\perp}\\bc),\n    \\label{eq:Gaussian-coordinate-decomp}\\\\\n    \\bW_{\\perp}&:=\\frac{1}{m}\\bH^\\top(\\bI_m-\\bP_{\\bG})\\bH,\n    & b_{\\bA}&=\\trace(\\bW_{\\perp}).\n    \\notag\n\\end{align}\nTo see the first identity, the sketched normal equations give\n$\\bR\\bq=\\ba+\\bK\\bc$; subtracting $\\bZ\\bq$ from\n$\\bep$ leaves $(-\\bK\\bc,\\bc)$ in these coordinates.\nThe definition of $\\bK$ then gives\n$\\bG^\\top(\\bH-\\bG\\bK)=0$, which removes the upper coordinate of\n$\\bA\\bu$ and yields the second identity.\nConditional on $\\bG$, choose an orthonormal basis for the range of\n$\\bI_m-\\bP_{\\bG}$. Multiplying $\\bH$ by that basis gives an\n$(m-d)\\times(n-d)$ matrix $\\bY$ of independent standard Gaussian entries,\nindependent of $\\bG$, and $m\\bW_\\perp=\\bY^\\top\\bY$ in distribution.\nConsequently,\n\\begin{align}\n    mb_{\\bA}&\\sim\\chi^2_{(m-d)(n-d)},\n    &\n    \\frac{b_{\\bA}}n\n    &\\limp\\frac{(\\rho-\\gamma)(1-\\gamma)}{\\rho}.\n    \\label{eq:Gaussian-W-traces}\n\\end{align}\nThe second statement follows from the mean and variance of a chi-square\nvariable. In particular,\n$d/b_{\\bA}\\limp\\tau_{\\rm G}(\\gamma,\\rho)$, where\n\\begin{align*}\n    \\tau_{\\rm G}(\\gamma,\\rho)\n    :=\\frac{\\rho\\gamma}{(\\rho-\\gamma)(1-\\gamma)}.\n\\end{align*}\n\nScalar distributional representations make the remaining residual limits\nexplicit. On an auxiliary probability space, take independent variables\n\\begin{align*}\n    T&\\sim\\chi^2_{n-d}, & J&\\sim\\chi^2_d,\n    & V&\\sim\\chi^2_{m-d+1},\\\\\n    U&\\sim\\chi^2_{m-d}, & B&\\sim\\chi^2_{n-d-1}.\n\\end{align*}\nFor all sufficiently large $n$, the following marginal distributional\nidentities hold:\n\\begin{align*}\n    \\norm{\\bK\\bc}^2&\\ \\stackrel{\\rm d}{=}\n       \\sigma^2\\frac{TJ}{V},\n    &\n    \\norm{\\bu}^2&\\ \\stackrel{\\rm d}{=}\n       \\sigma^2T\\left(1+\\frac JV\\right),\\\\\n    \\bu^\\top\\bA\\bu&\\ \\stackrel{\\rm d}{=}\n       \\frac{\\sigma^2}{m}TU,\n    &\n    \\norm{\\bA\\bu}^2&\\ \\stackrel{\\rm d}{=}\n       \\frac{\\sigma^2}{m^2}TU(U+B).\n\\end{align*}\nNo joint equality between the four displayed statistics is needed.\nFor the first two identities, condition on $\\bc$. When $\\bc\\ne\\boldzero$,\nchoose an orthogonal $\\bO\\in\\R^{(n-d)\\times(n-d)}$ with\n$\\bO^\\top\\bc=\\norm{\\bc}\\be_1$. Since\n$\\bH\\bc=\\norm{\\bc}\\bH\\bO\\be_1$ and $\\bH\\bO$ has the same conditional\nGaussian law as $\\bH$, $\\bK\\bc/\\norm{\\bc}$ has the Gaussian OLS coefficient law\n$\\bg/\\sqrt V$, where $\\bg\\sim\\calN(\\boldzero,\\bI_d)$ is independent\nof $V$ and $\\bc$. The zero-vector case gives the same identities by\ncontinuity. Also, $\\norm{\\bc}^2\\stackrel{\\rm d}{=}\\sigma^2T$.\nFor the last two identities, use $m\\bW_\\perp=\\bY^\\top\\bY$ and rotate\n$\\bc$ to the first coordinate. The first column of $\\bY$ has squared\nnorm $U$. Conditional on that column, its inner products with the other\ncolumns are independent centered normal variables of variance $U$.\nThus $\\norm{\\bY^\\top\\bY\\be_1}^2$ has law $U^2+UB$, with $B$\nindependent of $U$.\n\nA chi-square variable with $k_n$ degrees of freedom, divided by $n$,\nconverges in probability to $\\lim k_n/n$, since its variance is $2k_n/n^2$.\nApplying this fact to the preceding scalar laws gives\n\\begin{align}\n    \\frac{\\norm{\\bK\\bc}^2}{n}\n       &\\limp\\sigma^2\\frac{\\gamma(1-\\gamma)}{\\rho-\\gamma},\n    &\n    \\frac{\\norm{\\ba+\\bK\\bc}^2}{n}\n       &\\limp\\sigma^2\\left\\{\\gamma+\n              \\frac{\\gamma(1-\\gamma)}{\\rho-\\gamma}\\right\\}.\n    \\label{eq:Gaussian-K-traces}\n\\end{align}\nFor the second limit, $\\norm{\\ba}^2/n\\limp\\sigma^2\\gamma$ and the\ncross term vanishes in probability: independence and the inverse\nchi-square mean give\n\\begin{align*}\n    \\E[(\\ba^\\top\\bK\\bc)^2]\n       =\\sigma^4\\frac{d(n-d)}{m-d-1}=O(n).\n\\end{align*}\nThe three residual limits are\n\\begin{align}\n    \\frac{\\norm{\\bu}^2}{n}\n    &\\limp \\sigma^2\\frac{\\rho(1-\\gamma)}{\\rho-\\gamma},\n    \\label{eq:Gaussian-u-limit}\\\\\n    \\frac{\\bu^\\top\\bA\\bu}{n}\n    &\\limp \\sigma^2\\frac{(\\rho-\\gamma)(1-\\gamma)}{\\rho},\\notag\\\\\n    \\frac{\\norm{\\bA\\bu}^2}{n}\n    &\\limp \\sigma^2\\frac{(\\rho-\\gamma)(1-\\gamma)(\\rho+1-2\\gamma)}{\\rho^2}.\n    \\notag\n\\end{align}\nThese arguments include $\\rho=1$.\n\nTo control the population trace coefficient, put\n$\\bW_Z=\\bZ^\\top\\bZ$ and $\\bW_G=\\bG^\\top\\bG$. Polar coordinates give\n\\begin{align*}\n    t_{\\bSigma}=m\\trace(\\bW_G^{-1}\\bW_Z^{-1}),\n    \\qquad\n    \\E t_{\\bSigma}=\\frac{md}{(m-d-1)(n-d-1)}.\n\\end{align*}\nHere the two Gram matrices are independent. A useful elementary bound,\nfor any deterministic positive semidefinite $\\bD$, is\n\\begin{align*}\n    \\E\\left[\n      \\left\\{\\trace(\\bD\\bW_G^{-1})-\n             \\frac{\\trace(\\bD)}{m-d-1}\\right\\}^2\\right]\n    \\leq\\frac{2\\{\\trace(\\bD)\\}^2}{(m-d-1)^2(m-d-3)}.\n\\end{align*}\nIndeed, diagonalize $\\bD$. Each unit-direction quadratic form in\n$\\bW_G^{-1}$ has law $1/\\chi^2_{m-d+1}$, by the Schur complement and\nGaussian orthogonal invariance. Cauchy--Schwarz bounds every covariance\nby the common variance $2/\\{(m-d-1)^2(m-d-3)\\}$, which proves the bound.\nApplying the same argument to $\\bW_Z$ gives\n\\begin{align*}\n    \\E\\{\\trace(\\bW_Z^{-1})\\}^2\n       &\\leq\\frac{d^2}{(n-d-1)(n-d-3)}.\n\\end{align*}\nConditional on $\\bW_Z$, split the centered trace coefficient into\nits fluctuation about $m\\trace(\\bW_Z^{-1})/(m-d-1)$ and the fluctuation\nof that conditional mean. The inequality $(x+y)^2\\leq2x^2+2y^2$ then yields\n\\begin{align*}\n    \\E(t_{\\bSigma}-\\E t_{\\bSigma})^2\n    \\leq{}&\n    \\frac{4m^2d^2}\n    {(m-d-1)^2(m-d-3)(n-d-1)(n-d-3)}\\\\\n    &+\\frac{4m^2d^2}\n    {(m-d-1)^2(n-d-1)^2(n-d-3)}=O(n^{-1}).\n\\end{align*}\nThus, together with \\eqref{eq:Gaussian-W-traces},\n\\begin{align}\n    t_{\\bSigma},\\ \\frac{d}{b_{\\bA}}\n    &\\limp\\tau_{\\rm G}(\\gamma,\\rho),\\notag\\\\\n    t_{\\bSigma}-\\frac{d}{b_{\\bA}}&\\limp0.\n    \\label{eq:Gaussian-trace-limits}\n\\end{align}\n\nFinally, the whitened coefficient error is\n$\\bq=\\bR^{-1}(\\ba+\\bK\\bc)$. The vector $\\ba+\\bK\\bc$ is independent\nof $\\bZ$. The same inverse-Gram directional law therefore gives\n\\begin{align*}\n    \\norm{\\bq}^2\n       \\ \\stackrel{\\rm d}{=}\n       \\frac{\\norm{\\ba+\\bK\\bc}^2}{Q},\n    \\qquad Q\\sim\\chi^2_{n-d+1},\n\\end{align*}\nwhere $Q$ is independent of the vector on an auxiliary probability space.\nSince $Q/n\\limp1-\\gamma>0$, \\eqref{eq:Gaussian-K-traces} gives\n\\begin{align*}\n    \\norm{\\bSigma^{1/2}(\\hbbeta-\\bbeta^*)}^2\n    \\limp\\sigma^2\\left\\{\n       \\frac{\\gamma}{1-\\gamma}+\\frac{\\gamma}{\\rho-\\gamma}\\right\\}.\n\\end{align*}\nAdding $\\sigma^2$ proves the risk limit.\n\nExpanding either corrected risk estimate as\n\\begin{align*}\n    \\frac1n\\norm{\\bu+c\\bA\\bu}^2\n    =\\frac{\\norm{\\bu}^2}{n}\n     +2c\\frac{\\bu^\\top\\bA\\bu}{n}\n     +c^2\\frac{\\norm{\\bA\\bu}^2}{n}\n\\end{align*}\nand taking $c=t_{\\bSigma}$ or $c=d/b_{\\bA}$ proves the Gaussian\nrisk limits in \\eqref{eq:cpal-risk-benchmarks}. For the GCV gap, combine\n\\begin{align*}\n    \\trace(\\bX\\bM^{-1}\\bX^\\top\\bA)=d\n\\end{align*}\nwith \\eqref{eq:Gaussian-u-limit} to obtain\n\\begin{align*}\n    \\hR_{\\GCV}\n    \\limp\n    \\frac{\\sigma^2\\rho}{(\\rho-\\gamma)(1-\\gamma)}.\n\\end{align*}\nSubtracting $\\calR_{\\rm G}$ gives $\\Delta_{\\rm G}$ in\n\\eqref{eq:cpal-risk-benchmarks}.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 3305,
+        "to": 3313,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 290,
+        "to": 308,
+        "env": "theorem",
+        "label": "thm:cpal-risk-benchmarks"
+      },
+      "refs": [
+        "sec:underparameterized-transfer",
+        "eq:cpal-risk-benchmarks",
+        "eq:Gaussian-W-traces",
+        "eq:Gaussian-K-traces",
+        "eq:Gaussian-u-limit"
+      ]
+    },
+    {
+      "id": "thm:tight-frame-mse-comparison",
+      "kind": "theorem",
+      "envName": "theorem",
+      "label": "thm:tight-frame-mse-comparison",
+      "title": null,
+      "body": "\\label{thm:tight-frame-mse-comparison}\nUnder the model of Section~\\ref{sec:meth}, suppose Gaussian data,\n$\\sigma^2>0$, a scaled orthogonal sketch, and $1\\leq d$ with $d+3<m<n$.\nThe mean squared errors are\n\\begin{align}\n   \\operatorname{MSE}(\\widehat R_c)\n   &=\\frac{2\\sigma^4e_{m,d}}q, \\notag\\\\\n   \\operatorname{MSE}(\\hR_o)&=\n   \\frac{\\sigma^4}{n^2}\\{2qe_{m,d}+m^2a_{m,d}\\}.\n   \\label{eq:tight-frame-exact-mse-comparison}\n\\end{align}\nThe corrected risk estimate has smaller MSE exactly when\n\\begin{align}\n   q^2+\\frac{m^2q\\,a_{m,d}}{2e_{m,d}}<n^2.\n   \\label{eq:tight-frame-finite-mse-rule}\n\\end{align}\nReversing the inequality favors the complementary risk estimate; equality\ngives equal MSE.",
+      "proof": "Condition on $\\bS$ and write $\\bS=\\sqrt{c_n}\\bF$, with\n$\\bF\\bF^\\top=\\bI_m$. As in\nSection~\\ref{app:proof-tight-frame-risk}, whiten the feature coordinates and set\n\\begin{align*}\n    \\bZ_1&=\\bF\\bX\\bSigma^{-1/2},\n    &\\bep_1&=\\bF\\bep,\\\\\n    \\bq&=\\bSigma^{1/2}(\\hbbeta_{\\bS}-\\bbeta^*)\n       =(\\bZ_1^\\top\\bZ_1)^{-1}\\bZ_1^\\top\\bep_1,\n    &\\bu_1&=\\bF\\bu=\\bep_1-\\bZ_1\\bq.\n\\end{align*}\nThe entries of $\\bZ_1$ are independent standard Gaussian variables, and\n$\\bep_1\\sim\\calN(\\boldzero,\\sigma^2\\bI_m)$ independently of $\\bZ_1$.\nThe risk and the GCV criterion based on the $m$ row-whitened sketch\ncoordinates are\n\\begin{align*}\n    R&=\\sigma^2+\\norm{\\bq}^2,\n    &\\hR_{\\GCV,\\bF}\n    &:=\\frac{\\norm{\\bF\\bu}^2/m}{(1-d/m)^2}\n      =\\frac{m}{k^2}\\norm{\\bu_1}^2.\n\\end{align*}\nThese expressions remove the dependence on $\\bSigma$ and $\\bbeta^*$.\nSince $\\norm{\\bP_{\\bS}\\bu}^2=\\norm{\\bF\\bu}^2$,\n\\eqref{eq:cpal-tight-frame-correction} gives\n\\begin{align}\n    \\hR_o=\\frac qn\\widehat R_c+\\frac mn\\hR_{\\GCV,\\bF}.\n    \\label{eq:tight-frame-R-obs-pooled-decomposition}\n\\end{align}\n\nGiven $\\bZ_1$, the Gaussian projections defining $\\bq$ and\n$\\bu_1$ are independent, with\n$\\norm{\\bu_1}^2/\\sigma^2\\sim\\chi^2_k$. Since this conditional chi-square\nlaw does not depend on $\\bZ_1$ or $\\bS$, the residual sum of squares is\nindependent of $(\\bZ_1,\\bq,\\bS)$. In particular,\n$\\hR_{\\GCV,\\bF}$ is independent of $R$.\n\nTo obtain the moments of $R$, write\n$\\bW_1=\\bZ_1^\\top\\bZ_1\\sim\\operatorname{Wishart}_d(m,\\bI_d)$.\nThe conditional Gaussian law of $\\bq$ gives the representation\n$\\bq/\\sigma\\stackrel{\\rm d}{=}\\bW_1^{-1/2}\\bg$, where\n$\\bg\\sim\\calN(\\boldzero,\\bI_d)$ is independent of $\\bW_1$.\nThe squared radius $U=\\norm{\\bg}^2\\sim\\chi^2_d$ is independent of its\ndirection. Orthogonal invariance of $\\bW_1$ implies that the quadratic\nform of $\\bW_1^{-1}$ in this direction has the law of\n$(\\bW_1^{-1})_{11}$. The Schur-complement identity writes its reciprocal\nas the squared norm of the first design column after projection onto the\northogonal complement of the remaining $d-1$ columns. This projection has\nrank $m-d+1=k+1$, so the reciprocal has law $\\chi^2_{k+1}$.\nIt is independent of $U$. Consequently,\n\\begin{align*}\n    \\frac{R}{\\sigma^2}\\stackrel{\\rm d}{=}1+\\frac UV,\n    \\qquad U\\sim\\chi^2_d,\\quad V\\sim\\chi^2_{k+1},\n    \\quad U\\perp V.\n\\end{align*}\nFor $k>3$, the chi-square moments yield\n\\begin{align*}\n    \\frac{\\E R}{\\sigma^2}&=\\frac{m-1}{k-1},\n    &\\frac{\\operatorname{Var}(R)}{\\sigma^4}\n       &=\\frac{2d(m-1)}{(k-1)^2(k-3)},\\\\\n    \\frac{\\E\\hR_{\\GCV,\\bF}}{\\sigma^2}&=\\frac mk,\n    &\\frac{\\operatorname{Var}(\\hR_{\\GCV,\\bF})}{\\sigma^4}\n       &=\\frac{2m^2}{k^3}.\n\\end{align*}\nIt follows that $\\E R^2=\\sigma^4e_{m,d}$. Independence of\n$\\hR_{\\GCV,\\bF}$ and $R$, together with\n$\\E[\\hR_{\\GCV,\\bF}-R]=-\\sigma^2d/\\{k(k-1)\\}$, gives\n\\begin{align*}\n    \\E[(\\hR_{\\GCV,\\bF}-R)^2]=\\sigma^4a_{m,d}.\n\\end{align*}\nThus the three terms defining $a_{m,d}$ are the variance of the GCV risk\nestimate, the variance of $R$, and their squared mean difference, each\ndivided by $\\sigma^4$.\n\nBy Theorem~\\ref{thm:cpal-complementary-law},\n\\begin{align*}\n    \\E[\\widehat R_c-R\\mid\\calF_{\\bS}]&=0,\n    &\\E[(\\widehat R_c-R)^2\\mid\\calF_{\\bS}]\n       &=\\frac{2R^2}{q}.\n\\end{align*}\nThe preceding moment formulas show that both estimation errors are square\nintegrable, so their product is integrable by Cauchy--Schwarz.\nBoth $R$ and $\\hR_{\\GCV,\\bF}$ are $\\calF_{\\bS}$-measurable, so\n\\begin{align*}\n    \\E[(\\widehat R_c-R)(\\hR_{\\GCV,\\bF}-R)]=0.\n\\end{align*}\nSubtracting $R$ from\n\\eqref{eq:tight-frame-R-obs-pooled-decomposition} now gives\n\\begin{align*}\n    \\hR_o-R\n    =\\frac qn(\\widehat R_c-R)\n      +\\frac mn(\\hR_{\\GCV,\\bF}-R).\n\\end{align*}\nSquaring this identity and taking expectations proves\n\\eqref{eq:tight-frame-exact-mse-comparison}. Dividing its two expressions\ngives the exact ratio\n\\begin{align*}\n    \\frac{\\operatorname{MSE}(\\hR_o)}\n         {\\operatorname{MSE}(\\widehat R_c)}\n    =\\frac{q^2}{n^2}+\\frac{m^2q\\,a_{m,d}}{2n^2e_{m,d}},\n\\end{align*}\nwhich proves \\eqref{eq:tight-frame-finite-mse-rule}.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 3631,
+        "to": 3732,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 322,
+        "to": 341,
+        "env": "theorem",
+        "label": "thm:tight-frame-mse-comparison"
+      },
+      "refs": [
+        "sec:meth",
+        "app:proof-tight-frame-risk",
+        "eq:cpal-tight-frame-correction",
+        "thm:cpal-complementary-law",
+        "eq:tight-frame-R-obs-pooled-decomposition",
+        "eq:tight-frame-exact-mse-comparison",
+        "eq:tight-frame-finite-mse-rule"
+      ]
+    },
+    {
+      "id": "thm:cpal-mse-comparison",
+      "kind": "theorem",
+      "envName": "theorem",
+      "label": "thm:cpal-mse-comparison",
+      "title": null,
+      "body": "\\label{thm:cpal-mse-comparison}\n\\label{thm:tight-frame-asymptotic-mse-threshold}\nFor Gaussian data with $\\sigma^2>0$, a scaled orthogonal sketch, and\n$d+3<m<n$, suppose $(\\gamma_n,\\rho_n)\\to(\\gamma,\\rho)$ with\n$0<\\gamma<\\rho<1$.\nFor sufficiently large $n$, $\\widehat R_c$ has smaller MSE if\n$\\rho<\\rho_*(\\gamma)$, and $\\hR_o$ has smaller MSE if\n$\\rho>\\rho_*(\\gamma)$. At equality, their MSE ratio tends to one.\nIf $\\gamma_n$ stays in a compact subset of $(0,1)$, the local\ncontinuous crossover exists uniquely for sufficiently large $n$ and\n\\begin{align}\n \\rho_n^{\\#}\n =\\rho_*(\\gamma_n)-\\frac{5}{12n}+O(n^{-2}).\n \\label{eq:cpal-finite-mse-threshold}\n\\end{align}",
+      "proof": "Substituting $d=n\\gamma_n$ and $m=n\\rho_n$ into the exact MSE formulas\nfrom Theorem~\\ref{thm:tight-frame-mse-comparison}, then expanding their\nratio in $n^{-1}$, gives\n\\begin{align}\n    \\frac{\\operatorname{MSE}(\\hR_o)}\n         {\\operatorname{MSE}(\\widehat R_c)}\n    &=(1-\\rho_n)\\left(1+\n       \\frac{2\\gamma_n\\rho_n}{\\rho_n-\\gamma_n}\\right) \\notag\\\\\n    &\\quad-\\frac{5\\gamma_n^2(1-\\rho_n)}\n       {2n(\\rho_n-\\gamma_n)^2}+O(n^{-2}),\n    \\label{eq:tight-frame-mse-ratio-expansion}\n\\end{align}\nuniformly when $(\\gamma_n,\\rho_n)$ stays in a compact subset of\n$\\{(g,r):0<g<r<1\\}$. The limiting ratio minus one equals\n\\begin{align*}\n    \\frac{\\rho\\{3\\gamma-(1+2\\gamma)\\rho\\}}{\\rho-\\gamma}.\n\\end{align*}\n     Its sign proves the limiting threshold and the stated MSE ordering. \n\nFor the local finite-sample crossover, suppose $\\gamma_n$ is bounded away\nfrom zero and one. The points\n$(\\gamma_n,\\rho_*(\\gamma_n))$ then stay in a compact subset of the same\ninterior domain. The expansion\n\\eqref{eq:tight-frame-mse-ratio-expansion} also holds after one derivative\nin $\\rho_n$, since the exact ratio is rational and its denominators stay\naway from zero after normalization. At $\\rho=\\rho_*(\\gamma)$, the\nderivative of the leading ratio is\n\\begin{align*}\n    -\\frac{3(1+2\\gamma)}{2(1-\\gamma)},\n\\end{align*}\nwhich is uniformly bounded away from zero on such compact sets.\nApply the implicit function theorem to the exact ratio minus one, with\nparameters $(n^{-1},\\gamma_n)$, at each point\n$(0,\\gamma,\\rho_*(\\gamma))$. Its nonzero derivative gives a smooth local\nsolution of the MSE equality. Compactness gives a common neighborhood\nand a common upper bound on $n^{-1}$; the negative derivative gives\nuniqueness in that neighborhood.\nThe coefficient of $n^{-1}$ in\n\\eqref{eq:tight-frame-mse-ratio-expansion}, evaluated at the limiting\ncrossover, is $-5(1+2\\gamma)/\\{8(1-\\gamma)\\}$. Taylor expansion of the\nequality about $\\rho_*(\\gamma_n)$ gives a displacement of order $n^{-1}$;\nits coefficient is the negative ratio of the $n^{-1}$ coefficient to the\nderivative, namely $-5/12$. The local solution has bounded second\nderivatives on a smaller compact neighborhood, so Taylor's theorem gives\na uniform second-order remainder and proves\n\\eqref{eq:cpal-finite-mse-threshold}.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 3737,
+        "to": 3785,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 353,
+        "to": 369,
+        "env": "theorem",
+        "label": "thm:cpal-mse-comparison"
+      },
+      "refs": [
+        "thm:tight-frame-mse-comparison",
+        "eq:tight-frame-mse-ratio-expansion",
+        "eq:cpal-finite-mse-threshold"
+      ]
+    },
+    {
+      "id": "assu:model-sketch",
+      "kind": "assumption",
+      "envName": "assumption",
+      "label": "assu:model-sketch",
+      "title": null,
+      "body": "\\label{assu:model-sketch}\nThe observations, covariance bounds, errors, sketch and independent test\npair satisfy the model conditions of Section~\\ref{sec:meth}. Write\n$0<c_{\\bSigma}\\leq C_{\\bSigma}<\\infty$ for the fixed constants,\nindependent of $n$, satisfying\n$c_{\\bSigma}\\bI_d\\preceq\\bSigma\\preceq C_{\\bSigma}\\bI_d$.",
+      "proof": null,
+      "proofLines": null,
+      "lines": {
+        "file": "main.tex",
+        "from": 773,
+        "to": 780,
+        "env": "assumption",
+        "label": "assu:model-sketch"
+      },
+      "refs": [
+        "sec:meth"
+      ]
+    },
+    {
+      "id": "assu:noninterpolating",
+      "kind": "assumption",
+      "envName": "assumption",
+      "label": "assu:noninterpolating",
+      "title": null,
+      "body": "\\label{assu:noninterpolating}\nIn addition to Assumption~\\ref{assu:model-sketch}, suppose\n$1\\leq d<m\\leq n$ and $\\rank(\\bS\\bX)=d$ almost surely.",
+      "proof": null,
+      "proofLines": null,
+      "lines": {
+        "file": "main.tex",
+        "from": 788,
+        "to": 792,
+        "env": "assumption",
+        "label": "assu:noninterpolating"
+      },
+      "refs": [
+        "assu:model-sketch"
+      ]
+    },
+    {
+      "id": "assu:Gaussian-Stein-design",
+      "kind": "assumption",
+      "envName": "assumption",
+      "label": "assu:Gaussian-Stein-design",
+      "title": null,
+      "body": "\\label{assu:Gaussian-Stein-design}\nIn addition to Assumption~\\ref{assu:noninterpolating}, suppose\n$\\bX=\\bZ\\bSigma^{1/2}$, where $\\bZ$ has independent standard Gaussian\nentries and is independent of $(\\bS,\\bep)$.\nThe errors are uniformly sub-Gaussian: there exists a constant\n$K_\\varepsilon<\\infty$, independent of $n$, such that\n$\\sup_n\\norm{\\varepsilon_1}_{\\psi_2}\\leq K_\\varepsilon$, where\n\\begin{align*}\n    \\norm{W}_{\\psi_2}\n    :=\\inf\\left\\{t>0:\\E\\exp(W^2/t^2)\\leq2\\right\\}.\n\\end{align*}\nUse the normalization $\\trace(\\bA)=n$, and let\n$\\bA=\\bU\\bLambda\\bU^\\top$ be an $\\bS$-measurable spectral\ndecomposition, where $\\bU\\in\\R^{n\\times m}$ satisfies\n$\\bU^\\top\\bU=\\bI_m$ and $\\bLambda$ contains the positive eigenvalues\nof $\\bA$. There exist deterministic constants $n_0\\geq1$,\n$0<c_-\\leq c_+<\\infty$, and $\\kappa>0$, independent of $n$, such\nthat, for every $n\\geq n_0$, almost surely,\n\\begin{align}\n    c_-\\bI_m\\preceq\\bLambda\\preceq c_+\\bI_m,\n    \\qquad\n    m-d\\geq\\kappa n.\n    \\label{eq:balanced-sketch-conditions}\n\\end{align}",
+      "proof": null,
+      "proofLines": null,
+      "lines": {
+        "file": "main.tex",
+        "from": 826,
+        "to": 851,
+        "env": "assumption",
+        "label": "assu:Gaussian-Stein-design"
+      },
+      "refs": [
+        "assu:noninterpolating"
+      ]
+    },
+    {
+      "id": "lem:dot-beta",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:dot-beta",
+      "title": null,
+      "body": "\\label{lem:dot-beta}\nRecall $\\br=\\bA(\\bep-\\bZ\\bq)$.  Then $\\bZ^\\top\\br=0$, and\n\\begin{align*}\n    \\pdv{\\bq}{z_{ij}}\n    &=\\widetilde{\\bM}^{-1}\\be_jr_i-\\bL^\\top\\be_iq_j,\\\\\n    \\sum_{j=1}^d\\pdv{q_j}{z_{ij}}\n    &=t_{\\bSigma}r_i-\\be_i^\\top\\bL\\bq.\n\\end{align*}",
+      "proof": "The model and normal equations give\n$\\widetilde{\\bM}\\bq=\\bZ^\\top\\bA\\bep$ and $\\bZ^\\top\\br=0$.\nSince $\\bA$ and $\\bep$ are fixed under differentiation,\n\\begin{align*}\n    \\pdv{\\widetilde{\\bM}}{z_{ij}}\n    =\\be_j\\be_i^\\top\\bA\\bZ+\\bZ^\\top\\bA\\be_i\\be_j^\\top.\n\\end{align*}\nDifferentiating $\\bq=\\widetilde{\\bM}^{-1}\\bZ^\\top\\bA\\bep$ yields\n\\begin{align*}\n    \\pdv{\\bq}{z_{ij}}\n    &=-\\widetilde{\\bM}^{-1}\n       \\pdv{\\widetilde{\\bM}}{z_{ij}}\\bq\n       +\\widetilde{\\bM}^{-1}\\be_j\\be_i^\\top\\bA\\bep\\\\\n    &=\\widetilde{\\bM}^{-1}\\be_j\n       \\be_i^\\top\\bA(\\bep-\\bZ\\bq)\n       -\\widetilde{\\bM}^{-1}\\bZ^\\top\\bA\\be_iq_j\\\\\n    &=\\widetilde{\\bM}^{-1}\\be_jr_i-\\bL^\\top\\be_iq_j.\n\\end{align*}\nTaking the $j$th component and summing over $j$ gives\n\\begin{align*}\n    \\sum_{j=1}^d\\pdv{q_j}{z_{ij}}\n    &=\\sum_{j=1}^d\\be_j^\\top\\widetilde{\\bM}^{-1}\\be_jr_i\n       -\\sum_{j=1}^d\\be_j^\\top\\bL^\\top\\be_iq_j\\\\\n    &=t_{\\bSigma}r_i-\\be_i^\\top\\bL\\bq.\n\\end{align*}",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 921,
+        "to": 947,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 911,
+        "to": 919,
+        "env": "lemma",
+        "label": "lem:dot-beta"
+      },
+      "refs": []
+    },
+    {
+      "id": "lem:dot-r",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:dot-r",
+      "title": null,
+      "body": "\\label{lem:dot-r}\nFor every $j\\in[d]$,\n\\begin{align*}\n    \\sum_{i=1}^n\\pdv{r_i}{z_{ij}}\n    =-bq_j-\\be_j^\\top\\bL^\\top\\br.\n\\end{align*}",
+      "proof": "Differentiating $\\br=\\bA(\\bep-\\bZ\\bq)$ and using\nLemma~\\ref{lem:dot-beta} gives\n\\begin{align*}\n    \\pdv{\\br}{z_{ij}}\n    &=-\\bA\\be_iq_j-\\bA\\bZ\\pdv{\\bq}{z_{ij}}\\\\\n    &=-\\bA\\be_iq_j\n       -\\bA\\bZ\\widetilde{\\bM}^{-1}\\be_jr_i\n       +\\bA\\bZ\\bL^\\top\\be_iq_j.\n\\end{align*}\nTaking the $i$th component and summing over $i$ yields\n\\begin{align*}\n    \\sum_{i=1}^n\\pdv{r_i}{z_{ij}}\n    &=-\\trace(\\bA)q_j-\\be_j^\\top\\bL^\\top\\br\n       +\\trace(\\bA\\bZ\\bL^\\top)q_j\\\\\n    &=-bq_j-\\be_j^\\top\\bL^\\top\\br.\n\\end{align*}\nHere\n$\\bA\\bZ\\bL^\\top=\\bA\\bX\\bM^{-1}\\bX^\\top\\bA$,\nso the two trace terms combine to $-bq_j$.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 957,
+        "to": 977,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 949,
+        "to": 955,
+        "env": "lemma",
+        "label": "lem:dot-r"
+      },
+      "refs": [
+        "lem:dot-beta"
+      ]
+    },
+    {
+      "id": "lem:dot-rh",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:dot-rh",
+      "title": null,
+      "body": "\\label{lem:dot-rh}\nThe first product divergence satisfies\n\\begin{align*}\n    \\sum_{i=1}^n\\sum_{j=1}^d\\pdv{r_iq_j}{z_{ij}}\n    =-b\\norm{\\bq}^2+t_{\\bSigma}\\norm{\\br}^2\n      -2\\br^\\top\\bL\\bq.\n\\end{align*}",
+      "proof": "The product rule and Lemmas~\\ref{lem:dot-beta}--\\ref{lem:dot-r} give\n\\begin{align*}\n    \\sum_{i=1}^n\\sum_{j=1}^d\\pdv{r_iq_j}{z_{ij}}\n    &=\\sum_{i=1}^n r_i\\sum_{j=1}^d\\pdv{q_j}{z_{ij}}\n       +\\sum_{j=1}^d q_j\\sum_{i=1}^n\\pdv{r_i}{z_{ij}}\\\\\n    &=\\sum_{i=1}^n r_i(t_{\\bSigma}r_i-\\be_i^\\top\\bL\\bq)\n       +\\sum_{j=1}^d q_j(-bq_j-\\be_j^\\top\\bL^\\top\\br)\\\\\n    &=-b\\norm{\\bq}^2+t_{\\bSigma}\\norm{\\br}^2\n       -2\\br^\\top\\bL\\bq.\n\\end{align*}",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 988,
+        "to": 999,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 979,
+        "to": 986,
+        "env": "lemma",
+        "label": "lem:dot-rh"
+      },
+      "refs": [
+        "lem:dot-beta",
+        "lem:dot-r"
+      ]
+    },
+    {
+      "id": "lem:dot-hxh",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:dot-hxh",
+      "title": null,
+      "body": "\\label{lem:dot-hxh}\nThe second product divergence satisfies\n\\begin{align*}\n    \\sum_{i=1}^n\\sum_{j=1}^d\n       \\pdv{q_j\\be_i^\\top\\bZ\\bq}{z_{ij}}\n    =t_{\\bSigma}\\br^\\top\\bZ\\bq+(n-d-1)\\norm{\\bq}^2.\n\\end{align*}",
+      "proof": "First, the product rule and Lemma~\\ref{lem:dot-beta} imply\n\\begin{align*}\n    \\sum_{i=1}^n\\pdv{\\be_i^\\top\\bZ\\bq}{z_{ij}}\n    &=nq_j+\\sum_{i=1}^n\\be_i^\\top\\bZ\\pdv{\\bq}{z_{ij}}\\\\\n    &=nq_j+\\be_j^\\top\\widetilde{\\bM}^{-1}\\bZ^\\top\\br\n       -q_j\\trace(\\bZ\\bL^\\top)\\\\\n    &=(n-d)q_j,\n\\end{align*}\nbecause $\\bZ^\\top\\br=0$ and $\\bZ^\\top\\bL=\\bI_d$.\nApplying the product rule once more gives\n\\begin{align*}\n    \\sum_{i=1}^n\\sum_{j=1}^d\n       \\pdv{q_j\\be_i^\\top\\bZ\\bq}{z_{ij}}\n    &=\\sum_{i=1}^n\\be_i^\\top\\bZ\\bq\n       \\sum_{j=1}^d\\pdv{q_j}{z_{ij}}\n       +\\sum_{j=1}^d q_j\n          \\sum_{i=1}^n\\pdv{\\be_i^\\top\\bZ\\bq}{z_{ij}}\\\\\n    &=t_{\\bSigma}\\br^\\top\\bZ\\bq\n       -\\bq^\\top\\bZ^\\top\\bL\\bq+(n-d)\\norm{\\bq}^2\\\\\n    &=t_{\\bSigma}\\br^\\top\\bZ\\bq+(n-d-1)\\norm{\\bq}^2.\n\\end{align*}",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1010,
+        "to": 1032,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1001,
+        "to": 1008,
+        "env": "lemma",
+        "label": "lem:dot-hxh"
+      },
+      "refs": [
+        "lem:dot-beta"
+      ]
+    },
+    {
+      "id": "lem:dot-rxr",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:dot-rxr",
+      "title": null,
+      "body": "\\label{lem:dot-rxr}\nThe normal equations imply\n\\begin{align*}\n    \\sum_{i=1}^n\\sum_{j=1}^d\n       \\pdv{r_i\\be_j^\\top\\bZ^\\top\\br}{z_{ij}}=0.\n\\end{align*}",
+      "proof": "The normal equations imply $\\bZ^\\top\\br=0$ identically on the full-rank\ndomain.  Hence every function $r_i\\be_j^\\top\\bZ^\\top\\br$ is identically\nzero, as is the sum of its derivatives.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1042,
+        "to": 1046,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1034,
+        "to": 1040,
+        "env": "lemma",
+        "label": "lem:dot-rxr"
+      },
+      "refs": []
+    },
+    {
+      "id": "lem:dot-rxxr",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:dot-rxxr",
+      "title": null,
+      "body": "\\label{lem:dot-rxxr}\nThe residual squared-divergence identity is\n\\begin{align*}\n    \\sum_{j=1}^d\\left(\n       \\br^\\top\\bZ\\be_j-\\sum_{i=1}^n\\pdv{r_i}{z_{ij}}\n    \\right)^2\n    =\\norm{b\\bq+\\bL^\\top\\br}^2.\n\\end{align*}",
+      "proof": "Lemma~\\ref{lem:dot-r} and $\\bZ^\\top\\br=0$ give\n\\begin{align*}\n    \\br^\\top\\bZ\\be_j-\\sum_{i=1}^n\\pdv{r_i}{z_{ij}}\n    =bq_j+\\be_j^\\top\\bL^\\top\\br.\n\\end{align*}\nSquaring and summing over $j$ gives $\\norm{b\\bq+\\bL^\\top\\br}^2$.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1058,
+        "to": 1065,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1048,
+        "to": 1056,
+        "env": "lemma",
+        "label": "lem:dot-rxxr"
+      },
+      "refs": [
+        "lem:dot-r"
+      ]
+    },
+    {
+      "id": "lem:dot-hxxh",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:dot-hxxh",
+      "title": null,
+      "body": "\\label{lem:dot-hxxh}\nThe coefficient squared-divergence identity is\n\\begin{align*}\n    \\sum_{i=1}^n\\left(\n       \\bq^\\top\\bZ^\\top\\be_i-\\sum_{j=1}^d\\pdv{q_j}{z_{ij}}\n    \\right)^2\n    =\\norm{\\bZ\\bq-t_{\\bSigma}\\br+\\bL\\bq}^2.\n\\end{align*}",
+      "proof": "Lemma~\\ref{lem:dot-beta} gives\n\\begin{align*}\n    \\bq^\\top\\bZ^\\top\\be_i-\\sum_{j=1}^d\\pdv{q_j}{z_{ij}}\n    =\\be_i^\\top(\\bZ\\bq-t_{\\bSigma}\\br+\\bL\\bq).\n\\end{align*}\nSquaring and summing over $i$ proves the identity.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1077,
+        "to": 1084,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1067,
+        "to": 1075,
+        "env": "lemma",
+        "label": "lem:dot-hxxh"
+      },
+      "refs": [
+        "lem:dot-beta"
+      ]
+    },
+    {
+      "id": "lem:opnorm-X-bound",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:opnorm-X-bound",
+      "title": null,
+      "body": "\\label{lem:opnorm-X-bound}\nSuppose Assumption~\\ref{assu:Gaussian-Stein-design} holds.\nFor every fixed integer $k\\geq1$, there is a constant $C_k<\\infty$,\nindependent of $n$, such that\n\\begin{align}\n    \\E\\left(\\frac{\\norm{\\bZ}_{\\rm op}}{\\sqrt n}\\right)^k\n    +\\E\\left(\\frac{\\norm{\\bX}_{\\rm op}}{\\sqrt n}\\right)^k\n    \\leq C_k.\n    \\label{eq:opnorm-XZ-moments}\n\\end{align}\nMore precisely, for every $s\\geq0$,\n\\begin{align}\n    \\P\\left\\{\n       \\frac{\\norm{\\bX}_{\\rm op}}{\\sqrt n}\n       >\\sqrt{C_{\\bSigma}}(16+s)\n    \\right\\}\n    \\leq e^{-ns^2/16}.\n    \\label{eq:opnorm-X-tail}\n\\end{align}\nFor every fixed integer $k\\geq1$, the error-energy bounds are\n\\begin{align}\n    \\E\\left(\\frac{\\norm{\\bep}^2}{n}\\right)^k\n       &\\leq C_k,\n    &\n    \\E\\left|\\norm{\\bep}^2-n\\sigma^2\\right|^k\n       &\\leq C_kn^{k/2}.\n    \\label{eq:noise-energy-moments}\n\\end{align}\nIf the sub-Gaussian condition is expressed in the relative form\n$\\norm{\\varepsilon_1}_{\\psi_2}\\leq K_\\varepsilon\\sigma$, the first bound in\n\\eqref{eq:noise-energy-moments} becomes\n$\\E(\\norm{\\bep}^2/n)^k\\leq C(k,K_\\varepsilon)(\\sigma^2)^k$.\nMoreover, there are constants $c,C>0$,\nindependent of $n$, such that\n\\begin{align}\n    \\P\\left(\n       \\norm{\\bZ}_{\\rm op}>C\\sqrt n\n       \\ \\text{or}\\\n       \\norm{\\bX}_{\\rm op}>C\\sqrt n\n       \\ \\text{or}\\\n       \\norm{\\bep}>C\\sqrt n\n    \\right)\n    \\leq Ce^{-cn}.\n    \\label{eq:design-noise-tail}\n\\end{align}\nThe constants in the design bounds depend only on the fixed moment order and\n$C_{\\bSigma}$; the noise bounds may additionally depend on\n$K_\\varepsilon$ and $\\sigma^2$.\nAll these bounds also hold conditionally on the independent sketch $\\bS$.",
+      "proof": "The spectral bounds in Assumption~\\ref{assu:model-sketch} and the\nfactorization $\\bX=\\bZ\\bSigma^{1/2}$ give\n\\begin{align}\n    \\sqrt{c_{\\bSigma}}\\norm{\\bZ}_{\\rm op}\n    \\leq \\norm{\\bX}_{\\rm op}\n    \\leq \\sqrt{C_{\\bSigma}}\\norm{\\bZ}_{\\rm op}.\n    \\label{eq:XZ-opnorm-comparison}\n\\end{align}\nA finite-net argument gives the Gaussian\noperator-norm tail. There is a $1/4$-net $\\mathcal N$ of the unit ball in\n$\\R^d$ with $|\\mathcal N|\\leq9^d$, and\n$\\norm{\\bZ}_{\\rm op}\\leq2\\max_{v\\in\\mathcal N}\\norm{\\bZ v}$.\nFor each fixed $\\norm v\\leq1$, the squared norm $\\norm{\\bZ v}^2$ has law\n$\\norm v^2\\chi_n^2$. Its exponential moment at $1/4$ is at most $2^{n/2}$.\nChernoff's inequality and a union bound therefore give, for $u\\geq0$,\n\\begin{align*}\n    \\P\\{\\norm{\\bZ}_{\\rm op}\\geq u\\}\n       \\leq9^d2^{n/2}e^{-u^2/16}.\n\\end{align*}\nSince $d\\leq n$, setting $u=16\\sqrt n+a$ yields\n\\begin{align*}\n    \\P\\{\\norm{\\bZ}_{\\rm op}\\geq16\\sqrt n+a\\}\n       \\leq e^{-a^2/16},\\qquad a\\geq0.\n\\end{align*}\nCombining this inequality with \\eqref{eq:XZ-opnorm-comparison} and taking\n$a=s\\sqrt n$ proves \\eqref{eq:opnorm-X-tail}. Integrating the tail of\n$\\norm{\\bZ}_{\\rm op}/\\sqrt n$ above $16$, and using $n\\geq1$, proves\n\\eqref{eq:opnorm-XZ-moments}. Only the covariance upper bound is needed\nfor this step; the lower bound gives the reverse comparison in\n\\eqref{eq:XZ-opnorm-comparison}.\n\nFor the noise bounds, put $Y_i=\\varepsilon_i^2-\\sigma^2$ and define\n$\\norm{W}_{\\psi_1}:=\\inf\\{t>0:\\E\\exp(|W|/t)\\leq2\\}$.\nA centered sub-Gaussian square is\nsub-exponential, so $\\norm{Y_i}_{\\psi_1}\\leq C K_\\varepsilon^2$.\nBernstein's inequality therefore gives\n\\begin{align}\n    \\P\\left(\n       \\left|\\norm{\\bep}^2-n\\sigma^2\\right|>a\n    \\right)\n    \\leq\n    2\\exp\\left[\n       -c\\min\\left\\{\n          \\frac{a^2}{nK_\\varepsilon^4},\n          \\frac{a}{K_\\varepsilon^2}\n       \\right\\}\n    \\right].\n    \\label{eq:noise-energy-Bernstein}\n\\end{align}\nIntegrating \\eqref{eq:noise-energy-Bernstein} yields\n\\begin{align*}\n    \\left(\n       \\E\\left|\\norm{\\bep}^2-n\\sigma^2\\right|^k\n    \\right)^{1/k}\n    \\leq C_k\\sqrt n.\n\\end{align*}\nThe triangle inequality in $L^k$ proves the first bound in\n\\eqref{eq:noise-energy-moments}.  Taking a sufficiently large fixed threshold\nin \\eqref{eq:opnorm-X-tail} and \\eqref{eq:noise-energy-Bernstein}, and using\n\\eqref{eq:XZ-opnorm-comparison}, proves \\eqref{eq:design-noise-tail}.\nFinally, independence of $\\bS$ shows that conditioning on the sketch does not\nchange any of the bounds.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1149,
+        "to": 1212,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1097,
+        "to": 1147,
+        "env": "lemma",
+        "label": "lem:opnorm-X-bound"
+      },
+      "refs": [
+        "assu:Gaussian-Stein-design",
+        "eq:noise-energy-moments",
+        "assu:model-sketch",
+        "eq:XZ-opnorm-comparison",
+        "eq:opnorm-X-tail",
+        "eq:opnorm-XZ-moments",
+        "eq:noise-energy-Bernstein",
+        "eq:design-noise-tail"
+      ]
+    },
+    {
+      "id": "lem:M-inverse-bound",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:M-inverse-bound",
+      "title": null,
+      "body": "\\label{lem:M-inverse-bound}\nSuppose Assumption~\\ref{assu:Gaussian-Stein-design} holds, and use the\ntrace-normalized\nrepresentative and spectral decomposition from\nAssumption~\\ref{assu:Gaussian-Stein-design}, together with the standing\nnotation above.\nFor every fixed integer $k\\geq1$, there are $n_0(k,\\kappa)\\geq1$ and\n$C_k<\\infty$, independent of $n$ and uniform over all sketch matrices\nsatisfying \\eqref{eq:balanced-sketch-conditions}, such that, for\n$n\\geq n_0(k,\\kappa)$,\n\\begin{align}\n    \\E\\left[\\norm{\\bM^{-1}}_{\\rm op}^k\\mid\\bS\\right]\n    &\\leq \\frac{C_k}{n^k},\n    &\n    \\E\\left[\\norm{\\bM^{-1}\\bX^\\top\\bA}_{\\rm op}^k\\mid\\bS\\right]\n    &\\leq \\frac{C_k}{n^{k/2}}.\n    \\label{eq:M-inverse-moments}\n\\end{align}\nMoreover,\n\\begin{align}\n    \\norm{\\bM^{-1}\\bX^\\top\\bA\\bX}_{\\rm op}\n    =\\norm{\\bI_d}_{\\rm op}=1\n    \\qquad\\text{almost surely},\n    \\label{eq:M-inverse-normal-equation}\n\\end{align}\nand the corresponding whitened envelope is\n\\begin{align}\n    \\E\\left[\n       \\left(n\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op}\\right)^k\n       +\\left(\\sqrt n\\norm{\\bL}_{\\rm op}\\right)^k\n       +t_{\\bSigma}^k\n       +\\left\\{\\trace(\\bM^{-1})\\right\\}^k\n       \\mathrel{\\Big|}\\bS\n    \\right]\n    \\leq C_k.\n    \\label{eq:M-inverse-whitened-envelope}\n\\end{align}\nThe same inequalities hold for unconditional expectations.  Their constants\ndepend only on $k$, the fixed constants in\n\\eqref{eq:balanced-sketch-conditions}, and the covariance bounds; in\nparticular, they do not depend on the value of $\\bS$.",
+      "proof": "Condition on the sketch and put $\\bW=\\bG_0^\\top\\bG_0$.\nThen $\\bG_0\\in\\R^{m\\times d}$ has independent standard Gaussian entries and\n\\begin{align}\n    \\widetilde{\\bM}=\\bG_0^\\top\\bLambda\\bG_0\n    \\succeq c_-\\bW.\n    \\label{eq:M-inverse-PSD-lower}\n\\end{align}\nWe first prove the required negative moments of $\\bW$ directly.\nPut $\\nu=m-d+1$. The Schur complement and Gaussian orthogonal invariance\nshow that, for every unit vector $v\\in\\R^d$,\n$v^\\top\\bW^{-1}v\\stackrel{\\rm d}{=}1/\\chi^2_\\nu$.\nFor example, for a coordinate vector, the reciprocal quadratic form is\n$\\bg_j^\\top(\\bI_m-\\bP_{-j})\\bg_j$, where $\\bP_{-j}$ projects onto\nthe other $d-1$ Gaussian columns; this quadratic form has $\\nu$ Gaussian degrees of freedom.\nThus, for every integer $r\\geq1$ with $2r<\\nu$,\n\\begin{align*}\n    \\E[(v^\\top\\bW^{-1}v)^r\\mid\\bS]\n       =\\prod_{j=1}^r\\frac1{\\nu-2j}.\n\\end{align*}\nFor $\\norm v\\leq1$, the same expression is an upper bound.\n\nChoose a $1/4$-net $\\mathcal N$ of the unit ball with\n$|\\mathcal N|\\leq9^d$. Positivity of $\\bW^{-1}$ gives\n$\\norm{\\bW^{-1}}_{\\rm op}\\leq2\\max_{v\\in\\mathcal N}v^\\top\\bW^{-1}v$.\nIf $4r\\leq\\nu$, summing the directional moment bounds therefore yields\n\\begin{align*}\n    \\E[(n\\norm{\\bW^{-1}}_{\\rm op})^r\\mid\\bS]\n       \\leq9^d\\left(\\frac{4n}{\\nu}\\right)^r.\n\\end{align*}\nTake $r=\\lfloor\\nu/4\\rfloor$. For all sufficiently large $n$,\n$r\\geq\\nu/8$ and $r\\geq k$. Since $\\nu\\geq\\kappa n$ and $d\\leq n$,\nthe right side is at most $D_\\kappa^r$, where\n$D_\\kappa=(4/\\kappa)9^{8/\\kappa}$ is independent of $n$ and the sketch.\nThe elementary inequality $x^k\\leq1+x^r$ for $x\\geq0$ and $r\\geq k$,\napplied to $x=n\\norm{\\bW^{-1}}_{\\rm op}/D_\\kappa$, gives\n\\begin{align}\n    \\E[\\norm{\\bW^{-1}}_{\\rm op}^k\\mid\\bS]\n       \\leq\\frac{2D_\\kappa^k}{n^k}.\n    \\label{eq:Wishart-inverse-op-moment}\n\\end{align}\nThis argument also proves integrability, and uses no lower-tail\nsingular-value estimate.\n\nBy \\eqref{eq:M-inverse-PSD-lower} and order reversal under inversion,\n\\begin{align*}\n    \\norm{\\widetilde{\\bM}^{-1}}_{\\rm op}\n    \\leq c_-^{-1}\\norm{\\bW^{-1}}_{\\rm op},\n\\end{align*}\nwhich proves the first term of\n\\eqref{eq:M-inverse-whitened-envelope}.  For the sketched least-squares map,\nlet $\\bB=\\bLambda^{1/2}\\bG_0$ locally in this proof. Since\n\\begin{align*}\n    \\bL\n    &=\\bU\\bLambda^{1/2}\\bB(\\bB^\\top\\bB)^{-1},\n    &\n    s_{\\min}(\\bB)&\\geq\\sqrt{c_-}\\,s_{\\min}(\\bG_0),\n\\end{align*}\nwe have\n\\begin{align*}\n    \\norm{\\bL}_{\\rm op}\n    \\leq\\sqrt{\\frac{c_+}{c_-}}\\,\n       s_{\\min}(\\bG_0)^{-1}\n    =\\sqrt{\\frac{c_+}{c_-}}\n       \\norm{\\bW^{-1}}_{\\rm op}^{1/2}.\n\\end{align*}\nLyapunov's inequality and \\eqref{eq:Wishart-inverse-op-moment} therefore give\n$\\E[\\norm{\\bL}_{\\rm op}^k\\mid\\bS]\\leq C_kn^{-k/2}$.\n\nFinally,\n\\begin{align*}\n    \\bM\n    &=\\bSigma^{1/2}\\widetilde{\\bM}\\bSigma^{1/2},\n    &\n    \\bM^{-1}\\bX^\\top\\bA\n    &=\\bSigma^{-1/2}\\bL^\\top,\n\\end{align*}\nso the covariance lower bound proves \\eqref{eq:M-inverse-moments}.\nThe normal equations prove \\eqref{eq:M-inverse-normal-equation}, while\n\\begin{align*}\n    t_{\\bSigma}\n    &\\leq d\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op},\n    &\n    \\trace(\\bM^{-1})\n    &\\leq c_{\\bSigma}^{-1}\n       t_{\\bSigma}\n\\end{align*}\nproves the remaining terms in\n\\eqref{eq:M-inverse-whitened-envelope}.  Taking expectations over $\\bS$\ngives the unconditional claims.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1266,
+        "to": 1356,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1222,
+        "to": 1264,
+        "env": "lemma",
+        "label": "lem:M-inverse-bound"
+      },
+      "refs": [
+        "assu:Gaussian-Stein-design",
+        "eq:balanced-sketch-conditions",
+        "eq:M-inverse-PSD-lower",
+        "eq:M-inverse-whitened-envelope",
+        "eq:Wishart-inverse-op-moment",
+        "eq:M-inverse-moments",
+        "eq:M-inverse-normal-equation"
+      ]
+    },
+    {
+      "id": "lem:derivative-energy-from-inverse-moments",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:derivative-energy-from-inverse-moments",
+      "title": null,
+      "body": "\\label{lem:derivative-energy-from-inverse-moments}\nSuppose that random matrices $\\bK\\in\\R^{d\\times d}$ and\n$\\bL\\in\\R^{n\\times d}$ and random vectors $\\bq\\in\\R^d$ and\n$\\br\\in\\R^n$ satisfy, almost everywhere,\n\\begin{align*}\n    \\pdv{\\bq}{z_{ij}}\n       =\\bK\\be_jr_i-\\bL^\\top\\be_iq_j.\n\\end{align*}\nThen\n\\begin{align*}\n    \\calE_{\\bq}\n    &\\leq2\\norm{\\bK}_{\\rm F}^2\\norm{\\br}^2\n       +2\\norm{\\bL}_{\\rm F}^2\\norm{\\bq}^2,\\\\\n    \\E\\calE_{\\bq}^2\n    &\\leq8\\E\\left[\\norm{\\bK}_{\\rm F}^4\\norm{\\br}^4\\right]\n       +8\\E\\left[\\norm{\\bL}_{\\rm F}^4\\norm{\\bq}^4\\right].\n\\end{align*}\nConsequently, boundedness of the two mixed moments on the right is sufficient\nfor $\\E\\calE_{\\bq}^2=O(1)$.",
+      "proof": "Sum the squared derivative identity over $(i,j)$ and use\n$\\norm{\\ba-\\bb}^2\\leq2\\norm{\\ba}^2+2\\norm{\\bb}^2$ to obtain the pointwise\nbound.  Squaring it proves the mixed-moment bound.  Cauchy--Schwarz gives the\ngeneric mixed-moment conclusion.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1386,
+        "to": 1391,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1364,
+        "to": 1384,
+        "env": "lemma",
+        "label": "lem:derivative-energy-from-inverse-moments"
+      },
+      "refs": []
+    },
+    {
+      "id": "lem:balanced-Stein-sufficient-conditions",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:balanced-Stein-sufficient-conditions",
+      "title": null,
+      "body": "\\label{lem:balanced-Stein-sufficient-conditions}\nSuppose Assumption~\\ref{assu:Gaussian-Stein-design} holds, using the\ntrace-normalized\nrepresentative.  Then there are $n_0\\geq1$ and $C<\\infty$,\nindependent of $n$, such that, for $n\\geq n_0$, the map $\\bq$ is weakly\ndifferentiable and\n\\begin{align}\n    \\E\\norm{\\bq}^{8}\n       +n^{-4}\\E\\norm{\\br}^{8}\n       +\\E\\calE_{\\bq}^{2}\n    &\\leq C,\\notag\\\\\n    \\E\\left[\n       \\norm{\\bep}^{2}\n       \\bigl(\\norm{\\bq}^{2}+\\calE_{\\bq}\\bigr)\n    \\right]\n    &\\leq Cn,\\notag\\\\\n    \\E\\left[\n       \\norm{\\bL}_{\\rm op}^{2}\\norm{\\bq}^{2}\n    \\right]\n    &\\leq \\frac{C}{n},\\notag\\\\\n    \\E\\left[\n       \\norm{\\bZ}_{\\rm op}^{2}\\norm{\\bq}^{2}\n       +t_{\\bSigma}^{2}\\norm{\\br}^{2}\n    \\right]\n    &\\leq Cn.\n    \\label{eq:balanced-Stein-sufficient-conditions}\n\\end{align}\nIn particular, Lyapunov's inequality also gives\n$\\E\\norm{\\bq}^{4}\\leq C$ and\n$\\E\\norm{\\br}^{4}\\leq Cn^2$.  Thus the direct hypotheses of the remainder\nand influence lemmas below hold as well.",
+      "proof": "The design and inverse-moment lemmas apply under\nAssumption~\\ref{assu:Gaussian-Stein-design}.  In the whitened notation above,\n$\\widetilde{\\bM}=\\bG_0^\\top\\bLambda\\bG_0$.\nLemmas~\\ref{lem:opnorm-X-bound} and \\ref{lem:M-inverse-bound} imply that,\nfor every fixed integer $k\\geq1$ and all sufficiently large $n$,\n\\begin{align}\n    \\E\\left(\\frac{\\norm{\\bZ}_{\\rm op}}{\\sqrt n}\\right)^k\n    +\\E\\left(n\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op}\\right)^k\n    +\\E\\left(\\sqrt n\\norm{\\bL}_{\\rm op}\\right)^k\n    +\\E t_{\\bSigma}^k\n    &\\leq C_k.\n    \\label{eq:balanced-inverse-envelope}\n\\end{align}\nThe model and the normal equations give\n\\begin{align}\n    \\bq&=\\widetilde{\\bM}^{-1}\\bZ^\\top\\bA\\bep\n        =\\bL^\\top\\bep,\n    & \\bu&=\\bep-\\bZ\\bq,\n    & \\br&=\\bA\\bu.\n    \\label{eq:balanced-qur}\n\\end{align}\nThe orthogonal projector onto $\\operatorname{col}(\\bA^{1/2}\\bZ)$ gives\n\\begin{align}\n    \\br&=(\\bA-\\bA\\bZ\\widetilde{\\bM}^{-1}\\bZ^\\top\\bA)\\bep,\n    \\notag\\\\\n    \\boldzero&\\preceq\\bA-\\bA\\bZ\\widetilde{\\bM}^{-1}\\bZ^\\top\\bA\n       \\preceq\\bA\\preceq c_+\\bI_n.\n    \\label{eq:balanced-residual-contraction}\n\\end{align}\nConsequently,\n\\begin{align*}\n    \\norm{\\bq}&\\leq\\norm{\\bL}_{\\rm op}\\norm{\\bep},\n    & \\norm{\\br}&\\leq c_+\\norm{\\bep}.\n\\end{align*}\nBecause $\\bL$ is measurable with respect to $(\\bZ,\\bS)$ and $\\bep$ is\nindependent of $(\\bZ,\\bS)$, the eighth-order cases of\n\\eqref{eq:balanced-inverse-envelope} and\nLemma~\\ref{lem:opnorm-X-bound} yield\n\\begin{align}\n    \\E\\norm{\\bq}^{8}&\\leq C,\n    & \\E\\norm{\\br}^{8}&\\leq Cn^4.\n    \\label{eq:balanced-response-sufficient-conditions}\n\\end{align}\n\nOff the Gaussian-null rank-deficient set, differentiation of\n\\eqref{eq:balanced-qur}, with $\\bK:=\\widetilde{\\bM}^{-1}$, gives\n\\begin{align}\n    \\pdv{\\bq}{z_{ij}}\n    &=\\bK\\be_jr_i-\\bL^\\top\\be_iq_j,\n    \\label{eq:balanced-dot-q}\n\\end{align}\nand hence\n\\begin{align}\n    \\calE_{\\bq}\n    \\leq\n      2\\norm{\\bK}_{\\rm F}^2\\norm{\\br}^2\n      +2\\norm{\\bL}_{\\rm F}^2\\norm{\\bq}^2.\n    \\label{eq:balanced-Dq-energy}\n\\end{align}\nThis is the pointwise conclusion of\nLemma~\\ref{lem:derivative-energy-from-inverse-moments}, applied with\n$\\bK=\\widetilde{\\bM}^{-1}$ and the present $\\bL$.\nSince $d\\leq n$, \\eqref{eq:balanced-inverse-envelope} implies\n\\begin{align*}\n    \\E\\norm{\\bK}_{\\rm F}^{8}\n    &\\leq d^4\\E\\norm{\\bK}_{\\rm op}^{8}\\leq Cn^{-4},\n    &\n    \\E\\norm{\\bL}_{\\rm F}^{8}\n    &\\leq d^4\\E\\norm{\\bL}_{\\rm op}^{8}\\leq C.\n\\end{align*}\nThe mixed-moment conclusion of\nLemma~\\ref{lem:derivative-energy-from-inverse-moments}, followed by\nCauchy--Schwarz and \\eqref{eq:balanced-response-sufficient-conditions},\ntherefore proves\n\\begin{align*}\n    \\E\\calE_{\\bq}^2\n    &\\leq\n      8\\left(\\E\\norm{\\bK}_{\\rm F}^{8}\\right)^{1/2}\n        \\left(\\E\\norm{\\br}^{8}\\right)^{1/2}\n      +8\\left(\\E\\norm{\\bL}_{\\rm F}^{8}\\right)^{1/2}\n        \\left(\\E\\norm{\\bq}^{8}\\right)^{1/2}\n      \\leq C.\n\\end{align*}\n\nLemma~\\ref{lem:opnorm-X-bound} gives\n$\\E\\norm{\\bep}^{4}\\leq Cn^2$.  Thus Cauchy--Schwarz and Lyapunov's\ninequality give\n\\begin{align*}\n    \\E\\left[\n       \\norm{\\bep}^{2}\n       \\bigl(\\norm{\\bq}^{2}+\\calE_{\\bq}\\bigr)\n    \\right]\n    &\\leq\n    \\left(\\E\\norm{\\bep}^{4}\\right)^{1/2}\n    \\left\\{2\\E\\norm{\\bq}^{4}+2\\E\\calE_{\\bq}^{2}\\right\\}^{1/2}\n    \\leq Cn.\n\\end{align*}\nFinally, the fourth-order cases of the two envelope lemmas give\n\\begin{align*}\n    \\E\\norm{\\bZ}_{\\rm op}^{4}&\\leq Cn^2,\n    & \\E\\norm{\\bL}_{\\rm op}^{4}&\\leq Cn^{-2},\n    & \\E t_{\\bSigma}^{4}&\\leq C.\n\\end{align*}\nCauchy--Schwarz, together with the fourth moments implied by\n\\eqref{eq:balanced-response-sufficient-conditions}, now proves the last two\nlines of \\eqref{eq:balanced-Stein-sufficient-conditions}.\n\nWe use weak derivatives through Gaussian integration by parts: for each\nscalar component $f$ and every smooth, compactly supported test function\n$\\varphi$, conditional on $(\\bA,\\bep)$,\n\\begin{align*}\n    \\E_{\\bZ}\\left[\\pdv{f}{z_{ij}}\\varphi\\right]\n    =\\E_{\\bZ}\\left[f\\left(z_{ij}\\varphi-\\pdv{\\varphi}{z_{ij}}\\right)\\right].\n\\end{align*}\nThe required identity is obtained explicitly by ridge approximation.\nFor $\\eta>0$, put\n\\begin{align*}\n    \\bK_\\eta&=(\\widetilde{\\bM}+\\eta\\bI_d)^{-1},\n    & \\bq_\\eta&=\\bK_\\eta\\bZ^\\top\\bA\\bep,\\\\\n    \\bL_\\eta&=\\bA\\bZ\\bK_\\eta,\n    & \\br_\\eta&=\\bA(\\bep-\\bZ\\bq_\\eta).\n\\end{align*}\nThese maps are smooth and satisfy\n\\begin{align*}\n    \\pdv{\\bq_\\eta}{z_{ij}}\n    =\\bK_\\eta\\be_j(\\br_\\eta)_i\n      -\\bL_\\eta^\\top\\be_i(\\bq_\\eta)_j.\n\\end{align*}\nThe order relations $\\bK_\\eta\\preceq\\widetilde{\\bM}^{-1}$ and\n$\\bK_\\eta\\widetilde{\\bM}\\bK_\\eta\\preceq\\bK_\\eta$, together with\n$\\bA^2\\preceq c_+\\bA$, give\n\\begin{align*}\n    \\norm{\\bK_\\eta}_{\\rm op}\n    &\\leq\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op},\n    &\n    \\norm{\\bL_\\eta}_{\\rm op}^2\n    &\\leq c_+\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op}.\n\\end{align*}\nAlso $\\bq_\\eta=\\bL_\\eta^\\top\\bep$ and\n$\\boldzero\\preceq\\bA-\\bA\\bZ\\bK_\\eta\\bZ^\\top\\bA\\preceq\\bA$,\nso $\\norm{\\br_\\eta}\\leq c_+\\norm{\\bep}$.\nIn particular, uniformly over $\\eta>0$,\n\\begin{align*}\n    \\norm{\\bq_\\eta}^2\n    &\\leq c_+\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op}\\norm{\\bep}^2,\n    &\n    \\calE_{\\bq_\\eta}\n    &\\leq4dc_+^2\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op}^2\\norm{\\bep}^2.\n\\end{align*}\nFor each fixed $(\\bS,\\bep)$, the first two inverse moments make these\nintegrable dominators under the Gaussian design law. On the full-rank\nevent, the fields and their displayed derivatives converge pointwise as\n$\\eta\\downarrow0$. Dominated convergence therefore gives convergence in\nGaussian $W^{1,2}$ and passes the integration-by-parts identity to the limit.\nThus $\\bq$ has weak derivative \\eqref{eq:balanced-dot-q}.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1434,
+        "to": 1590,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1400,
+        "to": 1432,
+        "env": "lemma",
+        "label": "lem:balanced-Stein-sufficient-conditions"
+      },
+      "refs": [
+        "assu:Gaussian-Stein-design",
+        "lem:opnorm-X-bound",
+        "lem:M-inverse-bound",
+        "eq:balanced-inverse-envelope",
+        "eq:balanced-qur",
+        "lem:derivative-energy-from-inverse-moments",
+        "eq:balanced-response-sufficient-conditions",
+        "eq:balanced-Stein-sufficient-conditions",
+        "eq:balanced-dot-q"
+      ]
+    },
+    {
+      "id": "lem:balanced-moment-bounds",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:balanced-moment-bounds",
+      "title": null,
+      "body": "\\label{lem:balanced-moment-bounds}\nUnder Assumption~\\ref{assu:Gaussian-Stein-design}, the maps $\\bq$ and $\\br$\nare weakly differentiable with respect to $\\bZ$ for all sufficiently\nlarge $n$.\nFor every fixed integer $k\\geq1$, there are $n_0(k)\\geq1$ and\n$C_k<\\infty$, independent of $n$, such that, for $n\\geq n_0(k)$,\n\\begin{align}\n    \\E\\norm{\\bq}^{2k}&\\leq C_k,\n    & \\E\\norm{\\br}^{2k}&\\leq C_kn^k,\\notag\\\\\n    \\E\\calE_{\\bq}^{k}&\\leq C_k,\n    & \\E\\calE_{\\br}^{k}&\\leq C_kn^k.\n    \\label{eq:balanced-explicit-moment-bounds}\n\\end{align}\nIf also $\\norm{\\bSigma^{1/2}\\bbeta^*}\\leq B$, then\n\\begin{align*}\n    \\E\\norm{\\bSigma^{1/2}\\hbbeta}^{2k}\n    +\\E\\norm{\\hbbeta}^{2k}\n    \\leq C_k(B).\n\\end{align*}\nMoreover, the uniform lower spectral bound in\nAssumption~\\ref{assu:model-sketch} implies\n\\begin{align*}\n    \\E\\norm{\\bh}^{2k}\\leq C_k.\n\\end{align*}",
+      "proof": "The inverse envelope and the exact representations of $(\\bq,\\br)$ are given\nin \\eqref{eq:balanced-inverse-envelope}--\\eqref{eq:balanced-qur}.  The\n$\\bq$-derivative bound is \\eqref{eq:balanced-Dq-energy}.\nDifferentiating $\\br=\\bA(\\bep-\\bZ\\bq)$ additionally gives\n\\begin{align}\n    \\pdv{\\br}{z_{ij}}\n    &=-\\bA\\be_i q_j-\\bA\\bZ\\pdv{\\bq}{z_{ij}},\\notag\\\\\n    \\calE_{\\br}\n    &\\leq\n      2\\norm{\\bA}_{\\rm F}^2\\norm{\\bq}^2\n      +2\\norm{\\bA\\bZ}_{\\rm op}^2\\calE_{\\bq}.\n    \\label{eq:balanced-Dr-energy}\n\\end{align}\n\nEquations~\\eqref{eq:balanced-qur} and\n\\eqref{eq:balanced-residual-contraction} give\n\\begin{align*}\n    \\norm{\\bq}\n    &\\leq\\norm{\\bL}_{\\rm op}\\norm{\\bep},\n    &\n    \\norm{\\br}\n    &\\leq c_+\\norm{\\bep}.\n\\end{align*}\nSince $\\bL$ is measurable with respect to $(\\bZ,\\bS)$ and $\\bep$ is\nindependent of $(\\bZ,\\bS)$, the inverse envelope\n\\eqref{eq:balanced-inverse-envelope} and the noise-energy moments in\nLemma~\\ref{lem:opnorm-X-bound} imply, for every fixed integer $k\\geq1$,\n\\begin{align}\n    \\E\\norm{\\bq}^{2k}\n    &\\leq \\E\\norm{\\bL}_{\\rm op}^{2k}\\,\n       \\E\\norm{\\bep}^{2k}\n     \\leq C_kn^{-k}\\,C_kn^k\n     \\leq C_k,\\notag\\\\\n    \\E\\norm{\\br}^{2k}\n    &\\leq c_+^{2k}\\E\\norm{\\bep}^{2k}\n     \\leq C_kn^k.\n    \\label{eq:balanced-response-moment-proof}\n\\end{align}\nThus the response moments are established before, and independently of, any\nderivative bound.\n\nPut $\\bK=\\widetilde{\\bM}^{-1}$.  Since $d\\leq n$, the inverse envelope gives\n\\begin{align}\n    \\left(\\E\\norm{\\bK}_{\\rm F}^{4k}\\right)^{1/2}\n    &\\leq d^k\n       \\left(\\E\\norm{\\bK}_{\\rm op}^{4k}\\right)^{1/2}\n      \\leq C_kn^{-k},\\notag\\\\\n    \\left(\\E\\norm{\\bL}_{\\rm F}^{4k}\\right)^{1/2}\n    &\\leq d^k\n       \\left(\\E\\norm{\\bL}_{\\rm op}^{4k}\\right)^{1/2}\n      \\leq C_k.\n    \\label{eq:balanced-Frobenius-moment-proof}\n\\end{align}\nRaising \\eqref{eq:balanced-Dq-energy} to the $k$th power and applying\nCauchy--Schwarz, \\eqref{eq:balanced-response-moment-proof}, and\n\\eqref{eq:balanced-Frobenius-moment-proof}, we obtain\n\\begin{align}\n    \\E\\calE_{\\bq}^{k}\n    &\\leq C_k\n       \\left(\\E\\norm{\\bK}_{\\rm F}^{4k}\\right)^{1/2}\n       \\left(\\E\\norm{\\br}^{4k}\\right)^{1/2}\\notag\\\\\n    &\\quad+C_k\n       \\left(\\E\\norm{\\bL}_{\\rm F}^{4k}\\right)^{1/2}\n       \\left(\\E\\norm{\\bq}^{4k}\\right)^{1/2}\n     \\leq C_k.\n    \\label{eq:balanced-Dq-all-moments}\n\\end{align}\n\nBecause $\\trace(\\bA)=n$ and\n$\\boldzero\\preceq\\bA\\preceq c_+\\bI_n$,\n\\begin{align*}\n    \\norm{\\bA}_{\\rm F}^2\n    =\\trace(\\bA^2)\\leq c_+n,\n    \\qquad\n    \\norm{\\bA\\bZ}_{\\rm op}\\leq c_+\\norm{\\bZ}_{\\rm op}.\n\\end{align*}\nConsequently, \\eqref{eq:balanced-Dr-energy} implies\n\\begin{align*}\n    \\frac{\\calE_{\\br}}{n}\n    \\leq 2c_+\\norm{\\bq}^2\n       +2c_+^2\\frac{\\norm{\\bZ}_{\\rm op}^2}{n}\\calE_{\\bq}.\n\\end{align*}\nAnother application of Cauchy--Schwarz, using\nLemma~\\ref{lem:opnorm-X-bound} and\n\\eqref{eq:balanced-Dq-all-moments} at order $2k$, yields\n\\begin{align}\n    \\E\\left(\\frac{\\calE_{\\br}}{n}\\right)^k\n    &\\leq C_k\\E\\norm{\\bq}^{2k}\n       +C_k\n        \\left\\{\\E\\left(\n           \\frac{\\norm{\\bZ}_{\\rm op}}{\\sqrt n}\n        \\right)^{4k}\\right\\}^{1/2}\n        \\left(\\E\\calE_{\\bq}^{2k}\\right)^{1/2}\n     \\leq C_k.\n    \\label{eq:balanced-Dr-all-moments}\n\\end{align}\nEquations~\\eqref{eq:balanced-response-moment-proof},\n\\eqref{eq:balanced-Dq-all-moments}, and\n\\eqref{eq:balanced-Dr-all-moments} prove\n\\eqref{eq:balanced-explicit-moment-bounds}.\n\nFinally,\n$\\bSigma^{1/2}\\hbbeta=\\bSigma^{1/2}\\bbeta^*+\\bq$.  Hence, when\n$\\norm{\\bSigma^{1/2}\\bbeta^*}\\leq B$,\n\\begin{align*}\n    \\E\\norm{\\bSigma^{1/2}\\hbbeta}^{2k}\n    \\leq 2^{2k-1}\\left(B^{2k}+\\E\\norm{\\bq}^{2k}\\right)\n    \\leq C_k(B).\n\\end{align*}\nThe covariance lower bound also gives\n\\begin{align*}\n    \\E\\norm{\\bh}^{2k}\n    &\\leq c_{\\bSigma}^{-k}\\E\\norm{\\bq}^{2k}\\leq C_k,\\\\\n    \\E\\norm{\\hbbeta}^{2k}\n    &\\leq c_{\\bSigma}^{-k}\n       \\E\\norm{\\bSigma^{1/2}\\hbbeta}^{2k}\n      \\leq C_k(B),\n\\end{align*}\nwhich proves the asserted Euclidean moment bounds.\n\nThe ridge approximation constructed in the proof of\nLemma~\\ref{lem:balanced-Stein-sufficient-conditions}, now combined with the\nall-order bounds just proved, also converges for $\\br$ and its derivative.\nIndeed,\n\\begin{align*}\n    \\pdv{\\br_\\eta}{z_{ij}}\n    =-\\bA\\be_i(q_\\eta)_j\n      -\\bA\\bZ\\pdv{\\bq_\\eta}{z_{ij}}.\n\\end{align*}\nThe same bound as \\eqref{eq:balanced-Dr-energy}, with ridge quantities\nin place of $(\\bq,\\br)$, has uniformly bounded second moments after\ndivision by $n$: use $\\norm{\\bA}_{\\rm F}^2\\leq c_+n$,\n$\\norm{\\bA\\bZ}_{\\rm op}\\leq c_+\\norm{\\bZ}_{\\rm op}$, and the fixed-order\nmoments already established.  Pointwise convergence and uniform\nintegrability of the squared derivatives therefore give convergence in\nGaussian $W^{1,2}$.  This proves the asserted weak differentiability\nof both $\\bq$ and $\\br$.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1624,
+        "to": 1762,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1597,
+        "to": 1622,
+        "env": "lemma",
+        "label": "lem:balanced-moment-bounds"
+      },
+      "refs": [
+        "assu:Gaussian-Stein-design",
+        "assu:model-sketch",
+        "eq:balanced-inverse-envelope",
+        "eq:balanced-qur",
+        "eq:balanced-Dq-energy",
+        "eq:balanced-residual-contraction",
+        "lem:opnorm-X-bound",
+        "eq:balanced-response-moment-proof",
+        "eq:balanced-Frobenius-moment-proof",
+        "eq:balanced-Dr-energy",
+        "eq:balanced-Dq-all-moments",
+        "eq:balanced-Dr-all-moments",
+        "eq:balanced-explicit-moment-bounds",
+        "lem:balanced-Stein-sufficient-conditions"
+      ]
+    },
+    {
+      "id": "lem:Stein-remainders-from-moments",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:Stein-remainders-from-moments",
+      "title": null,
+      "body": "\\label{lem:Stein-remainders-from-moments}\nSuppose that $\\bZ$ has i.i.d. standard Gaussian entries and is independent of\n$(\\bS,\\bep)$. Conditional on $(\\bS,\\bep)$, let\n$\\bq=\\bq(\\bZ,\\bS,\\bep)$ be $C^\\infty$ in $\\bZ$.  If, for a constant $C_1<\\infty$ independent of $n$,\n\\begin{align*}\n    \\E\\left[\\norm{\\bep}^2\n       \\bigl(\\norm{\\bq}^2+\\calE_{\\bq}\\bigr)\\right]\n       \\leq C_1n,\n\\end{align*}\nthen\n\\begin{align*}\n    \\E\\Xi_1^2\\leq C_1n.\n\\end{align*}\nIndependently, if for constants $C_q,C_D<\\infty$ independent of $n$,\n\\begin{align*}\n    \\E\\norm{\\bq}^4\\leq C_q,\n    \\qquad\n    \\E\\calE_{\\bq}^2\\leq C_D,\n\\end{align*}\nthen $\\E|\\Xi_2|\\leq C(C_q,C_D)\\sqrt n$.",
+      "proof": "Condition on $(\\bS,\\bep)$ and vectorize $\\bZ$.  The first-order Gaussian\ndivergence inequality applied to the vector field\n$F_{ij}=\\varepsilon_iq_j$ gives\n\\begin{align*}\n    \\E\\Xi_1^2\n    \\leq \\E\\left[\\norm{\\bep}^2\n       \\bigl(\\norm{\\bq}^2+\\calE_{\\bq}\\bigr)\\right].\n\\end{align*}\nThe first displayed assumption proves the claim for $\\Xi_1$.\n\nFor the second claim, let $\\E_i$ denote expectation over the row $\\bz_i$,\nconditional on $(\\bZ_{-i},\\bS,\\bep)$, and set\n\\begin{align*}\n    \\ba_i&:=\\E_i[\\bq],\n    & \\eta_i&:=\\bz_i^\\top(\\bq-\\ba_i)\n       -\\sum_{j=1}^d\\pdv{q_j}{z_{ij}},\\\\\n    \\chi_i&:=(\\bz_i^\\top\\ba_i)^2-\\norm{\\ba_i}^2.\n\\end{align*}\nThe vector $\\ba_i$ depends only on the other design rows and is\ntherefore independent of $\\bz_i$ under $\\E_i$. Gaussian integration by\nparts gives $\\E_i\\eta_i=0$, while the Gaussian second moment gives\n$\\E_i\\chi_i=0$. The terms below isolate the effect of row $i$ from\nthe dependence of $\\bq$ on that row.\nWriting $Q=\\norm{\\bq}^2$, direct expansion gives\n\\begin{align*}\n    &\\sum_{i=1}^n\\left(\n       \\bz_i^\\top\\bq-\\sum_{j=1}^d\\pdv{q_j}{z_{ij}}\n    \\right)^2-nQ\\\\\n    &\\qquad=\\sum_i\\eta_i^2\n       +2\\sum_i\\eta_i\\bz_i^\\top\\ba_i\n       +\\sum_i\\chi_i\n       +\\sum_i(\\norm{\\ba_i}^2-Q).\n\\end{align*}\nThe Gaussian Poincar\\'e inequality with constant at most $2$, together with the\nfirst-order divergence inequality, applied conditionally row by row, gives\n\\begin{align*}\n    \\E\\sum_i\\eta_i^2\n       &\\leq3\\E\\calE_{\\bq},\n    &\n    \\E\\left|2\\sum_i\\eta_i\\bz_i^\\top\\ba_i\\right|\n       &\\leq2\\sqrt{3n\\E Q\\,\\E\\calE_{\\bq}},\n    \\\\\n    \\E\\left|\\sum_i(\\norm{\\ba_i}^2-Q)\\right|\n       &\\leq2\\sqrt{2n\\E Q\\,\\E\\calE_{\\bq}}.\n\\end{align*}\nTo verify the derivative term, let $D_k\\ba_i$ be the Jacobian of $\\ba_i$ with respect\nto the row $\\bz_k$ and put\n$b_{ik}=\\E[\\norm{D_k\\ba_i}_{\\rm F}^2\\norm{\\ba_i}^2]$.\nThe rowwise Gaussian covariance inequality for centered quadratic forms gives\n\\begin{align*}\n    |\\E[\\chi_i\\chi_k]|\n       \\leq4\\sqrt{b_{ik}b_{ki}},\\qquad i\\ne k.\n\\end{align*}\nFor this step, condition first on\n$(\\bZ_{-\\{i,k\\}},\\bS,\\bep)$ so that only the two Gaussian rows remain\nrandom. The displayed covariance inequality is Lemma~7.1, the covariance step in the second-order Gaussian\ninequalities of \\citet{bellec2023out}.  Differentiation under conditional\nexpectation gives\n$D_i\\ba_i=0$ and $D_k\\ba_i=\\E_i[D_k\\bq]$ for $k\\ne i$.  Jensen's inequality\ngives $\\norm{\\ba_i}^2\\leq\\E_i Q$ and\n$\\sum_k\\norm{D_k\\ba_i}_{\\rm F}^2\\leq\\E_i\\calE_{\\bq}$.\nApply Cauchy--Schwarz after summing over $i,k$.\nAlso $\\E_i\\chi_i^2=2\\norm{\\ba_i}^4$ by the Gaussian fourth moment.\nThese observations give\n\\begin{align*}\n    \\sum_{i,k}b_{ik}\n       \\leq n\\{\\E Q^2\\,\\E\\calE_{\\bq}^2\\}^{1/2},\n    \\qquad\n    \\sum_i\\E\\chi_i^2\\leq2n\\E Q^2.\n\\end{align*}\nConsequently,\n\\begin{align*}\n    \\E\\left|\\sum_i\\chi_i\\right|\n    \\leq\n    \\left\\{2n\\E Q^2\n       +4n(\\E Q^2\\,\\E\\calE_{\\bq}^2)^{1/2}\\right\\}^{1/2}.\n\\end{align*}\nCombining the preceding displays gives\n\\begin{align*}\n    \\E|\\Xi_2|\n    \\leq{}&3\\E\\calE_{\\bq}\n       +(2\\sqrt3+2\\sqrt2)\\sqrt{n\\E Q\\,\\E\\calE_{\\bq}}\\\\\n       &+\\left\\{2n\\E Q^2\n       +4n(\\E Q^2\\,\\E\\calE_{\\bq}^2)^{1/2}\\right\\}^{1/2}.\n\\end{align*}\nCauchy--Schwarz and the two moment assumptions now give the asserted\n$O(\\sqrt n)$ rate. The calculations can first be made with smooth compact\ncutoffs; dominated convergence for the moment bounds and Fatou's lemma\nremove the cutoffs.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1819,
+        "to": 1909,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1796,
+        "to": 1817,
+        "env": "lemma",
+        "label": "lem:Stein-remainders-from-moments"
+      },
+      "refs": []
+    },
+    {
+      "id": "seg:bellec-rowwise-covariance",
+      "kind": "lemma",
+      "envName": "segment",
+      "label": null,
+      "title": null,
+      "body": "The rowwise Gaussian covariance inequality for centered quadratic forms gives\n\\begin{align*}\n    |\\E[\\chi_i\\chi_k]|\n       \\leq4\\sqrt{b_{ik}b_{ki}},\\qquad i\\ne k.\n\\end{align*}",
+      "proof": null,
+      "proofLines": null,
+      "lines": {
+        "file": "main.tex",
+        "from": 1868,
+        "to": 1872,
+        "env": "segment",
+        "label": null
+      },
+      "refs": []
+    },
+    {
+      "id": "lem:influence-from-moments",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:influence-from-moments",
+      "title": null,
+      "body": "\\label{lem:influence-from-moments}\nFor the influence vectors $\\bell$ and $\\bv$ in the standing notation, the\ndirect bounds are\n\\begin{align*}\n    \\E\\norm{\\bell}^2\n    &\\leq\\E\\left[\\norm{\\bL}_{\\rm op}^2\\norm{\\bq}^2\\right],\\\\\n    \\E\\norm{\\bv}^2\n    &\\leq2\\E\\left[\\norm{\\bZ}_{\\rm op}^2\\norm{\\bq}^2\\right]\n       +2\\E\\left[t_{\\bSigma}^2\\norm{\\br}^2\\right].\n\\end{align*}\nIf $\\bZ^\\top\\br=0$, the second inequality sharpens to\n\\begin{align*}\n    \\E\\norm{\\bv}^2\n    =\\E\\norm{\\bZ\\bq}^2+\\E[t_{\\bSigma}^2\\norm{\\br}^2].\n\\end{align*}\nThus each influence vector inherits the rate of its corresponding mixed\nmoment.  In particular, $O(1)$ and $O(n)$ mixed-moment bounds give the same\nrespective rates for $(\\bell,\\bv)$; balanced sketches satisfy the stronger\nrate $\\E\\norm{\\bell}^2=O(n^{-1})$.",
+      "proof": "The first two inequalities follow from\n$\\norm{\\bL\\bq}\\leq\\norm{\\bL}_{\\rm op}\\norm{\\bq}$ and\n$\\norm{\\ba-\\bb}^2\\leq2\\norm{\\ba}^2+2\\norm{\\bb}^2$.\nIf $\\bZ^\\top\\br=0$, the cross term is zero.  Cauchy--Schwarz gives the\nclaims under the corresponding mixed-moment conditions.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1940,
+        "to": 1946,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1918,
+        "to": 1938,
+        "env": "lemma",
+        "label": "lem:influence-from-moments"
+      },
+      "refs": []
+    },
+    {
+      "id": "prop:Stein-risk-from-moments",
+      "kind": "proposition",
+      "envName": "proposition",
+      "label": "prop:Stein-risk-from-moments",
+      "title": null,
+      "body": "\\label{prop:Stein-risk-from-moments}\nUnder Assumption~\\ref{assu:Gaussian-Stein-design}, for all sufficiently large\n$n$, the map $\\bq=\\bq(\\bZ,\\bS,\\bep)$ is weakly differentiable with respect to $\\bZ$.\nThere are constants $C_\\Xi,C_\\ell,C_v<\\infty$, independent of $n$, such that,\nfor all sufficiently large $n$,\n\\begin{align}\n    \\E[\\Xi_1^2]&\\leq C_\\Xi n,\n    &\n    \\E|\\Xi_2|&\\leq C_\\Xi\\sqrt n,\n    \\label{eq:Xi-control}\\\\\n    \\E\\norm{\\bell}^2&\\leq \\frac{C_\\ell}{n},\n    &\n    \\E\\norm{\\bv}^2&\\leq C_v n.\n    \\label{eq:influence-control}\n\\end{align}",
+      "proof": "Conditional on the full-row-rank sketch, the columns of $\\bS\\bZ$ are\nindependent Gaussian vectors with positive-definite covariance\n$\\bS\\bS^\\top$.  Since $d<m$ and $\\bSigma$ is invertible,\n$\\rank(\\bS\\bX)=d$ almost surely, so all displayed quantities are well defined.\nLemma~\\ref{lem:balanced-Stein-sufficient-conditions} gives weak\ndifferentiability and all direct moment bounds required below.\nApply Lemma~\\ref{lem:Stein-remainders-from-moments} first to the smooth\npositive-ridge coefficient fields. The uniform inverse and derivative\nmoment bounds from Lemma~\\ref{lem:balanced-Stein-sufficient-conditions}\nhold along this approximation. The fields and their coordinate derivatives\nconverge almost surely as the ridge parameter decreases to zero, so Fatou's\nlemma gives \\eqref{eq:Xi-control}. Lemma~\\ref{lem:influence-from-moments}\ngives the bound for $\\bv$, while the direct estimate\n\\begin{align*}\n    \\E\\norm{\\bell}^2\n    \\leq \\E[\\norm{\\bL}_{\\rm op}^2\\norm{\\bq}^2]\n    \\leq Cn^{-1}\n\\end{align*}\ngives the stronger balanced-sketch rate in \\eqref{eq:influence-control}.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 1969,
+        "to": 1989,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 1951,
+        "to": 1967,
+        "env": "proposition",
+        "label": "prop:Stein-risk-from-moments"
+      },
+      "refs": [
+        "assu:Gaussian-Stein-design",
+        "lem:balanced-Stein-sufficient-conditions",
+        "lem:Stein-remainders-from-moments",
+        "eq:Xi-control",
+        "lem:influence-from-moments",
+        "eq:influence-control"
+      ]
+    },
+    {
+      "id": "eq:q-identity-sigma",
+      "kind": "proposition",
+      "envName": "segment",
+      "label": "eq:Q-identity-Sigma",
+      "title": "Trace identity",
+      "body": "A direct whitening and expansion give\n\\begin{align}\n    \\left(\\frac{b}{n}-t_{\\bSigma}\\right)Q_{1,\\bSigma}\n    +Q_{2,\\bSigma}+Q_{3,\\bSigma}\n    +Q_{4,\\bSigma}+Q_{5,\\bSigma}\n    =\n    (d-bt_{\\bSigma})\n    \\left(\n        \\norm{\\bSigma^{1/2}\\bh}^2\n        +\\frac{\\norm{\\br}^2}{n}\n    \\right).\n    \\label{eq:Q-identity-Sigma}\n\\end{align}",
+      "proof": "Using $\\bZ\\bq=\\bX\\bh$,\n$\\bZ^\\top\\br=\\bSigma^{-1/2}\\bX^\\top\\br$, and\n$\\norm{\\bq}^2=\\norm{\\bSigma^{1/2}\\bh}^2$, direct expansion gives\n\\begin{align*}\n    \\sum_{k=2}^5Q_{k,\\bSigma}\n    &=\n    \\left(t_{\\bSigma}-\\frac bn\\right)\\br^\\top\\bZ\\bq\n    +\\left(d-\\frac{b^2}{n}\\right)\\norm{\\bq}^2\n    +\\left(\\frac dn-t_{\\bSigma}^2\\right)\\norm{\\br}^2.\n\\end{align*}\nAdding $(b/n-t_{\\bSigma})Q_{1,\\bSigma}$ cancels the mixed term and yields\n\\eqref{eq:Q-identity-isotropic}, which is\n\\eqref{eq:Q-identity-Sigma} in whitened coordinates.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 2049,
+        "to": 2063,
+        "env": "segment-proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 2021,
+        "to": 2033,
+        "env": "segment",
+        "label": "eq:Q-identity-Sigma"
+      },
+      "refs": [
+        "eq:Q-identity-isotropic",
+        "eq:Q-identity-Sigma"
+      ]
+    },
+    {
+      "id": "lem:normalized-Gaussian-Stein",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:normalized-Gaussian-Stein",
+      "title": null,
+      "body": "\\label{lem:normalized-Gaussian-Stein}\nLet $\\mathcal F$ be a sigma-field independent of\n$\\bZ\\in\\R^{n\\times d}$, whose entries are i.i.d. standard Gaussian.  Conditional\non $\\mathcal F$, let $\\bff=\\bff(\\bZ)\\in\\R^d$ and\n$\\boldsymbol\\psi=\\boldsymbol\\psi(\\bZ)\\in\\R^n$ be $C^\\infty$.\nAll ratios below are defined to be zero on\n$\\{G_{\\bff,\\boldsymbol\\psi}=0\\}$. Assume, almost surely,\n\\begin{align*}\n    \\E\\left[\n       \\left(1+\\frac{\\norm{\\bZ}_{\\rm op}^2}{n}\\right)\n       \\frac{\\calE_{\\bff,\\boldsymbol\\psi}}\n            {G_{\\bff,\\boldsymbol\\psi}}\n       \\mathrel{\\Big|}\\mathcal F\n    \\right]<\\infty.\n\\end{align*}\nThen, for an absolute constant $C<\\infty$,\n\\begin{align}\n    &\\E\\left[\n       \\frac{\\Gamma_1^2+\\Gamma_2^2+\\Gamma_3^2}\n            {G_{\\bff,\\boldsymbol\\psi}^2}\n       \\mathrel{\\Big|}\\mathcal F\n    \\right]\\notag\\\\\n    &\\qquad\\leq\n    C\\E\\left[\n       n+d+\\norm{\\bZ}_{\\rm op}^2\n       +(n+d)\\left(1+\\frac{\\norm{\\bZ}_{\\rm op}^2}{n}\\right)\n       \\frac{\\calE_{\\bff,\\boldsymbol\\psi}}\n            {G_{\\bff,\\boldsymbol\\psi}}\n       \\mathrel{\\Big|}\\mathcal F\n    \\right].\n    \\label{eq:conditional-normalized-first-order}\n\\end{align}\nMoreover,\n\\begin{align}\n    \\E\\left[\n       \\frac{|\\Gamma_4|+|\\Gamma_5|}\n            {G_{\\bff,\\boldsymbol\\psi}}\n       \\mathrel{\\Big|}\\mathcal F\n    \\right]\n    \\leq C\\left\\{\n       \\sqrt{n+d}\\left(1+\\Theta_{\\mathcal F}^{1/2}\\right)\n       +\\Theta_{\\mathcal F}\n    \\right\\}.\n    \\label{eq:conditional-normalized-second-order}\n\\end{align}",
+      "proof": "Work conditionally on $\\mathcal F$ wherever the conditional expectations are\nfinite. For a smooth scalar function, a zero at which a specified coordinate\nderivative is nonzero is isolated along that coordinate line. Such zeros are\ncountable on each line. Since Gaussian coordinates have no atoms, Fubini's\ntheorem implies that each coordinate derivative vanishes almost everywhere\non the function's zero set. Apply this fact to the finitely many components\nof both fields. Their first derivatives therefore vanish almost everywhere\non $\\{G_{\\bff,\\boldsymbol\\psi}=0\\}$, and so do all five contractions.\n\nFor $\\delta>0$, write\n\\begin{align*}\n    a_\\delta&:=\\left(G_{\\bff,\\boldsymbol\\psi}+\\delta^2\\right)^{1/2},\n    & \\boldsymbol\\eta_\\delta&:=\\frac{\\bff}{a_\\delta},\n    & \\boldsymbol\\upsilon_\\delta\n       &:=\\frac{\\boldsymbol\\psi}{\\sqrt n\\,a_\\delta},\n    & \\boldsymbol\\omega&:=\n       (\\boldsymbol\\eta_\\delta^\\top,\n        \\boldsymbol\\upsilon_\\delta^\\top)^\\top.\n\\end{align*}\nThe positive $\\delta$ makes these normalized fields smooth on the whole\nmatrix space.  Differentiation of their stacked vector gives\n\\begin{align*}\n    \\sum_{i=1}^n\\sum_{j=1}^d\\left\\{\n       \\norm{\\pdv{\\boldsymbol\\eta_\\delta}{z_{ij}}}^2\n       +\\norm{\\pdv{\\boldsymbol\\upsilon_\\delta}{z_{ij}}}^2\n    \\right\\}\n    \\leq\n    \\frac{\\calE_{\\bff,\\boldsymbol\\psi}}\n         {G_{\\bff,\\boldsymbol\\psi}+\\delta^2}.\n\\end{align*}\nIndeed, the derivative of a normalized vector is its original derivative\nmultiplied by the symmetric contraction\n$a_\\delta^{-1}(\\bI_{d+n}-\\boldsymbol\\omega\\boldsymbol\\omega^\\top)$.\n\nWe use the first-order matrix Gaussian divergence inequality appearing in the\nproof of Proposition~14 of \\citet{bellec2022derivatives}: for smooth\nfields $\\ba:\\R^{n\\times d}\\to\\R^d$ and\n$\\bb:\\R^{n\\times d}\\to\\R^n$,\n\\begin{align}\n    &\\E\\left[\n       \\left\\{\n          \\bb^\\top\\bZ\\ba\n          -\\sum_{i,j}\\pdv{(b_i a_j)}{z_{ij}}\n       \\right\\}^2\n       \\mathrel{\\Big|}\\mathcal F\n    \\right]\\notag\\\\\n    &\\qquad\\leq\n    \\E\\left[\n       \\norm{\\bb}^2\\norm{\\ba}^2\n       +2\\sum_{i,j}\\left\\{\n          \\norm{\\ba}^2\\norm{\\pdv{\\bb}{z_{ij}}}^2\n          +\\norm{\\bb}^2\\norm{\\pdv{\\ba}{z_{ij}}}^2\n       \\right\\}\n       \\mathrel{\\Big|}\\mathcal F\n    \\right].\n    \\label{eq:matrix-product-divergence}\n\\end{align}\nThis inequality follows directly from Gaussian integration by parts.  We\nderive the required scale-invariant form from\n\\eqref{eq:matrix-product-divergence}, rather than relying on the displayed\nnormalization in Proposition~14.  Apply it successively to the normalized\npairs\n\\begin{align*}\n    (\\ba,\\bb)\n    =(\\boldsymbol\\eta_\\delta,\\boldsymbol\\upsilon_\\delta),\n    \\qquad\n    (\\boldsymbol\\eta_\\delta,\\bZ\\boldsymbol\\eta_\\delta),\n    \\qquad\n    (\\bZ^\\top\\boldsymbol\\upsilon_\\delta,\n      \\boldsymbol\\upsilon_\\delta).\n\\end{align*}\nThe first divergence is multiplied by $\\sqrt n$, so its\nsecond-moment bound is multiplied by $n$. The product rule separates the\nthree resulting divergences as follows:\n\\begin{align*}\n    \\sqrt n\\left\\{\n       \\boldsymbol\\upsilon_\\delta^\\top\\bZ\\boldsymbol\\eta_\\delta\n       -\\sum_{i,j}\\pdv{(\\upsilon_{\\delta,i}\\eta_{\\delta,j})}{z_{ij}}\n    \\right\\}\n    &=\\frac{\\Gamma_1}{G_{\\bff,\\boldsymbol\\psi}+\\delta^2}\n      +\\mathcal R_{1,\\delta},\\\\\n    \\norm{\\bZ\\boldsymbol\\eta_\\delta}^2\n       -\\sum_{i,j}\\pdv{\\{\\eta_{\\delta,j}\\be_i^\\top\n          \\bZ\\boldsymbol\\eta_\\delta\\}}{z_{ij}}\n    &=\\frac{\\Gamma_2}{G_{\\bff,\\boldsymbol\\psi}+\\delta^2}\n      +\\mathcal R_{2,\\delta},\\\\\n    \\norm{\\bZ^\\top\\boldsymbol\\upsilon_\\delta}^2\n       -\\sum_{i,j}\\pdv{\\{\\upsilon_{\\delta,i}\\be_j^\\top\n          \\bZ^\\top\\boldsymbol\\upsilon_\\delta\\}}{z_{ij}}\n    &=\\frac{\\Gamma_3}{G_{\\bff,\\boldsymbol\\psi}+\\delta^2}\n      +\\mathcal R_{3,\\delta}.\n\\end{align*}\nFor the second and third lines, the extra direct derivative terms\ncome from\n$\\partial(\\bZ\\boldsymbol\\eta_\\delta)/\\partial z_{ij}\n=\\be_i\\eta_{\\delta,j}\n  +\\bZ\\,\\partial\\boldsymbol\\eta_\\delta/\\partial z_{ij}$\nand the analogous identity for\n$\\bZ^\\top\\boldsymbol\\upsilon_\\delta$. This is where the\n$n+d+\\norm{\\bZ}_{\\rm op}^2$ term in the bound below originates.\nThe normalizer remainders are explicitly\n\\begin{align*}\n    \\mathcal R_{1,\\delta}\n    &:=-\\sum_{i,j}\\psi_i f_j\\,\n       \\pdv{a_\\delta^{-2}}{z_{ij}},\\\\\n    \\mathcal R_{2,\\delta}\n    &:=-\\sum_{i,j}f_j(\\be_i^\\top\\bZ\\bff)\\,\n       \\pdv{a_\\delta^{-2}}{z_{ij}},\\\\\n    \\mathcal R_{3,\\delta}\n    &:=-\\frac1n\\sum_{i,j}\\psi_i(\\be_j^\\top\\bZ^\\top\\boldsymbol\\psi)\\,\n       \\pdv{a_\\delta^{-2}}{z_{ij}}.\n\\end{align*}\nIn particular,\n\\begin{align*}\n    \\sum_{i,j}\\left(\n       \\pdv{G_{\\bff,\\boldsymbol\\psi}}{z_{ij}}\n    \\right)^2\n    \\leq4G_{\\bff,\\boldsymbol\\psi}\n       \\calE_{\\bff,\\boldsymbol\\psi}.\n\\end{align*}\nUsing also\n$\\norm{\\bff}^2\\leq G_{\\bff,\\boldsymbol\\psi}+\\delta^2$,\n$\\norm{\\boldsymbol\\psi}^2\n \\leq n(G_{\\bff,\\boldsymbol\\psi}+\\delta^2)$, and\nthe operator-norm bounds for their images under $\\bZ$, Cauchy--Schwarz gives\n\\begin{align*}\n    |\\mathcal R_{1,\\delta}|^2\n    &\\leq 4n\\frac{\\calE_{\\bff,\\boldsymbol\\psi}}\n                       {G_{\\bff,\\boldsymbol\\psi}+\\delta^2},\\\\\n    |\\mathcal R_{2,\\delta}|^2+|\\mathcal R_{3,\\delta}|^2\n    &\\leq C(n+d)\\left(1+\\frac{\\norm{\\bZ}_{\\rm op}^2}{n}\\right)\n       \\frac{\\calE_{\\bff,\\boldsymbol\\psi}}\n            {G_{\\bff,\\boldsymbol\\psi}+\\delta^2}.\n\\end{align*}\nCombining these estimates with\n\\eqref{eq:matrix-product-divergence} proves\n\\eqref{eq:conditional-normalized-first-order} with\n$G_{\\bff,\\boldsymbol\\psi}+\\delta^2$ in the intermediate denominators.  Let\n$\\delta\\downarrow0$.  The derivative ratios are dominated by\n$\\calE_{\\bff,\\boldsymbol\\psi}/G_{\\bff,\\boldsymbol\\psi}$ under the zero\nconvention.\nDominated convergence on the right and Fatou's lemma on the left prove\n\\eqref{eq:conditional-normalized-first-order}.  This is the scale-invariant\nnormalization obtained by the argument in the proof of the cited proposition.\n\nFor the second-order terms, we use a conditional corollary of\nProposition~16 of \\citet{bellec2022derivatives}. The one-vector inequality\nused here states that, for a smooth\n$\\bu:\\R^{n\\times d}\\to\\R^n$ with $\\norm{\\bu}\\leq1$,\n\\begin{align}\n    &\\E\\left[\n       \\left|d\\norm{\\bu}^2-\n       \\sum_{j=1}^d\\left(\n          \\bu^\\top\\bZ\\be_j-\n          \\sum_{i=1}^n\\pdv{u_i}{z_{ij}}\n       \\right)^2\\right|\n       \\mathrel{\\Big|}\\mathcal F\n    \\right]\\notag\\\\\n    &\\qquad\\leq\n       C\\sqrt d\\left\\{1+\n       \\E\\left[\n          \\sum_{i,j}\\norm{\\pdv{\\bu}{z_{ij}}}^2\n          \\mathrel{\\Big|}\\mathcal F\n       \\right]^{1/2}\\right\\}\n       +C\\E\\left[\n          \\sum_{i,j}\\norm{\\pdv{\\bu}{z_{ij}}}^2\n          \\mathrel{\\Big|}\\mathcal F\n       \\right].\n    \\label{eq:one-vector-second-order}\n\\end{align}\nThe transposed version holds with $n$ and $d$ interchanged.  Conditional on\n$\\mathcal F$, \\eqref{eq:one-vector-second-order} is the deterministic-field inequality in the proof of the\ncited proposition.\n\nApply \\eqref{eq:one-vector-second-order} to\n$\\boldsymbol\\upsilon_\\delta$ and its transposed version to\n$\\boldsymbol\\eta_\\delta$.  To identify the target contractions, define\n\\begin{align*}\n    a_{4,\\delta,j}\n    &:=\\frac{\\boldsymbol\\psi^\\top\\bZ\\be_j\n          -\\sum_i\\partial\\psi_i/\\partial z_{ij}\n        }{\\sqrt n\\,a_\\delta},\n    &\n    b_{4,\\delta,j}\n    &:={}\n       \\boldsymbol\\upsilon_\\delta^\\top\\bZ\\be_j\n       -\\sum_i\\pdv{\\upsilon_{\\delta,i}}{z_{ij}},\\\\\n    a_{5,\\delta,i}\n    &:=\\frac{\\bff^\\top\\bZ^\\top\\be_i\n          -\\sum_j\\partial f_j/\\partial z_{ij}\n        }{a_\\delta},\n    &\n    b_{5,\\delta,i}\n    &:={}\n       \\boldsymbol\\eta_\\delta^\\top\\bZ^\\top\\be_i\n       -\\sum_j\\pdv{\\eta_{\\delta,j}}{z_{ij}}.\n\\end{align*}\nWriting $\\ba_{s,\\delta}$ and $\\bb_{s,\\delta}$ for the corresponding vectors,\nthe definitions give the exact identities\n\\begin{align*}\n    \\frac{\\Gamma_4}{G_{\\bff,\\boldsymbol\\psi}+\\delta^2}\n       &=d\\norm{\\boldsymbol\\upsilon_\\delta}^2\n          -\\norm{\\ba_{4,\\delta}}^2,\\\\\n    \\frac{\\Gamma_5}{G_{\\bff,\\boldsymbol\\psi}+\\delta^2}\n       &=n\\norm{\\boldsymbol\\eta_\\delta}^2\n          -\\norm{\\ba_{5,\\delta}}^2.\n\\end{align*}\nThe product rule and Cauchy--Schwarz yield\n\\begin{align*}\n    &\\norm{\\ba_{4,\\delta}-\\bb_{4,\\delta}}^2\n     +\\norm{\\ba_{5,\\delta}-\\bb_{5,\\delta}}^2\\\\\n    &\\qquad\\leq\n       G_{\\bff,\\boldsymbol\\psi}\n       \\sum_{i,j}\\left(\\pdv{a_\\delta^{-1}}{z_{ij}}\\right)^2\n       \\leq\n       \\frac{\\calE_{\\bff,\\boldsymbol\\psi}}\n            {G_{\\bff,\\boldsymbol\\psi}+\\delta^2}.\n\\end{align*}\n     For $c\\geq1$, $\\norm{\\bu}\\leq1$, and vectors $\\ba,\\bb$, the following\nelementary comparison holds: \n\\begin{align*}\n    \\left|c\\norm{\\bu}^2-\\norm{\\ba}^2\\right|\n    \\leq{}&2\\left|c\\norm{\\bu}^2-\\norm{\\bb}^2\\right|\n       +3\\norm{\\ba-\\bb}^2\n       +2\\sqrt c\\norm{\\ba-\\bb}.\n\\end{align*}\nThis comparison follows by writing\n$|\\norm{\\ba}^2-\\norm{\\bb}^2|\n\\leq\\norm{\\ba-\\bb}^2+2\\norm{\\bb}\\norm{\\ba-\\bb}$\nand then bounding $\\norm{\\bb}$ using\n$|c\\norm{\\bu}^2-\\norm{\\bb}^2|$.\nIt therefore converts the two applications of\n\\eqref{eq:one-vector-second-order} into\n\\begin{align*}\n    \\E\\left[\n       \\frac{|\\Gamma_4|+|\\Gamma_5|}\n            {G_{\\bff,\\boldsymbol\\psi}+\\delta^2}\n       \\mathrel{\\Big|}\\mathcal F\n    \\right]\n    \\leq C\\left\\{\n       \\sqrt{n+d}\\left(1+\\Theta_{\\delta,\\mathcal F}^{1/2}\\right)\n       +\\Theta_{\\delta,\\mathcal F}\n    \\right\\},\n\\end{align*}\nwhere\n\\begin{align*}\n    \\Theta_{\\delta,\\mathcal F}\n    :=\\E\\left[\n       \\frac{\\calE_{\\bff,\\boldsymbol\\psi}}\n            {G_{\\bff,\\boldsymbol\\psi}+\\delta^2}\n       \\mathrel{\\Big|}\\mathcal F\n    \\right]\n    \\leq\\Theta_{\\mathcal F}.\n\\end{align*}\nFatou's lemma as $\\delta\\downarrow0$ proves\n\\eqref{eq:conditional-normalized-second-order}.  This also shows directly\nthat Proposition~16 is applied to the two normalized fields separately; no\nresult for an undifferentiated stacked map is being assumed.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 2202,
+        "to": 2461,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 2154,
+        "to": 2200,
+        "env": "lemma",
+        "label": "lem:normalized-Gaussian-Stein"
+      },
+      "refs": [
+        "eq:matrix-product-divergence",
+        "eq:conditional-normalized-first-order",
+        "eq:one-vector-second-order",
+        "eq:conditional-normalized-second-order"
+      ]
+    },
+    {
+      "id": "lem:balanced-remainder-bounds",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:balanced-remainder-bounds",
+      "title": null,
+      "body": "\\label{lem:balanced-remainder-bounds}\nUnder Assumption~\\ref{assu:Gaussian-Stein-design},\nfor every fixed integer $k\\geq1$, there are $n_0(k)\\geq1$ and\n$C_k<\\infty$ such that, for $n\\geq n_0(k)$,\n\\begin{align}\n    \\E\\left(\n       |\\Delta_1|^k+|\\Delta_2|^k+|\\Delta_5|^k\n       +n^{-k}|\\Delta_4|^k\n    \\right)\\leq C_k.\n    \\label{eq:balanced-unnormalized-remainders}\n\\end{align}\nDefine every normalized ratio below to be zero on $\\{G_{\\bSigma}=0\\}$.\nThen the stronger response-normalized bounds\n\\begin{align}\n    \\E\\left[\n       \\sum_{s\\in\\{1,2,5\\}}\n          \\left|\\frac{\\Delta_s}{G_{\\bSigma}}\\right|^k\n       +\\left|\\frac{\\Delta_4}{nG_{\\bSigma}}\\right|^k\n    \\right]\n    \\leq C_k\n    \\label{eq:balanced-normalized-remainders}\n\\end{align}\nhold.  In particular, at $k=2$,\n\\begin{align*}\n    \\E\\left[\n       \\sum_{s\\in\\{1,2,5\\}}\n          \\frac{\\Delta_s^2}{nG_{\\bSigma}^2}\n       +\\frac{\\Delta_4^2}{n^3G_{\\bSigma}^2}\n    \\right]\\leq\\frac{C_2}{n}.\n\\end{align*}\nThus the normalized estimate also yields the displayed $O(n^{-1})$ scaled\n$L^2$ bound. No third remainder is needed because $Q_{3,\\bSigma}=0$\nby the sketched normal equations.",
+      "proof": "Retain the notation and bounds from the proof of\nLemmas~\\ref{lem:balanced-Stein-sufficient-conditions} and\n\\ref{lem:balanced-moment-bounds}.\nConditional on the sketch, $\\bG_0$ is an $m\\times d$ standard Gaussian\nmatrix.  The Ky Fan lower bound \\eqref{eq:bA-spectral-lower} gives\n\\begin{align}\n    b\\geq c_-(m-d)\\geq c_-\\kappa n,\n    \\qquad \\frac{n}{b}\\leq\\frac{1}{c_-\\kappa}.\n    \\label{eq:balanced-b-lower}\n\\end{align}\n\nFor the response-normalized bounds, no negative response moment is needed.\nWith\n$G_{\\bSigma}=\\norm{\\bq}^2+\\norm{\\br}^2/n$, define every ratio as zero when\n$G_{\\bSigma}=0$.  Equations\n\\eqref{eq:balanced-Dq-energy}--\\eqref{eq:balanced-Dr-energy} give pointwise\n\\begin{align}\n    \\frac{1}{G_{\\bSigma}}\n    \\sum_{i,j}\\left\\{\n       \\norm{\\pdv{\\bq}{z_{ij}}}^2\n       +\\frac1n\\norm{\\pdv{\\br}{z_{ij}}}^2\n    \\right\\}\n    \\leq P(H_n),\n    \\label{eq:balanced-normalized-energy}\n\\end{align}\nwhere $P$ is a fixed polynomial with nonnegative coefficients and\nall fixed moments of\n\\begin{align*}\n    H_n:=1+\\frac{\\norm{\\bZ}_{\\rm op}}{\\sqrt n}\n       +n\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op}\n       +\\sqrt n\\norm{\\bL}_{\\rm op}\n\\end{align*}\nare uniformly bounded.\n\nFor the first stage, we establish the unnormalized fluctuation bounds.\nIn the raw Stein bounds below, apply the smooth-field inequalities first to\nthe positive-ridge fields $\\bq_\\eta$ and $\\br_\\eta$. The uniform moment\nbounds established above control their fourth moments and derivative\nenergies. Almost-sure convergence of the fields and their derivatives,\nfollowed by Fatou's lemma, gives the displayed bounds at $\\eta=0$.\nConditional on $(\\bA,\\bep)$, the first-order Gaussian divergence\ninequality applied to the matrix field $\\br\\bq^\\top$ gives\n\\begin{align*}\n    \\E\\zeta_1^2\n    &\\leq C\\E\\left[\n       \\norm{\\br}^2\\norm{\\bq}^2\n       +\\sum_{i,j}\n          \\norm{\\pdv{(\\br\\bq^\\top)}{z_{ij}}}_{\\rm F}^2\n    \\right]\\\\\n    &\\leq C\\E\\left[\n       \\norm{\\br}^2\\norm{\\bq}^2\n       +\\norm{\\bq}^2\\calE_{\\br}\n       +\\norm{\\br}^2\\calE_{\\bq}\n    \\right]\n    \\leq Cn,\n\\end{align*}\nwhere the last step uses \\eqref{eq:balanced-explicit-moment-bounds} and\nCauchy--Schwarz.  Applying the same inequality to\n$(\\bZ\\bq)\\bq^\\top$ and using the product rule yields\n\\begin{align*}\n    \\sum_{i,j}\n       \\norm{\\pdv{\\{(\\bZ\\bq)\\bq^\\top\\}}{z_{ij}}}_{\\rm F}^2\n    \\leq C\\left\\{\n       n\\norm{\\bq}^4\n       +\\norm{\\bZ}_{\\rm op}^2\\norm{\\bq}^2\\calE_{\\bq}\n    \\right\\}.\n\\end{align*}\nTogether with\n$\\norm{(\\bZ\\bq)\\bq^\\top}_{\\rm F}^2\n \\leq\\norm{\\bZ}_{\\rm op}^2\\norm{\\bq}^4$,\nH\\\"older's inequality, \\eqref{eq:balanced-inverse-envelope}, and\n\\eqref{eq:balanced-explicit-moment-bounds} prove\n$\\E\\zeta_2^2\\leq Cn$.  The normal equations give\n$\\bZ^\\top\\br=0$, and Lemma~\\ref{lem:dot-rxr} makes the\ndivergence in the definition of $\\zeta_3$ zero.  Hence $\\zeta_3=0$ pathwise.\n\nApply the second claim of\nLemma~\\ref{lem:Stein-remainders-from-moments} to $\\bq(\\bZ)$.  Its proof uses\nonly the fourth-moment and derivative-energy assumptions and gives\n$\\E|\\zeta_5|\\leq C\\sqrt n$.  Apply the same argument\nafter transposing the design: with $\\bW=\\bZ^\\top\\in\\R^{d\\times n}$ and\n$\\bff(\\bW)=\\br/\\sqrt n$, its second-order fluctuation is exactly\n\\begin{align*}\n    d\\norm{\\bff}^2\n    -\\sum_{j=1}^d\\left(\n       \\be_j^\\top\\bW\\bff\n       -\\sum_{i=1}^n\\pdv{f_i}{w_{ji}}\n    \\right)^2\n    =\\zeta_4.\n\\end{align*}\nHere $w_{ji}=z_{ij}$ and\n$\\partial f_i/\\partial w_{ji}\n=n^{-1/2}\\partial r_i/\\partial z_{ij}$, so transposition\nchanges only the orientation of the design indices.\nThe required fourth moments of $\\bff$ and its derivative energy are bounded\nby \\eqref{eq:balanced-explicit-moment-bounds}.  Hence\n$\\E|\\zeta_4|\\leq C\\sqrt d\\leq C\\sqrt n$, proving the unnormalized\nsecond-order bounds.\n\nFor the response-normalized statements, condition on\n$(\\bA,\\bep)$, let $\\E_{\\bZ}$ denote expectation over $\\bZ$, and set\n\\begin{align*}\n    \\Theta_{\\bA,\\bep}\n    :=\\E_{\\bZ}\\left[\\frac{\\calE_{\\bq,\\br}}{G_{\\bSigma}}\\right].\n\\end{align*}\nHere we use the derivative energy from\nLemma~\\ref{lem:normalized-Gaussian-Stein} and the same zero convention.\n\nThe ridge approximations verify the regularity requirements of\nLemma~\\ref{lem:normalized-Gaussian-Stein}. For $\\eta>0$, use the ridge\napproximations from the proof of\nLemma~\\ref{lem:balanced-Stein-sufficient-conditions}.\nConditional on $(\\bA,\\bep)$, these maps are smooth on all of\n$\\R^{n\\times d}$. Their behavior at zero energy is particularly simple: if\n$\\bq_\\eta=\\br_\\eta=\\boldzero$ at one design, then\n$\\bA\\bep=\\br_\\eta+\\bA\\bZ\\bq_\\eta=\\boldzero$. The coefficient and residual\nfields are consequently identically zero as functions of $\\bZ$, and so are\ntheir derivatives. Use the quantities\n$G_{\\bq_\\eta,\\br_\\eta}$ and $\\calE_{\\bq_\\eta,\\br_\\eta}$ from\nLemma~\\ref{lem:normalized-Gaussian-Stein}, again using the zero convention.\nThe derivative formulas are\n\\begin{align*}\n    \\pdv{\\bq_\\eta}{z_{ij}}\n    &=\\bK_\\eta\\be_j(\\br_\\eta)_i\n      -\\bL_\\eta^\\top\\be_i(\\bq_\\eta)_j,\\\\\n    \\pdv{\\br_\\eta}{z_{ij}}\n    &=-\\bA\\be_i(\\bq_\\eta)_j\n      -\\bA\\bZ\\pdv{\\bq_\\eta}{z_{ij}}.\n\\end{align*}\nTherefore, with $\\calE_{\\bq_\\eta}$ and $\\calE_{\\br_\\eta}$ denoting the two\nderivative energies, use\n$G_{\\bq_\\eta,\\br_\\eta}\\geq\\norm{\\bq_\\eta}^2$ and\n$G_{\\bq_\\eta,\\br_\\eta}\\geq\\norm{\\br_\\eta}^2/n$ to obtain\n\\begin{align*}\n    \\frac{\\calE_{\\bq_\\eta}}{G_{\\bq_\\eta,\\br_\\eta}}\n    &\\leq 2n\\norm{\\bK_\\eta}_{\\rm F}^2\n       +2\\norm{\\bL_\\eta}_{\\rm F}^2,\\\\\n    \\frac{\\calE_{\\br_\\eta}}{nG_{\\bq_\\eta,\\br_\\eta}}\n    &\\leq \\frac{2\\norm{\\bA}_{\\rm F}^2}{n}\n       +\\frac{2\\norm{\\bA\\bZ}_{\\rm op}^2}{n}\n          \\frac{\\calE_{\\bq_\\eta}}{G_{\\bq_\\eta,\\br_\\eta}}.\n\\end{align*}\nThe singular-value comparison in\nLemma~\\ref{lem:M-inverse-bound} gives, on the full-rank event,\n\\begin{align*}\n    \\norm{\\bK_\\eta}_{\\rm op}\n       &\\leq\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op},\n    &\n    \\norm{\\bL_\\eta}_{\\rm op}\n       &\\leq\\norm{\\bL}_{\\rm op}.\n\\end{align*}\nIndeed,\n\\begin{align*}\n    \\bL_\\eta\n    &=\\bL\\left\\{\\widetilde{\\bM}\n       (\\widetilde{\\bM}+\\eta\\bI_d)^{-1}\\right\\},\n    &\n    \\norm{\\widetilde{\\bM}\n       (\\widetilde{\\bM}+\\eta\\bI_d)^{-1}}_{\\rm op}&\\leq1.\n\\end{align*}\nThus both bounds hold uniformly in $\\eta$, and in particular\n$\\sqrt n\\norm{\\bL_\\eta}_{\\rm op}\\leq H_n$.  Together with $d\\leq n$,\n$\\norm{\\bA}_{\\rm F}^2=\\trace(\\bA^2)\\leq c_+\\trace(\\bA)=c_+n$, and\n$\\norm{\\bA\\bZ}_{\\rm op}\\leq c_+\\norm{\\bZ}_{\\rm op}$, the preceding two\ndisplays yield, after enlarging the fixed polynomial $P$ if necessary,\n\\begin{align}\n    \\frac{\\calE_{\\bq_\\eta,\\br_\\eta}}{G_{\\bq_\\eta,\\br_\\eta}}\n    \\leq P(H_n)\n    \\qquad(\\eta>0).\n    \\label{eq:balanced-ridge-normalized-energy}\n\\end{align}\n\nThe zero-denominator event is also explicit. Indeed,\n$\\bq=\\widetilde{\\bM}^{-1}\\bZ^\\top\\bA\\bep$ and\n$\\br=\\bA(\\bep-\\bZ\\bq)$ show that both $\\bq$ and $\\br$\nvanish exactly when $\\bA\\bep=0$. The same reasoning applies to\nthe ridge versions. Thus\n\\begin{align*}\n    G_{\\bSigma}=0\n    \\quad\\Longleftrightarrow\\quad\n    \\bA\\bep=\\boldzero\n    \\quad\\Longleftrightarrow\\quad\n    G_{\\bq_\\eta,\\br_\\eta}=0\\ \\text{for every }\\eta>0.\n\\end{align*}\nOn this event, $\\bq_\\eta$, $\\br_\\eta$, their first derivatives, and all five\n$\\Gamma$-contractions in Lemma~\\ref{lem:normalized-Gaussian-Stein} vanish.  On\nits complement, all the denominators are positive.  On the Gaussian full-rank\nevent, as $\\eta\\downarrow0$,\n$\\bq_\\eta$, $\\br_\\eta$, and their displayed derivatives converge pointwise to\n$\\bq$, $\\br$, and their weak derivatives.  By \\eqref{eq:zeta-definitions},\nthe five ridge-normalized contractions converge to their corresponding\n$\\zeta_s/G_{\\bSigma}$ limits.\n\nApply that lemma to $(\\bq_\\eta,\\br_\\eta)$ with\n$\\mathcal F$ the sigma-field generated by $(\\bA,\\bep)$.  Conditional on this\nsigma-field, $\\bZ$ still has i.i.d. standard Gaussian entries.  The bound\n\\eqref{eq:balanced-ridge-normalized-energy},\nthe conditional inverse envelope\n\\eqref{eq:M-inverse-whitened-envelope}, and the conditional Gaussian\noperator-norm bound in Lemma~\\ref{lem:opnorm-X-bound} give an integrable\ndominating variable for both right-hand sides, uniformly over balanced\nsketch matrices. This bound is independent of the fixed value of\n$\\bep$. The same statement holds when\nconditioning on $\\bA$ rather than on $\\bS$ by the tower property.\nDominated convergence therefore applies to those right-hand sides and to\n$\\E_{\\bZ}[\\calE_{\\bq_\\eta,\\br_\\eta}/G_{\\bq_\\eta,\\br_\\eta}]$;\nFatou's lemma applies to the nonnegative\nleft-hand sides. Passing to the limit in\nLemma~\\ref{lem:normalized-Gaussian-Stein} gives\n\\begin{align}\n    \\E_{\\bZ}\\left[\n       \\frac{\\zeta_1^2+\\zeta_2^2+\\zeta_3^2}{G_{\\bSigma}^2}\n    \\right]\n    &\\leq C\\E_{\\bZ}\\left[\n       n+d+\\norm{\\bZ}_{\\rm op}^2\n       +(n+d)\\left(1+\\frac{\\norm{\\bZ}_{\\rm op}^2}{n}\\right)\n          \\frac{\\calE_{\\bq,\\br}}{G_{\\bSigma}}\n    \\right],\n    \\label{eq:balanced-normalized-first-order}\\\\\n    \\E_{\\bZ}\\left[\n       \\frac{|\\zeta_4|+|\\zeta_5|}{G_{\\bSigma}}\n    \\right]\n    &\\leq C\\left\\{\n       \\sqrt{n+d}\\left(1+\\Theta_{\\bA,\\bep}^{1/2}\\right)\n       +\\Theta_{\\bA,\\bep}\n    \\right\\}.\n    \\label{eq:balanced-normalized-second-order}\n\\end{align}\nThe same domination proves uniform integrability of the normalized derivative\nenergies along the ridge approximation.  No negative moment of\n$G_{\\bSigma}$ is used.\n\nBy \\eqref{eq:balanced-normalized-energy},\n$\\calE_{\\bq,\\br}/G_{\\bSigma}\\leq P(H_n)$ pointwise.\nSince $d=O(n)$ and all fixed\nmoments of $H_n$ are uniformly bounded, integration over $(\\bA,\\bep)$ in\n\\eqref{eq:balanced-normalized-first-order} gives an $O(n)$ right-hand side.\nMoreover,\n\\begin{align*}\n    \\E_\\star\\Theta_{\\bA,\\bep}\\leq C,\n    \\qquad\n    \\E_\\star\\Theta_{\\bA,\\bep}^{1/2}\\leq C,\n\\end{align*}\nso \\eqref{eq:balanced-normalized-second-order} is $O(\\sqrt n)$ after\nintegration.  The pointwise envelope is independent of the response scale,\nand therefore these conclusions hold under both response laws denoted by\n$\\E_\\star$.  Dividing the two resulting estimates by $n$ and $\\sqrt n$,\nrespectively, proves \\eqref{eq:balanced-normalized-zeta-bounds}; together with\nthe preceding argument, this also completes\n\\eqref{eq:balanced-unnormalized-zeta-bounds}.\n\nThe algebraic remainders follow from elementary Cauchy--Schwarz bounds.\nSince $0<b/n\\leq1$, these bounds give pointwise\n\\begin{align*}\n    \\frac{|\\Delta_1|}{G_{\\bSigma}}\n       &\\leq \\sqrt n\\norm{\\bL}_{\\rm op},\n    &\n    \\frac{|\\Delta_2|}{G_{\\bSigma}}\n       &\\leq1,\\\\\n    \\frac{|\\Delta_4|}{nG_{\\bSigma}}\n       &\\leq \\norm{\\bL}_{\\rm op}^2\n          +\\frac bn\\sqrt n\\norm{\\bL}_{\\rm op},\n    &\n    \\frac{|\\Delta_5|}{G_{\\bSigma}}\n       &\\leq \\norm{\\bL}_{\\rm op}^2+2\n          +t_{\\bSigma}\\sqrt n\\norm{\\bL}_{\\rm op}.\n\\end{align*}\nThe inverse envelope \\eqref{eq:balanced-inverse-envelope} proves\n\\eqref{eq:balanced-normalized-remainders} at every fixed order.  The same\nenvelope, \\eqref{eq:balanced-explicit-moment-bounds}, and $b\\leq n$ prove\n\\eqref{eq:balanced-unnormalized-remainders}.  This establishes\nLemma~\\ref{lem:balanced-remainder-bounds}.\n\nFinally, Lemmas~\\ref{lem:dot-rh}--\\ref{lem:dot-hxxh}, together with\nthe definitions in \\eqref{eq:zeta-definitions}, give\nthe exact decompositions \\eqref{eq:balanced-Q-zeta-Delta}.\nTo obtain the rate for $\\mathcal T_{\\bA}$, first note that\nEquation~\\eqref{eq:balanced-b-lower} gives $n/b=O(1)$.\nBy the normalized zeta and remainder bounds,\n$Q_{1,\\bSigma}/G_{\\bSigma}$ and\n$Q_{2,\\bSigma}/G_{\\bSigma}$ have $L^2$ size $O(\\sqrt n)$,\nwhereas $Q_{4,\\bSigma}/G_{\\bSigma}$ and\n$Q_{5,\\bSigma}/G_{\\bSigma}$ have $L^1$ size $O(\\sqrt n)$;\n$Q_{3,\\bSigma}=0$.  The normalized remainders have bounded\nfixed-order moments. H\\\"older's inequality combines the $L^2$\nbound for $Q_1/G_{\\bSigma}$ with the bounded second moment of\n$b/n-t_{\\bSigma}$ from \\eqref{eq:balanced-inverse-envelope}.\nSubstitution in the definition of $\\mathcal T_{\\bA}$ gives\n$\\E_{\\rm aux}\\mathcal T_{\\bA}\\leq C\\sqrt n$.\nFor the response-weighted version, positive spectral mass on the range of\n$\\bA$ gives\n\\begin{align*}\n    0\\leq\\bu^\\top\\br=\\bu^\\top\\bA\\bu\n    \\leq c_-^{-1}\\norm{\\bA\\bu}^2\n    =c_-^{-1}\\norm{\\br}^2.\n\\end{align*}\nConsequently,\n\\begin{align}\n    \\frac{B_{\\bA}}{G_{\\bSigma}}\n    \\leq \\frac{2}{c_-}+t_{\\bSigma}+\\frac{d}{b}.\n    \\label{eq:balanced-B-over-G}\n\\end{align}\nThe right side has bounded fixed moments by\n\\eqref{eq:balanced-inverse-envelope}--\\eqref{eq:balanced-b-lower}.  Applying\nthe normalized inequalities under the original response law gives the\nunweighted bound $\\E\\mathcal T_{\\bA}\\leq C\\sqrt n$ as well.  To justify the\nresponse weight without invoking an unproved $L^2$ second-order inequality,\nuse the event $\\Omega_n$ from\nLemma~\\ref{lem:balanced-exceptional-weight}.  On $\\Omega_n$, the inverse-norm bound in its definition and the\nbalanced spectrum imply\n\\begin{align*}\n    n\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op}\n       +t_{\\bSigma}+\\sqrt n\\norm{\\bL}_{\\rm op}\\leq C.\n\\end{align*}\nTogether with $\\norm{\\bep}\\leq C_0\\sqrt n$, equations\n\\eqref{eq:balanced-qur} and \\eqref{eq:balanced-residual-contraction} give\n$\\norm{\\bq}\\leq\\norm{\\bL}_{\\rm op}\\norm{\\bep}=O(1)$ and\n$\\norm{\\br}/\\sqrt n\\leq c_+\\norm{\\bep}/\\sqrt n=O(1)$.\nThus $G_{\\bSigma}\\leq C$ on $\\Omega_n$.\nHence \\eqref{eq:balanced-B-over-G} gives\n$B_{\\bA}\\leq C$, and therefore\n$\\E[B_{\\bA}\\mathcal T_{\\bA}\\boldsymbol{1}_{\\Omega_n}]\\leq C\\sqrt n$.\nLemma~\\ref{lem:balanced-exceptional-weight} controls the complementary event,\nso, for example with $N=1$,\n$\\E[B_{\\bA}\\mathcal T_{\\bA}]\n\\leq C\\sqrt n+C_1n^{-1}\\leq C'\\sqrt n$.\nThus both trace bounds \\eqref{eq:normalized-Q-bounds} and\n\\eqref{eq:weighted-Q-bounds} hold.\nThis completes the proofs of Lemmas~\\ref{lem:balanced-remainder-bounds} and\n\\ref{lem:balanced-trace-Stein-bounds}.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 2700,
+        "to": 3032,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 2477,
+        "to": 2511,
+        "env": "lemma",
+        "label": "lem:balanced-remainder-bounds"
+      },
+      "refs": [
+        "assu:Gaussian-Stein-design",
+        "lem:balanced-Stein-sufficient-conditions",
+        "lem:balanced-moment-bounds",
+        "eq:bA-spectral-lower",
+        "eq:balanced-Dq-energy",
+        "eq:balanced-Dr-energy",
+        "eq:balanced-explicit-moment-bounds",
+        "eq:balanced-inverse-envelope",
+        "lem:dot-rxr",
+        "lem:Stein-remainders-from-moments",
+        "lem:normalized-Gaussian-Stein",
+        "lem:M-inverse-bound",
+        "eq:zeta-definitions",
+        "eq:balanced-ridge-normalized-energy",
+        "eq:M-inverse-whitened-envelope",
+        "lem:opnorm-X-bound",
+        "eq:balanced-normalized-energy",
+        "eq:balanced-normalized-first-order",
+        "eq:balanced-normalized-second-order",
+        "eq:balanced-normalized-zeta-bounds",
+        "eq:balanced-unnormalized-zeta-bounds",
+        "eq:balanced-normalized-remainders",
+        "eq:balanced-unnormalized-remainders",
+        "lem:balanced-remainder-bounds",
+        "lem:dot-rh",
+        "lem:dot-hxxh",
+        "eq:balanced-Q-zeta-Delta",
+        "eq:balanced-b-lower",
+        "lem:balanced-exceptional-weight",
+        "eq:balanced-qur",
+        "eq:balanced-residual-contraction",
+        "eq:balanced-B-over-G",
+        "eq:normalized-Q-bounds",
+        "eq:weighted-Q-bounds",
+        "lem:balanced-trace-Stein-bounds",
+        "lem:dot-hxh",
+        "lem:dot-rxxr"
+      ]
+    },
+    {
+      "id": "lem:balanced-trace-Stein-bounds",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:balanced-trace-Stein-bounds",
+      "title": null,
+      "body": "\\label{lem:balanced-trace-Stein-bounds}\nUnder Assumption~\\ref{assu:Gaussian-Stein-design},\nthere are $n_0\\geq1$ and $C<\\infty$, independent of $n$, such that, for\n$n\\geq n_0$,\n\\begin{align}\n    \\E\\zeta_1^2&\\leq Cn,\n    & \\E\\zeta_2^2&\\leq Cn,\n    & \\zeta_3&=0,\\notag\\\\\n    \\E|\\zeta_4|&\\leq C\\sqrt n,\n    & \\E|\\zeta_5|&\\leq C\\sqrt n.\n    \\label{eq:balanced-unnormalized-zeta-bounds}\n\\end{align}\nEvery ratio below is defined to be zero on $\\{G_{\\bSigma}=0\\}$.\nMoreover, if $\\E_\\star$ denotes either expectation under the auxiliary\nresponse law defined above\nor expectation under\nthe original response law, then\n\\begin{align}\n    \\E_\\star\\left[\n       \\frac{\\zeta_1^2+\\zeta_2^2}\n            {nG_{\\bSigma}^2}\n       +\\frac{|\\zeta_4|+|\\zeta_5|}\n            {\\sqrt n\\,G_{\\bSigma}}\n    \\right]\\leq C.\n    \\label{eq:balanced-normalized-zeta-bounds}\n\\end{align}\nThe exact decompositions are\n\\begin{align}\n    Q_{1,\\bSigma}&=\\zeta_1+\\Delta_1,\n    & Q_{2,\\bSigma}&=\\zeta_2+\\Delta_2,\\notag\\\\\n    Q_{3,\\bSigma}&=\\zeta_3=0,\n    & Q_{4,\\bSigma}&=\\zeta_4+\\frac{\\Delta_4}{n},\n    & Q_{5,\\bSigma}&=\\zeta_5+\\Delta_5.\n    \\label{eq:balanced-Q-zeta-Delta}\n\\end{align}\nTogether with Lemma~\\ref{lem:balanced-remainder-bounds}, these estimates imply\nthe trace bounds \\eqref{eq:normalized-Q-bounds}--\n\\eqref{eq:weighted-Q-bounds}.",
+      "proof": "Retain the notation and bounds from the proof of\nLemmas~\\ref{lem:balanced-Stein-sufficient-conditions} and\n\\ref{lem:balanced-moment-bounds}.\nConditional on the sketch, $\\bG_0$ is an $m\\times d$ standard Gaussian\nmatrix.  The Ky Fan lower bound \\eqref{eq:bA-spectral-lower} gives\n\\begin{align}\n    b\\geq c_-(m-d)\\geq c_-\\kappa n,\n    \\qquad \\frac{n}{b}\\leq\\frac{1}{c_-\\kappa}.\n    \\label{eq:balanced-b-lower}\n\\end{align}\n\nFor the response-normalized bounds, no negative response moment is needed.\nWith\n$G_{\\bSigma}=\\norm{\\bq}^2+\\norm{\\br}^2/n$, define every ratio as zero when\n$G_{\\bSigma}=0$.  Equations\n\\eqref{eq:balanced-Dq-energy}--\\eqref{eq:balanced-Dr-energy} give pointwise\n\\begin{align}\n    \\frac{1}{G_{\\bSigma}}\n    \\sum_{i,j}\\left\\{\n       \\norm{\\pdv{\\bq}{z_{ij}}}^2\n       +\\frac1n\\norm{\\pdv{\\br}{z_{ij}}}^2\n    \\right\\}\n    \\leq P(H_n),\n    \\label{eq:balanced-normalized-energy}\n\\end{align}\nwhere $P$ is a fixed polynomial with nonnegative coefficients and\nall fixed moments of\n\\begin{align*}\n    H_n:=1+\\frac{\\norm{\\bZ}_{\\rm op}}{\\sqrt n}\n       +n\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op}\n       +\\sqrt n\\norm{\\bL}_{\\rm op}\n\\end{align*}\nare uniformly bounded.\n\nFor the first stage, we establish the unnormalized fluctuation bounds.\nIn the raw Stein bounds below, apply the smooth-field inequalities first to\nthe positive-ridge fields $\\bq_\\eta$ and $\\br_\\eta$. The uniform moment\nbounds established above control their fourth moments and derivative\nenergies. Almost-sure convergence of the fields and their derivatives,\nfollowed by Fatou's lemma, gives the displayed bounds at $\\eta=0$.\nConditional on $(\\bA,\\bep)$, the first-order Gaussian divergence\ninequality applied to the matrix field $\\br\\bq^\\top$ gives\n\\begin{align*}\n    \\E\\zeta_1^2\n    &\\leq C\\E\\left[\n       \\norm{\\br}^2\\norm{\\bq}^2\n       +\\sum_{i,j}\n          \\norm{\\pdv{(\\br\\bq^\\top)}{z_{ij}}}_{\\rm F}^2\n    \\right]\\\\\n    &\\leq C\\E\\left[\n       \\norm{\\br}^2\\norm{\\bq}^2\n       +\\norm{\\bq}^2\\calE_{\\br}\n       +\\norm{\\br}^2\\calE_{\\bq}\n    \\right]\n    \\leq Cn,\n\\end{align*}\nwhere the last step uses \\eqref{eq:balanced-explicit-moment-bounds} and\nCauchy--Schwarz.  Applying the same inequality to\n$(\\bZ\\bq)\\bq^\\top$ and using the product rule yields\n\\begin{align*}\n    \\sum_{i,j}\n       \\norm{\\pdv{\\{(\\bZ\\bq)\\bq^\\top\\}}{z_{ij}}}_{\\rm F}^2\n    \\leq C\\left\\{\n       n\\norm{\\bq}^4\n       +\\norm{\\bZ}_{\\rm op}^2\\norm{\\bq}^2\\calE_{\\bq}\n    \\right\\}.\n\\end{align*}\nTogether with\n$\\norm{(\\bZ\\bq)\\bq^\\top}_{\\rm F}^2\n \\leq\\norm{\\bZ}_{\\rm op}^2\\norm{\\bq}^4$,\nH\\\"older's inequality, \\eqref{eq:balanced-inverse-envelope}, and\n\\eqref{eq:balanced-explicit-moment-bounds} prove\n$\\E\\zeta_2^2\\leq Cn$.  The normal equations give\n$\\bZ^\\top\\br=0$, and Lemma~\\ref{lem:dot-rxr} makes the\ndivergence in the definition of $\\zeta_3$ zero.  Hence $\\zeta_3=0$ pathwise.\n\nApply the second claim of\nLemma~\\ref{lem:Stein-remainders-from-moments} to $\\bq(\\bZ)$.  Its proof uses\nonly the fourth-moment and derivative-energy assumptions and gives\n$\\E|\\zeta_5|\\leq C\\sqrt n$.  Apply the same argument\nafter transposing the design: with $\\bW=\\bZ^\\top\\in\\R^{d\\times n}$ and\n$\\bff(\\bW)=\\br/\\sqrt n$, its second-order fluctuation is exactly\n\\begin{align*}\n    d\\norm{\\bff}^2\n    -\\sum_{j=1}^d\\left(\n       \\be_j^\\top\\bW\\bff\n       -\\sum_{i=1}^n\\pdv{f_i}{w_{ji}}\n    \\right)^2\n    =\\zeta_4.\n\\end{align*}\nHere $w_{ji}=z_{ij}$ and\n$\\partial f_i/\\partial w_{ji}\n=n^{-1/2}\\partial r_i/\\partial z_{ij}$, so transposition\nchanges only the orientation of the design indices.\nThe required fourth moments of $\\bff$ and its derivative energy are bounded\nby \\eqref{eq:balanced-explicit-moment-bounds}.  Hence\n$\\E|\\zeta_4|\\leq C\\sqrt d\\leq C\\sqrt n$, proving the unnormalized\nsecond-order bounds.\n\nFor the response-normalized statements, condition on\n$(\\bA,\\bep)$, let $\\E_{\\bZ}$ denote expectation over $\\bZ$, and set\n\\begin{align*}\n    \\Theta_{\\bA,\\bep}\n    :=\\E_{\\bZ}\\left[\\frac{\\calE_{\\bq,\\br}}{G_{\\bSigma}}\\right].\n\\end{align*}\nHere we use the derivative energy from\nLemma~\\ref{lem:normalized-Gaussian-Stein} and the same zero convention.\n\nThe ridge approximations verify the regularity requirements of\nLemma~\\ref{lem:normalized-Gaussian-Stein}. For $\\eta>0$, use the ridge\napproximations from the proof of\nLemma~\\ref{lem:balanced-Stein-sufficient-conditions}.\nConditional on $(\\bA,\\bep)$, these maps are smooth on all of\n$\\R^{n\\times d}$. Their behavior at zero energy is particularly simple: if\n$\\bq_\\eta=\\br_\\eta=\\boldzero$ at one design, then\n$\\bA\\bep=\\br_\\eta+\\bA\\bZ\\bq_\\eta=\\boldzero$. The coefficient and residual\nfields are consequently identically zero as functions of $\\bZ$, and so are\ntheir derivatives. Use the quantities\n$G_{\\bq_\\eta,\\br_\\eta}$ and $\\calE_{\\bq_\\eta,\\br_\\eta}$ from\nLemma~\\ref{lem:normalized-Gaussian-Stein}, again using the zero convention.\nThe derivative formulas are\n\\begin{align*}\n    \\pdv{\\bq_\\eta}{z_{ij}}\n    &=\\bK_\\eta\\be_j(\\br_\\eta)_i\n      -\\bL_\\eta^\\top\\be_i(\\bq_\\eta)_j,\\\\\n    \\pdv{\\br_\\eta}{z_{ij}}\n    &=-\\bA\\be_i(\\bq_\\eta)_j\n      -\\bA\\bZ\\pdv{\\bq_\\eta}{z_{ij}}.\n\\end{align*}\nTherefore, with $\\calE_{\\bq_\\eta}$ and $\\calE_{\\br_\\eta}$ denoting the two\nderivative energies, use\n$G_{\\bq_\\eta,\\br_\\eta}\\geq\\norm{\\bq_\\eta}^2$ and\n$G_{\\bq_\\eta,\\br_\\eta}\\geq\\norm{\\br_\\eta}^2/n$ to obtain\n\\begin{align*}\n    \\frac{\\calE_{\\bq_\\eta}}{G_{\\bq_\\eta,\\br_\\eta}}\n    &\\leq 2n\\norm{\\bK_\\eta}_{\\rm F}^2\n       +2\\norm{\\bL_\\eta}_{\\rm F}^2,\\\\\n    \\frac{\\calE_{\\br_\\eta}}{nG_{\\bq_\\eta,\\br_\\eta}}\n    &\\leq \\frac{2\\norm{\\bA}_{\\rm F}^2}{n}\n       +\\frac{2\\norm{\\bA\\bZ}_{\\rm op}^2}{n}\n          \\frac{\\calE_{\\bq_\\eta}}{G_{\\bq_\\eta,\\br_\\eta}}.\n\\end{align*}\nThe singular-value comparison in\nLemma~\\ref{lem:M-inverse-bound} gives, on the full-rank event,\n\\begin{align*}\n    \\norm{\\bK_\\eta}_{\\rm op}\n       &\\leq\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op},\n    &\n    \\norm{\\bL_\\eta}_{\\rm op}\n       &\\leq\\norm{\\bL}_{\\rm op}.\n\\end{align*}\nIndeed,\n\\begin{align*}\n    \\bL_\\eta\n    &=\\bL\\left\\{\\widetilde{\\bM}\n       (\\widetilde{\\bM}+\\eta\\bI_d)^{-1}\\right\\},\n    &\n    \\norm{\\widetilde{\\bM}\n       (\\widetilde{\\bM}+\\eta\\bI_d)^{-1}}_{\\rm op}&\\leq1.\n\\end{align*}\nThus both bounds hold uniformly in $\\eta$, and in particular\n$\\sqrt n\\norm{\\bL_\\eta}_{\\rm op}\\leq H_n$.  Together with $d\\leq n$,\n$\\norm{\\bA}_{\\rm F}^2=\\trace(\\bA^2)\\leq c_+\\trace(\\bA)=c_+n$, and\n$\\norm{\\bA\\bZ}_{\\rm op}\\leq c_+\\norm{\\bZ}_{\\rm op}$, the preceding two\ndisplays yield, after enlarging the fixed polynomial $P$ if necessary,\n\\begin{align}\n    \\frac{\\calE_{\\bq_\\eta,\\br_\\eta}}{G_{\\bq_\\eta,\\br_\\eta}}\n    \\leq P(H_n)\n    \\qquad(\\eta>0).\n    \\label{eq:balanced-ridge-normalized-energy}\n\\end{align}\n\nThe zero-denominator event is also explicit. Indeed,\n$\\bq=\\widetilde{\\bM}^{-1}\\bZ^\\top\\bA\\bep$ and\n$\\br=\\bA(\\bep-\\bZ\\bq)$ show that both $\\bq$ and $\\br$\nvanish exactly when $\\bA\\bep=0$. The same reasoning applies to\nthe ridge versions. Thus\n\\begin{align*}\n    G_{\\bSigma}=0\n    \\quad\\Longleftrightarrow\\quad\n    \\bA\\bep=\\boldzero\n    \\quad\\Longleftrightarrow\\quad\n    G_{\\bq_\\eta,\\br_\\eta}=0\\ \\text{for every }\\eta>0.\n\\end{align*}\nOn this event, $\\bq_\\eta$, $\\br_\\eta$, their first derivatives, and all five\n$\\Gamma$-contractions in Lemma~\\ref{lem:normalized-Gaussian-Stein} vanish.  On\nits complement, all the denominators are positive.  On the Gaussian full-rank\nevent, as $\\eta\\downarrow0$,\n$\\bq_\\eta$, $\\br_\\eta$, and their displayed derivatives converge pointwise to\n$\\bq$, $\\br$, and their weak derivatives.  By \\eqref{eq:zeta-definitions},\nthe five ridge-normalized contractions converge to their corresponding\n$\\zeta_s/G_{\\bSigma}$ limits.\n\nApply that lemma to $(\\bq_\\eta,\\br_\\eta)$ with\n$\\mathcal F$ the sigma-field generated by $(\\bA,\\bep)$.  Conditional on this\nsigma-field, $\\bZ$ still has i.i.d. standard Gaussian entries.  The bound\n\\eqref{eq:balanced-ridge-normalized-energy},\nthe conditional inverse envelope\n\\eqref{eq:M-inverse-whitened-envelope}, and the conditional Gaussian\noperator-norm bound in Lemma~\\ref{lem:opnorm-X-bound} give an integrable\ndominating variable for both right-hand sides, uniformly over balanced\nsketch matrices. This bound is independent of the fixed value of\n$\\bep$. The same statement holds when\nconditioning on $\\bA$ rather than on $\\bS$ by the tower property.\nDominated convergence therefore applies to those right-hand sides and to\n$\\E_{\\bZ}[\\calE_{\\bq_\\eta,\\br_\\eta}/G_{\\bq_\\eta,\\br_\\eta}]$;\nFatou's lemma applies to the nonnegative\nleft-hand sides. Passing to the limit in\nLemma~\\ref{lem:normalized-Gaussian-Stein} gives\n\\begin{align}\n    \\E_{\\bZ}\\left[\n       \\frac{\\zeta_1^2+\\zeta_2^2+\\zeta_3^2}{G_{\\bSigma}^2}\n    \\right]\n    &\\leq C\\E_{\\bZ}\\left[\n       n+d+\\norm{\\bZ}_{\\rm op}^2\n       +(n+d)\\left(1+\\frac{\\norm{\\bZ}_{\\rm op}^2}{n}\\right)\n          \\frac{\\calE_{\\bq,\\br}}{G_{\\bSigma}}\n    \\right],\n    \\label{eq:balanced-normalized-first-order}\\\\\n    \\E_{\\bZ}\\left[\n       \\frac{|\\zeta_4|+|\\zeta_5|}{G_{\\bSigma}}\n    \\right]\n    &\\leq C\\left\\{\n       \\sqrt{n+d}\\left(1+\\Theta_{\\bA,\\bep}^{1/2}\\right)\n       +\\Theta_{\\bA,\\bep}\n    \\right\\}.\n    \\label{eq:balanced-normalized-second-order}\n\\end{align}\nThe same domination proves uniform integrability of the normalized derivative\nenergies along the ridge approximation.  No negative moment of\n$G_{\\bSigma}$ is used.\n\nBy \\eqref{eq:balanced-normalized-energy},\n$\\calE_{\\bq,\\br}/G_{\\bSigma}\\leq P(H_n)$ pointwise.\nSince $d=O(n)$ and all fixed\nmoments of $H_n$ are uniformly bounded, integration over $(\\bA,\\bep)$ in\n\\eqref{eq:balanced-normalized-first-order} gives an $O(n)$ right-hand side.\nMoreover,\n\\begin{align*}\n    \\E_\\star\\Theta_{\\bA,\\bep}\\leq C,\n    \\qquad\n    \\E_\\star\\Theta_{\\bA,\\bep}^{1/2}\\leq C,\n\\end{align*}\nso \\eqref{eq:balanced-normalized-second-order} is $O(\\sqrt n)$ after\nintegration.  The pointwise envelope is independent of the response scale,\nand therefore these conclusions hold under both response laws denoted by\n$\\E_\\star$.  Dividing the two resulting estimates by $n$ and $\\sqrt n$,\nrespectively, proves \\eqref{eq:balanced-normalized-zeta-bounds}; together with\nthe preceding argument, this also completes\n\\eqref{eq:balanced-unnormalized-zeta-bounds}.\n\nThe algebraic remainders follow from elementary Cauchy--Schwarz bounds.\nSince $0<b/n\\leq1$, these bounds give pointwise\n\\begin{align*}\n    \\frac{|\\Delta_1|}{G_{\\bSigma}}\n       &\\leq \\sqrt n\\norm{\\bL}_{\\rm op},\n    &\n    \\frac{|\\Delta_2|}{G_{\\bSigma}}\n       &\\leq1,\\\\\n    \\frac{|\\Delta_4|}{nG_{\\bSigma}}\n       &\\leq \\norm{\\bL}_{\\rm op}^2\n          +\\frac bn\\sqrt n\\norm{\\bL}_{\\rm op},\n    &\n    \\frac{|\\Delta_5|}{G_{\\bSigma}}\n       &\\leq \\norm{\\bL}_{\\rm op}^2+2\n          +t_{\\bSigma}\\sqrt n\\norm{\\bL}_{\\rm op}.\n\\end{align*}\nThe inverse envelope \\eqref{eq:balanced-inverse-envelope} proves\n\\eqref{eq:balanced-normalized-remainders} at every fixed order.  The same\nenvelope, \\eqref{eq:balanced-explicit-moment-bounds}, and $b\\leq n$ prove\n\\eqref{eq:balanced-unnormalized-remainders}.  This establishes\nLemma~\\ref{lem:balanced-remainder-bounds}.\n\nFinally, Lemmas~\\ref{lem:dot-rh}--\\ref{lem:dot-hxxh}, together with\nthe definitions in \\eqref{eq:zeta-definitions}, give\nthe exact decompositions \\eqref{eq:balanced-Q-zeta-Delta}.\nTo obtain the rate for $\\mathcal T_{\\bA}$, first note that\nEquation~\\eqref{eq:balanced-b-lower} gives $n/b=O(1)$.\nBy the normalized zeta and remainder bounds,\n$Q_{1,\\bSigma}/G_{\\bSigma}$ and\n$Q_{2,\\bSigma}/G_{\\bSigma}$ have $L^2$ size $O(\\sqrt n)$,\nwhereas $Q_{4,\\bSigma}/G_{\\bSigma}$ and\n$Q_{5,\\bSigma}/G_{\\bSigma}$ have $L^1$ size $O(\\sqrt n)$;\n$Q_{3,\\bSigma}=0$.  The normalized remainders have bounded\nfixed-order moments. H\\\"older's inequality combines the $L^2$\nbound for $Q_1/G_{\\bSigma}$ with the bounded second moment of\n$b/n-t_{\\bSigma}$ from \\eqref{eq:balanced-inverse-envelope}.\nSubstitution in the definition of $\\mathcal T_{\\bA}$ gives\n$\\E_{\\rm aux}\\mathcal T_{\\bA}\\leq C\\sqrt n$.\nFor the response-weighted version, positive spectral mass on the range of\n$\\bA$ gives\n\\begin{align*}\n    0\\leq\\bu^\\top\\br=\\bu^\\top\\bA\\bu\n    \\leq c_-^{-1}\\norm{\\bA\\bu}^2\n    =c_-^{-1}\\norm{\\br}^2.\n\\end{align*}\nConsequently,\n\\begin{align}\n    \\frac{B_{\\bA}}{G_{\\bSigma}}\n    \\leq \\frac{2}{c_-}+t_{\\bSigma}+\\frac{d}{b}.\n    \\label{eq:balanced-B-over-G}\n\\end{align}\nThe right side has bounded fixed moments by\n\\eqref{eq:balanced-inverse-envelope}--\\eqref{eq:balanced-b-lower}.  Applying\nthe normalized inequalities under the original response law gives the\nunweighted bound $\\E\\mathcal T_{\\bA}\\leq C\\sqrt n$ as well.  To justify the\nresponse weight without invoking an unproved $L^2$ second-order inequality,\nuse the event $\\Omega_n$ from\nLemma~\\ref{lem:balanced-exceptional-weight}.  On $\\Omega_n$, the inverse-norm bound in its definition and the\nbalanced spectrum imply\n\\begin{align*}\n    n\\norm{\\widetilde{\\bM}^{-1}}_{\\rm op}\n       +t_{\\bSigma}+\\sqrt n\\norm{\\bL}_{\\rm op}\\leq C.\n\\end{align*}\nTogether with $\\norm{\\bep}\\leq C_0\\sqrt n$, equations\n\\eqref{eq:balanced-qur} and \\eqref{eq:balanced-residual-contraction} give\n$\\norm{\\bq}\\leq\\norm{\\bL}_{\\rm op}\\norm{\\bep}=O(1)$ and\n$\\norm{\\br}/\\sqrt n\\leq c_+\\norm{\\bep}/\\sqrt n=O(1)$.\nThus $G_{\\bSigma}\\leq C$ on $\\Omega_n$.\nHence \\eqref{eq:balanced-B-over-G} gives\n$B_{\\bA}\\leq C$, and therefore\n$\\E[B_{\\bA}\\mathcal T_{\\bA}\\boldsymbol{1}_{\\Omega_n}]\\leq C\\sqrt n$.\nLemma~\\ref{lem:balanced-exceptional-weight} controls the complementary event,\nso, for example with $N=1$,\n$\\E[B_{\\bA}\\mathcal T_{\\bA}]\n\\leq C\\sqrt n+C_1n^{-1}\\leq C'\\sqrt n$.\nThus both trace bounds \\eqref{eq:normalized-Q-bounds} and\n\\eqref{eq:weighted-Q-bounds} hold.\nThis completes the proofs of Lemmas~\\ref{lem:balanced-remainder-bounds} and\n\\ref{lem:balanced-trace-Stein-bounds}.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 2700,
+        "to": 3032,
+        "env": "segment-proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 2521,
+        "to": 2560,
+        "env": "lemma",
+        "label": "lem:balanced-trace-Stein-bounds"
+      },
+      "refs": [
+        "assu:Gaussian-Stein-design",
+        "lem:balanced-remainder-bounds",
+        "eq:normalized-Q-bounds",
+        "eq:weighted-Q-bounds",
+        "lem:balanced-Stein-sufficient-conditions",
+        "lem:balanced-moment-bounds",
+        "eq:bA-spectral-lower",
+        "eq:balanced-Dq-energy",
+        "eq:balanced-Dr-energy",
+        "eq:balanced-explicit-moment-bounds",
+        "eq:balanced-inverse-envelope",
+        "lem:dot-rxr",
+        "lem:Stein-remainders-from-moments",
+        "lem:normalized-Gaussian-Stein",
+        "lem:M-inverse-bound",
+        "eq:zeta-definitions",
+        "eq:balanced-ridge-normalized-energy",
+        "eq:M-inverse-whitened-envelope",
+        "lem:opnorm-X-bound",
+        "eq:balanced-normalized-energy",
+        "eq:balanced-normalized-first-order",
+        "eq:balanced-normalized-second-order",
+        "eq:balanced-normalized-zeta-bounds",
+        "eq:balanced-unnormalized-zeta-bounds",
+        "eq:balanced-normalized-remainders",
+        "eq:balanced-unnormalized-remainders",
+        "lem:dot-rh",
+        "lem:dot-hxxh",
+        "eq:balanced-Q-zeta-Delta",
+        "eq:balanced-b-lower",
+        "lem:balanced-exceptional-weight",
+        "eq:balanced-qur",
+        "eq:balanced-residual-contraction",
+        "eq:balanced-B-over-G",
+        "lem:balanced-trace-Stein-bounds"
+      ]
+    },
+    {
+      "id": "lem:balanced-exceptional-weight",
+      "kind": "lemma",
+      "envName": "lemma",
+      "label": "lem:balanced-exceptional-weight",
+      "title": null,
+      "body": "\\label{lem:balanced-exceptional-weight}\nSuppose Assumption~\\ref{assu:Gaussian-Stein-design} holds.  The constant\n$C_0$ can be chosen\nsufficiently large so that there are constants $c,C>0$, uniform over all\nbalanced sketch matrices,\nsuch that, for all sufficiently large $n$,\n\\begin{align}\n    \\P(\\Omega_n^c\\mid\\bS)\\leq Ce^{-cn}\\quad\\text{almost surely},\n    \\qquad\n    \\P(\\Omega_n^c)\\leq Ce^{-cn}.\n    \\label{eq:balanced-exceptional-tail}\n\\end{align}\nOn the whole sample space, using the zero convention for the ratios in\n$\\mathcal T_{\\bA}$,\n\\begin{align}\n    \\frac{B_{\\bA}\\mathcal T_{\\bA}}{n}\n    \\leq{}&8\\frac nb\n       \\left(1+\\frac{\\norm{\\bZ}_{\\rm op}^2}{n}\\right)\n       (1+t_{\\bSigma})^2\\notag\\\\\n       &\\quad\\times\\left\\{\n       \\frac{2(\\norm{\\bep}+\\norm{\\bZ}_{\\rm op}\\norm{\\bq})\\norm{\\br}}{n}\n       +\\left(t_{\\bSigma}+\\frac nb\\right)\\frac{\\norm{\\br}^2}{n}\n       \\right\\}.\n    \\label{eq:balanced-explicit-BT-polynomial}\n\\end{align}\nConsequently, for every fixed $N>0$, there is $C_N<\\infty$ such that, for all\nsufficiently large $n$,\n\\begin{align}\n    \\E\\left[\n       B_{\\bA}\\mathcal T_{\\bA}\\boldsymbol{1}_{\\Omega_n^c}\n    \\right]\n    \\leq C_Nn^{-N}.\n    \\label{eq:balanced-exceptional-BT}\n\\end{align}",
+      "proof": "Conditional on the sketch, $\\bG_0$ is an $m\\times d$ standard Gaussian\nmatrix. Put $\\nu=m-d+1$ and choose an integer $J\\geq1$ with $J\\kappa\\geq1$.\nThen $n\\leq J\\nu$. The growing-moment argument in the proof of\nLemma~\\ref{lem:M-inverse-bound}, with\n$r=\\lfloor\\nu/4\\rfloor$ and\n$D_J=4J\\,9^{8J}$, gives, for all sufficiently large $n$,\n\\begin{align*}\n    \\E\\left[\n       \\left\\{n\\norm{(\\bG_0^\\top\\bG_0)^{-1}}_{\\rm op}\\right\\}^{r}\n       \\mathrel{\\Big|}\\bS\\right]\n       \\leq 2D_J^r,\n    \\qquad r\\geq\\frac{n}{8J}.\n\\end{align*}\nMarkov's inequality therefore implies\n\\begin{align*}\n    \\P\\left\\{\n       n\\norm{(\\bG_0^\\top\\bG_0)^{-1}}_{\\rm op}\\geq eD_J\n       \\mathrel{\\Big|}\\bS\\right\\}\n       \\leq2e^{-r}\\leq2e^{-n/(8J)}.\n\\end{align*}\nChoose $C_0\\geq eD_J$ and enlarge it as needed for the Gaussian operator-norm\nand sub-Gaussian noise-norm bounds in \\eqref{eq:design-noise-tail}.\nA union bound proves \\eqref{eq:balanced-exceptional-tail}, uniformly in\nthe sketch.\n\nThe definition of $\\mathcal T_{\\bA}$, Cauchy--Schwarz, and\n$0<b\\leq n$, $d\\leq n$, $t_{\\bSigma}\\geq0$ give\n\\begin{align}\n    \\mathcal T_{\\bA}\n    &\\leq 8n\\frac nb\n       \\left(1+\\frac{\\norm{\\bZ}_{\\rm op}^2}{n}\\right)\n       (1+t_{\\bSigma})^2.\n    \\label{eq:balanced-explicit-T-polynomial}\n\\end{align}\nFor example, $\\norm{\\bq}^2\\leq G_{\\bSigma}$,\n$\\norm{\\br}^2\\leq nG_{\\bSigma}$, and\n$|\\br^\\top\\bZ\\bq|\\leq(n+\\norm{\\bZ}_{\\rm op}^2)G_{\\bSigma}$\nbound each term in the definition. Expanding their coefficients gives\n\\eqref{eq:balanced-explicit-T-polynomial}; the same bound holds at zero\nresponse energy by the zero convention.\nSince $\\bu=\\bep-\\bZ\\bq$, the definition of $B_{\\bA}$ gives\n\\begin{align*}\n    B_{\\bA}\n    &\\leq\n       \\frac{2(\\norm{\\bep}+\\norm{\\bZ}_{\\rm op}\\norm{\\bq})\\norm{\\br}}{n}\n       +\\left(t_{\\bSigma}+\\frac nb\\right)\\frac{\\norm{\\br}^2}{n}.\n\\end{align*}\nMultiplication proves \\eqref{eq:balanced-explicit-BT-polynomial}.\n\nEvery fixed moment of $n/b$, $t_{\\bSigma}$,\n$\\norm{\\bZ}_{\\rm op}/\\sqrt n$, $\\norm{\\bq}$,\n$\\norm{\\br}/\\sqrt n$, and $\\norm{\\bep}/\\sqrt n$ is uniformly bounded,\nby the preceding inverse, response, and noise moment bounds.\nRepeated H\\\"older inequalities applied to the polynomial in\n\\eqref{eq:balanced-explicit-BT-polynomial} therefore give\n$\\E(B_{\\bA}\\mathcal T_{\\bA})^2\\leq Cn^2$.\nCauchy--Schwarz and \\eqref{eq:balanced-exceptional-tail} now yield\n\\begin{align*}\n    \\E\\left[B_{\\bA}\\mathcal T_{\\bA}\n       \\boldsymbol{1}_{\\Omega_n^c}\\right]\n    &\\leq \\{\\E(B_{\\bA}\\mathcal T_{\\bA})^2\\}^{1/2}\n       \\P(\\Omega_n^c)^{1/2}\\\\\n    &\\leq Cn e^{-cn/2}\\leq C_Nn^{-N}.\n\\end{align*}\nThis proves \\eqref{eq:balanced-exceptional-BT}.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 2626,
+        "to": 2692,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 2589,
+        "to": 2624,
+        "env": "lemma",
+        "label": "lem:balanced-exceptional-weight"
+      },
+      "refs": [
+        "assu:Gaussian-Stein-design",
+        "lem:M-inverse-bound",
+        "eq:design-noise-tail",
+        "eq:balanced-exceptional-tail",
+        "eq:balanced-explicit-T-polynomial",
+        "eq:balanced-explicit-BT-polynomial",
+        "eq:balanced-exceptional-BT"
+      ]
+    },
+    {
+      "id": "prop:trace-calibration-general",
+      "kind": "proposition",
+      "envName": "proposition",
+      "label": "prop:trace-calibration-general",
+      "title": null,
+      "body": "\\label{prop:trace-calibration-general}\nUnder Assumption~\\ref{assu:Gaussian-Stein-design}, there is a constant\n$C<\\infty$, independent of $n$, such that, for all sufficiently large $n$,\n$\\E_{\\bX,\\bS}|t_{\\bSigma}-d/b|\\leq C/\\sqrt n$.\nHere $\\E_{\\bX,\\bS}$ is expectation under the original marginal law of\n$(\\bX,\\bS)$.  In particular,\n$t_{\\bSigma}-d/b=O_{\\P}(n^{-1/2})$.",
+      "proof": "Divide the exact identity \\eqref{eq:Q-identity-Sigma} by $bG_{\\bSigma}$ and\nuse the triangle inequality.  Under the auxiliary law,\n$|t_{\\bSigma}-d/b|\\leq \\mathcal T_{\\bA}/n$.\nThe required estimate\n$\\E_{\\rm aux}\\mathcal T_{\\bA}\\leq C\\sqrt n$ is\n\\eqref{eq:normalized-Q-bounds}, proved under the standing balanced\nassumptions by Lemmas~\\ref{lem:balanced-remainder-bounds} and\n\\ref{lem:balanced-trace-Stein-bounds}.  Taking $\\E_{\\rm aux}$ now proves the\nclaim.  The left side is a function of $(\\bX,\\bS)$ alone, whose law is\nunchanged by the auxiliary construction.",
+      "proofLines": {
+        "file": "main.tex",
+        "from": 3065,
+        "to": 3076,
+        "env": "proof",
+        "label": null
+      },
+      "lines": {
+        "file": "main.tex",
+        "from": 3055,
+        "to": 3063,
+        "env": "proposition",
+        "label": "prop:trace-calibration-general"
+      },
+      "refs": [
+        "assu:Gaussian-Stein-design",
+        "eq:Q-identity-Sigma",
+        "eq:normalized-Q-bounds",
+        "lem:balanced-remainder-bounds",
+        "lem:balanced-trace-Stein-bounds"
+      ]
+    }
+  ],
+  "bibliography": [
+    {
+      "key": "mahoney2011randomized",
+      "text": "Michael~W. Mahoney. \\newblock Randomized algorithms for matrices and data. \\newblock \\emph{Foundations and Trends in Machine Learning}, 3\\penalty0 (2):\\penalty0 123--224, 2011. \\newblock \\doi{10.1561/2200000035}."
+    },
+    {
+      "key": "woodruff2014sketching",
+      "text": "David~P. Woodruff. \\newblock Sketching as a tool for numerical linear algebra. \\newblock \\emph{Foundations and Trends in Theoretical Computer Science}, 10\\penalty0 (1--2):\\penalty0 1--157, 2014. \\newblock \\doi{10.1561/0400000060}."
+    },
+    {
+      "key": "sarlos2006improved",
+      "text": "Sarl\\'os, Tam\\'as (2006). Improved Approximation Algorithms for Large Matrices via Random Projections"
+    },
+    {
+      "key": "tropp2011improved",
+      "text": "Tropp, Joel A. (2011). Improved Analysis of the Subsampled Randomized Hadamard Transform"
+    },
+    {
+      "key": "tropp2012comparison",
+      "text": "Tropp, Joel A. (2012). A Comparison Principle for Functions of a Uniformly Random Subspace"
+    },
+    {
+      "key": "drineas2006sampling",
+      "text": "Drineas, Petros and Mahoney, Michael W. and Muthukrishnan, S. (2006). Sampling Algorithms for $\\ell_2$ Regression and Applications"
+    },
+    {
+      "key": "drineas2011faster",
+      "text": "Petros Drineas, Michael~W. Mahoney, S.~Muthukrishnan, and Tam{\\'a}s Sarl{\\'o}s. \\newblock Faster least squares approximation. \\newblock \\emph{Numerische Mathematik}, 117\\penalty0 (2):\\penalty0 219--249, 2011. \\newblock \\doi{10.1007/s00211-010-0331-6}."
+    },
+    {
+      "key": "clarkson2013lowrank",
+      "text": "Clarkson, Kenneth L. and Woodruff, David P. (2017). Low-Rank Approximation and Regression in Input Sparsity Time"
+    },
+    {
+      "key": "pilanci2016iterative",
+      "text": "Mert Pilanci and Martin~J. Wainwright. \\newblock Iterative {Hessian} sketch: Fast and accurate solution approximation for constrained least-squares. \\newblock \\emph{Journal of Machine Learning Research}, 17\\penalty0 (53):\\penalty0 1--38, 2016. \\newblock URL \\url{https://jmlr.org/papers/v17/14-460.html}."
+    },
+    {
+      "key": "ma2015statistical",
+      "text": "Ping Ma, Michael~W. Mahoney, and Bin Yu. \\newblock A statistical perspective on algorithmic leveraging. \\newblock \\emph{Journal of Machine Learning Research}, 16\\penalty0 (27):\\penalty0 861--911, 2015. \\newblock URL \\url{https://www.jmlr.org/papers/v16/ma15a.html}."
+    },
+    {
+      "key": "raskutti2016statistical",
+      "text": "Garvesh Raskutti and Michael~W. Mahoney. \\newblock A statistical perspective on randomized sketching for ordinary least-squares. \\newblock \\emph{Journal of Machine Learning Research}, 17\\penalty0 (213):\\penalty0 1--31, 2016. \\newblock URL \\url{https://jmlr.org/papers/v17/15-440.html}."
+    },
+    {
+      "key": "wang2018sketched",
+      "text": "Wang, Shusen and Gittens, Alex and Mahoney, Michael W. (2018). Sketched Ridge Regression: Optimization Perspective, Statistical Perspective, and Model Averaging"
+    },
+    {
+      "key": "dobriban2019asymptotics",
+      "text": "Edgar Dobriban and Sifan Liu. \\newblock Asymptotics for sketching in least squares regression. \\newblock In \\emph{Advances in Neural Information Processing Systems}, volume~32, pages 3675--3685, 2019. \\newblock URL \\url{https://proceedings.neurips.cc/paper/2019/hash/1f36c15d6a3d18d52e8d493bc8187cb9-Abstract.html}."
+    },
+    {
+      "key": "belkin2020two",
+      "text": "Belkin, Mikhail and Hsu, Daniel and Xu, Ji (2020). Two Models of Double Descent for Weak Features"
+    },
+    {
+      "key": "chen2023sketched",
+      "text": "Xin Chen, Yicheng Zeng, Siyue Yang, and Qiang Sun. \\newblock Sketched ridgeless linear regression: The role of downsampling. \\newblock In \\emph{Proceedings of the 40th International Conference on Machine Learning}, volume 202 of \\emph{Proceedings of Machine Learning Research}, pages 5296--5326. PMLR, 2023. \\newblock URL \\url{https://proceedings.mlr.press/v202/chen23am.html}."
+    },
+    {
+      "key": "epperly2026sharp",
+      "text": "Epperly, Ethan N. and Webber, Robert J. (2026). Sharp Analysis of Sketched Least Squares and Randomized Low-Rank Approximation"
+    },
+    {
+      "key": "ting2018optimal",
+      "text": "Ting, Daniel and Brochu, Eric (2018). Optimal Subsampling with Influence Functions"
+    },
+    {
+      "key": "derezinski2018reverse",
+      "text": "Derezi\\'nski, Micha\\l and Warmuth, Manfred K. (2018). Reverse Iterative Volume Sampling for Linear Regression"
+    },
+    {
+      "key": "derezinski2019minimax",
+      "text": "Derezi\\'nski, Micha\\l and Clarkson, Kenneth L. and Mahoney, Michael W. and Warmuth, Manfred K. (2019). Minimax Experimental Design: Bridging the Gap between Statistical and Worst-Case Approaches to Least Squares Regression"
+    },
+    {
+      "key": "golub1979generalized",
+      "text": "Gene~H. Golub, Michael Heath, and Grace Wahba. \\newblock Generalized cross-validation as a method for choosing a good ridge parameter. \\newblock \\emph{Technometrics}, 21\\penalty0 (2):\\penalty0 215--223, 1979. \\newblock \\doi{10.1080/00401706.1979.10489751}."
+    },
+    {
+      "key": "bellec2023out",
+      "text": "Pierre~C. Bellec. \\newblock Out-of-sample error estimation for {$M$}-estimators with convex penalty. \\newblock \\emph{Information and Inference: A Journal of the IMA}, 12\\penalty0 (4):\\penalty0 2782--2817, 2023. \\newblock \\doi{10.1093/imaiai/iaad031}."
+    },
+    {
+      "key": "bellec2022derivatives",
+      "text": "Pierre~C. Bellec and Yiwei Shen. \\newblock Derivatives and residual distribution of regularized {$M$}-estimators with application to adaptive tuning. \\newblock In \\emph{Proceedings of the 35th Conference on Learning Theory}, volume 178 of \\emph{Proceedings of Machine Learning Research}, pages 1912--1947. PMLR, 2022. \\newblock URL \\url{https://proceedings.mlr.press/v178/bellec22a.html}."
+    },
+    {
+      "key": "patil2022estimating",
+      "text": "Pratik Patil, Alessandro Rinaldo, and Ryan~J. Tibshirani. \\newblock Estimating functionals of the out-of-sample error distribution in high-dimensional ridge regression. \\newblock In \\emph{Proceedings of the 25th International Conference on Artificial Intelligence and Statistics}, volume 151 of \\emph{Proceedings of Machine Learning Research}, pages 6087--6120. PMLR, 2022. \\newblock URL \\url{https://proceedings.mlr.press/v151/patil22a.html}."
+    },
+    {
+      "key": "du2023subsample",
+      "text": "Du, Jin-Hong and Patil, Pratik and Kuchibhotla, Arun K. (2023). Subsample Ridge Ensembles: Equivalences and Generalized Cross-Validation"
+    },
+    {
+      "key": "bellec2025corrected",
+      "text": "Pierre~C. Bellec, Jin-Hong Du, Takuya Koriyama, Pratik Patil, and Kai Tan. \\newblock Corrected generalized cross-validation for finite ensembles of penalized estimators. \\newblock \\emph{Journal of the Royal Statistical Society Series B: Statistical Methodology}, 87\\penalty0 (2):\\penalty0 289--318, 2025. \\newblock \\doi{10.1093/jrsssb/qkae092}."
+    },
+    {
+      "key": "patil2024asymptotically",
+      "text": "Pratik Patil and Daniel LeJeune. \\newblock Asymptotically free sketched ridge ensembles: Risks, cross-validation, and tuning. \\newblock In \\emph{International Conference on Learning Representations}, 2024. \\newblock URL \\url{https://proceedings.iclr.cc/paper_files/paper/2024/hash/e96a15fbe8accca7087c93bcc0474f0a-Abstract-Conference.html}."
+    },
+    {
+      "key": "atanasov2025risk",
+      "text": "Atanasov, Alexander and Zavatone-Veth, Jacob A. and Pehlevan, Cengiz (2025). Risk and Cross Validation in Ridge Regression with Correlated Samples"
+    },
+    {
+      "key": "luo2025roti",
+      "text": "Luo, Kevin and Li, Yufan and Sur, Pragya (2025). ROTI-GCV: Generalized Cross-Validation for Right-Rotationally Invariant Data"
+    },
+    {
+      "key": "ahfock2021statistical",
+      "text": "Ahfock, Daniel C. and Astle, William J. and Richardson, Sylvia (2021). Statistical Properties of Sketching Algorithms"
+    },
+    {
+      "key": "browne2024statistical",
+      "text": "Browne, Ryan P. and Andrews, Jeffrey L. (2024). Statistical Inference for Sketching Algorithms"
+    },
+    {
+      "key": "wang2024inference",
+      "text": "Wang, Leda and Zhang, Zhixiang and Dobriban, Edgar (2024). Inference in Randomized Least Squares and PCA via Normality of Quadratic Forms"
+    },
+    {
+      "key": "lee2022least",
+      "text": "Lee, Sokbae and Ng, Serena (2022). Least Squares Estimation Using Sketched Data with Heteroskedastic Errors"
+    },
+    {
+      "key": "lopes2018error",
+      "text": "Lopes, Miles E. and Wang, Shusen and Mahoney, Michael W. (2018). Error Estimation for Randomized Least-Squares Algorithms via the Bootstrap"
+    },
+    {
+      "key": "li2021asymptotic",
+      "text": "Li, Zeng and Xie, Chuanlong and Wang, Qinwen (2021). Asymptotic Normality and Confidence Intervals for Prediction Risk of the Min-Norm Least Squares Estimator"
+    },
+    {
+      "key": "han2026distribution",
+      "text": "Han, Qiyang and Xu, Xiaocong (2026). The Distribution of Ridgeless Least Squares Interpolators"
+    }
+  ],
+  "note_macros": {
+    "version": 3,
+    "macros": [
+      {
+        "name": "gray",
+        "class": "keep",
+        "args": [
+          "m"
+        ],
+        "content": 0,
+        "from": "definition",
+        "why": "its definition only colours or groups its argument"
+      },
+      {
+        "name": "kt",
+        "class": "keep",
+        "args": [
+          "m"
+        ],
+        "content": 0,
+        "from": "definition",
+        "why": "its definition only colours or groups its argument"
+      },
+      {
+        "name": "jw",
+        "class": "keep",
+        "args": [
+          "m"
+        ],
+        "content": 0,
+        "from": "definition",
+        "why": "its definition only colours or groups its argument"
+      },
+      {
+        "name": "marginpar",
+        "class": "comment",
+        "args": [
+          "o",
+          "m"
+        ],
+        "content": 1,
+        "from": "package",
+        "why": "a margin note"
+      }
+    ],
+    "declined": [
+      {
+        "name": "rev",
+        "reason": "is defined inside a conditional or a group"
+      }
+    ]
+  }
+}

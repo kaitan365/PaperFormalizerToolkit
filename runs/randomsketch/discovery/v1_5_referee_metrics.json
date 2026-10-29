@@ -1,0 +1,448 @@
+{
+  "shards": [
+    [
+      "def:trace-quantities",
+      "def:normalized-sketch",
+      "def:balanced-ridge-fields",
+      "ass:stein-remainders-from-moments-smooth",
+      "ass:stein-remainders-from-moments-second",
+      "def:rowwise-conditional-quantities",
+      "def:rowwise-jacobian-weights",
+      "def:rowwise-covariance-conditioning"
+    ],
+    [
+      "lem:m-inverse-bound",
+      "prop:q-identity-sigma",
+      "lem:rowwise-gaussian-covariance-cited",
+      "lem:matrix-gaussian-divergence-cited"
+    ],
+    [
+      "lem:balanced-stein-sufficient-conditions",
+      "lem:stein-remainders-from-moments",
+      "lem:normalized-gaussian-stein"
+    ],
+    [
+      "lem:balanced-moment-bounds",
+      "lem:influence-from-moments"
+    ],
+    [
+      "prop:stein-risk-from-moments",
+      "lem:balanced-remainder-bounds",
+      "lem:balanced-exceptional-weight"
+    ],
+    [
+      "lem:balanced-trace-stein-bounds"
+    ],
+    [
+      "thm:cpal-corrected-accuracy",
+      "prop:trace-calibration-general"
+    ]
+  ],
+  "levels": [
+    {
+      "level": 0,
+      "nodes": [
+        "ass:stein-remainders-from-moments-smooth",
+        "ass:stein-remainders-from-moments-second",
+        "def:normalized-sketch",
+        "def:trace-quantities",
+        "def:balanced-ridge-fields",
+        "def:rowwise-conditional-quantities",
+        "def:rowwise-jacobian-weights",
+        "def:rowwise-covariance-conditioning"
+      ],
+      "shards": [
+        [
+          "def:trace-quantities",
+          "def:normalized-sketch",
+          "def:balanced-ridge-fields",
+          "ass:stein-remainders-from-moments-smooth",
+          "ass:stein-remainders-from-moments-second",
+          "def:rowwise-conditional-quantities",
+          "def:rowwise-jacobian-weights",
+          "def:rowwise-covariance-conditioning"
+        ]
+      ],
+      "content_bytes": [
+        1936
+      ],
+      "calls": 1,
+      "bytes": 92753,
+      "dependency_unclear": [],
+      "wall_ms": 62391
+    },
+    {
+      "level": 1,
+      "nodes": [
+        "lem:m-inverse-bound",
+        "prop:q-identity-sigma",
+        "lem:rowwise-gaussian-covariance-cited",
+        "lem:matrix-gaussian-divergence-cited"
+      ],
+      "shards": [
+        [
+          "lem:m-inverse-bound",
+          "prop:q-identity-sigma",
+          "lem:rowwise-gaussian-covariance-cited",
+          "lem:matrix-gaussian-divergence-cited"
+        ]
+      ],
+      "content_bytes": [
+        6649
+      ],
+      "calls": 1,
+      "bytes": 126748,
+      "dependency_unclear": [],
+      "wall_ms": 78558
+    },
+    {
+      "level": 2,
+      "nodes": [
+        "lem:balanced-stein-sufficient-conditions",
+        "lem:stein-remainders-from-moments",
+        "lem:normalized-gaussian-stein"
+      ],
+      "shards": [
+        [
+          "lem:balanced-stein-sufficient-conditions",
+          "lem:stein-remainders-from-moments",
+          "lem:normalized-gaussian-stein"
+        ]
+      ],
+      "content_bytes": [
+        21907
+      ],
+      "calls": 1,
+      "bytes": 116491,
+      "dependency_unclear": [],
+      "wall_ms": 149838
+    },
+    {
+      "level": 3,
+      "nodes": [
+        "lem:balanced-moment-bounds",
+        "lem:influence-from-moments"
+      ],
+      "shards": [
+        [
+          "lem:balanced-moment-bounds",
+          "lem:influence-from-moments"
+        ]
+      ],
+      "content_bytes": [
+        6766
+      ],
+      "calls": 1,
+      "bytes": 92148,
+      "dependency_unclear": [],
+      "wall_ms": 109316
+    },
+    {
+      "level": 4,
+      "nodes": [
+        "prop:stein-risk-from-moments",
+        "lem:balanced-remainder-bounds",
+        "lem:balanced-exceptional-weight"
+      ],
+      "shards": [
+        [
+          "prop:stein-risk-from-moments",
+          "lem:balanced-remainder-bounds",
+          "lem:balanced-exceptional-weight"
+        ]
+      ],
+      "content_bytes": [
+        20404
+      ],
+      "calls": 1,
+      "bytes": 143882,
+      "dependency_unclear": [],
+      "wall_ms": 128681
+    },
+    {
+      "level": 5,
+      "nodes": [
+        "lem:balanced-trace-stein-bounds"
+      ],
+      "shards": [
+        [
+          "lem:balanced-trace-stein-bounds"
+        ]
+      ],
+      "content_bytes": [
+        15048
+      ],
+      "calls": 1,
+      "bytes": 127048,
+      "dependency_unclear": [],
+      "wall_ms": 91532
+    },
+    {
+      "level": 6,
+      "nodes": [
+        "thm:cpal-corrected-accuracy",
+        "prop:trace-calibration-general"
+      ],
+      "shards": [
+        [
+          "thm:cpal-corrected-accuracy",
+          "prop:trace-calibration-general"
+        ]
+      ],
+      "content_bytes": [
+        3450
+      ],
+      "calls": 1,
+      "bytes": 128350,
+      "dependency_unclear": [],
+      "wall_ms": 83180
+    }
+  ],
+  "cycles": [],
+  "calls": [
+    {
+      "tag": "shard_L0-1",
+      "kind": "shard",
+      "bytes": 92753,
+      "ms": 61194,
+      "nodes": 8
+    },
+    {
+      "tag": "shard_L1-1",
+      "kind": "shard",
+      "bytes": 126748,
+      "ms": 77895,
+      "nodes": 4
+    },
+    {
+      "tag": "shard_L2-1",
+      "kind": "shard",
+      "bytes": 116491,
+      "ms": 149163,
+      "nodes": 3
+    },
+    {
+      "tag": "shard_L3-1",
+      "kind": "shard",
+      "bytes": 92148,
+      "ms": 108736,
+      "nodes": 2
+    },
+    {
+      "tag": "shard_L4-1",
+      "kind": "shard",
+      "bytes": 143882,
+      "ms": 128049,
+      "nodes": 3
+    },
+    {
+      "tag": "shard_L5-1",
+      "kind": "shard",
+      "bytes": 127048,
+      "ms": 90951,
+      "nodes": 1
+    },
+    {
+      "tag": "shard_L6-1",
+      "kind": "shard",
+      "bytes": 128350,
+      "ms": 82559,
+      "nodes": 2
+    },
+    {
+      "tag": "global",
+      "kind": "global",
+      "bytes": 347468,
+      "ms": 57395,
+      "nodes": 0
+    }
+  ],
+  "shard_bytes": 827420,
+  "global_bytes": 347468,
+  "total_bytes": 1174888,
+  "set_aside": [],
+  "wall_ms": 760941,
+  "symbols": {
+    "effort": "medium",
+    "symbols": 106,
+    "graded": 88,
+    "carried": 18,
+    "shards": [
+      [
+        "b_{ik}",
+        "D_k\\ba_i",
+        "\\ba_i",
+        "d",
+        "\\bZ",
+        "\\E_i",
+        "\\bq",
+        "n",
+        "\\bX",
+        "\\bSigma"
+      ],
+      [
+        "C_{QB}",
+        "\\mathcal T_{\\bA}",
+        "B_{\\bA}",
+        "Q_{k,\\bSigma}",
+        "G_{\\bSigma}",
+        "b",
+        "t_{\\bSigma}",
+        "\\bu",
+        "\\br",
+        "\\bh"
+      ],
+      [
+        "\\br_\\eta",
+        "\\bA",
+        "\\bep",
+        "\\bq_\\eta",
+        "\\bS",
+        "\\varepsilon_i",
+        "\\bK_\\eta",
+        "m",
+        "\\widetilde{\\bM}",
+        "\\eta"
+      ],
+      [
+        "\\zeta_s",
+        "\\Gamma_s",
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "\\Theta_{\\mathcal F}",
+        "\\mathcal F",
+        "G_{\\bff,\\boldsymbol\\psi}",
+        "\\calE_{\\bff,\\boldsymbol\\psi}",
+        "\\Xi_2",
+        "\\Xi_1"
+      ],
+      [
+        "B",
+        "\\bbeta^*",
+        "\\bK",
+        "\\calE_{\\br}",
+        "\\calE_{\\bq}",
+        "\\calE_{\\bff}",
+        "\\be_j",
+        "\\bv",
+        "\\bell",
+        "\\bLambda"
+      ],
+      [
+        "\\kappa",
+        "c_+",
+        "c_-",
+        "K_\\varepsilon",
+        "C_{\\bSigma}",
+        "c_{\\bSigma}",
+        "\\bB",
+        "q",
+        "k",
+        "\\hR_u"
+      ],
+      [
+        "\\hR_o",
+        "b_{\\bA}",
+        "\\bM",
+        "R",
+        "\\hbbeta",
+        "\\sigma^2",
+        "\\by",
+        "y_i",
+        "\\bx_i",
+        "\\hbbeta_{\\bS}"
+      ],
+      [
+        "\\chi_i",
+        "\\bz_i",
+        "\\eta_i",
+        "C_Q",
+        "\\E_{\\rm aux}",
+        "\\bL_\\eta",
+        "y_{\\rm new}",
+        "\\bx_{\\rm new}",
+        "\\E_{\\bX,\\bS}"
+      ],
+      [
+        "\\E_\\star",
+        "\\bb",
+        "\\ba",
+        "\\Omega_n",
+        "\\bG_0",
+        "C_0",
+        "\\bU",
+        "\\Delta_s",
+        "\\bL"
+      ]
+    ],
+    "calls": [
+      {
+        "tag": "symbols_2",
+        "kind": "symbol_shard",
+        "bytes": 82793,
+        "ms": 33820,
+        "nodes": 10
+      },
+      {
+        "tag": "symbols_4",
+        "kind": "symbol_shard",
+        "bytes": 62376,
+        "ms": 33961,
+        "nodes": 10
+      },
+      {
+        "tag": "symbols_5",
+        "kind": "symbol_shard",
+        "bytes": 74663,
+        "ms": 34556,
+        "nodes": 10
+      },
+      {
+        "tag": "symbols_3",
+        "kind": "symbol_shard",
+        "bytes": 83848,
+        "ms": 35432,
+        "nodes": 10
+      },
+      {
+        "tag": "symbols_6",
+        "kind": "symbol_shard",
+        "bytes": 71244,
+        "ms": 38825,
+        "nodes": 10
+      },
+      {
+        "tag": "symbols_1",
+        "kind": "symbol_shard",
+        "bytes": 81006,
+        "ms": 54701,
+        "nodes": 10
+      },
+      {
+        "tag": "symbols_7",
+        "kind": "symbol_shard",
+        "bytes": 75135,
+        "ms": 27026,
+        "nodes": 10
+      },
+      {
+        "tag": "symbols_9",
+        "kind": "symbol_shard",
+        "bytes": 67384,
+        "ms": 29818,
+        "nodes": 9
+      },
+      {
+        "tag": "symbols_8",
+        "kind": "symbol_shard",
+        "bytes": 51691,
+        "ms": 34215,
+        "nodes": 9
+      }
+    ],
+    "shard_bytes": 650140,
+    "set_aside": [],
+    "regrade_why": "why re-graded — 82 settings, 20 corrected, 7 listing, 6 new",
+    "wall_ms": 69888
+  }
+}

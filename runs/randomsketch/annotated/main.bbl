@@ -1,0 +1,92 @@
+\begin{thebibliography}{14}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Drineas et~al.(2011)Drineas, Mahoney, Muthukrishnan, and Sarl{\'o}s]{drineas2011faster}
+Petros Drineas, Michael~W. Mahoney, S.~Muthukrishnan, and Tam{\'a}s Sarl{\'o}s.
+\newblock Faster least squares approximation.
+\newblock \emph{Numerische Mathematik}, 117\penalty0 (2):\penalty0 219--249, 2011.
+\newblock \doi{10.1007/s00211-010-0331-6}.
+
+\bibitem[Mahoney(2011)]{mahoney2011randomized}
+Michael~W. Mahoney.
+\newblock Randomized algorithms for matrices and data.
+\newblock \emph{Foundations and Trends in Machine Learning}, 3\penalty0 (2):\penalty0 123--224, 2011.
+\newblock \doi{10.1561/2200000035}.
+
+\bibitem[Woodruff(2014)]{woodruff2014sketching}
+David~P. Woodruff.
+\newblock Sketching as a tool for numerical linear algebra.
+\newblock \emph{Foundations and Trends in Theoretical Computer Science}, 10\penalty0 (1--2):\penalty0 1--157, 2014.
+\newblock \doi{10.1561/0400000060}.
+
+\bibitem[Pilanci and Wainwright(2016)]{pilanci2016iterative}
+Mert Pilanci and Martin~J. Wainwright.
+\newblock Iterative {Hessian} sketch: Fast and accurate solution approximation for constrained least-squares.
+\newblock \emph{Journal of Machine Learning Research}, 17\penalty0 (53):\penalty0 1--38, 2016.
+\newblock URL \url{https://jmlr.org/papers/v17/14-460.html}.
+
+\bibitem[Ma et~al.(2015)Ma, Mahoney, and Yu]{ma2015statistical}
+Ping Ma, Michael~W. Mahoney, and Bin Yu.
+\newblock A statistical perspective on algorithmic leveraging.
+\newblock \emph{Journal of Machine Learning Research}, 16\penalty0 (27):\penalty0 861--911, 2015.
+\newblock URL \url{https://www.jmlr.org/papers/v16/ma15a.html}.
+
+\bibitem[Raskutti and Mahoney(2016)]{raskutti2016statistical}
+Garvesh Raskutti and Michael~W. Mahoney.
+\newblock A statistical perspective on randomized sketching for ordinary least-squares.
+\newblock \emph{Journal of Machine Learning Research}, 17\penalty0 (213):\penalty0 1--31, 2016.
+\newblock URL \url{https://jmlr.org/papers/v17/15-440.html}.
+
+\bibitem[Dobriban and Liu(2019)]{dobriban2019asymptotics}
+Edgar Dobriban and Sifan Liu.
+\newblock Asymptotics for sketching in least squares regression.
+\newblock In \emph{Advances in Neural Information Processing Systems}, volume~32, pages 3675--3685, 2019.
+\newblock URL \url{https://proceedings.neurips.cc/paper/2019/hash/1f36c15d6a3d18d52e8d493bc8187cb9-Abstract.html}.
+
+\bibitem[Chen et~al.(2023)Chen, Zeng, Yang, and Sun]{chen2023sketched}
+Xin Chen, Yicheng Zeng, Siyue Yang, and Qiang Sun.
+\newblock Sketched ridgeless linear regression: The role of downsampling.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine Learning}, volume 202 of \emph{Proceedings of Machine Learning Research}, pages 5296--5326. PMLR, 2023.
+\newblock URL \url{https://proceedings.mlr.press/v202/chen23am.html}.
+
+\bibitem[Golub et~al.(1979)Golub, Heath, and Wahba]{golub1979generalized}
+Gene~H. Golub, Michael Heath, and Grace Wahba.
+\newblock Generalized cross-validation as a method for choosing a good ridge parameter.
+\newblock \emph{Technometrics}, 21\penalty0 (2):\penalty0 215--223, 1979.
+\newblock \doi{10.1080/00401706.1979.10489751}.
+
+\bibitem[Bellec(2023)]{bellec2023out}
+Pierre~C. Bellec.
+\newblock Out-of-sample error estimation for {$M$}-estimators with convex penalty.
+\newblock \emph{Information and Inference: A Journal of the IMA}, 12\penalty0 (4):\penalty0 2782--2817, 2023.
+\newblock \doi{10.1093/imaiai/iaad031}.
+
+\bibitem[Patil et~al.(2022)Patil, Rinaldo, and Tibshirani]{patil2022estimating}
+Pratik Patil, Alessandro Rinaldo, and Ryan~J. Tibshirani.
+\newblock Estimating functionals of the out-of-sample error distribution in high-dimensional ridge regression.
+\newblock In \emph{Proceedings of the 25th International Conference on Artificial Intelligence and Statistics}, volume 151 of \emph{Proceedings of Machine Learning Research}, pages 6087--6120. PMLR, 2022.
+\newblock URL \url{https://proceedings.mlr.press/v151/patil22a.html}.
+
+\bibitem[Bellec et~al.(2025)Bellec, Du, Koriyama, Patil, and Tan]{bellec2025corrected}
+Pierre~C. Bellec, Jin-Hong Du, Takuya Koriyama, Pratik Patil, and Kai Tan.
+\newblock Corrected generalized cross-validation for finite ensembles of penalized estimators.
+\newblock \emph{Journal of the Royal Statistical Society Series B: Statistical Methodology}, 87\penalty0 (2):\penalty0 289--318, 2025.
+\newblock \doi{10.1093/jrsssb/qkae092}.
+
+\bibitem[Patil and LeJeune(2024)]{patil2024asymptotically}
+Pratik Patil and Daniel LeJeune.
+\newblock Asymptotically free sketched ridge ensembles: Risks, cross-validation, and tuning.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+\newblock URL \url{https://proceedings.iclr.cc/paper_files/paper/2024/hash/e96a15fbe8accca7087c93bcc0474f0a-Abstract-Conference.html}.
+
+\bibitem[Bellec and Shen(2022)]{bellec2022derivatives}
+Pierre~C. Bellec and Yiwei Shen.
+\newblock Derivatives and residual distribution of regularized {$M$}-estimators with application to adaptive tuning.
+\newblock In \emph{Proceedings of the 35th Conference on Learning Theory}, volume 178 of \emph{Proceedings of Machine Learning Research}, pages 1912--1947. PMLR, 2022.
+\newblock URL \url{https://proceedings.mlr.press/v178/bellec22a.html}.
+
+\end{thebibliography}

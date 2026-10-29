@@ -1,0 +1,16 @@
+{
+  "slug": "randomsketch",
+  "round": "A",
+  "decisions": {
+    "a-lem-rowwise-gaussian-covariance-cited": {
+      "kind": "accept"
+    },
+    "a-lem-matrix-gaussian-divergence-cited": {
+      "kind": "accept"
+    },
+    "a-lem-one-vector-second-order-cited": {
+      "kind": "accept"
+    }
+  },
+  "decided_at": "2026-10-29T15:39:59.475Z"
+}

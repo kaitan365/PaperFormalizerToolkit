@@ -1,0 +1,4526 @@
+{
+  "qid": "randomsketch",
+  "target_estimand": "Prediction risk $R$ of the fitted predictor",
+  "estimand_functional": "$R=\\sigma^2+(\\hbbeta-\\bbeta^*)^\\top\\bSigma(\\hbbeta-\\bbeta^*)$",
+  "symbols": [
+    {
+      "name": "n",
+      "type": "sample size",
+      "space": "$\\mathbb N$",
+      "refs": [],
+      "def": "Number of original observations."
+    },
+    {
+      "name": "m",
+      "type": "sketch size",
+      "space": "$\\{1,\\ldots,n\\}$",
+      "refs": [
+        "n"
+      ],
+      "def": "Number of compressed observations."
+    },
+    {
+      "name": "d",
+      "type": "feature dimension",
+      "space": "$\\mathbb N$",
+      "refs": [],
+      "def": "Dimension of each feature vector."
+    },
+    {
+      "name": "\\bbeta^*",
+      "type": "coefficient vector",
+      "space": "$\\R^d$",
+      "refs": [
+        "d"
+      ],
+      "def": "Coefficient vector in the model for the responses."
+    },
+    {
+      "name": "\\bSigma",
+      "type": "covariance matrix",
+      "space": "$\\R^{d\\times d}$",
+      "refs": [
+        "d"
+      ],
+      "def": "Covariance of the feature vectors."
+    },
+    {
+      "name": "\\sigma^2",
+      "type": "noise variance",
+      "space": "$[0,\\infty)$",
+      "refs": [],
+      "def": "Variance of each error."
+    },
+    {
+      "name": "\\bx_i",
+      "type": "feature vector",
+      "space": "$\\R^d$",
+      "refs": [
+        "d"
+      ],
+      "def": "Feature vector for observation i."
+    },
+    {
+      "name": "y_i",
+      "type": "response",
+      "space": "$\\R$",
+      "refs": [
+        "\\bx_i",
+        "\\bbeta^*",
+        "\\varepsilon_i"
+      ],
+      "def": "Response $y_i=\\bx_i^\\top\\bbeta^*+\\varepsilon_i$."
+    },
+    {
+      "name": "\\varepsilon_i",
+      "type": "error",
+      "space": "$\\R$",
+      "refs": [],
+      "def": "Error in observation i."
+    },
+    {
+      "name": "\\bX",
+      "type": "design matrix",
+      "space": "$\\R^{n\\times d}$",
+      "refs": [
+        "n",
+        "d",
+        "\\bx_i"
+      ],
+      "def": "Matrix $(\\bx_1,\\ldots,\\bx_n)^\\top$."
+    },
+    {
+      "name": "\\by",
+      "type": "response vector",
+      "space": "$\\R^n$",
+      "refs": [
+        "n",
+        "y_i"
+      ],
+      "def": "Vector $(y_1,\\ldots,y_n)^\\top$."
+    },
+    {
+      "name": "\\bep",
+      "type": "error vector",
+      "space": "$\\R^n$",
+      "refs": [
+        "n",
+        "\\varepsilon_i"
+      ],
+      "def": "Vector $(\\varepsilon_1,\\ldots,\\varepsilon_n)^\\top$."
+    },
+    {
+      "name": "\\bS",
+      "type": "sketch matrix",
+      "space": "$\\R^{m\\times n}$",
+      "refs": [
+        "m",
+        "n"
+      ],
+      "def": "Matrix that compresses the observations."
+    },
+    {
+      "name": "\\hbbeta",
+      "type": "fitted coefficient vector",
+      "space": "$\\R^d$",
+      "refs": [
+        "d",
+        "\\bS",
+        "\\bX",
+        "\\by"
+      ],
+      "def": "Coefficient vector produced from the compressed data."
+    },
+    {
+      "name": "\\hbbeta_{\\bS}",
+      "type": "least-squares coefficient vector",
+      "space": "$\\R^d$",
+      "refs": [
+        "d",
+        "\\bS",
+        "\\bX",
+        "\\by"
+      ],
+      "def": "Sketched least-squares fit defined in def:sketched-least-squares."
+    },
+    {
+      "name": "R",
+      "type": "prediction risk",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\hbbeta",
+        "\\bbeta^*",
+        "\\bSigma",
+        "\\sigma^2"
+      ],
+      "def": "Conditional prediction risk defined in def:cpal-prediction-risk."
+    },
+    {
+      "name": "\\bu",
+      "type": "residual vector",
+      "space": "$\\R^n$",
+      "refs": [
+        "n",
+        "\\by",
+        "\\bX",
+        "\\hbbeta"
+      ],
+      "def": "Original residual $\\by-\\bX\\hbbeta$."
+    },
+    {
+      "name": "\\bF",
+      "type": "row-whitened sketch",
+      "space": "$\\R^{m\\times n}$",
+      "refs": [
+        "m",
+        "n",
+        "\\bS"
+      ],
+      "def": "Matrix $(\\bS\\bS^\\top)^{-1/2}\\bS$."
+    },
+    {
+      "name": "\\bP_{\\bS}",
+      "type": "orthogonal projector",
+      "space": "$\\R^{n\\times n}$",
+      "refs": [
+        "n",
+        "\\bF"
+      ],
+      "def": "Projector $\\bF^\\top\\bF$ onto retained observation directions."
+    },
+    {
+      "name": "\\bQ_{\\bS}",
+      "type": "orthogonal projector",
+      "space": "$\\R^{n\\times n}$",
+      "refs": [
+        "n",
+        "\\bP_{\\bS}"
+      ],
+      "def": "Complementary projector $\\bI_n-\\bP_{\\bS}$."
+    },
+    {
+      "name": "\\calF_{\\bS}",
+      "type": "sigma-field",
+      "space": "$\\sigma(\\bS\\bX,\\bS\\by,\\bS)$",
+      "refs": [
+        "\\bS",
+        "\\bX",
+        "\\by"
+      ],
+      "def": "Information used to fit the predictor."
+    },
+    {
+      "name": "\\widehat R_c",
+      "type": "risk estimate",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bQ_{\\bS}",
+        "\\bu",
+        "n",
+        "m"
+      ],
+      "def": "Complementary estimate $\\norm{\\bQ_{\\bS}\\bu}^2/(n-m)$."
+    },
+    {
+      "name": "\\bA",
+      "type": "sketch Gram matrix",
+      "space": "$\\R^{n\\times n}$",
+      "refs": [
+        "n",
+        "\\bS"
+      ],
+      "def": "Matrix $\\bS^\\top\\bS$."
+    },
+    {
+      "name": "\\bM",
+      "type": "sketched design Gram matrix",
+      "space": "$\\R^{d\\times d}$",
+      "refs": [
+        "d",
+        "\\bX",
+        "\\bA"
+      ],
+      "def": "Matrix $\\bX^\\top\\bA\\bX$."
+    },
+    {
+      "name": "\\br",
+      "type": "weighted residual",
+      "space": "$\\R^n$",
+      "refs": [
+        "n",
+        "\\bA",
+        "\\bu"
+      ],
+      "def": "Vector $\\bA\\bu$."
+    },
+    {
+      "name": "b_{\\bA}",
+      "type": "residual sketch mass",
+      "space": "$(0,\\infty)$",
+      "refs": [
+        "\\bA",
+        "\\bX",
+        "\\bM"
+      ],
+      "def": "Trace difference defined in def:correction-coefficients."
+    },
+    {
+      "name": "t_{\\bSigma}",
+      "type": "trace coefficient",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bSigma",
+        "\\bM"
+      ],
+      "def": "Trace $\\trace(\\bSigma\\bM^{-1})$."
+    },
+    {
+      "name": "\\hR_u",
+      "type": "risk estimate",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bu",
+        "t_{\\bSigma}",
+        "\\br",
+        "n"
+      ],
+      "def": "Unobservable corrected estimate defined in def:corrected-risk-estimates."
+    },
+    {
+      "name": "\\hR_o",
+      "type": "risk estimate",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bu",
+        "d",
+        "b_{\\bA}",
+        "\\br",
+        "n"
+      ],
+      "def": "Observable corrected estimate defined in def:corrected-risk-estimates."
+    },
+    {
+      "name": "\\hR_{\\GCV}",
+      "type": "risk estimate",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bu",
+        "n",
+        "d"
+      ],
+      "def": "Full-data GCV estimate $(\\norm{\\bu}^2/n)/(1-d/n)^2$."
+    },
+    {
+      "name": "c_n",
+      "type": "sketch scale",
+      "space": "$(0,\\infty)$",
+      "refs": [
+        "\\bS",
+        "m"
+      ],
+      "def": "Scale in $\\bS\\bS^\\top=c_n\\bI_m$."
+    },
+    {
+      "name": "\\gamma_n",
+      "type": "dimension ratio",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "d",
+        "n"
+      ],
+      "def": "Ratio $d/n$."
+    },
+    {
+      "name": "\\rho_n",
+      "type": "sketch ratio",
+      "space": "$[0,1]$",
+      "refs": [
+        "m",
+        "n"
+      ],
+      "def": "Ratio $m/n$."
+    },
+    {
+      "name": "\\gamma",
+      "type": "limiting dimension ratio",
+      "space": "$(0,1)$",
+      "refs": [
+        "\\gamma_n"
+      ],
+      "def": "Limit of $\\gamma_n$."
+    },
+    {
+      "name": "\\rho",
+      "type": "limiting sketch ratio",
+      "space": "$(0,1]$",
+      "refs": [
+        "\\rho_n"
+      ],
+      "def": "Limit of $\\rho_n$."
+    },
+    {
+      "name": "\\calR_j",
+      "type": "limiting risk",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\sigma^2",
+        "\\gamma",
+        "\\rho"
+      ],
+      "def": "Risk limit for sketch family j in thm:cpal-risk-benchmarks."
+    },
+    {
+      "name": "\\Delta_j",
+      "type": "limiting GCV gap",
+      "space": "$\\R$",
+      "refs": [
+        "\\sigma^2",
+        "\\gamma",
+        "\\rho"
+      ],
+      "def": "Limiting GCV discrepancy for sketch family j in thm:cpal-risk-benchmarks."
+    },
+    {
+      "name": "k",
+      "type": "residual degrees of freedom",
+      "space": "$\\mathbb N$",
+      "refs": [
+        "m",
+        "d"
+      ],
+      "def": "Difference $m-d$ in the finite MSE notation."
+    },
+    {
+      "name": "q",
+      "type": "complementary dimension",
+      "space": "$\\mathbb N$",
+      "refs": [
+        "n",
+        "m"
+      ],
+      "def": "Difference $n-m$ in the finite MSE notation."
+    },
+    {
+      "name": "e_{m,d}",
+      "type": "MSE coefficient",
+      "space": "$(0,\\infty)$",
+      "refs": [
+        "m",
+        "d",
+        "k"
+      ],
+      "def": "Coefficient defined in def:mse-coefficients."
+    },
+    {
+      "name": "a_{m,d}",
+      "type": "MSE coefficient",
+      "space": "$(0,\\infty)$",
+      "refs": [
+        "m",
+        "d",
+        "k"
+      ],
+      "def": "Coefficient defined in def:mse-coefficients."
+    },
+    {
+      "name": "\\rho_*(\\gamma)",
+      "type": "crossover function",
+      "space": "$(0,1)$",
+      "refs": [
+        "\\gamma"
+      ],
+      "def": "Function $3\\gamma/(1+2\\gamma)$."
+    },
+    {
+      "name": "\\rho_n^{\\#}",
+      "type": "local continuous crossover",
+      "space": "$\\R$",
+      "refs": [
+        "\\gamma_n",
+        "\\rho_n",
+        "\\hR_o",
+        "\\widehat R_c"
+      ],
+      "def": "Local MSE equality solution defined in def:local-crossover."
+    },
+    {
+      "name": "\\bB",
+      "type": "compressed design",
+      "space": "$\\R^{m\\times d}$",
+      "refs": [
+        "m",
+        "d",
+        "\\bS",
+        "\\bX"
+      ],
+      "def": "Matrix $\\bS\\bX$."
+    },
+    {
+      "name": "\\bh",
+      "type": "coefficient error",
+      "space": "$\\R^d$",
+      "refs": [
+        "d",
+        "\\hbbeta_{\\bS}",
+        "\\bbeta^*"
+      ],
+      "def": "Vector $\\hbbeta_{\\bS}-\\bbeta^*$."
+    },
+    {
+      "name": "c_{\\bSigma}",
+      "type": "covariance lower bound",
+      "space": "$(0,\\infty)$",
+      "refs": [
+        "\\bSigma"
+      ],
+      "def": "Fixed lower eigenvalue bound for the covariance."
+    },
+    {
+      "name": "C_{\\bSigma}",
+      "type": "covariance upper bound",
+      "space": "$(0,\\infty)$",
+      "refs": [
+        "\\bSigma"
+      ],
+      "def": "Fixed upper eigenvalue bound for the covariance."
+    },
+    {
+      "name": "\\bZ",
+      "type": "whitened design",
+      "space": "$\\R^{n\\times d}$",
+      "refs": [
+        "n",
+        "d",
+        "\\bX",
+        "\\bSigma"
+      ],
+      "def": "Matrix in $\\bX=\\bZ\\bSigma^{1/2}$."
+    },
+    {
+      "name": "K_\\varepsilon",
+      "type": "tail constant",
+      "space": "$[0,\\infty)$",
+      "refs": [],
+      "def": "Uniform sub-Gaussian error bound."
+    },
+    {
+      "name": "c_-",
+      "type": "sketch lower spectral bound",
+      "space": "$(0,\\infty)$",
+      "refs": [],
+      "def": "Lower bound on the positive normalized sketch spectrum."
+    },
+    {
+      "name": "c_+",
+      "type": "sketch upper spectral bound",
+      "space": "$(0,\\infty)$",
+      "refs": [],
+      "def": "Upper bound on the positive normalized sketch spectrum."
+    },
+    {
+      "name": "\\kappa",
+      "type": "dimension-gap constant",
+      "space": "$(0,\\infty)$",
+      "refs": [
+        "m",
+        "d",
+        "n"
+      ],
+      "def": "Constant in $m-d\\geq\\kappa n$."
+    },
+    {
+      "name": "\\bU",
+      "type": "sketch eigenvector matrix",
+      "space": "$\\R^{n\\times m}$",
+      "refs": [
+        "n",
+        "m",
+        "\\bA"
+      ],
+      "def": "Orthonormal columns in the sketch spectral decomposition."
+    },
+    {
+      "name": "\\bLambda",
+      "type": "positive sketch eigenvalues",
+      "space": "$\\R^{m\\times m}$",
+      "refs": [
+        "m",
+        "\\bA"
+      ],
+      "def": "Diagonal eigenvalue matrix in the sketch spectral decomposition."
+    },
+    {
+      "name": "b",
+      "type": "residual sketch mass",
+      "space": "$(0,\\infty)$",
+      "refs": [
+        "b_{\\bA}"
+      ],
+      "def": "Abbreviation for $b_{\\bA}$."
+    },
+    {
+      "name": "\\bq",
+      "type": "prediction-scale coefficient error",
+      "space": "$\\R^d$",
+      "refs": [
+        "d",
+        "\\bSigma",
+        "\\bh"
+      ],
+      "def": "Vector $\\bSigma^{1/2}\\bh$."
+    },
+    {
+      "name": "\\widetilde{\\bM}",
+      "type": "whitened Gram matrix",
+      "space": "$\\R^{d\\times d}$",
+      "refs": [
+        "d",
+        "\\bZ",
+        "\\bA"
+      ],
+      "def": "Matrix $\\bZ^\\top\\bA\\bZ$."
+    },
+    {
+      "name": "\\bL",
+      "type": "least-squares noise map",
+      "space": "$\\R^{n\\times d}$",
+      "refs": [
+        "n",
+        "d",
+        "\\bA",
+        "\\bZ",
+        "\\widetilde{\\bM}"
+      ],
+      "def": "Matrix $\\bA\\bZ\\widetilde{\\bM}^{-1}$."
+    },
+    {
+      "name": "\\bell",
+      "type": "influence vector",
+      "space": "$\\R^n$",
+      "refs": [
+        "n",
+        "\\bL",
+        "\\bq"
+      ],
+      "def": "Vector $\\bL\\bq$."
+    },
+    {
+      "name": "\\bv",
+      "type": "influence vector",
+      "space": "$\\R^n$",
+      "refs": [
+        "n",
+        "\\bZ",
+        "\\bq",
+        "t_{\\bSigma}",
+        "\\br"
+      ],
+      "def": "Vector $\\bZ\\bq-t_{\\bSigma}\\br$."
+    },
+    {
+      "name": "G_{\\bSigma}",
+      "type": "response energy",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bq",
+        "\\br",
+        "n"
+      ],
+      "def": "Energy $\\norm{\\bq}^2+\\norm{\\br}^2/n$."
+    },
+    {
+      "name": "\\bG_0",
+      "type": "restricted whitened design",
+      "space": "$\\R^{m\\times d}$",
+      "refs": [
+        "m",
+        "d",
+        "\\bU",
+        "\\bZ"
+      ],
+      "def": "Matrix $\\bU^\\top\\bZ$."
+    },
+    {
+      "name": "\\be_j",
+      "type": "coordinate vector",
+      "space": "$\\R^d\\text{ or }\\R^n$",
+      "refs": [
+        "d",
+        "n"
+      ],
+      "def": "Standard basis vector with ambient dimension determined by context."
+    },
+    {
+      "name": "\\calE_{\\bff}",
+      "type": "derivative energy",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bff",
+        "\\bZ"
+      ],
+      "def": "Sum of squared coordinate derivatives defined in def:derivative-energy."
+    },
+    {
+      "name": "\\calE_{\\bq}",
+      "type": "coefficient derivative energy",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bq",
+        "\\bZ"
+      ],
+      "def": "Derivative energy of the coefficient error map."
+    },
+    {
+      "name": "\\calE_{\\br}",
+      "type": "residual derivative energy",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\br",
+        "\\bZ"
+      ],
+      "def": "Derivative energy of the weighted residual map."
+    },
+    {
+      "name": "\\bK",
+      "type": "derivative coefficient matrix",
+      "space": "$\\R^{d\\times d}$",
+      "refs": [
+        "d"
+      ],
+      "def": "Generic random matrix in lem:derivative-energy-from-inverse-moments."
+    },
+    {
+      "name": "B",
+      "type": "signal bound",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bSigma",
+        "\\bbeta^*"
+      ],
+      "def": "Bound on $\\norm{\\bSigma^{1/2}\\bbeta^*}$ in the optional moment conclusion."
+    },
+    {
+      "name": "\\Xi_1",
+      "type": "first-order Stein fluctuation",
+      "space": "$\\R$",
+      "refs": [
+        "\\bep",
+        "\\bZ",
+        "\\bq"
+      ],
+      "def": "Fluctuation defined in def:stein-fluctuations."
+    },
+    {
+      "name": "\\Xi_2",
+      "type": "second-order Stein fluctuation",
+      "space": "$\\R$",
+      "refs": [
+        "\\bZ",
+        "\\bq",
+        "n"
+      ],
+      "def": "Fluctuation defined in def:stein-fluctuations."
+    },
+    {
+      "name": "Q_{k,\\bSigma}",
+      "type": "trace-calibration quantities",
+      "space": "$\\R$",
+      "refs": [
+        "\\br",
+        "\\bX",
+        "\\bh",
+        "\\bSigma",
+        "b",
+        "t_{\\bSigma}",
+        "n",
+        "d"
+      ],
+      "def": "Five quantities defined in def:trace-quantities."
+    },
+    {
+      "name": "B_{\\bA}",
+      "type": "response weight",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bu",
+        "\\br",
+        "t_{\\bSigma}",
+        "d",
+        "b",
+        "n"
+      ],
+      "def": "Weight defined in def:response-weights."
+    },
+    {
+      "name": "\\mathcal T_{\\bA}",
+      "type": "normalized trace bound",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "Q_{k,\\bSigma}",
+        "G_{\\bSigma}",
+        "b",
+        "t_{\\bSigma}",
+        "n"
+      ],
+      "def": "Quantity defined in def:response-weights."
+    },
+    {
+      "name": "\\bff",
+      "type": "differentiable map",
+      "space": "$\\R^p$",
+      "refs": [],
+      "def": "Generic map used to define derivative energy, specialized to dimension d in the normalized Stein setting."
+    },
+    {
+      "name": "\\boldsymbol\\psi",
+      "type": "differentiable map",
+      "space": "$\\R^n$",
+      "refs": [
+        "n"
+      ],
+      "def": "Second field in the normalized Gaussian contractions."
+    },
+    {
+      "name": "\\mathcal F",
+      "type": "sigma-field",
+      "space": "$\\sigma\\text{-field}$",
+      "refs": [],
+      "def": "Conditioning sigma-field independent of the Gaussian matrix in lem:normalized-Gaussian-Stein."
+    },
+    {
+      "name": "G_{\\bff,\\boldsymbol\\psi}",
+      "type": "stacked field energy",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "n"
+      ],
+      "def": "Energy $\\norm{\\bff}^2+\\norm{\\boldsymbol\\psi}^2/n$."
+    },
+    {
+      "name": "\\calE_{\\bff,\\boldsymbol\\psi}",
+      "type": "stacked derivative energy",
+      "space": "$[0,\\infty)$",
+      "refs": [
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "n"
+      ],
+      "def": "Energy defined in def:normalized-energies."
+    },
+    {
+      "name": "\\Gamma_s",
+      "type": "Gaussian contractions",
+      "space": "$\\R$",
+      "refs": [
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "\\bZ",
+        "n",
+        "d"
+      ],
+      "def": "Five contractions defined in def:gaussian-contractions."
+    },
+    {
+      "name": "\\Theta_{\\mathcal F}",
+      "type": "conditional normalized energy",
+      "space": "$[0,\\infty]$",
+      "refs": [
+        "\\mathcal F",
+        "G_{\\bff,\\boldsymbol\\psi}",
+        "\\calE_{\\bff,\\boldsymbol\\psi}"
+      ],
+      "def": "Conditional energy expectation defined in def:conditional-energy."
+    },
+    {
+      "name": "\\Delta_s",
+      "type": "algebraic remainders",
+      "space": "$\\R$",
+      "refs": [
+        "\\br",
+        "\\bL",
+        "\\bq",
+        "b",
+        "t_{\\bSigma}"
+      ],
+      "def": "Remainders for indices 1, 2, 4, 5 defined in def:algebraic-remainders."
+    },
+    {
+      "name": "\\zeta_s",
+      "type": "specialized Gaussian contractions",
+      "space": "$\\R$",
+      "refs": [
+        "\\Gamma_s",
+        "\\bq",
+        "\\br"
+      ],
+      "def": "Contractions specialized to the coefficient and residual maps in def:zeta-definitions."
+    },
+    {
+      "name": "\\Omega_n",
+      "type": "event",
+      "space": "$\\mathcal F_{\\rm sample}$",
+      "refs": [
+        "\\bG_0",
+        "\\bZ",
+        "\\bep",
+        "n",
+        "C_0"
+      ],
+      "def": "Event defined in def:exceptional-event."
+    },
+    {
+      "name": "C_0",
+      "type": "event threshold",
+      "space": "$(0,\\infty)$",
+      "refs": [],
+      "def": "Constant in the definition of the exceptional event."
+    },
+    {
+      "name": "\\ba",
+      "type": "vector field",
+      "space": "$\\R^d$",
+      "refs": [
+        "d"
+      ],
+      "def": "Smooth field used in the cited matrix divergence inequality."
+    },
+    {
+      "name": "\\bb",
+      "type": "vector field",
+      "space": "$\\R^n$",
+      "refs": [
+        "n"
+      ],
+      "def": "Smooth field used in the cited matrix divergence inequality."
+    },
+    {
+      "name": "\\bz_i",
+      "type": "design row",
+      "space": "$\\R^d$",
+      "refs": [
+        "d",
+        "\\bZ"
+      ],
+      "def": "Vector whose transpose is row i of $\\bZ$."
+    },
+    {
+      "name": "T",
+      "type": "risk estimate",
+      "space": "$\\R$",
+      "refs": [],
+      "def": "Generic risk estimate in the definition of mean squared estimation error."
+    },
+    {
+      "name": "\\E_{\\rm aux}",
+      "type": "expectation operator",
+      "space": "$\\text{expectation operator}$",
+      "refs": [],
+      "def": "Expectation under def:auxiliary-response-law."
+    },
+    {
+      "name": "\\E_\\star",
+      "type": "expectation operator",
+      "space": "$\\text{expectation operator}$",
+      "refs": [],
+      "def": "Either auxiliary-response or original-response expectation in lem:balanced-trace-Stein-bounds."
+    },
+    {
+      "name": "\\E_{\\bX,\\bS}",
+      "type": "expectation operator",
+      "space": "$\\text{expectation operator}$",
+      "refs": [
+        "\\bX",
+        "\\bS"
+      ],
+      "def": "Expectation over the original marginal design and sketch law."
+    },
+    {
+      "name": "\\bx_{\\rm new}",
+      "type": "test feature vector",
+      "space": "$\\R^d$",
+      "refs": [
+        "d"
+      ],
+      "def": "Feature vector of an independent observation from the same model."
+    },
+    {
+      "name": "y_{\\rm new}",
+      "type": "test response",
+      "space": "$\\R$",
+      "refs": [],
+      "def": "Response of an independent observation from the same model."
+    },
+    {
+      "name": "\\eta",
+      "type": "ridge parameter",
+      "space": "$(0,\\infty)$",
+      "refs": [],
+      "def": "Positive parameter in def:balanced-ridge-fields."
+    },
+    {
+      "name": "\\bK_\\eta",
+      "type": "regularized inverse",
+      "space": "$\\R^{d\\times d}$",
+      "refs": [
+        "d",
+        "\\widetilde{\\bM}",
+        "\\eta"
+      ],
+      "def": "Regularized inverse in def:balanced-ridge-fields."
+    },
+    {
+      "name": "\\bq_\\eta",
+      "type": "regularized coefficient error",
+      "space": "$\\R^d$",
+      "refs": [
+        "d",
+        "\\bK_\\eta",
+        "\\bZ",
+        "\\bA",
+        "\\bep"
+      ],
+      "def": "Coefficient field in def:balanced-ridge-fields."
+    },
+    {
+      "name": "\\bL_\\eta",
+      "type": "regularized noise map",
+      "space": "$\\R^{n\\times d}$",
+      "refs": [
+        "n",
+        "d",
+        "\\bA",
+        "\\bZ",
+        "\\bK_\\eta"
+      ],
+      "def": "Noise map in def:balanced-ridge-fields."
+    },
+    {
+      "name": "\\br_\\eta",
+      "type": "regularized weighted residual",
+      "space": "$\\R^n$",
+      "refs": [
+        "n",
+        "\\bA",
+        "\\bep",
+        "\\bZ",
+        "\\bq_\\eta"
+      ],
+      "def": "Residual field in def:balanced-ridge-fields."
+    },
+    {
+      "name": "C_Q",
+      "type": "trace-bound constant",
+      "space": "$[0,\\infty)$",
+      "def": "Constant, independent of n, bounding the auxiliary expected normalized trace quantity.",
+      "refs": [
+        "n",
+        "\\mathcal T_{\\bA}",
+        "\\E_{\\rm aux}"
+      ]
+    },
+    {
+      "name": "C_{QB}",
+      "type": "trace-bound constant",
+      "space": "$[0,\\infty)$",
+      "def": "Constant, independent of n, bounding the expected weighted trace quantity under the original response law.",
+      "refs": [
+        "n",
+        "\\mathcal T_{\\bA}",
+        "B_{\\bA}"
+      ]
+    },
+    {
+      "name": "\\E_i",
+      "type": "row-conditional expectation operator",
+      "space": "$\\text{expectation operator}$",
+      "refs": [
+        "\\bZ",
+        "\\bS",
+        "\\bep"
+      ],
+      "def": "Expectation over row i conditional on the other design rows, the sketch and structural errors, as defined in def:rowwise-conditional-quantities."
+    },
+    {
+      "name": "\\ba_i",
+      "type": "row-conditional coefficient mean",
+      "space": "$\\R^d$",
+      "refs": [
+        "d",
+        "\\E_i",
+        "\\bq"
+      ],
+      "def": "Vector $\\E_i[\\bq]$ in def:rowwise-conditional-quantities; i is a locally bound row index."
+    },
+    {
+      "name": "\\eta_i",
+      "type": "rowwise centered divergence fluctuation",
+      "space": "$\\R$",
+      "refs": [
+        "\\bz_i",
+        "\\bq",
+        "\\ba_i",
+        "\\bZ"
+      ],
+      "def": "Scalar defined in def:rowwise-conditional-quantities; i is a locally bound row index."
+    },
+    {
+      "name": "\\chi_i",
+      "type": "centered rowwise quadratic form",
+      "space": "$\\R$",
+      "refs": [
+        "\\bz_i",
+        "\\ba_i"
+      ],
+      "def": "Scalar $(\\bz_i^\\top\\ba_i)^2-\\norm{\\ba_i}^2$ in def:rowwise-conditional-quantities; i is a locally bound row index."
+    },
+    {
+      "name": "D_k\\ba_i",
+      "type": "cross-row Jacobian",
+      "space": "$\\R^{d\\times d}$",
+      "refs": [
+        "d",
+        "\\ba_i",
+        "\\bZ"
+      ],
+      "def": "Jacobian of the row-conditional mean for row i with respect to design row k, as defined in def:rowwise-jacobian-weights. Here i and k are locally bound row indices; k is unrelated to the finite-MSE scalar k=m-d."
+    },
+    {
+      "name": "b_{ik}",
+      "type": "cross-row covariance weight",
+      "space": "$[0,\\infty]$",
+      "refs": [
+        "D_k\\ba_i",
+        "\\ba_i"
+      ],
+      "def": "Quantity $\\E[\\norm{D_k\\ba_i}_{\\rm F}^2\\norm{\\ba_i}^2]$ in def:rowwise-jacobian-weights. The subscripts i and k are locally bound row indices, not the finite-MSE scalar k=m-d."
+    }
+  ],
+  "sampling_model": {
+    "compressed_gaussian_prediction": "The dimensions, coefficient vector and covariance are fixed. The original observations follow def:observation-model and def:data-vectors; feature rows are independent Gaussian vectors with mean zero and covariance Sigma, and errors are independent Gaussian variables with variance sigma squared, independent of features. The full-row-rank sketch is independent of the data and may itself be random. The test pair is an independent observation from the same law. The coefficient vector is measurable with respect to def:compressed-information. Conditional distributions condition on that information, leaving the complementary observations random. This setting is used by thm:cpal-complementary-law.",
+    "balanced_gaussian_design": "The dimensions, coefficient vector, covariance and constants are fixed. The whitened design has independent standard Gaussian entries and is independent of the sketch and structural error vector. Errors are iid, centered, uniformly sub-Gaussian with variance sigma squared, independent of the sketch and features. The sketch is independent of the data and has full row rank; it may be random. The test pair is independent from the same model. Constructions are def:sketched-least-squares, def:corrected-risk-estimates, and the notation conventions def:normalization-convention and def:derivative-convention. This setting is used by thm:cpal-corrected-accuracy, lem:dot-beta, lem:dot-r, lem:dot-rh, lem:dot-hxh, lem:dot-rxr, lem:dot-rxxr, lem:dot-hxxh, lem:opnorm-x-bound, lem:m-inverse-bound, lem:balanced-stein-sufficient-conditions, lem:balanced-moment-bounds, prop:stein-risk-from-moments, prop:q-identity-sigma, lem:balanced-remainder-bounds, lem:balanced-trace-stein-bounds, lem:balanced-exceptional-weight, and prop:trace-calibration-general. Conditional bounds integrate the design and errors holding the independent sketch fixed. The Appendix balanced-sketch results use the trace-normalized representative with $\\trace(\\bA)=n$, fixed positive spectral bounds and the eventual gap $m-d\\geq\\kappa n$ of Assumption~\\ref{assu:Gaussian-Stein-design}. Design derivatives hold the sketch, population covariance, coefficient vector and structural errors fixed. This setting also supplies only the balanced-sketch specialization of lem:influence-from-moments; its direct mixed-moment inequalities retain their general law. In thm:cpal-corrected-accuracy normalization is a proof representative, not an extra condition on the original sketch scale, and the risk estimates remain invariant under that rescaling.",
+    "natural_scale_gaussian_sketch_comparisons": "The observations and independent test pair have the Gaussian law of compressed_gaussian_prediction, with positive noise variance. Dimensions, covariance and coefficients are fixed at each n. Scaled orthogonal sketches are independent of the data, with their scale allowed by the paper; dense Gaussian sketches instead have iid N(0,1/m) entries independently of the data. Fits and risk estimates are the nodes def:sketched-least-squares, def:corrected-risk-estimates and def:gcv-estimate, retaining their natural sketch scales. This setting is used by thm:cpal-risk-benchmarks. The scaled orthogonal specialization is used by thm:tight-frame-mse-comparison and thm:cpal-mse-comparison; MSE expectations average over training data and sketch randomness.",
+    "generic_derivative_fields": "The dimensions are fixed and the matrices K,L and vectors q,r are random fields with respect to the design coordinates; no additional distributional law is imposed in lem:derivative-energy-from-inverse-moments. In lem:influence-from-moments the vectors are those of def:whitened-coordinates and expectations are with respect to the law under consideration; its direct inequalities use the corresponding mixed moments.",
+    "conditional_gaussian_fields": "The dimensions are fixed. In lem:stein-remainders-from-moments, Z has iid standard Gaussian entries independent of (S,epsilon), and conditional calculations hold these latter objects fixed; q is a general field with the stated conditional smoothness. In lem:normalized-gaussian-stein, the sigma-field F is independent of an iid standard Gaussian Z, and the two general fields may depend on F and Z. Conditional expectations integrate Z holding F fixed. These general fields use def:derivative-energy, def:stein-fluctuations, def:normalized-energies, def:gaussian-contractions and def:conditional-energy. The same independent-$\\mathcal F$ Gaussian design setting also applies to lem:matrix-gaussian-divergence-cited and lem:one-vector-second-order-cited: conditional on $\\mathcal F$, their smooth fields depend on $\\bZ$, derivatives hold $\\mathcal F$ fixed, and conditional expectations integrate the Gaussian matrix.",
+    "auxiliary_response": "The joint law of (X,S) remains its original balanced Gaussian-design marginal. The auxiliary response is given by def:auxiliary-response-law; its noise is a standard Gaussian vector independent of (X,S), and its coefficient vector is zero. Response quantities are the constructions identified in that definition. This law is used by lem:balanced-trace-stein-bounds and prop:trace-calibration-general, while the original response law is also used in lem:balanced-trace-stein-bounds.",
+    "rowwise_gaussian_covariance": "The cited input lem:rowwise-gaussian-covariance-cited uses the setting of lem:stein-remainders-from-moments and its Gaussian-design, conditional smoothness and second-order moment premises. The positive dimensions $n,d$ are fixed. For distinct locally bound row indices $i,k$, condition on $(\\bZ_{-\\{i,k\\}},\\bS,\\bep)$; the remaining two design rows are independent standard Gaussian vectors in $\\R^d$. The conditional means, centered quadratic forms, cross-row Jacobians and weights are exactly def:rowwise-conditional-quantities and def:rowwise-jacobian-weights. Conditional calculations hold the remaining rows, sketch and errors fixed; the displayed expectation and weights then integrate the original law. The local row index $k$ has no connection to the finite-MSE abbreviation $k=m-d$. Bellec (2023), Lemma 7.1 is applied conditionally in this setting; no new assumption on the structural-error distribution is imposed."
+  },
+  "assumptions": [
+    {
+      "id": "ass:model-features",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "The feature vectors are independent and identically",
+          "to": "lie between fixed positive constants."
+        }
+      },
+      "kind": "sampling",
+      "free_symbols": [
+        "\\bSigma"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:model-errors",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "The errors are independent and",
+          "to": "variance $\\sigma^2$."
+        }
+      },
+      "kind": "sampling",
+      "free_symbols": [
+        "\\sigma^2"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:model-independent-sketch",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "A sketch $\\bS\\in\\R^{m\\times n}$",
+          "to": "data and has full row rank almost surely."
+        }
+      },
+      "kind": "sampling",
+      "free_symbols": [
+        "n",
+        "m",
+        "\\bS"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:model-test-pair",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "Let $(\\bx_{\\rm new},y_{\\rm new})$",
+          "to": "the same model."
+        }
+      },
+      "kind": "sampling",
+      "free_symbols": [
+        "\\bx_{\\rm new}",
+        "y_{\\rm new}"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:sketched-full-rank",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "We assume $\\rank(\\bS\\bX)=d$",
+          "to": "We assume $\\rank(\\bS\\bX)=d$"
+        }
+      },
+      "kind": "rank",
+      "free_symbols": [
+        "d",
+        "\\bX",
+        "\\bS"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:scaled-orthogonal-sketch",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "$\\bS\\bS^\\top=c_n\\bI_m$ for $c_n>0$;",
+          "to": "$\\bS\\bS^\\top=c_n\\bI_m$ for $c_n>0$;"
+        }
+      },
+      "kind": "geometry",
+      "free_symbols": [
+        "n",
+        "m",
+        "\\bS",
+        "c_n"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:dense-gaussian-sketch",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "We compare scaled orthogonal sketches with dense Gaussian sketches,",
+          "to": "$S_{ki}\\sim\\calN(0,1/m)$."
+        }
+      },
+      "kind": "sampling",
+      "free_symbols": [
+        "m"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:proportional-regime",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "In the \\emph{noninterpolating proportional regime}",
+          "to": "with $0<\\gamma<\\rho\\leq1$."
+        }
+      },
+      "kind": "asymptotic",
+      "free_symbols": [
+        "n",
+        "m",
+        "d",
+        "\\gamma_n",
+        "\\rho_n",
+        "\\gamma",
+        "\\rho"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:pathwise-domain",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "We\nuse the notation and derivative convention of",
+          "to": "$\\widetilde{\\bM}$ is invertible;"
+        }
+      },
+      "kind": "domain",
+      "free_symbols": [
+        "\\bM",
+        "\\widetilde{\\bM}"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:model-sketch",
+      "source": {
+        "env": "assu:model-sketch",
+        "sentences": [
+          1,
+          1
+        ]
+      },
+      "kind": "model",
+      "free_symbols": [],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:model-sketch-covariance",
+      "source": {
+        "env": "assu:model-sketch",
+        "sentences": [
+          2,
+          2
+        ]
+      },
+      "kind": "spectrum",
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bSigma",
+        "c_{\\bSigma}",
+        "C_{\\bSigma}"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:noninterpolating-dimensions",
+      "source": {
+        "env": "assu:noninterpolating",
+        "slice": {
+          "from": "In addition to Assumption",
+          "to": "$1\\leq d<m\\leq n$"
+        }
+      },
+      "kind": "dimension",
+      "free_symbols": [
+        "n",
+        "m",
+        "d"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:noninterpolating-rank",
+      "source": {
+        "env": "assu:noninterpolating",
+        "slice": {
+          "from": "$\\rank(\\bS\\bX)=d$ almost surely.",
+          "to": "$\\rank(\\bS\\bX)=d$ almost surely."
+        }
+      },
+      "kind": "rank",
+      "free_symbols": [
+        "d",
+        "\\bX",
+        "\\bS"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:gaussian-stein-design",
+      "source": {
+        "env": "assu:Gaussian-Stein-design",
+        "sentences": [
+          1,
+          1
+        ]
+      },
+      "kind": "sampling",
+      "free_symbols": [
+        "\\bSigma",
+        "\\bX",
+        "\\bep",
+        "\\bS",
+        "\\bZ"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:gaussian-stein-design-errors",
+      "source": {
+        "env": "assu:Gaussian-Stein-design",
+        "sentences": [
+          2,
+          2
+        ]
+      },
+      "kind": "tails",
+      "free_symbols": [
+        "n",
+        "\\varepsilon_i",
+        "K_\\varepsilon"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:gaussian-stein-design-normalization",
+      "source": {
+        "env": "assu:Gaussian-Stein-design",
+        "slice": {
+          "from": "Use the normalization $\\trace(\\bA)=n$",
+          "to": "Use the normalization $\\trace(\\bA)=n$"
+        }
+      },
+      "kind": "normalization",
+      "free_symbols": [
+        "n",
+        "\\bA"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:gaussian-stein-design-spectrum-gap",
+      "source": {
+        "env": "assu:Gaussian-Stein-design",
+        "sentences": [
+          4,
+          4
+        ]
+      },
+      "kind": "spectrum",
+      "free_symbols": [
+        "n",
+        "m",
+        "d",
+        "c_-",
+        "c_+",
+        "\\kappa",
+        "\\bLambda"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-complementary-law-model",
+      "source": {
+        "env": "thm:cpal-complementary-law",
+        "slice": {
+          "from": "Under the model above",
+          "to": "Gaussian data"
+        }
+      },
+      "kind": "model",
+      "free_symbols": [],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-complementary-law-compression",
+      "source": {
+        "env": "thm:cpal-complementary-law",
+        "slice": {
+          "from": "$m<n$",
+          "to": "$m<n$"
+        }
+      },
+      "kind": "dimension",
+      "free_symbols": [
+        "n",
+        "m"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-complementary-law-measurability",
+      "source": {
+        "env": "thm:cpal-complementary-law",
+        "slice": {
+          "from": "any\n$\\calF_{\\bS}$-measurable",
+          "to": "$\\calF_{\\bS}$-measurable $\\hbbeta\\in\\R^d$"
+        }
+      },
+      "kind": "measurability",
+      "free_symbols": [
+        "d",
+        "\\bS",
+        "\\hbbeta",
+        "\\calF_{\\bS}"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-corrected-accuracy-gaussian",
+      "source": {
+        "env": "thm:cpal-corrected-accuracy",
+        "slice": {
+          "from": "Assume Gaussian design",
+          "to": "Assume Gaussian design"
+        }
+      },
+      "kind": "sampling",
+      "free_symbols": [],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-corrected-accuracy-errors",
+      "source": {
+        "env": "thm:cpal-corrected-accuracy",
+        "slice": {
+          "from": "uniformly sub-Gaussian errors,",
+          "to": "their tails admit a uniform Gaussian bound."
+        }
+      },
+      "kind": "tails",
+      "free_symbols": [],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-corrected-accuracy-spectrum",
+      "source": {
+        "env": "thm:cpal-corrected-accuracy",
+        "sentences": [
+          2,
+          2
+        ]
+      },
+      "kind": "balanced-spectrum-and-gap",
+      "free_symbols": [
+        "n",
+        "m",
+        "d",
+        "\\bA",
+        "c_-",
+        "c_+",
+        "\\kappa"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-risk-benchmarks-gaussian",
+      "source": {
+        "env": "thm:cpal-risk-benchmarks",
+        "slice": {
+          "from": "Under Gaussian data",
+          "to": "Under Gaussian data"
+        }
+      },
+      "kind": "sampling",
+      "free_symbols": [],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-risk-benchmarks-positive-noise",
+      "source": {
+        "env": "thm:cpal-risk-benchmarks",
+        "slice": {
+          "from": "with $\\sigma^2>0$",
+          "to": "with $\\sigma^2>0$"
+        }
+      },
+      "kind": "variance",
+      "free_symbols": [
+        "\\sigma^2"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:tight-frame-mse-comparison-model",
+      "source": {
+        "env": "thm:tight-frame-mse-comparison",
+        "slice": {
+          "from": "Under the model of Section",
+          "to": "suppose Gaussian data,"
+        }
+      },
+      "kind": "model",
+      "free_symbols": [],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:tight-frame-mse-comparison-positive-noise",
+      "source": {
+        "env": "thm:tight-frame-mse-comparison",
+        "slice": {
+          "from": "$\\sigma^2>0$",
+          "to": "$\\sigma^2>0$"
+        }
+      },
+      "kind": "variance",
+      "free_symbols": [
+        "\\sigma^2"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:tight-frame-mse-comparison-sketch",
+      "source": {
+        "env": "thm:tight-frame-mse-comparison",
+        "slice": {
+          "from": "a scaled orthogonal sketch",
+          "to": "a scaled orthogonal sketch"
+        }
+      },
+      "kind": "geometry",
+      "free_symbols": [],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:tight-frame-mse-comparison-dimensions",
+      "source": {
+        "env": "thm:tight-frame-mse-comparison",
+        "slice": {
+          "from": "$1\\leq d$ with $d+3<m<n$.",
+          "to": "$1\\leq d$ with $d+3<m<n$."
+        }
+      },
+      "kind": "dimension",
+      "free_symbols": [
+        "n",
+        "m",
+        "d"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-mse-comparison-model",
+      "source": {
+        "env": "thm:cpal-mse-comparison",
+        "slice": {
+          "from": "For Gaussian data",
+          "to": "For Gaussian data"
+        }
+      },
+      "kind": "sampling",
+      "free_symbols": [],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-mse-comparison-positive-noise",
+      "source": {
+        "env": "thm:cpal-mse-comparison",
+        "slice": {
+          "from": "with $\\sigma^2>0$",
+          "to": "with $\\sigma^2>0$"
+        }
+      },
+      "kind": "variance",
+      "free_symbols": [
+        "\\sigma^2"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-mse-comparison-sketch",
+      "source": {
+        "env": "thm:cpal-mse-comparison",
+        "slice": {
+          "from": "a scaled orthogonal sketch",
+          "to": "a scaled orthogonal sketch"
+        }
+      },
+      "kind": "geometry",
+      "free_symbols": [],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-mse-comparison-dimensions",
+      "source": {
+        "env": "thm:cpal-mse-comparison",
+        "slice": {
+          "from": "$d+3<m<n$",
+          "to": "$d+3<m<n$"
+        }
+      },
+      "kind": "dimension",
+      "free_symbols": [
+        "n",
+        "m",
+        "d"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-mse-comparison-proportions",
+      "source": {
+        "env": "thm:cpal-mse-comparison",
+        "slice": {
+          "from": "suppose $(\\gamma_n,\\rho_n)",
+          "to": "$0<\\gamma<\\rho<1$."
+        }
+      },
+      "kind": "asymptotic",
+      "free_symbols": [
+        "n",
+        "\\gamma_n",
+        "\\rho_n",
+        "\\gamma",
+        "\\rho"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:cpal-mse-comparison-local",
+      "source": {
+        "env": "thm:cpal-mse-comparison",
+        "slice": {
+          "from": "If $\\gamma_n$",
+          "to": "a compact subset of $(0,1)$"
+        }
+      },
+      "kind": "asymptotic",
+      "free_symbols": [
+        "n",
+        "\\gamma_n",
+        "\\gamma"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:opnorm-x-bound-relative-tail",
+      "source": {
+        "env": "lem:opnorm-X-bound",
+        "slice": {
+          "from": "If the sub-Gaussian condition",
+          "to": "$\\norm{\\varepsilon_1}_{\\psi_2}\\leq K_\\varepsilon\\sigma$"
+        }
+      },
+      "kind": "tails",
+      "free_symbols": [
+        "\\varepsilon_i",
+        "K_\\varepsilon"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:derivative-energy-from-inverse-moments",
+      "source": {
+        "env": "lem:derivative-energy-from-inverse-moments",
+        "sentences": [
+          1,
+          1
+        ]
+      },
+      "kind": "derivative",
+      "free_symbols": [
+        "n",
+        "d",
+        "\\br",
+        "\\bZ",
+        "\\bq",
+        "\\bL",
+        "\\bK"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:balanced-moment-bounds-signal",
+      "source": {
+        "env": "lem:balanced-moment-bounds",
+        "slice": {
+          "from": "If also $\\norm{\\bSigma^{1/2}\\bbeta^*}\\leq B$",
+          "to": "If also $\\norm{\\bSigma^{1/2}\\bbeta^*}\\leq B$"
+        }
+      },
+      "kind": "signal",
+      "free_symbols": [
+        "\\bbeta^*",
+        "\\bSigma",
+        "B"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:stein-remainders-from-moments-gaussian",
+      "source": {
+        "env": "lem:Stein-remainders-from-moments",
+        "sentences": [
+          1,
+          1
+        ]
+      },
+      "kind": "sampling",
+      "free_symbols": [
+        "\\bep",
+        "\\bS",
+        "\\bZ"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:stein-remainders-from-moments-smooth",
+      "source": {
+        "env": "lem:Stein-remainders-from-moments",
+        "sentences": [
+          2,
+          2
+        ]
+      },
+      "kind": "smoothness",
+      "free_symbols": [
+        "\\bep",
+        "\\bS",
+        "\\bZ",
+        "\\bq"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:stein-remainders-from-moments-first",
+      "source": {
+        "env": "lem:Stein-remainders-from-moments",
+        "slice": {
+          "from": "If, for a constant",
+          "to": "\\leq C_1n,\n\\end{align*}"
+        }
+      },
+      "kind": "moment",
+      "free_symbols": [
+        "n",
+        "\\bep",
+        "\\bq",
+        "\\calE_{\\bq}"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:stein-remainders-from-moments-second",
+      "source": {
+        "env": "lem:Stein-remainders-from-moments",
+        "slice": {
+          "from": "Independently, if for constants",
+          "to": "\\E\\calE_{\\bq}^2\\leq C_D,\n\\end{align*}"
+        }
+      },
+      "kind": "moment",
+      "free_symbols": [
+        "n",
+        "q",
+        "\\bq",
+        "\\calE_{\\bq}"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:influence-from-moments-orthogonality",
+      "source": {
+        "env": "lem:influence-from-moments",
+        "slice": {
+          "from": "If $\\bZ^\\top\\br=0$",
+          "to": "If $\\bZ^\\top\\br=0$"
+        }
+      },
+      "kind": "orthogonality",
+      "free_symbols": [
+        "\\br",
+        "\\bZ"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:normalized-gaussian-stein-independence",
+      "source": {
+        "env": "lem:normalized-Gaussian-Stein",
+        "sentences": [
+          1,
+          1
+        ]
+      },
+      "kind": "sampling",
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bZ",
+        "\\mathcal F"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:normalized-gaussian-stein-smooth",
+      "source": {
+        "env": "lem:normalized-Gaussian-Stein",
+        "sentences": [
+          2,
+          2
+        ]
+      },
+      "kind": "smoothness",
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bZ",
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "\\mathcal F"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    },
+    {
+      "id": "ass:normalized-gaussian-stein-integrability",
+      "source": {
+        "env": "lem:normalized-Gaussian-Stein",
+        "sentences": [
+          4,
+          4
+        ]
+      },
+      "kind": "integrability",
+      "free_symbols": [
+        "n",
+        "\\bZ",
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "\\mathcal F",
+        "G_{\\bff,\\boldsymbol\\psi}",
+        "\\calE_{\\bff,\\boldsymbol\\psi}"
+      ],
+      "novel": {
+        "flag": true,
+        "justification": "The paper states this condition without attributing it to a cited work."
+      }
+    }
+  ],
+  "definitions": [
+    {
+      "id": "def:observation-model",
+      "name": "Observation equation and coefficient",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "For $i=1,\\ldots,n$, let",
+          "to": "$\\bbeta^*\\in\\R^d$."
+        }
+      },
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bbeta^*",
+        "\\bx_i",
+        "y_i",
+        "\\varepsilon_i"
+      ],
+      "inputs": [
+        "n",
+        "d",
+        "\\bx_i",
+        "\\varepsilon_i",
+        "\\bbeta^*"
+      ]
+    },
+    {
+      "id": "def:data-vectors",
+      "name": "Design, responses and structural errors",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "Write\n$\\bX=(\\bx_1,\\ldots,\\bx_n)^\\top\\in\\R^{n\\times d}$,",
+          "to": "$\\bep=(\\varepsilon_1,\\ldots,\\varepsilon_n)^\\top$."
+        }
+      },
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bx_i",
+        "y_i",
+        "\\varepsilon_i",
+        "\\bX",
+        "\\by",
+        "\\bep"
+      ],
+      "inputs": [
+        "n",
+        "d",
+        "\\bx_i",
+        "y_i",
+        "\\varepsilon_i"
+      ]
+    },
+    {
+      "id": "def:cpal-prediction-risk",
+      "name": "Conditional prediction risk",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align}\nR&:=\\E[(y_{\\rm new}-\\bx_{\\rm new}^\\top\\hbbeta)^2",
+          "to": "gma^2+(\\hbbeta-\\bbeta^*)^\\top\\bSigma(\\hbbeta-\\bbeta^*).\n \\label{eq:cpal-prediction-risk}\n\\end{align}"
+        }
+      },
+      "free_symbols": [
+        "\\bbeta^*",
+        "\\bSigma",
+        "\\sigma^2",
+        "\\bX",
+        "\\by",
+        "\\bS",
+        "\\hbbeta",
+        "R",
+        "\\bx_{\\rm new}",
+        "y_{\\rm new}"
+      ],
+      "inputs": [
+        "\\hbbeta",
+        "\\bX",
+        "\\by",
+        "\\bS",
+        "\\bSigma",
+        "\\bbeta^*",
+        "\\sigma^2"
+      ]
+    },
+    {
+      "id": "def:original-residual",
+      "name": "Original residual",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "We estimate this risk using the residuals on the original observations,",
+          "to": "$\\bu=\\by-\\bX\\hbbeta$."
+        }
+      },
+      "free_symbols": [
+        "\\bX",
+        "\\by",
+        "\\hbbeta",
+        "\\bu"
+      ],
+      "inputs": [
+        "\\by",
+        "\\bX",
+        "\\hbbeta"
+      ]
+    },
+    {
+      "id": "def:cpal-observation-geometry",
+      "name": "Retained and complementary projectors",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align}\n\\bF&=(\\bS\\bS^\\top)^{-1/2}\\bS,\\qquad",
+          "to": "bS}=\\bF^\\top\\bF,\\qquad\n \\bQ_{\\bS}=\\bI_n-\\bP_{\\bS}.\n \\label{eq:cpal-observation-geometry}\n\\end{align}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "\\bS",
+        "\\bF",
+        "\\bP_{\\bS}",
+        "\\bQ_{\\bS}"
+      ],
+      "inputs": [
+        "\\bS",
+        "n"
+      ]
+    },
+    {
+      "id": "def:complementary-estimate",
+      "name": "Complementary risk estimate",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\n\\widehat R_c=\\frac{\\norm{\\bQ_{\\bS}\\bu}^2}{n-m}.",
+          "to": "\\begin{align*}\n \\widehat R_c=\\frac{\\norm{\\bQ_{\\bS}\\bu}^2}{n-m}.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "m",
+        "\\bS",
+        "\\bu",
+        "\\bQ_{\\bS}",
+        "\\widehat R_c"
+      ],
+      "inputs": [
+        "\\bQ_{\\bS}",
+        "\\bu",
+        "n",
+        "m"
+      ]
+    },
+    {
+      "id": "def:compressed-information",
+      "name": "Compressed information sigma-field",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "To study this estimator, condition on",
+          "to": "$\\calF_{\\bS}=\\sigma(\\bS\\bX,\\bS\\by,\\bS)$,"
+        }
+      },
+      "free_symbols": [
+        "\\bX",
+        "\\by",
+        "\\bS",
+        "\\calF_{\\bS}"
+      ],
+      "inputs": [
+        "\\bS",
+        "\\bX",
+        "\\by"
+      ]
+    },
+    {
+      "id": "def:sketched-least-squares",
+      "name": "Sketched least-squares fit and Gram matrices",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\n\\hbbeta_{\\bS}",
+          "to": "\\bX\\bbeta)}^2\n =\\bM^{-1}\\bX^\\top\\bA\\by,\\quad\n \\bA=\\bS^\\top\\bS,\\quad \\bM=\\bX^\\top\\bA\\bX.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "\\bX",
+        "\\by",
+        "\\bS",
+        "\\hbbeta",
+        "\\hbbeta_{\\bS}",
+        "\\bA",
+        "\\bM"
+      ],
+      "inputs": [
+        "\\bS",
+        "\\bX",
+        "\\by"
+      ]
+    },
+    {
+      "id": "def:weighted-residual",
+      "name": "Least-squares residuals",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "Let $\\bu=\\by-\\bX\\hbbeta_{\\bS}$",
+          "to": "and $\\br=\\bA\\bu$."
+        }
+      },
+      "free_symbols": [
+        "\\bX",
+        "\\by",
+        "\\bS",
+        "\\hbbeta",
+        "\\hbbeta_{\\bS}",
+        "\\bu",
+        "\\bA",
+        "\\br"
+      ],
+      "inputs": [
+        "\\by",
+        "\\bX",
+        "\\hbbeta_{\\bS}",
+        "\\bA"
+      ]
+    },
+    {
+      "id": "def:correction-coefficients",
+      "name": "Residual mass and trace correction",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\nb_{\\bA}&=\\trace(\\bA)",
+          "to": "\\bA)\n       -\\trace(\\bA\\bX\\bM^{-1}\\bX^\\top\\bA),&\n t_{\\bSigma}&=\\trace(\\bSigma\\bM^{-1}),\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "\\bSigma",
+        "\\bX",
+        "\\bA",
+        "\\bM",
+        "b_{\\bA}",
+        "t_{\\bSigma}"
+      ],
+      "inputs": [
+        "\\bA",
+        "\\bX",
+        "\\bM",
+        "\\bSigma"
+      ]
+    },
+    {
+      "id": "def:corrected-risk-estimates",
+      "name": "Corrected risk estimates",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\n\\hR_u=\\frac{\\norm{\\bu+t_{\\bSigma}\\br}^2}{n},",
+          "to": "{\\norm{\\bu+t_{\\bSigma}\\br}^2}{n},\n \\qquad\n \\hR_o=\\frac{\\norm{\\bu+(d/b_{\\bA})\\br}^2}{n}.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bSigma",
+        "\\bu",
+        "\\bA",
+        "\\br",
+        "b_{\\bA}",
+        "t_{\\bSigma}",
+        "\\hR_u",
+        "\\hR_o"
+      ],
+      "inputs": [
+        "\\bu",
+        "\\br",
+        "t_{\\bSigma}",
+        "b_{\\bA}",
+        "d",
+        "n"
+      ]
+    },
+    {
+      "id": "def:gcv-estimate",
+      "name": "Full-data GCV risk estimate",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\n\\hR_{\\GCV}=\\frac{\\norm{\\bu}^2/n}{(1-d/n)^2}.",
+          "to": "\\begin{align*}\n \\hR_{\\GCV}=\\frac{\\norm{\\bu}^2/n}{(1-d/n)^2}.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bu",
+        "\\hR_{\\GCV}"
+      ],
+      "inputs": [
+        "\\bu",
+        "n",
+        "d"
+      ]
+    },
+    {
+      "id": "def:mse",
+      "name": "Mean squared estimation error",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "For a risk estimate $T$, define",
+          "to": "training data and sketch randomness."
+        }
+      },
+      "free_symbols": [
+        "R",
+        "T"
+      ],
+      "inputs": [
+        "R"
+      ]
+    },
+    {
+      "id": "def:mse-coefficients",
+      "name": "Finite MSE coefficients",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "For $d+3<m<n$, set",
+          "to": ",d}&:=\\frac{2m^2}{k^3}\n     +\\frac{2d(m-1)}{(k-1)^2(k-3)}\n     +\\frac{d^2}{k^2(k-1)^2}.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "m",
+        "d",
+        "k",
+        "q",
+        "e_{m,d}",
+        "a_{m,d}"
+      ],
+      "inputs": [
+        "m",
+        "d",
+        "n"
+      ]
+    },
+    {
+      "id": "def:limiting-crossover",
+      "name": "Limiting crossover",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\n\\rho_*(\\gamma)=\\frac{3\\gamma}{1+2\\gamma}.",
+          "to": "\\begin{align*}\n \\rho_*(\\gamma)=\\frac{3\\gamma}{1+2\\gamma}.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "\\gamma",
+        "\\rho",
+        "\\rho_*(\\gamma)"
+      ],
+      "inputs": [
+        "\\gamma"
+      ]
+    },
+    {
+      "id": "def:local-crossover",
+      "name": "Local continuous MSE equality",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "Let $\\rho_n^{\\#}$ denote",
+          "to": "The finite ratio $\\rho_n=m/n$ is treated as continuous for this definition."
+        }
+      },
+      "free_symbols": [
+        "n",
+        "m",
+        "\\widehat R_c",
+        "\\hR_o",
+        "\\gamma_n",
+        "\\rho_n",
+        "\\gamma",
+        "\\rho",
+        "\\rho_*(\\gamma)",
+        "\\rho_n^{\\#}"
+      ],
+      "inputs": [
+        "\\gamma_n",
+        "\\hR_o",
+        "\\widehat R_c",
+        "m",
+        "n"
+      ]
+    },
+    {
+      "id": "def:compressed-error-notation",
+      "name": "Compressed design and coefficient error",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\n\\bB&:=\\bS\\bX,",
+          "to": "gin{align*}\n    \\bB&:=\\bS\\bX,\n    &\\bM&=\\bB^\\top\\bB,\n    &\\bh&:=\\hbbeta_{\\bS}-\\bbeta^*.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "\\bbeta^*",
+        "\\bX",
+        "\\bS",
+        "\\hbbeta",
+        "\\hbbeta_{\\bS}",
+        "\\bM",
+        "\\bB",
+        "\\bh"
+      ],
+      "inputs": [
+        "\\bS",
+        "\\bX",
+        "\\hbbeta_{\\bS}",
+        "\\bbeta^*"
+      ]
+    },
+    {
+      "id": "def:normalized-sketch",
+      "name": "Trace-normalized sketch",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\n\\overline{\\bS}",
+          "to": "race(\\bA)}\\right\\}^{1/2}\\bS,\n    &\\overline{\\bA}&:=\\overline{\\bS}^{\\top}\\overline{\\bS}.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "\\bS",
+        "\\bA"
+      ],
+      "inputs": [
+        "\\bS",
+        "\\bA",
+        "n"
+      ]
+    },
+    {
+      "id": "def:normalization-convention",
+      "name": "Reused normalized notation",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "In the balanced-sketch calculations from",
+          "to": "so $\\trace(\\bA)=n$ almost surely."
+        }
+      },
+      "free_symbols": [
+        "n",
+        "\\bSigma",
+        "\\bS",
+        "\\bA",
+        "\\br",
+        "b_{\\bA}",
+        "t_{\\bSigma}"
+      ],
+      "inputs": [
+        "\\bS",
+        "\\bA",
+        "b_{\\bA}",
+        "\\br",
+        "t_{\\bSigma}",
+        "n"
+      ]
+    },
+    {
+      "id": "def:derivative-convention",
+      "name": "Pathwise derivative convention",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "Unless stated otherwise, derivatives are",
+          "to": "the structural noise $\\bep=\\by-\\bX\\bbeta^*$ held fixed."
+        }
+      },
+      "free_symbols": [
+        "\\bbeta^*",
+        "\\bSigma",
+        "\\bX",
+        "\\by",
+        "\\bep",
+        "\\bS",
+        "\\bZ"
+      ],
+      "inputs": [
+        "\\bZ",
+        "\\bS",
+        "\\bSigma",
+        "\\bbeta^*",
+        "\\bep"
+      ]
+    },
+    {
+      "id": "def:whitened-coordinates",
+      "name": "Whitened coefficients and influence maps",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\nb&:=b_{\\bA},",
+          "to": "bq}^2+\\frac{1}{n}\\norm{\\br}^2\n      =\\norm{\\bSigma^{1/2}\\bh}^2+\\frac{1}{n}\\norm{\\br}^2.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "\\bSigma",
+        "\\bA",
+        "\\bM",
+        "\\br",
+        "b_{\\bA}",
+        "t_{\\bSigma}",
+        "\\bh",
+        "\\bZ",
+        "b",
+        "\\bq",
+        "\\widetilde{\\bM}",
+        "\\bL",
+        "\\bell",
+        "\\bv",
+        "G_{\\bSigma}"
+      ],
+      "inputs": [
+        "b_{\\bA}",
+        "\\bSigma",
+        "\\bh",
+        "\\bZ",
+        "\\bA",
+        "t_{\\bSigma}",
+        "\\br",
+        "n"
+      ]
+    },
+    {
+      "id": "def:whitened-trace",
+      "name": "Trace coefficient in whitened coordinates",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\nt_{\\bSigma}=\\trace(\\bSigma\\bM^{-1})",
+          "to": "n{align*}\n    t_{\\bSigma}=\\trace(\\bSigma\\bM^{-1})\n       =\\trace(\\widetilde{\\bM}^{-1}).\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "\\bSigma",
+        "\\bM",
+        "t_{\\bSigma}",
+        "\\widetilde{\\bM}"
+      ],
+      "inputs": [
+        "\\bSigma",
+        "\\bM",
+        "\\widetilde{\\bM}"
+      ]
+    },
+    {
+      "id": "def:restricted-design",
+      "name": "Restricted Gaussian design",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "Also write\n$\\bG_0:=\\bU^\\top\\bZ\\in\\R^{m\\times d}$",
+          "to": "from the standing spectral decomposition of $\\bA$."
+        }
+      },
+      "free_symbols": [
+        "m",
+        "d",
+        "\\bA",
+        "\\bZ",
+        "\\bU",
+        "\\bG_0"
+      ],
+      "inputs": [
+        "\\bU",
+        "\\bZ",
+        "m",
+        "d"
+      ]
+    },
+    {
+      "id": "def:basis-notation",
+      "name": "Coordinate indices and basis vectors",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "We use\n$[d]:=\\{1,\\ldots,d\\}$",
+          "to": "with its ambient dimension determined by context."
+        }
+      },
+      "free_symbols": [
+        "d",
+        "\\be_j"
+      ],
+      "inputs": [
+        "d"
+      ]
+    },
+    {
+      "id": "def:derivative-energy",
+      "name": "Derivative energy of a map",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "For any weakly differentiable map",
+          "to": "uation*}\n    \\calE_{\\bff}:=\\sum_{i=1}^n\\sum_{j=1}^d\n    \\norm{\\pdv{\\bff}{z_{ij}}}^2.\n\\end{equation*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bZ",
+        "\\calE_{\\bff}",
+        "\\bff"
+      ],
+      "inputs": [
+        "\\bff",
+        "\\bZ",
+        "n",
+        "d"
+      ]
+    },
+    {
+      "id": "def:stein-fluctuations",
+      "name": "First and second order Stein fluctuations",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\n\\Xi_1",
+          "to": "m_{i=1}^n\\left(\n          \\bz_i^\\top\\bq-\\sum_{j=1}^d\\pdv{q_j}{z_{ij}}\n       \\right)^2.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "d",
+        "\\varepsilon_i",
+        "\\bep",
+        "\\bZ",
+        "\\bq",
+        "\\Xi_1",
+        "\\Xi_2",
+        "\\bz_i"
+      ],
+      "inputs": [
+        "\\bep",
+        "\\bZ",
+        "\\bq",
+        "n",
+        "d"
+      ]
+    },
+    {
+      "id": "def:design-rows",
+      "name": "Whitened design rows",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "Write $\\bz_i^\\top$ for the $i$th row of $\\bZ$.",
+          "to": "Write $\\bz_i^\\top$ for the $i$th row of $\\bZ$."
+        }
+      },
+      "free_symbols": [
+        "\\bZ",
+        "\\bz_i"
+      ],
+      "inputs": [
+        "\\bZ"
+      ]
+    },
+    {
+      "id": "def:trace-quantities",
+      "name": "Five trace-calibration quantities",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\nQ_{1,\\bSigma}",
+          "to": "  Q_{5,\\bSigma}\n    &:= n\\norm{\\bSigma^{1/2}\\bh}^2\n    -\\norm{\\bX\\bh-t_{\\bSigma}\\br}^2.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bSigma",
+        "\\bX",
+        "\\br",
+        "t_{\\bSigma}",
+        "\\bh",
+        "b",
+        "Q_{k,\\bSigma}"
+      ],
+      "inputs": [
+        "\\br",
+        "\\bX",
+        "\\bh",
+        "\\bSigma",
+        "b",
+        "t_{\\bSigma}",
+        "n",
+        "d"
+      ]
+    },
+    {
+      "id": "def:auxiliary-response-law",
+      "name": "Auxiliary response law",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "For trace calibration, introduce an auxiliary probability law",
+          "to": "the joint law of $(\\bX,\\bS)$ unchanged."
+        }
+      },
+      "free_symbols": [
+        "n",
+        "\\bbeta^*",
+        "\\bX",
+        "\\bep",
+        "\\bS"
+      ],
+      "inputs": [
+        "\\bX",
+        "\\bS"
+      ]
+    },
+    {
+      "id": "def:auxiliary-response-expectation",
+      "name": "Auxiliary expectation notation",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "Write $\\E_{\\rm aux}$ for expectation",
+          "to": "under this law."
+        }
+      },
+      "free_symbols": [
+        "\\E_{\\rm aux}"
+      ],
+      "inputs": []
+    },
+    {
+      "id": "def:auxiliary-response-quantities",
+      "name": "Response quantities under the auxiliary law",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "Recompute all response-dependent quantities",
+          "to": "whereas $b$ and $t_{\\bSigma}$ are unchanged."
+        }
+      },
+      "free_symbols": [
+        "\\bSigma",
+        "\\hbbeta",
+        "\\bu",
+        "\\br",
+        "t_{\\bSigma}",
+        "\\bh",
+        "b",
+        "\\bq",
+        "Q_{k,\\bSigma}"
+      ],
+      "inputs": [
+        "\\bX",
+        "\\bS",
+        "b",
+        "t_{\\bSigma}"
+      ]
+    },
+    {
+      "id": "def:response-weights",
+      "name": "Response weight and normalized trace bound",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\nB_{\\bA}",
+          "to": "|}{G_{\\bSigma}}\n       +\\sum_{k=2}^5\\frac{|Q_{k,\\bSigma}|}{G_{\\bSigma}}\n      \\right\\}.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bSigma",
+        "\\bu",
+        "\\bA",
+        "\\br",
+        "t_{\\bSigma}",
+        "k",
+        "b",
+        "G_{\\bSigma}",
+        "Q_{k,\\bSigma}",
+        "B_{\\bA}",
+        "\\mathcal T_{\\bA}"
+      ],
+      "inputs": [
+        "\\bu",
+        "\\br",
+        "b",
+        "t_{\\bSigma}",
+        "Q_{k,\\bSigma}",
+        "G_{\\bSigma}",
+        "n",
+        "d"
+      ]
+    },
+    {
+      "id": "def:trace-ratio-convention",
+      "name": "Zero convention for trace ratios",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "Under the original\nlaw, every ratio",
+          "to": "$\\{G_{\\bSigma}=0\\}$;"
+        }
+      },
+      "free_symbols": [
+        "\\bSigma",
+        "\\bA",
+        "G_{\\bSigma}",
+        "\\mathcal T_{\\bA}"
+      ],
+      "inputs": [
+        "G_{\\bSigma}",
+        "\\mathcal T_{\\bA}"
+      ]
+    },
+    {
+      "id": "def:normalized-energies",
+      "name": "Energy of paired fields",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "For maps $\\bff:\\R^{n\\times d}\\to\\R^d$",
+          "to": " &\n    \\calE_{\\bff,\\boldsymbol\\psi}\n    &:=\\calE_{\\bff}+\\frac1n\\calE_{\\boldsymbol\\psi},\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "d",
+        "\\calE_{\\bff}",
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "G_{\\bff,\\boldsymbol\\psi}",
+        "\\calE_{\\bff,\\boldsymbol\\psi}"
+      ],
+      "inputs": [
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "n"
+      ]
+    },
+    {
+      "id": "def:gaussian-contractions",
+      "name": "Five Gaussian contractions",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\n\\Gamma_1",
+          "to": "      \\bff^\\top\\bZ^\\top\\be_i\n          -\\sum_{j=1}^d\\pdv{f_j}{z_{ij}}\n       \\right)^2.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bZ",
+        "\\be_j",
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "\\Gamma_s"
+      ],
+      "inputs": [
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "\\bZ",
+        "n",
+        "d"
+      ]
+    },
+    {
+      "id": "def:conditional-energy",
+      "name": "Conditional normalized derivative energy",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "For a sigma-field $\\mathcal F$, also write",
+          "to": "$G_{\\bff,\\boldsymbol\\psi}=0$."
+        }
+      },
+      "free_symbols": [
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "\\mathcal F",
+        "G_{\\bff,\\boldsymbol\\psi}",
+        "\\calE_{\\bff,\\boldsymbol\\psi}",
+        "\\Theta_{\\mathcal F}"
+      ],
+      "inputs": [
+        "\\mathcal F",
+        "\\calE_{\\bff,\\boldsymbol\\psi}",
+        "G_{\\bff,\\boldsymbol\\psi}"
+      ]
+    },
+    {
+      "id": "def:algebraic-remainders",
+      "name": "Four algebraic remainders",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{align*}\n\\Delta_1&:=-2\\br^\\top\\bL\\bq,",
+          "to": "\n    &\n    \\Delta_5&:=\\norm{\\bL\\bq}^2+2\\norm{\\bq}^2\n       -2t_{\\bSigma}\\br^\\top\\bL\\bq.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "\\bSigma",
+        "\\br",
+        "t_{\\bSigma}",
+        "b",
+        "\\bq",
+        "\\bL",
+        "\\Delta_s"
+      ],
+      "inputs": [
+        "\\br",
+        "\\bL",
+        "\\bq",
+        "b",
+        "t_{\\bSigma}"
+      ]
+    },
+    {
+      "id": "def:zeta-definitions",
+      "name": "Specialized Gaussian contractions",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "\\begin{equation}\n\\zeta_s:=\\left.\\Gamma_s\\right|_{(\\bff,\\boldsymbol\\psi)=(\\bq,\\br)},",
+          "to": "\\boldsymbol\\psi)=(\\bq,\\br)},\n    \\qquad s=1,\\ldots,5.\n    \\label{eq:zeta-definitions}\n\\end{equation}"
+        }
+      },
+      "free_symbols": [
+        "\\br",
+        "\\bq",
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "\\Gamma_s",
+        "\\zeta_s"
+      ],
+      "inputs": [
+        "\\Gamma_s",
+        "\\bq",
+        "\\br"
+      ]
+    },
+    {
+      "id": "def:exceptional-event",
+      "name": "Event controlling design, noise and inverse norm",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "For a constant $C_0>0$, define",
+          "to": "norm{\\bZ}_{\\rm op}\\leq C_0\\sqrt n,\\quad\n       \\norm{\\bep}\\leq C_0\\sqrt n\n    \\right\\}.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "n",
+        "\\bep",
+        "\\bZ",
+        "\\bG_0",
+        "\\Omega_n",
+        "C_0"
+      ],
+      "inputs": [
+        "C_0",
+        "n",
+        "\\bG_0",
+        "\\bZ",
+        "\\bep"
+      ]
+    },
+    {
+      "id": "def:gaussian-stein-design-decomposition",
+      "name": "Measurable sketch spectral decomposition",
+      "source": {
+        "env": "assu:Gaussian-Stein-design",
+        "slice": {
+          "from": "let\n$\\bA=\\bU\\bLambda\\bU^\\top$",
+          "to": "of $\\bA$."
+        }
+      },
+      "free_symbols": [
+        "n",
+        "m",
+        "\\bS",
+        "\\bA",
+        "\\bU",
+        "\\bLambda"
+      ],
+      "inputs": [
+        "\\bA",
+        "\\bS"
+      ]
+    },
+    {
+      "id": "def:normalized-gaussian-stein-zero",
+      "name": "Zero convention for normalized contractions",
+      "source": {
+        "env": "lem:normalized-Gaussian-Stein",
+        "sentences": [
+          3,
+          3
+        ]
+      },
+      "free_symbols": [
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "G_{\\bff,\\boldsymbol\\psi}"
+      ],
+      "inputs": [
+        "G_{\\bff,\\boldsymbol\\psi}"
+      ]
+    },
+    {
+      "id": "def:balanced-ridge-fields",
+      "name": "Smooth ridge approximations",
+      "source": {
+        "env": "lem:balanced-Stein-sufficient-conditions",
+        "region": "proof",
+        "slice": {
+          "from": "For $\\eta>0$, put",
+          "to": "\\br_\\eta&=\\bA(\\bep-\\bZ\\bq_\\eta).\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "d",
+        "\\bep",
+        "\\bA",
+        "\\bM",
+        "\\br",
+        "\\bZ",
+        "\\widetilde{\\bM}",
+        "\\bL",
+        "\\bK",
+        "\\eta",
+        "\\bK_\\eta",
+        "\\bL_\\eta",
+        "\\br_\\eta"
+      ],
+      "inputs": [
+        "\\widetilde{\\bM}",
+        "\\bZ",
+        "\\bA",
+        "\\bep",
+        "d",
+        "\\eta"
+      ]
+    },
+    {
+      "id": "def:trace-bound-constants",
+      "name": "Constants in the normalized and weighted trace bounds",
+      "source": {
+        "prose": true,
+        "slice": {
+          "from": "There are constants\n$C_Q,C_{QB}<\\infty$, independent of $n$, such that",
+          "to": "where the second expectation is under the original response law."
+        }
+      },
+      "free_symbols": [
+        "n",
+        "C_Q",
+        "C_{QB}",
+        "\\E_{\\rm aux}",
+        "\\mathcal T_{\\bA}",
+        "B_{\\bA}"
+      ],
+      "inputs": [
+        "n",
+        "\\E_{\\rm aux}",
+        "\\mathcal T_{\\bA}",
+        "B_{\\bA}"
+      ]
+    },
+    {
+      "id": "def:rowwise-conditional-quantities",
+      "name": "Row-conditional means and centered quadratic forms",
+      "source": {
+        "env": "lem:Stein-remainders-from-moments",
+        "region": "proof",
+        "slice": {
+          "from": "For the second claim, let $\\E_i$ denote expectation over the row $\\bz_i$,",
+          "to": "    \\chi_i&:=(\\bz_i^\\top\\ba_i)^2-\\norm{\\ba_i}^2.\n\\end{align*}"
+        }
+      },
+      "free_symbols": [
+        "\\bZ",
+        "\\bS",
+        "\\bep",
+        "\\bq",
+        "\\bz_i",
+        "\\E_i",
+        "\\ba_i",
+        "\\eta_i",
+        "\\chi_i",
+        "n",
+        "d"
+      ],
+      "inputs": [
+        "\\bZ",
+        "\\bS",
+        "\\bep",
+        "\\bq",
+        "n",
+        "d"
+      ]
+    },
+    {
+      "id": "def:rowwise-jacobian-weights",
+      "name": "Jacobians and covariance weights",
+      "source": {
+        "env": "lem:Stein-remainders-from-moments",
+        "region": "proof",
+        "slice": {
+          "from": "To verify the derivative term, let $D_k\\ba_i$",
+          "to": "$b_{ik}=\\E[\\norm{D_k\\ba_i}_{\\rm F}^2\\norm{\\ba_i}^2]$."
+        }
+      },
+      "free_symbols": [
+        "\\ba_i",
+        "\\bz_i",
+        "D_k\\ba_i",
+        "b_{ik}",
+        "d"
+      ],
+      "inputs": [
+        "\\ba_i",
+        "\\bZ",
+        "d"
+      ]
+    },
+    {
+      "id": "def:rowwise-covariance-conditioning",
+      "name": "Conditioning for two-row covariance comparison",
+      "source": {
+        "env": "lem:Stein-remainders-from-moments",
+        "region": "proof",
+        "slice": {
+          "from": "For this step, condition first on",
+          "to": "so that only the two Gaussian rows remain\nrandom."
+        }
+      },
+      "free_symbols": [
+        "\\bZ",
+        "\\bS",
+        "\\bep",
+        "n",
+        "d"
+      ],
+      "inputs": [
+        "\\bZ",
+        "\\bS",
+        "\\bep",
+        "n",
+        "d"
+      ]
+    }
+  ],
+  "statements": [
+    {
+      "id": "thm:cpal-complementary-law",
+      "kind": "theorem",
+      "env": "thm:cpal-complementary-law",
+      "status": "to-prove",
+      "depends_on": [
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair",
+        "def:original-residual",
+        "def:cpal-observation-geometry",
+        "def:compressed-information",
+        "def:complementary-estimate",
+        "ass:cpal-complementary-law-model",
+        "ass:cpal-complementary-law-compression",
+        "ass:cpal-complementary-law-measurability"
+      ],
+      "free_symbols": [
+        "n",
+        "m",
+        "d",
+        "\\bS",
+        "\\hbbeta",
+        "R",
+        "\\bu",
+        "\\bQ_{\\bS}",
+        "\\calF_{\\bS}",
+        "\\widehat R_c"
+      ],
+      "hypotheses": [
+        "ass:cpal-complementary-law-model",
+        "ass:cpal-complementary-law-compression",
+        "ass:cpal-complementary-law-measurability"
+      ]
+    },
+    {
+      "id": "thm:cpal-corrected-accuracy",
+      "kind": "theorem",
+      "env": "thm:cpal-corrected-accuracy",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "def:gaussian-stein-design-decomposition",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:trace-quantities",
+        "def:auxiliary-response-law",
+        "def:auxiliary-response-expectation",
+        "def:auxiliary-response-quantities",
+        "def:response-weights",
+        "def:trace-ratio-convention",
+        "def:algebraic-remainders",
+        "def:zeta-definitions",
+        "def:stein-fluctuations",
+        "lem:dot-beta",
+        "lem:opnorm-x-bound",
+        "prop:stein-risk-from-moments",
+        "lem:balanced-remainder-bounds",
+        "lem:balanced-trace-stein-bounds",
+        "prop:q-identity-sigma",
+        "ass:cpal-corrected-accuracy-gaussian",
+        "ass:cpal-corrected-accuracy-errors",
+        "ass:cpal-corrected-accuracy-spectrum",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair",
+        "def:normalized-sketch"
+      ],
+      "free_symbols": [
+        "n",
+        "m",
+        "d",
+        "R",
+        "\\bA",
+        "\\hR_u",
+        "\\hR_o",
+        "c_-",
+        "c_+",
+        "\\kappa"
+      ],
+      "hypotheses": [
+        "ass:cpal-corrected-accuracy-gaussian",
+        "ass:cpal-corrected-accuracy-errors",
+        "ass:cpal-corrected-accuracy-spectrum"
+      ]
+    },
+    {
+      "id": "thm:cpal-risk-benchmarks",
+      "kind": "theorem",
+      "env": "thm:cpal-risk-benchmarks",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:cpal-observation-geometry",
+        "def:whitened-coordinates",
+        "def:gcv-estimate",
+        "ass:proportional-regime",
+        "ass:scaled-orthogonal-sketch",
+        "ass:dense-gaussian-sketch",
+        "ass:cpal-risk-benchmarks-gaussian",
+        "ass:cpal-risk-benchmarks-positive-noise",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "\\sigma^2",
+        "R",
+        "\\hR_u",
+        "\\hR_o",
+        "\\hR_{\\GCV}",
+        "\\gamma",
+        "\\rho",
+        "\\calR_j",
+        "\\Delta_j"
+      ],
+      "hypotheses": [
+        "ass:cpal-risk-benchmarks-gaussian",
+        "ass:cpal-risk-benchmarks-positive-noise"
+      ]
+    },
+    {
+      "id": "thm:tight-frame-mse-comparison",
+      "kind": "theorem",
+      "env": "thm:tight-frame-mse-comparison",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:cpal-observation-geometry",
+        "def:compressed-information",
+        "def:complementary-estimate",
+        "def:mse",
+        "def:mse-coefficients",
+        "ass:scaled-orthogonal-sketch",
+        "thm:cpal-complementary-law",
+        "ass:tight-frame-mse-comparison-model",
+        "ass:tight-frame-mse-comparison-positive-noise",
+        "ass:tight-frame-mse-comparison-sketch",
+        "ass:tight-frame-mse-comparison-dimensions",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "m",
+        "d",
+        "\\sigma^2",
+        "\\widehat R_c",
+        "\\hR_o",
+        "q",
+        "e_{m,d}",
+        "a_{m,d}"
+      ],
+      "hypotheses": [
+        "ass:tight-frame-mse-comparison-model",
+        "ass:tight-frame-mse-comparison-positive-noise",
+        "ass:tight-frame-mse-comparison-sketch",
+        "ass:tight-frame-mse-comparison-dimensions"
+      ]
+    },
+    {
+      "id": "thm:cpal-mse-comparison",
+      "kind": "theorem",
+      "env": "thm:cpal-mse-comparison",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:complementary-estimate",
+        "def:mse",
+        "def:mse-coefficients",
+        "def:limiting-crossover",
+        "def:local-crossover",
+        "ass:scaled-orthogonal-sketch",
+        "thm:tight-frame-mse-comparison",
+        "ass:cpal-mse-comparison-model",
+        "ass:cpal-mse-comparison-positive-noise",
+        "ass:cpal-mse-comparison-sketch",
+        "ass:cpal-mse-comparison-dimensions",
+        "ass:cpal-mse-comparison-proportions",
+        "ass:cpal-mse-comparison-local",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "m",
+        "d",
+        "\\sigma^2",
+        "\\widehat R_c",
+        "\\hR_o",
+        "\\gamma_n",
+        "\\rho_n",
+        "\\gamma",
+        "\\rho",
+        "\\rho_*(\\gamma)",
+        "\\rho_n^{\\#}"
+      ],
+      "hypotheses": [
+        "ass:cpal-mse-comparison-model",
+        "ass:cpal-mse-comparison-positive-noise",
+        "ass:cpal-mse-comparison-sketch",
+        "ass:cpal-mse-comparison-dimensions",
+        "ass:cpal-mse-comparison-proportions",
+        "ass:cpal-mse-comparison-local"
+      ]
+    },
+    {
+      "id": "lem:dot-beta",
+      "kind": "lemma",
+      "env": "lem:dot-beta",
+      "status": "to-prove",
+      "depends_on": [
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:gaussian-stein-design-decomposition",
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "ass:pathwise-domain",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "d",
+        "\\bSigma",
+        "\\bep",
+        "\\bA",
+        "\\bM",
+        "\\br",
+        "t_{\\bSigma}",
+        "\\bZ",
+        "\\bq",
+        "\\widetilde{\\bM}",
+        "\\bL",
+        "\\be_j"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:dot-r",
+      "kind": "lemma",
+      "env": "lem:dot-r",
+      "status": "to-prove",
+      "depends_on": [
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:gaussian-stein-design-decomposition",
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "ass:pathwise-domain",
+        "lem:dot-beta",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "d",
+        "\\br",
+        "\\bZ",
+        "b",
+        "\\bq",
+        "\\bL",
+        "\\be_j"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:dot-rh",
+      "kind": "lemma",
+      "env": "lem:dot-rh",
+      "status": "to-prove",
+      "depends_on": [
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:gaussian-stein-design-decomposition",
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "ass:pathwise-domain",
+        "lem:dot-beta",
+        "lem:dot-r",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bSigma",
+        "\\br",
+        "t_{\\bSigma}",
+        "\\bZ",
+        "b",
+        "\\bq",
+        "\\bL"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:dot-hxh",
+      "kind": "lemma",
+      "env": "lem:dot-hxh",
+      "status": "to-prove",
+      "depends_on": [
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:gaussian-stein-design-decomposition",
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "ass:pathwise-domain",
+        "lem:dot-beta",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bSigma",
+        "\\br",
+        "t_{\\bSigma}",
+        "\\bZ",
+        "\\bq",
+        "\\be_j"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:dot-rxr",
+      "kind": "lemma",
+      "env": "lem:dot-rxr",
+      "status": "to-prove",
+      "depends_on": [
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:gaussian-stein-design-decomposition",
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "ass:pathwise-domain",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "d",
+        "\\br",
+        "\\bZ",
+        "\\be_j"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:dot-rxxr",
+      "kind": "lemma",
+      "env": "lem:dot-rxxr",
+      "status": "to-prove",
+      "depends_on": [
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:gaussian-stein-design-decomposition",
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "ass:pathwise-domain",
+        "lem:dot-r",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "d",
+        "\\br",
+        "\\bZ",
+        "b",
+        "\\bq",
+        "\\bL",
+        "\\be_j"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:dot-hxxh",
+      "kind": "lemma",
+      "env": "lem:dot-hxxh",
+      "status": "to-prove",
+      "depends_on": [
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:gaussian-stein-design-decomposition",
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "ass:pathwise-domain",
+        "lem:dot-beta",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bSigma",
+        "\\br",
+        "t_{\\bSigma}",
+        "\\bZ",
+        "\\bq",
+        "\\bL",
+        "\\be_j"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:opnorm-x-bound",
+      "kind": "lemma",
+      "env": "lem:opnorm-X-bound",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "def:gaussian-stein-design-decomposition",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "ass:opnorm-x-bound-relative-tail",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "\\bSigma",
+        "\\sigma^2",
+        "\\varepsilon_i",
+        "\\bX",
+        "\\bep",
+        "\\bS",
+        "k",
+        "C_{\\bSigma}",
+        "\\bZ",
+        "K_\\varepsilon"
+      ],
+      "hypotheses": [
+        "ass:opnorm-x-bound-relative-tail"
+      ]
+    },
+    {
+      "id": "lem:m-inverse-bound",
+      "kind": "lemma",
+      "env": "lem:M-inverse-bound",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "def:gaussian-stein-design-decomposition",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bSigma",
+        "\\bX",
+        "\\bS",
+        "\\bA",
+        "\\bM",
+        "t_{\\bSigma}",
+        "k",
+        "\\kappa",
+        "\\widetilde{\\bM}",
+        "\\bL"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:derivative-energy-from-inverse-moments",
+      "kind": "lemma",
+      "env": "lem:derivative-energy-from-inverse-moments",
+      "status": "to-prove",
+      "depends_on": [
+        "def:derivative-energy",
+        "def:basis-notation",
+        "ass:derivative-energy-from-inverse-moments"
+      ],
+      "free_symbols": [
+        "n",
+        "d",
+        "\\br",
+        "\\bZ",
+        "\\bq",
+        "\\bL",
+        "\\calE_{\\bq}",
+        "\\bK"
+      ],
+      "hypotheses": [
+        "ass:derivative-energy-from-inverse-moments"
+      ]
+    },
+    {
+      "id": "lem:balanced-stein-sufficient-conditions",
+      "kind": "lemma",
+      "env": "lem:balanced-Stein-sufficient-conditions",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "def:gaussian-stein-design-decomposition",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "lem:opnorm-x-bound",
+        "lem:m-inverse-bound",
+        "lem:derivative-energy-from-inverse-moments",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "\\bSigma",
+        "\\bep",
+        "\\br",
+        "t_{\\bSigma}",
+        "\\bZ",
+        "\\bq",
+        "\\bL",
+        "\\calE_{\\bq}"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:balanced-moment-bounds",
+      "kind": "lemma",
+      "env": "lem:balanced-moment-bounds",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "def:gaussian-stein-design-decomposition",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:balanced-ridge-fields",
+        "lem:opnorm-x-bound",
+        "lem:m-inverse-bound",
+        "lem:derivative-energy-from-inverse-moments",
+        "ass:balanced-moment-bounds-signal",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair",
+        "lem:balanced-stein-sufficient-conditions"
+      ],
+      "free_symbols": [
+        "n",
+        "\\bbeta^*",
+        "\\bSigma",
+        "\\hbbeta",
+        "\\br",
+        "k",
+        "\\bh",
+        "\\bZ",
+        "\\bq",
+        "\\calE_{\\bq}",
+        "\\calE_{\\br}",
+        "B"
+      ],
+      "hypotheses": [
+        "ass:balanced-moment-bounds-signal"
+      ]
+    },
+    {
+      "id": "lem:stein-remainders-from-moments",
+      "kind": "lemma",
+      "env": "lem:Stein-remainders-from-moments",
+      "status": "to-prove",
+      "depends_on": [
+        "def:derivative-energy",
+        "def:stein-fluctuations",
+        "def:design-rows",
+        "ass:stein-remainders-from-moments-gaussian",
+        "ass:stein-remainders-from-moments-smooth",
+        "ass:stein-remainders-from-moments-first",
+        "ass:stein-remainders-from-moments-second",
+        "lem:rowwise-gaussian-covariance-cited"
+      ],
+      "free_symbols": [
+        "n",
+        "\\bep",
+        "\\bS",
+        "q",
+        "\\bZ",
+        "\\bq",
+        "\\calE_{\\bq}",
+        "\\Xi_1",
+        "\\Xi_2"
+      ],
+      "hypotheses": [
+        "ass:stein-remainders-from-moments-gaussian",
+        "ass:stein-remainders-from-moments-smooth",
+        "ass:stein-remainders-from-moments-first",
+        "ass:stein-remainders-from-moments-second"
+      ]
+    },
+    {
+      "id": "lem:influence-from-moments",
+      "kind": "lemma",
+      "env": "lem:influence-from-moments",
+      "status": "to-prove",
+      "depends_on": [
+        "def:whitened-coordinates",
+        "lem:balanced-stein-sufficient-conditions",
+        "ass:influence-from-moments-orthogonality",
+        "def:sketched-least-squares"
+      ],
+      "free_symbols": [
+        "n",
+        "\\bSigma",
+        "\\br",
+        "t_{\\bSigma}",
+        "\\bZ",
+        "\\bq",
+        "\\bL",
+        "\\bell",
+        "\\bv"
+      ],
+      "hypotheses": [
+        "ass:influence-from-moments-orthogonality"
+      ]
+    },
+    {
+      "id": "prop:stein-risk-from-moments",
+      "kind": "proposition",
+      "env": "prop:Stein-risk-from-moments",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "def:gaussian-stein-design-decomposition",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:stein-fluctuations",
+        "lem:balanced-stein-sufficient-conditions",
+        "lem:stein-remainders-from-moments",
+        "lem:influence-from-moments",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair",
+        "def:balanced-ridge-fields"
+      ],
+      "free_symbols": [
+        "n",
+        "\\bep",
+        "\\bS",
+        "\\bZ",
+        "\\bq",
+        "\\bell",
+        "\\bv",
+        "\\Xi_1",
+        "\\Xi_2"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "prop:q-identity-sigma",
+      "kind": "proposition",
+      "env": "eq:q-identity-sigma",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "def:gaussian-stein-design-decomposition",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:trace-quantities",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bSigma",
+        "\\br",
+        "t_{\\bSigma}",
+        "\\bh",
+        "b",
+        "Q_{k,\\bSigma}"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:normalized-gaussian-stein",
+      "kind": "lemma",
+      "env": "lem:normalized-Gaussian-Stein",
+      "status": "to-prove",
+      "depends_on": [
+        "def:derivative-energy",
+        "def:basis-notation",
+        "def:normalized-energies",
+        "def:gaussian-contractions",
+        "def:conditional-energy",
+        "def:normalized-gaussian-stein-zero",
+        "ass:normalized-gaussian-stein-independence",
+        "ass:normalized-gaussian-stein-smooth",
+        "ass:normalized-gaussian-stein-integrability"
+      ],
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bZ",
+        "\\bff",
+        "\\boldsymbol\\psi",
+        "\\mathcal F",
+        "G_{\\bff,\\boldsymbol\\psi}",
+        "\\calE_{\\bff,\\boldsymbol\\psi}",
+        "\\Gamma_s",
+        "\\Theta_{\\mathcal F}"
+      ],
+      "hypotheses": [
+        "ass:normalized-gaussian-stein-independence",
+        "ass:normalized-gaussian-stein-smooth",
+        "ass:normalized-gaussian-stein-integrability"
+      ]
+    },
+    {
+      "id": "lem:balanced-remainder-bounds",
+      "kind": "lemma",
+      "env": "lem:balanced-remainder-bounds",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "def:gaussian-stein-design-decomposition",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:balanced-ridge-fields",
+        "def:algebraic-remainders",
+        "lem:m-inverse-bound",
+        "lem:opnorm-x-bound",
+        "lem:balanced-moment-bounds",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair",
+        "def:trace-quantities"
+      ],
+      "free_symbols": [
+        "n",
+        "\\bSigma",
+        "k",
+        "G_{\\bSigma}",
+        "Q_{k,\\bSigma}",
+        "\\Delta_s"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:balanced-trace-stein-bounds",
+      "kind": "lemma",
+      "env": "lem:balanced-trace-Stein-bounds",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "def:gaussian-stein-design-decomposition",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:trace-quantities",
+        "def:auxiliary-response-law",
+        "def:auxiliary-response-expectation",
+        "def:auxiliary-response-quantities",
+        "def:response-weights",
+        "def:trace-ratio-convention",
+        "def:algebraic-remainders",
+        "def:zeta-definitions",
+        "def:normalized-energies",
+        "def:gaussian-contractions",
+        "def:conditional-energy",
+        "def:normalized-gaussian-stein-zero",
+        "def:balanced-ridge-fields",
+        "def:exceptional-event",
+        "lem:balanced-remainder-bounds",
+        "lem:balanced-moment-bounds",
+        "lem:opnorm-x-bound",
+        "lem:m-inverse-bound",
+        "lem:stein-remainders-from-moments",
+        "lem:normalized-gaussian-stein",
+        "lem:dot-rh",
+        "lem:dot-hxh",
+        "lem:dot-rxr",
+        "lem:dot-rxxr",
+        "lem:dot-hxxh",
+        "lem:balanced-exceptional-weight",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair",
+        "def:trace-bound-constants",
+        "lem:balanced-stein-sufficient-conditions"
+      ],
+      "free_symbols": [
+        "n",
+        "\\bSigma",
+        "G_{\\bSigma}",
+        "Q_{k,\\bSigma}",
+        "\\Delta_s",
+        "\\zeta_s",
+        "\\E_\\star"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:balanced-exceptional-weight",
+      "kind": "lemma",
+      "env": "lem:balanced-exceptional-weight",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "def:gaussian-stein-design-decomposition",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:trace-quantities",
+        "def:auxiliary-response-law",
+        "def:auxiliary-response-expectation",
+        "def:auxiliary-response-quantities",
+        "def:response-weights",
+        "def:trace-ratio-convention",
+        "def:algebraic-remainders",
+        "def:zeta-definitions",
+        "def:exceptional-event",
+        "lem:m-inverse-bound",
+        "lem:opnorm-x-bound",
+        "lem:balanced-moment-bounds",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "\\bSigma",
+        "\\bep",
+        "\\bS",
+        "\\bA",
+        "\\br",
+        "t_{\\bSigma}",
+        "\\bZ",
+        "\\bq",
+        "B_{\\bA}",
+        "\\mathcal T_{\\bA}",
+        "\\Omega_n",
+        "C_0"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "prop:trace-calibration-general",
+      "kind": "proposition",
+      "env": "prop:trace-calibration-general",
+      "status": "to-prove",
+      "depends_on": [
+        "ass:model-sketch",
+        "ass:model-sketch-covariance",
+        "ass:noninterpolating-dimensions",
+        "ass:noninterpolating-rank",
+        "ass:gaussian-stein-design",
+        "ass:gaussian-stein-design-errors",
+        "ass:gaussian-stein-design-normalization",
+        "ass:gaussian-stein-design-spectrum-gap",
+        "def:gaussian-stein-design-decomposition",
+        "def:observation-model",
+        "def:data-vectors",
+        "def:cpal-prediction-risk",
+        "def:sketched-least-squares",
+        "def:weighted-residual",
+        "def:correction-coefficients",
+        "def:corrected-risk-estimates",
+        "def:compressed-error-notation",
+        "def:normalization-convention",
+        "def:derivative-convention",
+        "def:whitened-coordinates",
+        "def:whitened-trace",
+        "def:restricted-design",
+        "def:basis-notation",
+        "def:derivative-energy",
+        "def:trace-quantities",
+        "def:auxiliary-response-law",
+        "def:auxiliary-response-expectation",
+        "def:auxiliary-response-quantities",
+        "def:response-weights",
+        "def:trace-ratio-convention",
+        "def:algebraic-remainders",
+        "def:zeta-definitions",
+        "prop:q-identity-sigma",
+        "lem:balanced-remainder-bounds",
+        "lem:balanced-trace-stein-bounds",
+        "ass:model-features",
+        "ass:model-errors",
+        "ass:model-independent-sketch",
+        "ass:model-test-pair"
+      ],
+      "free_symbols": [
+        "n",
+        "d",
+        "\\bSigma",
+        "\\bX",
+        "\\bS",
+        "t_{\\bSigma}",
+        "b",
+        "\\E_{\\bX,\\bS}"
+      ],
+      "hypotheses": []
+    },
+    {
+      "id": "lem:rowwise-gaussian-covariance-cited",
+      "kind": "lemma",
+      "env": "seg:bellec-rowwise-covariance",
+      "status": "cited",
+      "depends_on": [
+        "def:design-rows",
+        "def:rowwise-conditional-quantities",
+        "def:rowwise-jacobian-weights",
+        "def:rowwise-covariance-conditioning",
+        "ass:stein-remainders-from-moments-gaussian",
+        "ass:stein-remainders-from-moments-smooth",
+        "ass:stein-remainders-from-moments-second"
+      ],
+      "free_symbols": [
+        "\\chi_i",
+        "b_{ik}"
+      ],
+      "source": {
+        "cite": "bellec2023out",
+        "locator": "Lemma 7.1",
+        "verbatim_statement": "\\begin{lemma}\n    \\label{lemma:f-g-z_j-z_k}\n    Let $\\bz_j,\\bz_k$ be independent $N({\\bf 0},\\bI_n)$ random vectors.\n    Let $f,h:\\R^n\\to\\R^n$ deterministic with weakly differentiable\n    components and define the random matrices $\\bA,\\bB\\in\\R^{n\\times n}$\n    respectively by\n    $\\bA = \\bigl(\n            \\bz_j^\\top f(\\bz_k) \\bI_n\n            + f(\\bz_k)\\bz_j^\\top\n        \\bigr)\n        \\nabla f(\\bz_k)^\\top\n    $ and\n    $\\bB =\n         \\bigl(\n         \\bz_k^\\top h(\\bz_j) \\bI_n\n        + h(\\bz_j) \\bz_k^\\top\n        \\bigr)\n    \\nabla h(\\bz_j)^\\top\n    $.\n    Assume that\n    \\begin{equation}\n        \\label{assumption-A-B-sobolev} \n    \\E[\\|f(\\bz_k)\\|^4]\n    +\n    \\E[\\|h(\\bz_j)\\|^4]\n    +\n    \\E[\\|\\bA\\|_F^2]\n    +\n    \\E[\\|\\bB\\|_F^2]\n    < +\\infty.\n    \\end{equation}\n    Then equality\n\\begin{equation}\n    \\label{eq:equality-correlation-lemma}\n\\E\\big[\n    \\big\\{(\\bz_j^{\\pb{\\top}} f(\\bz_k))^2-\\|f (\\bz_k)\\|^2 \\big\\}\n    \\big\\{(\\bz_k^{\\pb{\\top}} h(\\bz_j))^2-\\|h (\\bz_j)\\|^2 \\big\\}\n    \\big]\n    =\n    \\E[\n    \\trace\n    \\{\n        \\bA \\bB\n    \\}\n    ]\n    \\end{equation}\nholds and\n$\\E|\\trace[\\bA\\bB]| \\le\n        4\n        \\E\\bigl[\\|\\nabla f(\\bz_k)\\|_F^2\\|f(\\bz_k)\\|^2\\bigr]^{\\frac12}\n        \\E\\bigl[\\|\\nabla h(\\bz_j)\\|_F^2\\|h(\\bz_j)\\|^2\\bigr]^{\\frac12}\n$.\n\\end{lemma}\n"
+      }
+    }
+  ],
+  "proof_citations": [
+    {
+      "id": "lem:matrix-gaussian-divergence-cited",
+      "site": "lem:normalized-Gaussian-Stein | bellec2022derivatives | Proposition 14",
+      "units": [
+        "lem:normalized-Gaussian-Stein/proof/3/1",
+        "lem:normalized-Gaussian-Stein/proof/3/1"
+      ],
+      "depends_on": [
+        "ass:normalized-gaussian-stein-independence"
+      ],
+      "free_symbols": [
+        "\\ba",
+        "\\bb",
+        "\\bZ",
+        "\\mathcal F",
+        "n",
+        "d"
+      ]
+    },
+    {
+      "id": "lem:one-vector-second-order-cited",
+      "site": "lem:normalized-Gaussian-Stein | bellec2022derivatives | Proposition 16",
+      "units": [
+        "lem:normalized-Gaussian-Stein/proof/4/1",
+        "lem:normalized-Gaussian-Stein/proof/4/2"
+      ],
+      "depends_on": [
+        "ass:normalized-gaussian-stein-independence"
+      ],
+      "free_symbols": [
+        "\\bu",
+        "\\bZ",
+        "\\mathcal F",
+        "\\be_j",
+        "n",
+        "d"
+      ]
+    }
+  ],
+  "dismissed_citations": []
+}

@@ -1,0 +1,4533 @@
+{
+  "symbols": [
+    {
+      "name": "n",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "Throughout the results, $n$ is the number of original observations and the row dimension of the design. Numerical experiment choices and result-specific dimension restrictions do not redefine it.",
+      "reading": null,
+      "shards": [
+        "1"
+      ],
+      "basis": "03d1bdb7c4f95f2b622a4395ae7dab550ce429d4ed69caa0b3dba9e72d2351a2",
+      "basis_parts": {
+        "source": "ed928aa84861560e",
+        "intro": "68093e958ef5b6fe",
+        "corrected": "e460f0b6cec00f9a",
+        "entry": "3faa0a1c7490fe9f",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "e560368ed8c7d41d",
+        "listing": "75abab68e80d9ed8",
+        "redefinitions": "fcc95dd726d18e96",
+        "uses": "b843c7dfd5e76537"
+      },
+      "source": "e7208a0468fc1284c71f4bc28a97f56e0116ac1c21782e5525701a58e03faf99",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 601,
+        "file": "main.tex",
+        "line": 239
+      }
+    },
+    {
+      "name": "m",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The sketch-size entry is correct but omits the deterministic sequence convention and the different dimension ranges. The subscript $m$ in the minimum-norm estimator is explicitly described as an estimator index; it does not redefine the sketch-size variable $m$.",
+      "reading": {
+        "reading": "$m$ is the deterministic number of rows of the full-row-rank sketch $\\bS\\in\\R^{m\\times n}$, with $1\\leq m\\leq n$; it may vary with $n$ in asymptotic sequences.",
+        "evidence": "Lines 498--500 introduce the sketch dimensions; the theorem statements specify the complementary, noninterpolating, proportional, and finite-MSE ranges; Assumption~\\ref{assu:Gaussian-Stein-design} gives the uniform dimension gap.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-complementary-law"
+            ],
+            "text": "$m<n$, so the complementary subspace has positive dimension $n-m$; no restriction $d<m$ is imposed by the complementary-law construction."
+          },
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks"
+            ],
+            "text": "The noninterpolating proportional regime has $d<m\\leq n$ and $(d/n,m/n)\\to(\\gamma,\\rho)$ with $0<\\gamma<\\rho\\leq1$."
+          },
+          {
+            "results": [
+              "thm:tight-frame-mse-comparison",
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "$d+3<m<n$."
+          },
+          {
+            "results": [
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "$(d/n,m/n)\\to(\\gamma,\\rho)$ with $0<\\gamma<\\rho<1$; the local crossover definition treats $\\rho_n=m/n$ as continuous, while the actual sketch size remains integer."
+          },
+          {
+            "results": [
+              "thm:cpal-corrected-accuracy",
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:opnorm-x-bound",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "The standing noninterpolating range is $1\\leq d<m\\leq n$, and for all sufficiently large $n$ the balanced-sketch dimension gap satisfies $m-d\\geq\\kappa n$ for a fixed $\\kappa>0$."
+          }
+        ]
+      },
+      "shards": [
+        "3"
+      ],
+      "basis": "542ee29a866460b8ddf7c59d158cdffbde3a331c7590088f63fe95edae30d8e9",
+      "basis_parts": {
+        "source": "82a802b70a0eee0d",
+        "intro": "c5f43ab4ac6d11d6",
+        "corrected": "c68ff05017cd0d18",
+        "entry": "9e64e712f5176eb8",
+        "refs": "359d5821527247ca",
+        "settings": "fa66f0e3e11b1952",
+        "listing": "303d775dbc23868d",
+        "redefinitions": "a27b30270e6997f8",
+        "uses": "42fc45d5ab003edd"
+      },
+      "source": "b7ceb60182aa9589452e7429e20c4992db94a47f1af391f7bb8c684ae30f68d6",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 579,
+        "file": "main.tex",
+        "line": 217
+      }
+    },
+    {
+      "name": "d",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The feature-dimension meaning is correct. It is fixed within each experiment but is not required to remain constant along asymptotic sequences; the numerical experiment values do not redefine it.",
+      "reading": {
+        "reading": "$d$ is the deterministic positive integer feature dimension at each sample size, and may vary with $n$.",
+        "evidence": "The model at lines 488--497 gives vectors in $\\R^d$; the noninterpolating assumption gives $1\\leq d<m\\leq n$. Lines 650 and 716--720 explicitly use dimension sequences through $\\gamma_n=d/n$.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks"
+            ],
+            "text": "The dimension sequence satisfies $(d/n,m/n)\\to(\\gamma,\\rho)$ with $0<\\gamma<\\rho\\leq1$."
+          },
+          {
+            "results": [
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "The dimension sequence satisfies $d+3<m<n$ and $(d/n,m/n)\\to(\\gamma,\\rho)$ with $0<\\gamma<\\rho<1$."
+          }
+        ]
+      },
+      "shards": [
+        "1"
+      ],
+      "basis": "4ac07f442dd055c55fea13a81f76ab3b772fee11214973f9bc36e7600632443e",
+      "basis_parts": {
+        "source": "b9d02f06b059cd6a",
+        "intro": "5c29b2d2b3ada03a",
+        "corrected": "dafa57b4489f8706",
+        "entry": "c06eded40e63cdcd",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "e560368ed8c7d41d",
+        "listing": "7ef54566db41f100",
+        "redefinitions": "1f7e5451f2da99e9",
+        "uses": "168530f4514e160e"
+      },
+      "source": "56ad67f01f47268d573d58e358dbefe51ce02981d2a0b71455f2124b8642053c",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 676,
+        "file": "main.tex",
+        "line": 314
+      }
+    },
+    {
+      "name": "\\bbeta^*",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": "For trace calibration, introduce an auxiliary probability law under which\n$\\bbeta^*=\\boldzero$ and\n$\\bep\\sim\\calN(\\boldzero,\\bI_n)$ independently of $(\\bX,\\bS)$, while leaving\nthe joint law of $(\\bX,\\bS)$ unchanged.",
+      "detail": "The model coefficient is correctly identified. The simulation coefficients do not redefine the general parameter; the auxiliary law supplies a scoped zero value.",
+      "reading": {
+        "reading": "$\\bbeta^*\\in\\R^d$ is the fixed coefficient parameter in the response model, with its value specified under the response law being used.",
+        "evidence": "The observation-model definition calls it fixed; the auxiliary response definition sets it to zero; Lemma~\\ref{lem:balanced-moment-bounds} imposes an additional signal bound only for its fitted-coefficient moment conclusion.",
+        "scoped": [
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds",
+              "prop:trace-calibration-general"
+            ],
+            "text": "Under $\\E_{\\rm aux}$, $\\bbeta^*=\\boldzero$; the original response law retains its original coefficient parameter."
+          },
+          {
+            "results": [
+              "lem:balanced-moment-bounds"
+            ],
+            "text": "The additional fitted-coefficient moment bounds assume $\\norm{\\bSigma^{1/2}\\bbeta^*}\\leq B$; this restriction is not imposed for the coefficient-error and residual moment bounds."
+          }
+        ]
+      },
+      "shards": [
+        "5"
+      ],
+      "basis": "0adb5d4c1f2c6da903a912fb6b507982604a58fa9bb5227d2951a541fc98a6c4",
+      "basis_parts": {
+        "source": "7d28da240b83a104",
+        "intro": "62549bce336514bd",
+        "corrected": "7fced5dae125883a",
+        "entry": "494946e8aa4f04a0",
+        "refs": "02313c16e3c662ac",
+        "settings": "8e0bce79b4fe6064",
+        "listing": "a611aeef1fc33cb9",
+        "redefinitions": "a1135053f38338c3",
+        "uses": "f482d6a5e29a004c"
+      },
+      "source": "df96db9c9793eeb956ac8e94cf7423406d580d91b80b2f25bdac8e9fb8618f54",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 742,
+        "file": "main.tex",
+        "line": 380
+      }
+    },
+    {
+      "name": "\\bSigma",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The covariance meaning is correct. The paper additionally settles positive definiteness and uniform spectral bounds, which justify whitening and inverse square roots; it does not require a single matrix of unchanged dimension along a growing-dimensional sequence.",
+      "reading": {
+        "reading": "$\\bSigma$ is the population feature covariance at each sample size, with $c_{\\bSigma}\\bI_d\\preceq\\bSigma\\preceq C_{\\bSigma}\\bI_d$ for fixed constants $0<c_{\\bSigma}\\leq C_{\\bSigma}<\\infty$ independent of $n$.",
+        "evidence": "Lines 488--493 introduce the covariance and fixed positive eigenvalue bounds; Assumption~\\ref{assu:model-sketch} writes these bounds explicitly with constants independent of $n$."
+      },
+      "shards": [
+        "1"
+      ],
+      "basis": "3ee7c959f6d0e97ff09d57ef0f4bfa8883476cb7990fd3805e5d3f38bbf64a9b",
+      "basis_parts": {
+        "source": "662ce1b3c6b0b794",
+        "intro": "adaeee84ec217698",
+        "corrected": "05161cdc1162ce65",
+        "entry": "470316dcd4890d8f",
+        "refs": "02313c16e3c662ac",
+        "settings": "b9562a9ef11e101b",
+        "listing": "5fd61b88065b60f3",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "38ccfa8362c59f65"
+      },
+      "source": "15583e147ab748b5c6e4204a707800798fa25190e903219c60caae56d220ace3",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 491,
+        "file": "main.tex",
+        "line": 129
+      }
+    },
+    {
+      "name": "\\sigma^2",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The variance entry is correct. Strict positivity is required only in the indicated comparisons; the auxiliary standard Gaussian response is a separate law.",
+      "reading": {
+        "reading": "$\\sigma^2=\\operatorname{Var}(\\varepsilon_i)$ is the population noise variance in the original observation model.",
+        "evidence": "The observation model specifies the common error variance; Theorems~\\ref{thm:cpal-risk-benchmarks}, \\ref{thm:tight-frame-mse-comparison}, and~\\ref{thm:cpal-mse-comparison} explicitly require positive noise variance. The auxiliary response law is separately specified and does not redefine this parameter.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks",
+              "thm:tight-frame-mse-comparison",
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "$\\sigma^2>0$."
+          }
+        ]
+      },
+      "shards": [
+        "7"
+      ],
+      "basis": "0d11d885f2489882b36284284e83728887fde34af92be9573c885f54b72b200b",
+      "basis_parts": {
+        "source": "9022dd52eda6925a",
+        "intro": "adaeee84ec217698",
+        "corrected": "fb54869e963f101a",
+        "entry": "4aeb896437f67308",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "8e0bce79b4fe6064",
+        "listing": "fdd73051a4241c83",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "c092a1203ffe395a"
+      },
+      "source": "c7ea2425af983fb623008bdd52926654b9bab40101c8867e19954e7e4d432350",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 494,
+        "file": "main.tex",
+        "line": 132
+      }
+    },
+    {
+      "name": "\\bx_i",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The feature-vector entry is correct. The model paragraph settles its index range and its relation to the original design rows; the sampling settings already specify the feature distribution.",
+      "reading": {
+        "reading": "$\\bx_i\\in\\R^d$, for $i\\in\\{1,\\ldots,n\\}$, is the feature vector of the $i$th original observation and the transpose of the $i$th row of $\\bX$.",
+        "evidence": "The observation-model paragraph begins with $i=1,\\ldots,n$ and defines $\\bX=(\\bx_1,\\ldots,\\bx_n)^\\top$."
+      },
+      "shards": [
+        "7"
+      ],
+      "basis": "83962d3841705129853a469fdcefdba067b9f5b45205092de572b3d6a1eee99c",
+      "basis_parts": {
+        "source": "d566d45962e6205f",
+        "intro": "e3b0c44298fc1c14",
+        "corrected": "3db8c7b57b4f690b",
+        "entry": "51c9a9fdd66e0aa8",
+        "refs": "02313c16e3c662ac",
+        "settings": "8e0bce79b4fe6064",
+        "listing": "07453aab542291e1",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "8b82f05500d97ee976404f86d8cc55c49d86585f0344b1ffdec2609d2436e738",
+      "graded": "fresh",
+      "introduced_at": null
+    },
+    {
+      "name": "\\varepsilon_i",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The error description is correct. Its index range and structural-error identity are explicit in the paper; distributional qualifications belong to the supplied settings.",
+      "reading": {
+        "reading": "For $i\\in\\{1,\\ldots,n\\}$, $\\varepsilon_i=y_i-\\bx_i^\\top\\bbeta^*$ is the structural observation error and the $i$th coordinate of $\\bep$.",
+        "evidence": "The observation model and vector definitions at lines 488--497 specify the index range and distinguish the structural errors from fitted residuals."
+      },
+      "shards": [
+        "3"
+      ],
+      "basis": "e392004518c8c17320beba87390adf498b379d2d24df21974d11ee3cf132a309",
+      "basis_parts": {
+        "source": "913ee15692cedff8",
+        "intro": "adaeee84ec217698",
+        "corrected": "78ba955a0fe30bb3",
+        "entry": "2c7c73a09cf6715b",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "8dd869ffd9834769",
+        "listing": "28f56e0c56d1ef32",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "cacc5761c51eda48"
+      },
+      "source": "c3c44b3346e5867fdd760aedec44db1c3003d3b3d902dc0d524ce04a374fc67b",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 489,
+        "file": "main.tex",
+        "line": 127
+      }
+    },
+    {
+      "name": "y_i",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded response formula agrees with the observation model for $i=1,\\ldots,n$. Its sampling law and fixed coefficient parameter are already specified by the settings.",
+      "reading": null,
+      "shards": [
+        "7"
+      ],
+      "basis": "cf7c3c30d59d37f5adfbfd51db3812d23752bbb5fa75e40e24cb1b0c9a0e7874",
+      "basis_parts": {
+        "source": "669275df788cbe23",
+        "intro": "adaeee84ec217698",
+        "corrected": "cf4fd179b105d3af",
+        "entry": "6f9dc7931109cdb6",
+        "refs": "61d27194ad8dc7e5",
+        "settings": "8e0bce79b4fe6064",
+        "listing": "07453aab542291e1",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "e6750bf641d9572f624d5174a3733a0db3758a6757893fb16b7fa8cdcf0b4b5a",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 489,
+        "file": "main.tex",
+        "line": 127
+      }
+    },
+    {
+      "name": "\\bX",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded row-stacked design matrix matches the paper. Whitening, sketching, and the auxiliary response construction preserve its meaning; its sampling law is specified by the settings.",
+      "reading": null,
+      "shards": [
+        "1"
+      ],
+      "basis": "cee31acdcab35ee403a8efb95ebfabb6b84e75319f250c03cf581aa38a3c2b19",
+      "basis_parts": {
+        "source": "7ce9380e63d0adfc",
+        "intro": "adaeee84ec217698",
+        "corrected": "83ace36788b79aef",
+        "entry": "704ab6751a557335",
+        "refs": "f2b45bea4c2df774",
+        "settings": "b9562a9ef11e101b",
+        "listing": "de4ed98a3276688a",
+        "redefinitions": "43bf33628c512806",
+        "uses": "a47ecc6ec5daad23"
+      },
+      "source": "272a76950d5d193eee227d25e765ea1d22fa9d5c462e97f691aa36d4c10cfba5",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 495,
+        "file": "main.tex",
+        "line": 133
+      }
+    },
+    {
+      "name": "\\by",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The vector definition is correct. Design differentiation fixes structural noise rather than observed responses, and auxiliary-law calculations use the auxiliary response.",
+      "reading": {
+        "reading": "$\\by=(y_1,\\ldots,y_n)^\\top=\\bX\\bbeta^*+\\bep$ is the response vector for the response law under consideration.",
+        "evidence": "The observation-model and data-vector definitions give this identity; Section~\\ref{app:balanced-transfer-setup} holds structural noise, rather than the response vector, fixed under design differentiation.",
+        "scoped": [
+          {
+            "results": [
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh"
+            ],
+            "text": "Under design differentiation, $\\bep=\\by-\\bX\\bbeta^*$ is held fixed, so $\\by=\\bZ\\bSigma^{1/2}\\bbeta^*+\\bep$ varies with $\\bZ$."
+          },
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds",
+              "prop:trace-calibration-general"
+            ],
+            "text": "Under the auxiliary response law, use the auxiliary response $\\by=\\bep$ when recomputing response-dependent quantities."
+          }
+        ]
+      },
+      "shards": [
+        "7"
+      ],
+      "basis": "39e610f5f4120ba791fda3a7a5295d12238399d378b45feab318e0d714a974cb",
+      "basis_parts": {
+        "source": "2fe30a5d4e275bc2",
+        "intro": "adaeee84ec217698",
+        "corrected": "d75462ec69a02d8b",
+        "entry": "c396a65bb1080fb0",
+        "refs": "b5d150750dc6c242",
+        "settings": "b9562a9ef11e101b",
+        "listing": "dda2b40651e889cc",
+        "redefinitions": "d6bcc7d36b4e9a55",
+        "uses": "0e289fc86996ed64"
+      },
+      "source": "023af3ba2e4ab1e804bfa28a815d2a4e0fa797398617030d61aef75fa9c18c56",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 496,
+        "file": "main.tex",
+        "line": 134
+      }
+    },
+    {
+      "name": "\\bep",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The vector definition is correct. Holding structural noise fixed during design differentiation is essential and differs from holding the response fixed; the auxiliary response law changes its law, not its meaning.",
+      "reading": {
+        "reading": "$\\bep=(\\varepsilon_1,\\ldots,\\varepsilon_n)^\\top=\\by-\\bX\\bbeta^*$ denotes structural noise rather than fitted residuals.",
+        "evidence": "Lines 488--497 define the observation errors and their vector; lines 1425--1430 explicitly distinguish structural noise and require it to be held fixed during design differentiation.",
+        "scoped": [
+          {
+            "results": [
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "Design derivatives are pathwise with $\\bep$ held fixed, together with $\\bS$, $\\bSigma$, and $\\bbeta^*$; consequently $\\by=\\bX\\bbeta^*+\\bep$ varies with the design."
+          },
+          {
+            "results": [
+              "lem:stein-remainders-from-moments"
+            ],
+            "text": "The field is differentiated with respect to $\\bZ$ conditional on $(\\bS,\\bep)$, so the structural-noise coordinates are held fixed."
+          }
+        ]
+      },
+      "shards": [
+        "3"
+      ],
+      "basis": "fc74088cc09322164952f9e1c054af39feb5be14420b845c9847c327feef418b",
+      "basis_parts": {
+        "source": "f436e9f46ca3c58f",
+        "intro": "adaeee84ec217698",
+        "corrected": "3dd120f74e11338a",
+        "entry": "96b3b63e9ea56660",
+        "refs": "99e11bd399f23597",
+        "settings": "8dd869ffd9834769",
+        "listing": "85714be411922ab4",
+        "redefinitions": "86f54a00d6692a6f",
+        "uses": "724607b6d47eb58a"
+      },
+      "source": "f23ad0ee3423d67ada9ecb17cceffd60fcea7c90ede93c38873ff3ea5bf00790",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 497,
+        "file": "main.tex",
+        "line": 135
+      }
+    },
+    {
+      "name": "\\bS",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": "In the balanced-sketch calculations from\nSection~\\ref{app:balanced-transfer-setup} through\nSection~\\ref{app:proof-trace-calibration-general}, we reuse\n$(\\bS,\\bA,b_{\\bA},\\br,t_{\\bSigma})$ for the normalized quantities,\nso $\\trace(\\bA)=n$ almost surely.",
+      "detail": "The sketch-matrix description is correct, but it omits the later reuse for a normalized representative. The simulation families and conditioning on a realized sketch are specializations, not additional redefinitions.",
+      "reading": {
+        "reading": "$\\bS\\in\\R^{m\\times n}$ is the observation sketch acting on the left of $(\\bX,\\by)$, with $1\\leq m\\leq n$.",
+        "evidence": "Lines 488--502 define the sketch and compressed data. Lines 1369--1387 define its normalized representative and expressly reuse the symbol in balanced-sketch calculations, while retaining natural scales in sketch-specific calculations.",
+        "scoped": [
+          {
+            "results": [
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:opnorm-x-bound",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "$\\bS$ denotes the normalized representative $\\overline{\\bS}:=\\{n/\\trace(\\bA)\\}^{1/2}\\bS$ constructed from the original sketch, so the reused symbols satisfy $\\trace(\\bS^\\top\\bS)=n$."
+          },
+          {
+            "results": [
+              "thm:cpal-corrected-accuracy"
+            ],
+            "text": "The statement permits the original sketch scale; its balanced-sketch proof replaces the sketch by the trace-normalized representative, using invariance of the fit and corrected risk estimates."
+          },
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks",
+              "thm:tight-frame-mse-comparison",
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "$\\bS$ retains its natural sketch scale; a scaled orthogonal sketch satisfies $\\bS\\bS^\\top=c_n\\bI_m$ with $c_n>0$."
+          }
+        ]
+      },
+      "shards": [
+        "3"
+      ],
+      "basis": "7628d778ba7fbaf117a8adf0626106ef997a2ba4a24e3885a69c59ac0c2cbbad",
+      "basis_parts": {
+        "source": "e976d18a0506b3cd",
+        "intro": "bdf1d2f11ffa49d8",
+        "corrected": "ddef83b0178710e1",
+        "entry": "150c0a3373134382",
+        "refs": "e5d0cd0486698163",
+        "settings": "e560368ed8c7d41d",
+        "listing": "76c27bcd07f5b11a",
+        "redefinitions": "4bda704adc5ebcf9",
+        "uses": "e6bb56c17ca0b340"
+      },
+      "source": "356b9df3703f8de428f3ef719db662929e46693789d8f49befca25f861ad00a9",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 582,
+        "file": "main.tex",
+        "line": 220
+      }
+    },
+    {
+      "name": "\\hbbeta",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The general fitted-vector entry is correct, but the complementary law permits any compressed-information-measurable fit, whereas the subsequent risk calibration and comparisons use sketched least squares. Auxiliary calculations recompute that fit rather than retaining its value from the original response.",
+      "reading": {
+        "reading": "$\\hbbeta\\in\\R^d$ denotes the fitted coefficient vector produced using only $(\\bS\\bX,\\bS\\by,\\bS)$, hence is $\\calF_{\\bS}$-measurable.",
+        "evidence": "The model setup defines a general compressed-data fit, and Theorem~\\ref{thm:cpal-complementary-law} explicitly allows any measurable coefficient vector. Section~\\ref{sec:underparameterized-transfer} defines sketched least squares; the appendix proof setup adopts that fit notation. The auxiliary response paragraph requires recomputing response-dependent quantities under its separate law.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-corrected-accuracy",
+              "thm:cpal-risk-benchmarks",
+              "thm:tight-frame-mse-comparison",
+              "thm:cpal-mse-comparison",
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:opnorm-x-bound",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "$\\hbbeta$ denotes $\\hbbeta_{\\bS}=\\bM^{-1}\\bX^\\top\\bA\\by$, the unique sketched least-squares fit, with $\\bA=\\bS^\\top\\bS$, $\\bM=\\bX^\\top\\bA\\bX$, and $\\rank(\\bS\\bX)=d$."
+          },
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds",
+              "prop:trace-calibration-general"
+            ],
+            "text": "When evaluated under $\\E_{\\rm aux}$, $\\hbbeta$ is recomputed by the same fitting construction using the auxiliary response, with $\\bbeta^*=\\boldzero$ and $\\bep\\sim\\calN(\\boldzero,\\bI_n)$."
+          }
+        ]
+      },
+      "shards": [
+        "7"
+      ],
+      "basis": "92ee205cfa0a3f9a010214ac25e4802a19a195d9d05f5b392da00e23896d8441",
+      "basis_parts": {
+        "source": "b08704d99d0e4d16",
+        "intro": "31d71b70e15587e7",
+        "corrected": "4dcb9618ee942144",
+        "entry": "de4bda4735a6f92c",
+        "refs": "6e9ab0e226b5c56c",
+        "settings": "b9562a9ef11e101b",
+        "listing": "ba987042226b1a1a",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "8fc0a21d23812e76"
+      },
+      "source": "f036a7300f5211427fb1ae86e3b10aff5724aad7784b6d100ce8a94fb70d2043",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2290,
+        "file": "main.tex",
+        "line": 1727
+      }
+    },
+    {
+      "name": "\\hbbeta_{\\bS}",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\hbbeta_{\\bS}:=\\argmin_{\\bbeta}\\norm{\\bS(\\by-\\bX\\bbeta)}^2=\\bM^{-1}\\bX^\\top\\bA\\by$, where $\\bA=\\bS^\\top\\bS$ and $\\bM=\\bX^\\top\\bA\\bX$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded entry names the estimator without giving its defining minimization or inverse formula. Full column rank fixes uniqueness and the domain of the inverse representation.",
+      "reading": {
+        "reading": "$\\hbbeta_{\\bS}$ is the unique sketched least-squares coefficient vector on $\\{\\rank(\\bS\\bX)=d\\}$, computed from the response under consideration.",
+        "evidence": "Section~\\ref{sec:underparameterized-transfer} gives the minimization, inverse formula and full-column-rank assumption; the auxiliary response definition requires recomputation of response-dependent quantities.",
+        "scoped": [
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds",
+              "prop:trace-calibration-general"
+            ],
+            "text": "Under $\\E_{\\rm aux}$ the fit is recomputed from the auxiliary response; under the original response law it is the original fit."
+          }
+        ]
+      },
+      "shards": [
+        "7"
+      ],
+      "basis": "1cd3df9aa92ae9f905559e6bff355930dd2b32c766f5150c5b6643ca62d4378d",
+      "basis_parts": {
+        "source": "b9b93caa12223faa",
+        "intro": "68093e958ef5b6fe",
+        "corrected": "149e2eb671ca6f1d",
+        "entry": "d06aceb34a101a77",
+        "refs": "6e9ab0e226b5c56c",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "8fcfbf3a1310fa57",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "252e422267e5be94"
+      },
+      "source": "b1497ce048dd6a1d7ee96c1f02a366ef99aab8d1007393f770ca87f7eb736bd5",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 601,
+        "file": "main.tex",
+        "line": 239
+      }
+    },
+    {
+      "name": "R",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$R:=\\E[(y_{\\rm new}-\\bx_{\\rm new}^\\top\\hbbeta)^2\\mid\\bX,\\by,\\bS]=\\sigma^2+(\\hbbeta-\\bbeta^*)^\\top\\bSigma(\\hbbeta-\\bbeta^*)$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded description omits both the defining conditional expectation and its explicit quadratic expression. Later MSE expectations average estimation error over training data and sketch randomness without replacing $R$ by an unconditional risk.",
+      "reading": {
+        "reading": "$R$ is the prediction risk of the realized fitted predictor, integrating only the independent new observation while holding the fitted coefficients fixed; it is a function of the training data and sketch rather than their averaged risk.",
+        "evidence": "Equation~\\ref{eq:cpal-prediction-risk} and its following paragraph specify the conditioning and explain variation across training samples and sketches; the paragraph introducing $\\calF_{\\bS}$ states that conditioning on this information fixes the predictor and its risk."
+      },
+      "shards": [
+        "7"
+      ],
+      "basis": "5b10d41e2bebb09c5b826115cedf97aef6d8b435b2631fb868891de2dfd6a1bb",
+      "basis_parts": {
+        "source": "b81b964aacbc2bf9",
+        "intro": "68093e958ef5b6fe",
+        "corrected": "4f2e7d50042fcf26",
+        "entry": "e4088d45004bf939",
+        "refs": "507674b64165ad0a",
+        "settings": "8e0bce79b4fe6064",
+        "listing": "ed4e3f53f8de4b54",
+        "redefinitions": "621c68c58cf07520",
+        "uses": "93f11535e87d867d"
+      },
+      "source": "bf6ddef4a914b3caa247945fb9aa59609801a41f47d7732f91c9927eacf947a9",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 601,
+        "file": "main.tex",
+        "line": 239
+      }
+    },
+    {
+      "name": "\\bu",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": "The one-vector inequality\nused here states that, for a smooth\n$\\bu:\\R^{n\\times d}\\to\\R^n$ with $\\norm{\\bu}\\leq1$,",
+      "detail": "The residual definition is correct in the regression results. The one-vector inequality locally binds the same notation to a general bounded smooth field, so the residual interpretation must not be imposed there.",
+      "reading": {
+        "reading": "Outside an explicit local smooth-field declaration, $\\bu:=\\by-\\bX\\hbbeta\\in\\R^n$ denotes the residual of the fitted predictor on the original observations.",
+        "evidence": "The original residual is defined at flat.tex lines 522--523, specialized to sketched least squares at line 601, and locally reused for a smooth test field in the proof of Lemma~\\ref{lem:normalized-Gaussian-Stein} at lines 2911--2918.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-corrected-accuracy",
+              "thm:cpal-risk-benchmarks",
+              "thm:tight-frame-mse-comparison",
+              "thm:cpal-mse-comparison",
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "The fitted coefficient is sketched least squares, so $\\bu=\\by-\\bX\\hbbeta_{\\bS}=\\bep-\\bZ\\bq$, with response-dependent quantities recomputed whenever the auxiliary response construction is used."
+          },
+          {
+            "results": [
+              "lem:normalized-gaussian-stein",
+              "lem:one-vector-second-order-cited"
+            ],
+            "text": "In the cited one-vector inequality, $\\bu:\\R^{n\\times d}\\to\\R^n$ is a general smooth field satisfying $\\norm{\\bu}\\leq1$, rather than the regression residual; the transposed version interchanges $n$ and $d$."
+          }
+        ]
+      },
+      "shards": [
+        "2"
+      ],
+      "basis": "099d801cea74bdd7a684f644b560da036c5f6f0148627fda18914b898e6939dc",
+      "basis_parts": {
+        "source": "8d1d7a29d9661af9",
+        "intro": "958ade4c53fb1bf5",
+        "corrected": "f7d5ff5556ae77a3",
+        "entry": "6f58fb474eb33235",
+        "refs": "945819d786918d0c",
+        "settings": "8e0bce79b4fe6064",
+        "listing": "e6b8d1cda545d290",
+        "redefinitions": "c00b761340b4931a",
+        "uses": "2578d023adcc8ef6"
+      },
+      "source": "c5aae8d86ab07a7da57fb96e734eb89713d66916bcbe72ee5d43980de822f9f3",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 523,
+        "file": "main.tex",
+        "line": 161
+      }
+    },
+    {
+      "name": "\\bF",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The row-whitening formula is correct. The weighted-Haar construction yields the same row-whitened matrix because its diagonal weights and scale are positive; for scaled orthogonal sketches, $\\bF=c_n^{-1/2}\\bS$. These passages do not change its meaning.",
+      "reading": null,
+      "shards": [
+        "9"
+      ],
+      "basis": "990f18276ce1428d5483e7bc70267867d64b7a539403c2c60913d0fd95370c89",
+      "basis_parts": {
+        "source": "67659a07f6f37bcc",
+        "intro": "4a3268992dfa52be",
+        "corrected": "88ba7aa68f6763ca",
+        "entry": "4d06816b0754e6b7",
+        "refs": "2780e399b76d67bf",
+        "settings": "b9647d1762c80da5",
+        "listing": "4acda92bcfbedcb8",
+        "redefinitions": "3f8229cc9ba37a34",
+        "uses": "d73530b0257ac958"
+      },
+      "source": "9e8ba26d99168fbd9a7e9c1e14c94cdba93d952c66ece2328901552ab75d15a7",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 750,
+        "file": "main.tex",
+        "line": 388
+      }
+    },
+    {
+      "name": "\\bP_{\\bS}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry correctly gives the orthogonal projector onto the sketch row space. Its rank is $m$, and the scaled-orthogonal identity $\\bA=c_n\\bP_{\\bS}$ is consistent with this definition.",
+      "reading": null,
+      "shards": [
+        "9"
+      ],
+      "basis": "e46bf3c0952d88b5126e6e32e5fbd4aea7d8a62bfb8057cabf7685af320d6c84",
+      "basis_parts": {
+        "source": "1e299db1799bf76f",
+        "intro": "958ade4c53fb1bf5",
+        "corrected": "8a3aa7b6d3fe3d0f",
+        "entry": "aae825e7b156bfdc",
+        "refs": "1d71e683b9346c73",
+        "settings": "b9647d1762c80da5",
+        "listing": "4acda92bcfbedcb8",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "7cb43e1882a8f427"
+      },
+      "source": "bea0047cd41ec385d12cb12f261e4823e91f3214ee16fbfb875f6722bc70d453",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 527,
+        "file": "main.tex",
+        "line": 165
+      }
+    },
+    {
+      "name": "\\bQ_{\\bS}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded complementary orthogonal projector agrees with the paper. Its rank $n-m$ and its dependence only on the sketch follow from the recorded geometry; overall sketch normalization does not change it.",
+      "reading": null,
+      "shards": [
+        "9"
+      ],
+      "basis": "bd1d66ac9c8736a562b6be065114e1d757a31e723559799297712a8d130ed354",
+      "basis_parts": {
+        "source": "86d25e398e95dca2",
+        "intro": "958ade4c53fb1bf5",
+        "corrected": "c20c2a5884ca4f7f",
+        "entry": "94b846d649da99f2",
+        "refs": "10b80b0178eafb2e",
+        "settings": "b9647d1762c80da5",
+        "listing": "086473e4bd2380e7",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "d83b9cc06d4959b3"
+      },
+      "source": "f31d2cfb91aa1a2a53570f409cc56ffc1b519a72cbf8d4f6c6c83fc7ebce7283",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 528,
+        "file": "main.tex",
+        "line": 166
+      }
+    },
+    {
+      "name": "\\calF_{\\bS}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry explicitly identifies the generated sigma-field used for fitting. Its later expression as $\\sigma(\\bS,\\bS\\bX,\\bS\\bep)$ is an equality following from the observation model, not a changed meaning.",
+      "reading": null,
+      "shards": [
+        "10"
+      ],
+      "basis": "9d823e570435158a5e030796596986e5c65d2a2801e9282f3359e3f59d8e0423",
+      "basis_parts": {
+        "source": "81bad6f04a943395",
+        "intro": "eaf7a0445df6ee3c",
+        "corrected": "6982a4a10eb655c5",
+        "entry": "95802a95669d4e8f",
+        "refs": "6aaf79684b17493e",
+        "settings": "b9647d1762c80da5",
+        "listing": "53b885f840b03732",
+        "redefinitions": "7e31ab3b4da3d66c",
+        "uses": "8c35b2042c264a89"
+      },
+      "source": "d91101165a3a939059925556e8c2b6aafbd9ce3701aece3ec18aed1eabedfb09",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 551,
+        "file": "main.tex",
+        "line": 189
+      }
+    },
+    {
+      "name": "\\widehat R_c",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The formula is correct. The complementary-law result permits any compressed-data-measurable predictor, while the MSE comparisons use sketched least squares. The interpolation and simulation formulas do not redefine the estimator.",
+      "reading": {
+        "reading": "$\\widehat R_c=\\norm{\\bQ_{\\bS}\\bu}^2/(n-m)$ is defined for $m<n$ using the residual of the fitted predictor under consideration.",
+        "evidence": "The defining passage begins with $m<n$; the interpolation passage derives the same formula with $\\bQ_{\\bS}\\bu=\\bu$. The MSE comparison concerns the sketched least-squares predictor.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-complementary-law"
+            ],
+            "text": "The residual is $\\bu=\\by-\\bX\\hbbeta$ for any $\\calF_{\\bS}$-measurable coefficient vector $\\hbbeta$, where $\\calF_{\\bS}=\\sigma(\\bS\\bX,\\bS\\by,\\bS)$."
+          },
+          {
+            "results": [
+              "thm:tight-frame-mse-comparison",
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "The residual is $\\bu=\\by-\\bX\\hbbeta_{\\bS}$ for the sketched least-squares fit."
+          }
+        ]
+      },
+      "shards": [
+        "9"
+      ],
+      "basis": "19f1cd3aedd31ac824d02e4e7f7e753e6c44734314e3da44094f9af88ab63094",
+      "basis_parts": {
+        "source": "999b1a0e087ca3ff",
+        "intro": "eaf7a0445df6ee3c",
+        "corrected": "d42ecc5199aca68c",
+        "entry": "437dc4f58dd66b80",
+        "refs": "082702d11fdb5f70",
+        "settings": "b9647d1762c80da5",
+        "listing": "fef0ec044f3bf945",
+        "redefinitions": "82a082613efc6a6b",
+        "uses": "951bdcc55855f990"
+      },
+      "source": "1367b0ce72ab0bf284e882d2ab0c307e9169bb9474ae0c3d460581964a705700",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 548,
+        "file": "main.tex",
+        "line": 186
+      }
+    },
+    {
+      "name": "\\bA",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": "In the balanced-sketch calculations from\nSection~\\ref{app:balanced-transfer-setup} through\nSection~\\ref{app:proof-trace-calibration-general}, we reuse\n$(\\bS,\\bA,b_{\\bA},\\br,t_{\\bSigma})$ for the normalized quantities,\nso $\\trace(\\bA)=n$ almost surely.",
+      "detail": "The Gram formula is correct. The consequential later reuse is trace normalization, rather than the scaled orthogonal specialization or the spectral decomposition, both of which preserve the Gram meaning.",
+      "reading": {
+        "reading": "$\\bA=\\bS^\\top\\bS$ is the positive-semidefinite sketch Gram matrix of rank $m$, using the same sketch representative as $\\bS$.",
+        "evidence": "Lines 488--502 give full row rank of the sketch; lines 594--601 define the Gram matrix. The normalization convention at lines 1369--1387 explicitly reuses the symbols for normalized quantities in the balanced-sketch calculations and preserves natural scales in the sketch-specific calculations.",
+        "scoped": [
+          {
+            "results": [
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:opnorm-x-bound",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "lem:influence-from-moments",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "$\\bA$ denotes the trace-normalized representative: relative to the original sketch Gram matrix, it is multiplied by $n/\\trace(\\bA)$, so the reused symbol satisfies $\\trace(\\bA)=n$."
+          },
+          {
+            "results": [
+              "thm:cpal-corrected-accuracy"
+            ],
+            "text": "The statement permits the original sketch scale and imposes its spectral condition on $n\\bA/\\trace(\\bA)$; the balanced-sketch proof uses the trace-normalized representative."
+          },
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks",
+              "thm:tight-frame-mse-comparison",
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "$\\bA$ retains the natural sketch scale; in the scaled orthogonal case $\\bA=c_n\\bP_{\\bS}$."
+          }
+        ]
+      },
+      "shards": [
+        "3"
+      ],
+      "basis": "5ff9ee69f78234f0b81e7982bb994be2690806b2cad0445fa0da790c29fe73d3",
+      "basis_parts": {
+        "source": "29a8cee14af48867",
+        "intro": "68093e958ef5b6fe",
+        "corrected": "d5e6aedda8585ce8",
+        "entry": "717e69b7c90abadc",
+        "refs": "57afedab541b3384",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "40a40707945800fe",
+        "redefinitions": "95012b39f2f5e0f4",
+        "uses": "4508bb88dff13daa"
+      },
+      "source": "be3db554beb19be0be2371a72dc082c3dbd5fd50079e5853f69211c331e2d2d7",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 599,
+        "file": "main.tex",
+        "line": 237
+      }
+    },
+    {
+      "name": "\\bM",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The defining matrix formula is correct. Its scale follows the sketch convention: the supporting balanced calculations use the normalized representative, and the sketch-specific calculations retain natural scales. The separate whitened matrix $\\widetilde{\\bM}$ is not a redefinition of $\\bM$.",
+      "reading": {
+        "reading": "$\\bM=\\bX^\\top\\bA\\bX=(\\bS\\bX)^\\top(\\bS\\bX)$ is the design-dependent Gram matrix of the current sketch, positive definite on the domain $\\rank(\\bS\\bX)=d$.",
+        "evidence": "The sketched least-squares definition assumes full column rank. The normalization convention and the opening of Section~\\ref{app:balanced-transfer-setup} specify the normalized representative used in the supporting calculations.",
+        "scoped": [
+          {
+            "results": [
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "lem:influence-from-moments",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "$\\bM$ is formed from the trace-normalized sketch Gram matrix with $\\trace(\\bA)=n$; relative to the natural-scale sketch, it is multiplied by $n/\\trace(\\bS^\\top\\bS)$."
+          }
+        ]
+      },
+      "shards": [
+        "7"
+      ],
+      "basis": "d39f0ea6387f310f1dbf1a607661df334724d7969fe5d5cd2ab0c620bed2a199",
+      "basis_parts": {
+        "source": "068e02c5bcc040ff",
+        "intro": "68093e958ef5b6fe",
+        "corrected": "4c75f9f725baaa16",
+        "entry": "3fcdd5572bee0c15",
+        "refs": "78021fdebea5d55d",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "46c854a414773449",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "94bb9d9a89be8bb7"
+      },
+      "source": "f3ce4dfcf61dd7c633e69d3c8f631cd8e81d666b27253b9fce0b54e04c9e9c95",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 599,
+        "file": "main.tex",
+        "line": 237
+      }
+    },
+    {
+      "name": "\\br",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": "In the balanced-sketch calculations from\nSection~\\ref{app:balanced-transfer-setup} through\nSection~\\ref{app:proof-trace-calibration-general}, we reuse\n$(\\bS,\\bA,b_{\\bA},\\br,t_{\\bSigma})$ for the normalized quantities,\nso $\\trace(\\bA)=n$ almost surely.",
+      "detail": "The weighted-residual formula is correct, with explicit normalized reuse in the balanced calculations and natural scaling in sketch-specific comparisons. The derivative-energy lemma separately uses $\\br$ as a generic vector field, so its assumptions do not include residual orthogonality.",
+      "reading": {
+        "reading": "Outside an explicit generic-field declaration, $\\br:=\\bA\\bu\\in\\R^n$ is the weighted residual at the current sketch scale, recomputed from the current response quantities.",
+        "evidence": "The weighted residual is defined at flat.tex line 601; its scaling and normalized reuse are specified at lines 1370--1386. Lines 1446--1448 identify $\\br=\\bA(\\bep-\\bZ\\bq)$, while Lemma~\\ref{lem:derivative-energy-from-inverse-moments} explicitly introduces general random vectors.",
+        "scoped": [
+          {
+            "results": [
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "lem:influence-from-moments",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "The standing weighted residual is $\\br=\\bA(\\bep-\\bZ\\bq)$ for the trace-normalized representative, with $\\trace(\\bA)=n$; for the unregularized sketched least-squares fit, $\\bZ^\\top\\br=\\boldzero$."
+          },
+          {
+            "results": [
+              "lem:derivative-energy-from-inverse-moments"
+            ],
+            "text": "$\\br\\in\\R^n$ is a general random vector field participating in the assumed identity $\\partial\\bq/\\partial z_{ij}=\\bK\\be_jr_i-\\bL^\\top\\be_iq_j$; the weighted-residual construction and sketched normal equations are not imposed."
+          },
+          {
+            "results": [
+              "thm:tight-frame-mse-comparison",
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "The weighted residual retains the natural scaled orthogonal sketch scale: $\\br=c_n\\bP_{\\bS}\\bu$ when $\\bA=c_n\\bP_{\\bS}$."
+          }
+        ]
+      },
+      "shards": [
+        "2"
+      ],
+      "basis": "bb6aa2b2d5c8ee9152e479150254c414c7e8eda6bacb5cdec67e7e2b0311314a",
+      "basis_parts": {
+        "source": "b0f49a09728a0193",
+        "intro": "68093e958ef5b6fe",
+        "corrected": "7eb023a793dc7cd9",
+        "entry": "2632fd496b4b672f",
+        "refs": "2e218ebfa7593365",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "ea2a2abfbb45fe68",
+        "redefinitions": "64e1a4ddde665900",
+        "uses": "d9b624671aad88e5"
+      },
+      "source": "bad69a4cd035ddf32141073d24f02d9fe2e2cee7c6aa98b33e5e4111ab66735f",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 601,
+        "file": "main.tex",
+        "line": 239
+      }
+    },
+    {
+      "name": "b_{\\bA}",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$b_{\\bA}=\\trace(\\bA)-\\trace(\\bA\\bX\\bM^{-1}\\bX^\\top\\bA)$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": "In the balanced-sketch calculations from\nSection~\\ref{app:balanced-transfer-setup} through\nSection~\\ref{app:proof-trace-calibration-general}, we reuse\n$(\\bS,\\bA,b_{\\bA},\\br,t_{\\bSigma})$ for the normalized quantities,\nso $\\trace(\\bA)=n$ almost surely.",
+      "detail": "The recorded label omits the defining trace difference. The later normalization changes this scale-dependent quantity; $b_{\\bA}=c_n(m-d)$ for a scaled orthogonal sketch is a specialization, not a separate definition.",
+      "reading": {
+        "reading": "$b_{\\bA}$ is the positive residual sketch mass computed from the current sketch Gram matrix $\\bA$ and design $\\bX$; it depends on $(\\bX,\\bS)$ and not on the response.",
+        "evidence": "The correction-coefficient display defines the trace difference. The normalization convention preceding Section~\\ref{app:balanced-transfer-setup} explicitly reuses $b_{\\bA}$ for its normalized value, while Appendix~\\ref{app:underparameterized-proofs} retains natural sketch scales.",
+        "scoped": [
+          {
+            "results": [
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "lem:influence-from-moments",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "Use the trace-normalized sketch $\\overline{\\bS}=\\{n/\\trace(\\bS^\\top\\bS)\\}^{1/2}\\bS$ and its Gram matrix; $b_{\\bA}$ denotes the resulting normalized residual sketch mass, equal to $n/\\trace(\\bS^\\top\\bS)$ times the mass of the natural-scale sketch."
+          }
+        ]
+      },
+      "shards": [
+        "7"
+      ],
+      "basis": "59b7ff049f9d63ea3d800ff3188e512c8ae207e88a3d5f17d24b7d45f97daeca",
+      "basis_parts": {
+        "source": "053725c39a3abc14",
+        "intro": "68093e958ef5b6fe",
+        "corrected": "ddf711d63104e195",
+        "entry": "212b2cee536c1a56",
+        "refs": "fbcc056ba6162c4e",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "3cda316529f6d9aa",
+        "redefinitions": "8608f04a09d5b942",
+        "uses": "e382835e1fb97911"
+      },
+      "source": "62b793a35fe80492ac7b7a4ba66024cb235c094f88d7cc903e2b71b9957f1a51",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 607,
+        "file": "main.tex",
+        "line": 245
+      }
+    },
+    {
+      "name": "t_{\\bSigma}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": "In the balanced-sketch calculations from\nSection~\\ref{app:balanced-transfer-setup} through\nSection~\\ref{app:proof-trace-calibration-general}, we reuse\n$(\\bS,\\bA,b_{\\bA},\\br,t_{\\bSigma})$ for the normalized quantities,\nso $\\trace(\\bA)=n$ almost surely.",
+      "detail": "The trace formula is correct, but its sketch scale changes explicitly in the balanced-sketch calculations. The later whitened trace and scaled orthogonal trace are representations at their respective scales, not new population constants.",
+      "reading": {
+        "reading": "$t_{\\bSigma}:=\\trace(\\bSigma\\bM^{-1})$ depends on the design, sketch and population covariance, is unchanged by replacing only the response law, and scales by $c^{-1}$ when $\\bA$ is replaced by $c\\bA$.",
+        "evidence": "The defining trace is given at flat.tex lines 601--607. Lines 1370--1386 specify its scaling and the normalized convention, lines 1441--1445 give the whitened equality, and lines 2628--2635 leave it unchanged under the auxiliary response construction.",
+        "scoped": [
+          {
+            "results": [
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "lem:influence-from-moments",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "The standing balanced-sketch notation evaluates $t_{\\bSigma}$ using the trace-normalized sketch, so $\\trace(\\bA)=n$ and $t_{\\bSigma}=\\trace((\\bZ^\\top\\bA\\bZ)^{-1})$."
+          },
+          {
+            "results": [
+              "thm:tight-frame-mse-comparison",
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "The scaled orthogonal sketch retains its natural scale $\\bA=c_n\\bP_{\\bS}$; in the rotated whitened coordinates, $c_nt_{\\bSigma}=\\trace((\\bZ_1^\\top\\bZ_1)^{-1})$."
+          }
+        ]
+      },
+      "shards": [
+        "2"
+      ],
+      "basis": "988c0b87c06d989175eb89ac98ebd9758162c24e3f2af4f3e6d073bae47fb293",
+      "basis_parts": {
+        "source": "b87ccda819f3cd3b",
+        "intro": "5ba93313a67c7a52",
+        "corrected": "dc05da7e07c21727",
+        "entry": "ee69696188d469ba",
+        "refs": "af21e799a188d40b",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "ddfe90a1cab72069",
+        "redefinitions": "4216ac13a4fef00b",
+        "uses": "0c9ea0861e038717"
+      },
+      "source": "fc29c9429961cb3ce33c8257455a32f7b250ae82e0f38051aea17fcda207b9cc",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1443,
+        "file": "main.tex",
+        "line": 880
+      }
+    },
+    {
+      "name": "\\hR_u",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\hR_u=\\norm{\\bu+t_{\\bSigma}\\br}^2/n$, where $t_{\\bSigma}=\\trace(\\bSigma\\bM^{-1})$, $\\bu=\\by-\\bX\\hbbeta_{\\bS}$, and $\\br=\\bA\\bu$. The index $u$ denotes the unobservable version, which depends on the population covariance through $t_{\\bSigma}$."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded description points to a definition but omits the corrected-residual formula. The estimator uses the fitted sketched least-squares residual and population covariance; it is invariant to overall sketch rescaling.",
+      "reading": null,
+      "shards": [
+        "6"
+      ],
+      "basis": "e80663141758b165577d7ca77cc604f72873f855e89a206f43a31abc21bfe18b",
+      "basis_parts": {
+        "source": "7d0f7454aff797af",
+        "intro": "68093e958ef5b6fe",
+        "corrected": "369c16311fe07814",
+        "entry": "4f331821b6592aa5",
+        "refs": "8fb95e4c9e1064ea",
+        "settings": "4b3342a101fb1b92",
+        "listing": "bd834dfa2a7a9a93",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "b669bc1fc4786efd"
+      },
+      "source": "3f2c053089516ceebafaee3bd4642706c8447eaaff9c41ad933dc0b5734af84b",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 609,
+        "file": "main.tex",
+        "line": 247
+      }
+    },
+    {
+      "name": "\\hR_o",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\hR_o=\\norm{\\bu+(d/b_{\\bA})\\br}^2/n$, where $\\bu=\\by-\\bX\\hbbeta_{\\bS}$ and $\\br=\\bA\\bu$."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry identifies the estimator but omits its defining observable correction. The scaled-orthogonal display is a specialization of the same estimator, and sketch normalization leaves it unchanged.",
+      "reading": null,
+      "shards": [
+        "7"
+      ],
+      "basis": "802413a773fb36ce18111e8557e89b072e11de4a7e461a59859d3138d39b3d8f",
+      "basis_parts": {
+        "source": "a01b469c65065271",
+        "intro": "68093e958ef5b6fe",
+        "corrected": "4a95da928699c485",
+        "entry": "4091b6c1af61fb7f",
+        "refs": "adc7967d80a9ada0",
+        "settings": "4b3342a101fb1b92",
+        "listing": "55f173e32af2c73d",
+        "redefinitions": "b496daf8c3ff7e9e",
+        "uses": "b669bc1fc4786efd"
+      },
+      "source": "87c45da3ac46de3d440a8a3d2aa9c1a03ede8dc99281be670f29d8a22280bd67",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 611,
+        "file": "main.tex",
+        "line": 249
+      }
+    },
+    {
+      "name": "\\hR_{\\GCV}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry gives the defining full-data residual formula. The separately subscripted $\\hR_{\\GCV,\\bF}$ uses row-whitened sketch coordinates and does not redefine $\\hR_{\\GCV}$.",
+      "reading": null,
+      "shards": [
+        "10"
+      ],
+      "basis": "3481140cca300afd9fa8e722b29e26f6d03fe81e05b5b0e1a520375b6efe9c96",
+      "basis_parts": {
+        "source": "a89108afab5a2612",
+        "intro": "b8ce44ef40b0a6e8",
+        "corrected": "4a70a7d8d5f8e7ee",
+        "entry": "a5cba2fd594b73e4",
+        "refs": "51d0c66517f815ca",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "8a33818854494f62",
+        "redefinitions": "80c597c688699a0d",
+        "uses": "956af7b8ab45b53d"
+      },
+      "source": "048fad35c74acc340c32aaabfb9f70c466a880369ecee2231250bfe2ac78c262",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 648,
+        "file": "main.tex",
+        "line": 286
+      }
+    },
+    {
+      "name": "c_n",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry exactly records the positive scale in $\\bS\\bS^\\top=c_n\\bI_m$. The paper imposes no additional convergence or normalization requirement on this natural sketch scale in the listed comparisons.",
+      "reading": null,
+      "shards": [
+        "10"
+      ],
+      "basis": "40bda93a105776db63581e9c5c1fd784dce0d55e0e407a5474e17d802a289c08",
+      "basis_parts": {
+        "source": "3f5fc66d6ce23b32",
+        "intro": "90cdbf1657c162c3",
+        "corrected": "94f236a71fe54881",
+        "entry": "67a467141e2f4eda",
+        "refs": "a02a6dee16d02fb6",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "471971b9cafae7a6",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "39edaafcb8cb9105"
+      },
+      "source": "1a6be2a36f288c3db5d00d3056f85888c8e767b145d597000a10c20dfb296124",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 4195,
+        "file": "main.tex",
+        "line": 3632
+      }
+    },
+    {
+      "name": "\\gamma_n",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The ratio is recorded correctly. Its role as a sequence and the different endpoint conventions in the two proportional regimes require explicit scope.",
+      "reading": {
+        "reading": "$\\gamma_n=d/n$ is the deterministic dimension ratio along the sequence of sample sizes, with $d$ allowed to vary with $n$.",
+        "evidence": "The proportional-regime passage before Theorem~\\ref{thm:cpal-risk-benchmarks} defines $(\\gamma_n,\\rho_n)$ and its limit; Theorem~\\ref{thm:cpal-mse-comparison} states the stricter interior regime and its additional local-crossover condition.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks"
+            ],
+            "text": "$(\\gamma_n,\\rho_n)\\to(\\gamma,\\rho)$ with $0<\\gamma<\\rho\\leq1$."
+          },
+          {
+            "results": [
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "$(\\gamma_n,\\rho_n)\\to(\\gamma,\\rho)$ with $0<\\gamma<\\rho<1$; the additional local-crossover conclusion assumes that $\\gamma_n$ stays in a compact subset of $(0,1)$."
+          }
+        ]
+      },
+      "shards": [
+        "9"
+      ],
+      "basis": "fac2c8c89a630e8e83b57c976f7c7beb06c6a819a6b6aab2c3e0d0ea86ea6f36",
+      "basis_parts": {
+        "source": "e0883b5275ac30a7",
+        "intro": "b8ce44ef40b0a6e8",
+        "corrected": "60853b9419b39c25",
+        "entry": "00507cb5f0fc559c",
+        "refs": "9b3660e9d26e6fbc",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "eaa89fe77ad0173b",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4fcac9c7b2fe1751"
+      },
+      "source": "fc2f706c4c61ebfb7ce70e410d17fc30d5ac1fcaa1ff83c4fb4d359be96f0c82",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 650,
+        "file": "main.tex",
+        "line": 288
+      }
+    },
+    {
+      "name": "\\rho_n",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded ratio and range are correct. Actual sketch ratios lie on an integer grid, whereas the local crossover uses the paper's explicit continuous relaxation.",
+      "reading": {
+        "reading": "$\\rho_n=m/n$ is the deterministic sketch-size ratio along the sequence of sample sizes, with integer $1\\leq m\\leq n$ for actual sketches.",
+        "evidence": "The proportional-regime passage defines the ratio and its limit; the local-crossover definition explicitly treats this ratio as continuous.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks"
+            ],
+            "text": "$(\\gamma_n,\\rho_n)\\to(\\gamma,\\rho)$ with $0<\\gamma<\\rho\\leq1$."
+          },
+          {
+            "results": [
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "$(\\gamma_n,\\rho_n)\\to(\\gamma,\\rho)$ with $0<\\gamma<\\rho<1$; in defining $\\rho_n^{\\#}$, $\\rho_n$ is continuously extended and $m=n\\rho_n$ need not be an integer."
+          }
+        ]
+      },
+      "shards": [
+        "9"
+      ],
+      "basis": "9a02836126debdad51c32aafe953aea91eb6386df289e4f9e36070efb5663ed7",
+      "basis_parts": {
+        "source": "fadd11fd23ca3460",
+        "intro": "50ca3fccc26fd73e",
+        "corrected": "0bcaddf2c6dc4a13",
+        "entry": "a38d5bcd80b25a49",
+        "refs": "e5d0cd0486698163",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "09f515423653b063",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "fe850dd0dc1f73e1"
+      },
+      "source": "4ae187be015456b5832d7278b3f2b844efae389b09f67ba9acd5d6c9d1635751",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 713,
+        "file": "main.tex",
+        "line": 351
+      }
+    },
+    {
+      "name": "\\gamma",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The limit is correctly recorded, but its relationship to the limiting sketch ratio differs between the two uses.",
+      "reading": {
+        "reading": "$\\gamma=\\lim_{n\\to\\infty}d/n$ is the deterministic limiting feature-to-sample ratio, with $0<\\gamma<1$.",
+        "evidence": "The noninterpolating proportional regime preceding Theorem~\\ref{thm:cpal-risk-benchmarks} and the hypotheses of Theorem~\\ref{thm:cpal-mse-comparison} specify the joint limits and their ranges.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks"
+            ],
+            "text": "The joint limiting ratios satisfy $0<\\gamma<\\rho\\leq1$."
+          },
+          {
+            "results": [
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "The joint limiting ratios satisfy $0<\\gamma<\\rho<1$."
+          }
+        ]
+      },
+      "shards": [
+        "8"
+      ],
+      "basis": "dd5821b35c6dbcdfc9cece7b4a0b76f9538d9c0182f146c40fa42e7e2f49b66b",
+      "basis_parts": {
+        "source": "068bcc82b0a3e799",
+        "intro": "b8ce44ef40b0a6e8",
+        "corrected": "f2d2e7b899d05d18",
+        "entry": "b95002b7115b389e",
+        "refs": "06c359bdbd18ab94",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "21adc9735aea4da0",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "18b492f49b4da2f6"
+      },
+      "source": "fc0a400c9532fec9eba4dc6414b7bfee45071868e4525eafca2a400cc9697599",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 650,
+        "file": "main.tex",
+        "line": 288
+      }
+    },
+    {
+      "name": "\\rho",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The limiting ratio is correctly identified, but its relation to the limiting dimension ratio and the interior restriction for the MSE comparison need recording. The later endpoint and crossover discussions do not redefine it.",
+      "reading": {
+        "reading": "$\\rho=\\lim_{n\\to\\infty}\\rho_n=\\lim_{n\\to\\infty}m/n$ is a limiting sketch proportion satisfying $\\gamma<\\rho\\leq1$.",
+        "evidence": "The proportional regime immediately preceding Theorem~\\ref{thm:cpal-risk-benchmarks} specifies $0<\\gamma<\\rho\\leq1$; Theorem~\\ref{thm:cpal-mse-comparison} restricts this to $\\rho<1$.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "$\\rho<1$."
+          }
+        ]
+      },
+      "shards": [
+        "10"
+      ],
+      "basis": "10debfee635dd81a6f201e569dd3052083a2fbbfb3ef7f27d2f169c0fc4ec4a9",
+      "basis_parts": {
+        "source": "2fddc8ab6f530e2b",
+        "intro": "15b0da1d7926c802",
+        "corrected": "667321dc7e48cfdc",
+        "entry": "a30b30dd83f150f4",
+        "refs": "a6e2f2d563fb6de8",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "b7ccd4ed4263e399",
+        "redefinitions": "30bc33730b444ede",
+        "uses": "18b492f49b4da2f6"
+      },
+      "source": "b151b946bdb663e53876bdce09a2931cf5d9d9f67cca91954218f3e644dff6ff",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 672,
+        "file": "main.tex",
+        "line": 310
+      }
+    },
+    {
+      "name": "\\calR_j",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\calR_{\\rm SO}=\\frac{\\sigma^2\\rho}{\\rho-\\gamma}$ and $\\calR_{\\rm G}=\\sigma^2\\left\\{\\frac1{1-\\gamma}+\\frac{\\gamma}{\\rho-\\gamma}\\right\\}$, where $j\\in\\{\\rm SO,\\rm G\\}$ identifies scaled orthogonal sketches or dense Gaussian sketches with independent entries $S_{ki}\\sim\\calN(0,1/m)$, respectively."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry identifies a limiting risk but omits both family-specific formulas and the index meanings explicitly defined in Theorem~\\ref{thm:cpal-risk-benchmarks}.",
+      "reading": null,
+      "shards": [
+        "8"
+      ],
+      "basis": "ed2ebb8d09971a0c4d3ba8213d35af14705cdbf5bc87a3bc20532ee0c942a137",
+      "basis_parts": {
+        "source": "f02a14c27bae7f1f",
+        "intro": "9ccb7df75060bf3a",
+        "corrected": "9d5b93d319beedf6",
+        "entry": "c2263ba72b205f1d",
+        "refs": "0ddaaf9afbf44586",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "c55c7d5992017ffa",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "445ea80351bcb178eb77f53b0684be5f731c05910b61323915292e93c6e5b4d5",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 655,
+        "file": "main.tex",
+        "line": 293
+      }
+    },
+    {
+      "name": "\\Delta_j",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "For $j\\in\\{\\mathrm{SO},\\mathrm{G}\\}$, $\\Delta_{\\rm SO}=\\sigma^2\\gamma^2(1-\\rho)/\\{(\\rho-\\gamma)(1-\\gamma)^2\\}$ and $\\Delta_{\\rm G}=\\sigma^2\\gamma^2/\\{(1-\\gamma)(\\rho-\\gamma)\\}$, where SO denotes scaled orthogonal sketches and G denotes dense Gaussian sketches with independent $\\calN(0,1/m)$ entries."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded label omits the two explicitly defined limiting gaps and their family index. The defining display supplies deterministic functions of the population variance and limiting ratios.",
+      "reading": null,
+      "shards": [
+        "10"
+      ],
+      "basis": "4eb51489b69cb785e938d032523a182eee496d658890c174d91a9ee4e75983bb",
+      "basis_parts": {
+        "source": "924b8afe1863bc42",
+        "intro": "9ccb7df75060bf3a",
+        "corrected": "30e2d0cdc8e107d9",
+        "entry": "ee33e25812092aca",
+        "refs": "0ddaaf9afbf44586",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "c55c7d5992017ffa",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "499f433c14e051074499a394ec9c88d21d9922c46528d5c8d5dc72d9d9f02e9c",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 655,
+        "file": "main.tex",
+        "line": 293
+      }
+    },
+    {
+      "name": "k",
+      "meaning": "drift",
+      "fix": {
+        "type": "locally scoped integer parameter",
+        "space": null,
+        "def": "$k$ is an integer parameter whose meaning is assigned locally."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": "For every fixed integer $k\\geq1$, there is a constant $C_k<\\infty$,\nindependent of $n$, such that",
+      "detail": "The recorded dimension difference does not cover the paper's local uses of $k$. The existing local readings remain valid; the rowwise covariance input additionally uses $k$ as the second of two distinct design-row indices.",
+      "reading": {
+        "reading": "$k$ is a deterministic integer parameter bound by its local definition or quantifier.",
+        "evidence": "The proof of Lemma~\\ref{lem:Stein-remainders-from-moments} defines $D_k\\ba_i$ by differentiation with respect to row $\\bz_k$ and invokes the rowwise covariance inequality for $i\\ne k$, conditioning on $(\\bZ_{-\\{i,k\\}},\\bS,\\bep)$.",
+        "scoped": [
+          {
+            "results": [
+              "thm:tight-frame-mse-comparison",
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "In the finite-MSE expressions, $k=m-d>3$ and may vary with $n$."
+          },
+          {
+            "results": [
+              "thm:cpal-complementary-law"
+            ],
+            "text": "In the proof, $k=n-m>0$ is the rank of $\\bQ_{\\bS}$ and the complementary chi-square degrees of freedom."
+          },
+          {
+            "results": [
+              "lem:opnorm-x-bound",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "lem:balanced-remainder-bounds"
+            ],
+            "text": "In moment bounds, $k\\geq1$ is an arbitrary fixed integer moment order, independent of $n$, rather than a dimension difference."
+          },
+          {
+            "results": [
+              "thm:cpal-corrected-accuracy"
+            ],
+            "text": "The proof's invocation of a moment bound at $k=1$ uses $k$ as moment order."
+          },
+          {
+            "results": [
+              "lem:stein-remainders-from-moments"
+            ],
+            "text": "In the proof's rowwise derivative and covariance calculations, $k$ indexes a design row, with $1\\leq k\\leq n$ and $k\\ne i$ where stated."
+          },
+          {
+            "results": [
+              "lem:rowwise-gaussian-covariance-cited"
+            ],
+            "text": "$k$ is a locally bound design-row index, with $1\\leq k\\leq n$ and $k\\ne i$."
+          }
+        ]
+      },
+      "shards": [
+        "6"
+      ],
+      "basis": "ec685fc0b3742217787eed125834779049cd82e9ba625d8622f15c13509f4d65",
+      "basis_parts": {
+        "source": "95ef0547757d2a19",
+        "intro": "5c29b2d2b3ada03a",
+        "corrected": "8e1a7e5ddf478543",
+        "entry": "6c5fea61727bf06f",
+        "refs": "b1a682ec5369c9ef",
+        "settings": "b456985111a3e733",
+        "listing": "3ccbfdf60da7c9b3",
+        "redefinitions": "d75f2f715591eb3f",
+        "uses": "391c1e5fb58c0670"
+      },
+      "source": "f88d31ee261f1aef9be65b87593f1b852b12d5de2540655683fd2744b9e800f4",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 676,
+        "file": "main.tex",
+        "line": 314
+      }
+    },
+    {
+      "name": "q",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The scalar $q=n-m$ is correctly recorded. The simulation passages repeat this definition; the Stein lemmas use the distinct vector symbol $\\bq$ and its coordinates, not a redefinition of scalar $q$.",
+      "reading": null,
+      "shards": [
+        "6"
+      ],
+      "basis": "e534d851a703f94996626ddb2b95fbbf3145d0d45042660203fcf50b27668e79",
+      "basis_parts": {
+        "source": "7a7a815ebd43ba6c",
+        "intro": "5c29b2d2b3ada03a",
+        "corrected": "a07b0720c850760b",
+        "entry": "bba949ffc85c4113",
+        "refs": "e5d0cd0486698163",
+        "settings": "76cac0f8e1a7d7b5",
+        "listing": "1ac05e805735f906",
+        "redefinitions": "dd5efac8d55faf1e",
+        "uses": "d221039a1cb98a83"
+      },
+      "source": "d4fece95b99aa8099514e3aebe674576d54af6cac9c3aa735b3f16cf409df498",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 676,
+        "file": "main.tex",
+        "line": 314
+      }
+    },
+    {
+      "name": "e_{m,d}",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$e_{m,d}:=\\frac{(m-1)(m-3)}{(k-1)(k-3)}$, where $k=m-d$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded definition omits the explicit rational function supplied by the paper.",
+      "reading": {
+        "reading": "$e_{m,d}$ is the deterministic dimension-dependent coefficient defined for integer dimensions $1\\leq d$ and $d+3<m<n$, using $k=m-d$.",
+        "evidence": "The coefficient display preceding Theorem~\\ref{thm:tight-frame-mse-comparison} defines the formula for $d+3<m<n$."
+      },
+      "shards": [
+        "8"
+      ],
+      "basis": "e17e6a5d9c6ef4502d4efae4d84856ca3b1a23a186cc6c2f4c16f65810dc1d69",
+      "basis_parts": {
+        "source": "3d86384c81a7d3b9",
+        "intro": "5c29b2d2b3ada03a",
+        "corrected": "d8179f80e91ef8bf",
+        "entry": "e03e9067f3ba203d",
+        "refs": "fa2bab27517f2f76",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "e10ef6637016e890",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "d221039a1cb98a83"
+      },
+      "source": "9af24cb5e8831c09f153aa972f933033a430b65147644913a55ff05ae5a03e3e",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 678,
+        "file": "main.tex",
+        "line": 316
+      }
+    },
+    {
+      "name": "a_{m,d}",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$a_{m,d}:=\\frac{2m^2}{k^3}+\\frac{2d(m-1)}{(k-1)^2(k-3)}+\\frac{d^2}{k^2(k-1)^2}$, where $k=m-d$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded definition only points to a node; the paper gives an explicit rational function of the dimensions.",
+      "reading": {
+        "reading": "$a_{m,d}$ is the deterministic dimension-dependent coefficient defined for integer dimensions $1\\leq d$ and $d+3<m<n$, using $k=m-d$.",
+        "evidence": "The coefficient display preceding Theorem~\\ref{thm:tight-frame-mse-comparison} defines the formula for $d+3<m<n$."
+      },
+      "shards": [
+        "8"
+      ],
+      "basis": "a4215e0f5b8d87f19d372f0cba639631fdf42908d9fdfdcc6776ac946b2f8fe5",
+      "basis_parts": {
+        "source": "89068871c732fbca",
+        "intro": "5c29b2d2b3ada03a",
+        "corrected": "2e4b8d643d473400",
+        "entry": "8bd112383c83aff5",
+        "refs": "fa2bab27517f2f76",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "e10ef6637016e890",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "881495f2e181c2a4"
+      },
+      "source": "801b847085984feded1ed8928ab649f5e4d88c7e692572e17047db28aa336961",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 679,
+        "file": "main.tex",
+        "line": 317
+      }
+    },
+    {
+      "name": "\\rho_*(\\gamma)",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry records the explicit crossover function correctly for $0<\\gamma<1$.",
+      "reading": null,
+      "shards": [
+        "8"
+      ],
+      "basis": "194c164fc7c79e8d7bef3b6cf2e35777426bb32c8e07f33530a121bdb96d867a",
+      "basis_parts": {
+        "source": "a28bb7dc777b58ae",
+        "intro": "50ca3fccc26fd73e",
+        "corrected": "341f963189d74d5d",
+        "entry": "0d0d9601d74c11a2",
+        "refs": "dee0acd84a4afda5",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "50882ec3c7927ace",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "7ee8778eb79ca164"
+      },
+      "source": "3aec6d0a50e1c51d0109980991227274ecede1ef4265ec1eea4933922c5673bc",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 707,
+        "file": "main.tex",
+        "line": 345
+      }
+    },
+    {
+      "name": "\\rho_n^{\\#}",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "The local continuous solution of $\\operatorname{MSE}(\\hR_o)=\\operatorname{MSE}(\\widehat R_c)$ near $\\rho_*(\\gamma_n)=3\\gamma_n/(1+2\\gamma_n)$, using \\eqref{eq:tight-frame-exact-mse-comparison}; equivalently, $q^2+m^2q a_{m,d}/(2e_{m,d})=n^2$ with $m=n\\rho_n^{\\#}$ and $q=n-m$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded definition only points to a node and omits the defining equality and neighborhood. The paper defines a continuous finite-sample crossover, rather than a selected integer sketch size or an empirical random crossover.",
+      "reading": {
+        "reading": "$\\rho_n^{\\#}$ is a deterministic local root near $\\rho_*(d/n)$ of the finite-sample MSE equality after continuously extending $m=n\\rho_n$; it need not correspond to an integer sketch size.",
+        "evidence": "The defining passage following \\eqref{eq:tight-frame-finite-mse-rule} specifies the local root, its neighborhood, and the continuous treatment of $\\rho_n=m/n$."
+      },
+      "shards": [
+        "9"
+      ],
+      "basis": "f26cca3cf5f96b1b91f02598eb8c3fbcd06cf84b99f91d9def4cc8869eb65e32",
+      "basis_parts": {
+        "source": "4053c28d54d305fa",
+        "intro": "50ca3fccc26fd73e",
+        "corrected": "b2e8e15211c87f1b",
+        "entry": "5883faf6a0209381",
+        "refs": "825e115371bf8b8f",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "38eafd69a067bcf6",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "5085433b28703b57"
+      },
+      "source": "926445cafee5f9b8f5fe253048db5ac6ad7015b6ca8557a2b7eae085eed25d1c",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 709,
+        "file": "main.tex",
+        "line": 347
+      }
+    },
+    {
+      "name": "\\bB",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": "For the sketched least-squares map,\nlet $\\bB=\\bLambda^{1/2}\\bG_0$ locally in this proof.",
+      "detail": "The standing compressed-design definition is correct, but it must not replace the explicitly local definition in the inverse-moment proof.",
+      "reading": {
+        "reading": "$\\bB\\in\\R^{m\\times d}$ denotes $\\bS\\bX$ except where explicitly rebound locally.",
+        "evidence": "The standing notation after Assumption~\\ref{assu:model-sketch} defines $\\bB:=\\bS\\bX$; the proof of Lemma~\\ref{lem:M-inverse-bound} explicitly introduces a different local matrix.",
+        "scoped": [
+          {
+            "results": [
+              "lem:m-inverse-bound"
+            ],
+            "text": "In the proof's bound for the sketched least-squares map, $\\bB=\\bLambda^{1/2}\\bG_0$ locally, where $\\bG_0\\in\\R^{m\\times d}$ is the Gaussian matrix used in that proof."
+          }
+        ]
+      },
+      "shards": [
+        "6"
+      ],
+      "basis": "9ee55ea2bef30b52e9d47e6a650b4d3ba15fa67352c739dd8974f86fca1a34ad",
+      "basis_parts": {
+        "source": "8db86ac21ec24840",
+        "intro": "37f80a91a28460e4",
+        "corrected": "660886c280fd1b4c",
+        "entry": "d116377c312bd34a",
+        "refs": "39cb2790c0faac97",
+        "settings": "473c11ab8f753615",
+        "listing": "7cd8520eecf91f0c",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "7a7e38c64f34757f"
+      },
+      "source": "314f4523c4d0e764299a8f73f9dedafe58ff74f1989c83971d065402a607a429",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1880,
+        "file": "main.tex",
+        "line": 1317
+      }
+    },
+    {
+      "name": "\\bh",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The formula is correct. The auxiliary-law occurrences denote a recomputed coefficient error rather than the original response-dependent quantity.",
+      "reading": {
+        "reading": "$\\bh=\\hbbeta_{\\bS}-\\bbeta^*$ is the coefficient error computed from the response used in the expectation under consideration.",
+        "evidence": "The compressed-error notation defines the difference; the auxiliary response definition explicitly requires recomputing $\\bh$.",
+        "scoped": [
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds",
+              "prop:trace-calibration-general"
+            ],
+            "text": "Under $\\E_{\\rm aux}$, recompute $\\bh$ using the auxiliary response and $\\bbeta^*=\\boldzero$; under the original response law use the original coefficient error."
+          }
+        ]
+      },
+      "shards": [
+        "2"
+      ],
+      "basis": "7d650f096ab9ed33dd9fab9822770eb6c33eed9c739995e10b5783bd6b5f0a90",
+      "basis_parts": {
+        "source": "31aa16ff93a715b7",
+        "intro": "bf4ea7f4ae1687e0",
+        "corrected": "03a4f977cb78e455",
+        "entry": "f54e60407f19fb7d",
+        "refs": "a48890196242989b",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "2e59cd8d7d982d88",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "0ce59814abed4a21"
+      },
+      "source": "7153db00c783e414732f297f17d8614695d1901b59bb9dcd9b7e6208050206db",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1349,
+        "file": "main.tex",
+        "line": 786
+      }
+    },
+    {
+      "name": "c_{\\bSigma}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The lower bound is correctly identified, but its uniformity across sample sizes is missing.",
+      "reading": {
+        "reading": "$c_{\\bSigma}$ is a fixed positive constant, independent of $n$, satisfying $c_{\\bSigma}\\bI_d\\preceq\\bSigma$ and $c_{\\bSigma}\\leq C_{\\bSigma}$.",
+        "evidence": "Assumption~\\ref{assu:model-sketch} states these inequalities and independence of $n$."
+      },
+      "shards": [
+        "6"
+      ],
+      "basis": "52a5f0a9c77ddaec35d5799b3d629df655b361af45fbd6c17b91efbf656bb81b",
+      "basis_parts": {
+        "source": "9b3e138b8d1f3ea1",
+        "intro": "efbb93258bb360df",
+        "corrected": "940dadfe170917d9",
+        "entry": "cfb2d0ceab3c1a06",
+        "refs": "c00fd1b9304a5243",
+        "settings": "4b3342a101fb1b92",
+        "listing": "67baf527750c8c4f",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "e34e4d49e3b37206"
+      },
+      "source": "6b2b0e22ac6d026ef7019916c2d1ab7107e99519b5217beb39a924143a04a31c",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1340,
+        "file": "main.tex",
+        "line": 777
+      }
+    },
+    {
+      "name": "C_{\\bSigma}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The upper bound is correctly identified, but its uniformity across sample sizes is missing.",
+      "reading": {
+        "reading": "$C_{\\bSigma}$ is a fixed finite positive constant, independent of $n$, satisfying $\\bSigma\\preceq C_{\\bSigma}\\bI_d$.",
+        "evidence": "Assumption~\\ref{assu:model-sketch} explicitly makes the covariance bounds independent of $n$."
+      },
+      "shards": [
+        "6"
+      ],
+      "basis": "e051b1fc29f284c7280f3423e5e6c07230c614db3cd3be61f8b6d71d3f4e9abc",
+      "basis_parts": {
+        "source": "34986392f478f013",
+        "intro": "efbb93258bb360df",
+        "corrected": "f02627291822afe3",
+        "entry": "c5939adc766dff14",
+        "refs": "c00fd1b9304a5243",
+        "settings": "4b3342a101fb1b92",
+        "listing": "be4371a9613164b8",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4391d7cefe774dfb"
+      },
+      "source": "600f46bd3c13aa60b617ae1b74dd18a1ec5ae23e41c8d31d6dcd8d991d99200a",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1340,
+        "file": "main.tex",
+        "line": 777
+      }
+    },
+    {
+      "name": "\\bZ",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The factorization uniquely identifies the whitened design because the population covariance is positive definite. The Gaussian laws and conditional integration conventions are supplied by the settings; the generic derivative lemma does not itself impose a Gaussian law.",
+      "reading": null,
+      "shards": [
+        "1"
+      ],
+      "basis": "83cb09bf674581b110d939e8603bc30ad5e9e323692510edf203182e1b8ed5c1",
+      "basis_parts": {
+        "source": "37c443cdd2e97e62",
+        "intro": "19e16e052182bfba",
+        "corrected": "8530f05460a63c4f",
+        "entry": "681b80f7976e29e1",
+        "refs": "4efc9ee00611c7a8",
+        "settings": "eb90a7b9908b1041",
+        "listing": "c582f30be7fe29df",
+        "redefinitions": "f6701113e699ed5e",
+        "uses": "facefea3b63550d8"
+      },
+      "source": "cdb96f3d5d07b62b57a76225ef2ca3e26aa1ea31e03c58eec18911f14f116aef",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 518,
+        "file": "main.tex",
+        "line": 156
+      }
+    },
+    {
+      "name": "K_\\varepsilon",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\sup_n\\norm{\\varepsilon_1}_{\\psi_2}\\leq K_\\varepsilon$, where $\\norm{W}_{\\psi_2}:=\\inf\\{t>0:\\E\\exp(W^2/t^2)\\leq2\\}$, with the explicitly stated relative convention used when invoked."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": "If the sub-Gaussian condition is expressed in the relative form\n$\\norm{\\varepsilon_1}_{\\psi_2}\\leq K_\\varepsilon\\sigma$, the first bound in\n\\eqref{eq:noise-energy-moments} becomes\n$\\E(\\norm{\\bep}^2/n)^k\\leq C(k,K_\\varepsilon)(\\sigma^2)^k$.",
+      "detail": "The vague tail-bound label omits the precise norm and its normalization. The standing bound is absolute; the separately stated relative version bounds the norm after scaling by $\\sigma$, so the two conventions must remain distinct.",
+      "reading": {
+        "reading": "$K_\\varepsilon<\\infty$ is a deterministic constant independent of $n$ controlling the error $\\psi_2$ norm, using the absolute convention unless the relative convention is explicitly invoked.",
+        "evidence": "Assumption~\\ref{assu:Gaussian-Stein-design} defines the absolute uniform bound and the $\\psi_2$ norm; Lemma~\\ref{lem:opnorm-X-bound} separately invokes the relative convention for its variance-scaled noise-energy bound.",
+        "scoped": [
+          {
+            "results": [
+              "lem:opnorm-x-bound"
+            ],
+            "text": "For the explicitly stated relative version of the noise-energy bound, $K_\\varepsilon$ instead satisfies $\\norm{\\varepsilon_1}_{\\psi_2}\\leq K_\\varepsilon\\sigma$; this convention applies to that version only."
+          }
+        ]
+      },
+      "shards": [
+        "6"
+      ],
+      "basis": "f5da64544f866d1e514352f768cb4cbffb53fc4d2f5c3e8970f31335bafdf169",
+      "basis_parts": {
+        "source": "d2c802521d91307b",
+        "intro": "6ae08fdf539f343b",
+        "corrected": "81ed0810ecb7d08c",
+        "entry": "46b0151111662d71",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "473c11ab8f753615",
+        "listing": "9f68d8ff3c31d34b",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "0c5e8650db394a3a"
+      },
+      "source": "e3edc5bb49e64842f8aae3ebe00c1007c00d3a7b7434a52bd350fda683e029ee",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1395,
+        "file": "main.tex",
+        "line": 832
+      }
+    },
+    {
+      "name": "c_-",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The lower spectral-bound meaning is correct. The bound concerns positive eigenvalues only, and one strictly positive deterministic constant works for all sufficiently large sample sizes.",
+      "reading": {
+        "reading": "$c_-$ is a strictly positive deterministic constant independent of $n$, with $c_-\\leq c_+<\\infty$, such that every positive eigenvalue of $n\\bA/\\trace(\\bA)$ is at least $c_-$ almost surely for every sufficiently large $n$.",
+        "evidence": "Theorem~\\ref{thm:cpal-corrected-accuracy} states the normalized spectral interval, and Assumption~\\ref{assu:Gaussian-Stein-design} specifies deterministic constants independent of $n$ and the equivalent bound for the trace-normalized representative."
+      },
+      "shards": [
+        "6"
+      ],
+      "basis": "2417267948bcd9a366314fb35da51a2252b6d4ca0ed87cf1da334c9cc8f0e2e4",
+      "basis_parts": {
+        "source": "c1a19874700d0a92",
+        "intro": "fa5dc846f5a11018",
+        "corrected": "337f0debdacefdeb",
+        "entry": "78f17604f3fc924f",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "473c11ab8f753615",
+        "listing": "6c68bb47e91de3e4",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "bb7ebd06bf6a08e1"
+      },
+      "source": "a4d063c9432e311060d81a3f34cfee15742f0c99ab6a3dff5365b673b3d4b344",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 622,
+        "file": "main.tex",
+        "line": 260
+      }
+    },
+    {
+      "name": "c_+",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The upper spectral-bound meaning is correct. The reading fixes its deterministic, uniform-in-$n$ character, its relation to the lower bound, and the eventual almost-sure qualification.",
+      "reading": {
+        "reading": "$c_+$ is a finite deterministic constant independent of $n$, with $0<c_-\\leq c_+$, such that every positive eigenvalue of $n\\bA/\\trace(\\bA)$ is at most $c_+$ almost surely for every sufficiently large $n$.",
+        "evidence": "Theorem~\\ref{thm:cpal-corrected-accuracy} states the normalized spectral interval, and Assumption~\\ref{assu:Gaussian-Stein-design} specifies deterministic constants independent of $n$ and the equivalent bound for the trace-normalized representative."
+      },
+      "shards": [
+        "6"
+      ],
+      "basis": "dffa6cfe1b39012dcf1a6bd9823015697de83004a619171984ad929f7c34fc25",
+      "basis_parts": {
+        "source": "9df8bc6842a24be3",
+        "intro": "fa5dc846f5a11018",
+        "corrected": "1c622435c71f27c2",
+        "entry": "a8345b6ab4ccbc58",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "473c11ab8f753615",
+        "listing": "6c68bb47e91de3e4",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "f5f64d6b0c91115d"
+      },
+      "source": "670be28df249eb67cb9d0c870040acd0ebbf211c613537c1473779433419c868",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 622,
+        "file": "main.tex",
+        "line": 260
+      }
+    },
+    {
+      "name": "\\kappa",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The dimension-gap meaning is correct. The essential additional convention is that one positive deterministic constant works uniformly for all sufficiently large sample sizes.",
+      "reading": {
+        "reading": "$\\kappa>0$ is a deterministic constant independent of $n$ such that $m-d\\geq\\kappa n$ for every sufficiently large $n$.",
+        "evidence": "Theorem~\\ref{thm:cpal-corrected-accuracy} calls it fixed, and Assumption~\\ref{assu:Gaussian-Stein-design} explicitly makes it deterministic and independent of $n$, with the inequality holding for every $n\\geq n_0$."
+      },
+      "shards": [
+        "6"
+      ],
+      "basis": "9f70a2c98d2a30191c810e7e4e4164546bd89910072102c8dd8f2d3ffec5fb47",
+      "basis_parts": {
+        "source": "946b7ddfd3e25e2d",
+        "intro": "fa5dc846f5a11018",
+        "corrected": "62f86b705a5c0acb",
+        "entry": "4b782473c72089a9",
+        "refs": "c3ad3adc5cdb9c3d",
+        "settings": "473c11ab8f753615",
+        "listing": "2735bf7ae291c4b1",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "6fca6b276fe31779"
+      },
+      "source": "45d1b382d3cc59e7aacb88babbe22571b65bcaf3da7e7ffb94fc0dc4b8090ccb",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 623,
+        "file": "main.tex",
+        "line": 261
+      }
+    },
+    {
+      "name": "\\bU",
+      "meaning": "drift",
+      "fix": {
+        "type": "orthonormal-column matrix with a locally specified role",
+        "space": "$\\R^{n\\times p}$, where $p=m$ for the sketch spectral decomposition and $p=d$ for the thin polar decomposition of $\\bZ$",
+        "def": "$\\bU^\\top\\bU=\\bI_p$; the standing sketch decomposition uses $\\bA=\\bU\\bLambda\\bU^\\top$, while the dense Gaussian proof locally uses $\\bZ=\\bU\\bR$ with $\\bR=(\\bZ^\\top\\bZ)^{1/2}$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": "Whiten the features and write the thin polar decomposition\n$\\bZ=\\bU\\bR$, where $\\bR=(\\bZ^\\top\\bZ)^{1/2}$.",
+      "detail": "The recorded sketch eigenvector matrix is correct for the balanced calculations. The dense Gaussian proof reuses the symbol for a design-dependent polar factor with d columns, so the recorded global dimension and role cannot apply there.",
+      "reading": {
+        "reading": "$\\bU$ is an orthonormal-column matrix, with its column count and defining decomposition specified locally.",
+        "evidence": "Lines 1402--1405 specify the $\\bS$-measurable $n\\times m$ spectral factor; lines 3983--3985 introduce the $n\\times d$ thin polar factor.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-corrected-accuracy",
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:opnorm-x-bound",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "$\\bU\\in\\R^{n\\times m}$ is an $\\bS$-measurable choice in $\\bA=\\bU\\bLambda\\bU^\\top$, with $\\bU^\\top\\bU=\\bI_m$ and $\\bLambda$ containing the positive eigenvalues; it is held fixed in derivatives with respect to $\\bZ$."
+          },
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks"
+            ],
+            "text": "In the dense Gaussian proof, $\\bU=\\bZ(\\bZ^\\top\\bZ)^{-1/2}\\in\\R^{n\\times d}$ is the thin polar factor of $\\bZ$, with $\\bU^\\top\\bU=\\bI_d$; $[\\bU,\\bV]$ is a measurable orthogonal completion."
+          }
+        ]
+      },
+      "shards": [
+        "9"
+      ],
+      "basis": "516cab5879361a595cac28a725608b4ebc0bf685d16fb49681e2a61c423e73f6",
+      "basis_parts": {
+        "source": "91332106f600e116",
+        "intro": "6ae08fdf539f343b",
+        "corrected": "1bc954116dd1e6a9",
+        "entry": "3db1f7a18af9a59d",
+        "refs": "4d31f9e6cfa8e206",
+        "settings": "473c11ab8f753615",
+        "listing": "e7bfc245e0e11e60",
+        "redefinitions": "86f1937e3998174f",
+        "uses": "d9c5072b52a18f4f"
+      },
+      "source": "ba8f42d1ddb19671b87c95c45ee8d70b4fb8037d68e75c062ee214448d07742a",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1403,
+        "file": "main.tex",
+        "line": 840
+      }
+    },
+    {
+      "name": "\\bLambda",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The eigenvalue-matrix description is correct but omits the trace-normalized representative, sketch measurability, and eventual uniform spectral support. The matrix may vary with the sketch and with $n$.",
+      "reading": {
+        "reading": "$\\bLambda\\in\\R^{m\\times m}$ is the diagonal matrix of positive eigenvalues in an $\\bS$-measurable decomposition $\\bA=\\bU\\bLambda\\bU^\\top$, where $\\bU^\\top\\bU=\\bI_m$ and $\\trace(\\bA)=n$; for all sufficiently large $n$, $c_-\\bI_m\\preceq\\bLambda\\preceq c_+\\bI_m$ almost surely.",
+        "evidence": "Assumption~\\ref{assu:Gaussian-Stein-design} specifies measurability, trace normalization, the decomposition, and the eventual almost-sure spectral bounds."
+      },
+      "shards": [
+        "5"
+      ],
+      "basis": "9b8743f7b2982add15ab9d429139fb44520956109f58767c03eeb2527a93bd4e",
+      "basis_parts": {
+        "source": "48053ab63d98a2be",
+        "intro": "37f80a91a28460e4",
+        "corrected": "1b71a32e2e0cb02c",
+        "entry": "1ed2ab5c3dcca812",
+        "refs": "8c96e58bffed48a5",
+        "settings": "473c11ab8f753615",
+        "listing": "420a16db59409e25",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "b5d91be19bb94bd1"
+      },
+      "source": "9fc232cf94b9b02ba0ac651d3b3940dbde36e1a2fd56b75e283a767f3522c27d",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1880,
+        "file": "main.tex",
+        "line": 1317
+      }
+    },
+    {
+      "name": "b",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The abbreviation is correct but inherits the explicitly normalized sketch scale in the supporting calculations. The simulation repetition index also written $b$ is a separate local index, not a redefinition of the residual sketch mass used by these results.",
+      "reading": {
+        "reading": "$b:=b_{\\bA}=\\trace(\\bA)-\\trace(\\bA\\bX\\bM^{-1}\\bX^\\top\\bA)$ is the positive residual sketch mass, depending on $(\\bX,\\bS)$ and unchanged when only the response law is replaced.",
+        "evidence": "The residual sketch mass is defined at flat.tex lines 601--607, abbreviated at lines 1430--1432, and explicitly left unchanged by the auxiliary response construction at lines 2628--2635. The normalization convention at lines 1370--1386 specifies its scale in the supporting calculations.",
+        "scoped": [
+          {
+            "results": [
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "lem:influence-from-moments",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "The standing balanced-sketch notation uses the trace-normalized representative $\\overline{\\bA}=n\\bA/\\trace(\\bA)$, reusing $b$ for $b_{\\overline{\\bA}}=nb_{\\bA}/\\trace(\\bA)$."
+          }
+        ]
+      },
+      "shards": [
+        "2"
+      ],
+      "basis": "1c9574df3c8eb0c3788b5831b9cf2480f637e7a2e2a82547aa436353da799af3",
+      "basis_parts": {
+        "source": "cb0f0ebc965cc89c",
+        "intro": "11ba28b70066d9b4",
+        "corrected": "22fcdeeb2c1a8b18",
+        "entry": "6899940be55e661d",
+        "refs": "61f099fcdee7f677",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "f35c61a802b0231f",
+        "redefinitions": "fe5673dd46c106cd",
+        "uses": "1980d2acc6bffe7a"
+      },
+      "source": "794565c89c0b0633c68bfa5a2c18d01928619be20a0022f34ded575bd8204886",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1035,
+        "file": "main.tex",
+        "line": 580
+      }
+    },
+    {
+      "name": "\\bq",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": "Conditional on $(\\bS,\\bep)$, let\n$\\bq=\\bq(\\bZ,\\bS,\\bep)$ be $C^\\infty$ in $\\bZ$.",
+      "detail": "The existing readings remain valid. The cited rowwise covariance input also uses the general field, so its scope must be recorded explicitly.",
+      "reading": {
+        "reading": "$\\bq$ is an $\\R^d$-valued field of the design coordinates.",
+        "evidence": "The rowwise covariance step at lines 2393--2443 occurs in the proof of Lemma~\\ref{lem:Stein-remainders-from-moments}, whose premise allows a general conditionally smooth field $\\bq$.",
+        "scoped": [
+          {
+            "results": [
+              "thm:cpal-corrected-accuracy",
+              "thm:cpal-risk-benchmarks",
+              "thm:tight-frame-mse-comparison",
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "lem:influence-from-moments",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "$\\bq=\\bSigma^{1/2}(\\hbbeta_{\\bS}-\\bbeta^*)=\\widetilde{\\bM}^{-1}\\bZ^\\top\\bA\\bep=\\bL^\\top\\bep$ is the prediction-scale coefficient error; its design derivatives hold $\\bS$, $\\bSigma$, $\\bbeta^*$ and $\\bep$ fixed."
+          },
+          {
+            "results": [
+              "lem:derivative-energy-from-inverse-moments"
+            ],
+            "text": "$\\bq\\in\\R^d$ is a general random vector field satisfying the displayed derivative identities and moment assumptions; it need not be a least-squares coefficient error."
+          },
+          {
+            "results": [
+              "lem:stein-remainders-from-moments"
+            ],
+            "text": "Conditional on $(\\bS,\\bep)$, $\\bq=\\bq(\\bZ,\\bS,\\bep)$ is a general $C^\\infty$ field in $\\bZ$; its meaning is not restricted to the coefficient-error specialization."
+          },
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds",
+              "prop:trace-calibration-general"
+            ],
+            "text": "In expressions under $\\E_{\\rm aux}$, recompute $\\bq$ from the auxiliary response with $\\bbeta^*=\\boldzero$; expressions under the original response law retain its original coefficient-error field."
+          },
+          {
+            "results": [
+              "lem:rowwise-gaussian-covariance-cited"
+            ],
+            "text": "Conditional on $(\\bS,\\bep)$, $\\bq=\\bq(\\bZ,\\bS,\\bep)$ is a general $C^\\infty$ field in $\\bZ$ under the second-order moment premises; it need not be the prediction-scale coefficient error."
+          }
+        ]
+      },
+      "shards": [
+        "1"
+      ],
+      "basis": "58ec2b8659de75ba4f027a909eae4bb5772e6f722230a68368cfeaa404f8f9a3",
+      "basis_parts": {
+        "source": "a36d0656ce24d83f",
+        "intro": "a60f6b6dd96008e3",
+        "corrected": "37172088e308cecf",
+        "entry": "7a98ca161dc2cd63",
+        "refs": "df3c72b345064253",
+        "settings": "eb90a7b9908b1041",
+        "listing": "91e73028a49f4145",
+        "redefinitions": "aead7a1ed87c8cd0",
+        "uses": "03737ddd53b18db4"
+      },
+      "source": "b5d5ca5bac190e0f3929e8ad9dd7fd311086285271fc9e4f0c4fe41e07b988db",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1447,
+        "file": "main.tex",
+        "line": 884
+      }
+    },
+    {
+      "name": "\\widetilde{\\bM}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded formula is exact. The later expression $\\bG_0^\\top\\bLambda\\bG_0$ follows from the spectral decomposition of $\\bA$ and is not a redefinition.",
+      "reading": null,
+      "shards": [
+        "3"
+      ],
+      "basis": "45b3ff8e285274b686861ab4cc6db969293dff8575ed37da7b01809975f17dba",
+      "basis_parts": {
+        "source": "ea94b4c24afd99a1",
+        "intro": "41569dc7d43936b6",
+        "corrected": "2f79f60b6ab42e0e",
+        "entry": "94f1e31242c4fdd9",
+        "refs": "ae0a3cbdb4c012e1",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "a66476214fd70156",
+        "redefinitions": "e798b623fb351b67",
+        "uses": "68f1a75ec8bf7f66"
+      },
+      "source": "6233e8854743ce4c716d6adebdb4b719d64cedc468491343f8f01cf4eaacc8b8",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1833,
+        "file": "main.tex",
+        "line": 1270
+      }
+    },
+    {
+      "name": "\\bL",
+      "meaning": "drift",
+      "fix": {
+        "type": "matrix with a least-squares specialization",
+        "space": null,
+        "def": "$\\bL\\in\\R^{n\\times d}$; in the least-squares calculations, $\\bL=\\bA\\bZ\\widetilde{\\bM}^{-1}$, while the generic derivative-energy inequality allows an arbitrary matrix satisfying its derivative identity."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": "Suppose that random matrices $\\bK\\in\\R^{d\\times d}$ and\n$\\bL\\in\\R^{n\\times d}$ and random vectors $\\bq\\in\\R^d$ and\n$\\br\\in\\R^n$ satisfy, almost everywhere,",
+      "detail": "The least-squares formula is correct for its specialization, but imposing it on the generic derivative-energy lemma would narrow the matrices quantified there.",
+      "reading": {
+        "reading": "$\\bL$ is an $n\\times d$ real matrix with the specialization specified in its scoped uses.",
+        "evidence": "The coordinate definitions at lines 1431--1440 give the least-squares formula; Lemma~\\ref{lem:derivative-energy-from-inverse-moments} instead quantifies over random matrices satisfying the displayed derivative identity.",
+        "scoped": [
+          {
+            "results": [
+              "lem:derivative-energy-from-inverse-moments"
+            ],
+            "text": "$\\bL$ is a generic random matrix in $\\R^{n\\times d}$ satisfying $\\partial\\bq/\\partial z_{ij}=\\bK\\be_jr_i-\\bL^\\top\\be_iq_j$ almost everywhere; it need not equal $\\bA\\bZ\\widetilde{\\bM}^{-1}$."
+          },
+          {
+            "results": [
+              "thm:cpal-corrected-accuracy",
+              "thm:cpal-risk-benchmarks",
+              "lem:dot-beta",
+              "lem:dot-r",
+              "lem:dot-rh",
+              "lem:dot-hxh",
+              "lem:dot-rxr",
+              "lem:dot-rxxr",
+              "lem:dot-hxxh",
+              "lem:m-inverse-bound",
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "lem:influence-from-moments",
+              "prop:stein-risk-from-moments",
+              "prop:q-identity-sigma",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "$\\bL=\\bA\\bZ\\widetilde{\\bM}^{-1}$ on the domain where $\\widetilde{\\bM}$ is invertible."
+          }
+        ]
+      },
+      "shards": [
+        "9"
+      ],
+      "basis": "a02fb1bb4a0b6f6dcd64b16a1ca32b82e7c3add5b5d72989749bac0290f904e0",
+      "basis_parts": {
+        "source": "a32a93bdd3fab829",
+        "intro": "24eec064e8d76e98",
+        "corrected": "d627745f015f6a5e",
+        "entry": "9381001255da4b45",
+        "refs": "b491975a8603db78",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "6a3d9f7c53758957",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "ba0de6ae985d7164"
+      },
+      "source": "47d22c71eeb46215c9eafd70290ac7e1df0dd36ab862f92229dfa4d189c387e7",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1582,
+        "file": "main.tex",
+        "line": 1019
+      }
+    },
+    {
+      "name": "\\bell",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded vector and ambient space agree with $\\bell:=\\bL\\bq$ throughout its uses. Its randomness follows from the applicable setting.",
+      "reading": null,
+      "shards": [
+        "5"
+      ],
+      "basis": "0a38928b5d058bfe17d2219e424ea90da0df9510e4af192ff196223f33cc9cd0",
+      "basis_parts": {
+        "source": "726ccd159950d0f1",
+        "intro": "5ba93313a67c7a52",
+        "corrected": "8d59c767b5288969",
+        "entry": "6eb847ec4b5fb51f",
+        "refs": "8000563066018313",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "b71e2a399a0c8d39",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "3b15dc40d08ca996"
+      },
+      "source": "cb18f71b895bc6c739b96306ec525a901b353eb3b7477782d195e1facd362858",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1436,
+        "file": "main.tex",
+        "line": 873
+      }
+    },
+    {
+      "name": "\\bv",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded vector and ambient space agree with $\\bv:=\\bZ\\bq-t_{\\bSigma}\\br$ throughout its uses. Its randomness follows from the applicable setting.",
+      "reading": null,
+      "shards": [
+        "5"
+      ],
+      "basis": "fbb9a114e5b2a1eaaa5c42e86c1b4a427094fd3b94cd61d6e1a4b5e463dd73f7",
+      "basis_parts": {
+        "source": "ceab8e3edf81099f",
+        "intro": "5ba93313a67c7a52",
+        "corrected": "b9289d9e2ab918ae",
+        "entry": "3f364331502a7dbb",
+        "refs": "db617b88f83c5c9d",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "b71e2a399a0c8d39",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "43bcc62039053023"
+      },
+      "source": "ff9b0dcf85a9c02d7bcc8b6631ecfd4159201506f6a5108128d48d420477ab80",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1437,
+        "file": "main.tex",
+        "line": 874
+      }
+    },
+    {
+      "name": "G_{\\bSigma}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The formula is correct. Later passages introduce conventions for ratios involving the energy, rather than redefining the energy itself; auxiliary-response calculations use the recomputed energy.",
+      "reading": {
+        "reading": "$G_{\\bSigma}:=\\norm{\\bq}^2+\\norm{\\br}^2/n=\\norm{\\bSigma^{1/2}\\bh}^2+\\norm{\\br}^2/n$ is the response energy computed from the current response quantities, and the response-normalized ratios involving this energy are defined to be zero on $\\{G_{\\bSigma}=0\\}$.",
+        "evidence": "The energy is defined in the whitened-coordinate display at flat.tex lines 1434--1440. The ratio convention is explicit at lines 2648--2652 and in Lemmas~\\ref{lem:balanced-remainder-bounds} and~\\ref{lem:balanced-trace-Stein-bounds}.",
+        "scoped": [
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds",
+              "prop:trace-calibration-general"
+            ],
+            "text": "When the auxiliary response construction is used, $G_{\\bSigma}$ is recomputed from its response quantities and is strictly positive almost surely."
+          }
+        ]
+      },
+      "shards": [
+        "2"
+      ],
+      "basis": "47277087aaa1009d5f8642835fcea97fa6e399b7fb9ec03ab13e464811550f2a",
+      "basis_parts": {
+        "source": "ab6c693932bb7132",
+        "intro": "cce27ba7e364dea5",
+        "corrected": "eee3189c77dcf5b6",
+        "entry": "fa98a13ecc98037c",
+        "refs": "47eff12801a4e609",
+        "settings": "c9d7955ee7b9585c",
+        "listing": "cbeea7fd5d0790c9",
+        "redefinitions": "7ffbe3015c29036d",
+        "uses": "6c481196065b073b"
+      },
+      "source": "b2092748067bd54c8ab4d2045a971a0d27fab033c1e16eb93f04b8c1579b1928",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2651,
+        "file": "main.tex",
+        "line": 2088
+      }
+    },
+    {
+      "name": "\\bG_0",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The matrix definition is correct. The later passages use the same restricted design; they do not redefine it. Its eigenbasis is the standing sketch eigenbasis, which matters because the paper later reuses the symbol for a different matrix.",
+      "reading": {
+        "reading": "$\\bG_0=\\bU^\\top\\bZ\\in\\R^{m\\times d}$ uses the $\\bS$-measurable eigenvector matrix from the standing decomposition $\\bA=\\bU\\bLambda\\bU^\\top$, so $\\bU$ is held fixed in differentiation with respect to $\\bZ$.",
+        "evidence": "Lines 1402--1405 specify the measurable spectral decomposition; lines 1428--1430 give the derivative convention; lines 1450--1451 explicitly tie the restricted design to that standing decomposition."
+      },
+      "shards": [
+        "9"
+      ],
+      "basis": "6560e14699043c420e6cefec11ae0739d60174116890f6f87ca56b04de78e1ea",
+      "basis_parts": {
+        "source": "b0b720c5cf0e6fa0",
+        "intro": "94f278e47decc4a0",
+        "corrected": "2288577f045d174c",
+        "entry": "95cc1214bc664549",
+        "refs": "00c271c4d04ba2da",
+        "settings": "473c11ab8f753615",
+        "listing": "6377a3d47f75b261",
+        "redefinitions": "de2db620a768670c",
+        "uses": "44e4eb5575a42ffc"
+      },
+      "source": "f32ce008b76aded6ef4c551d873f55bfd208153d5ce28322118a452cdfd0c7f4",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1450,
+        "file": "main.tex",
+        "line": 887
+      }
+    },
+    {
+      "name": "\\be_j",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry matches the explicit convention: a standard basis vector whose ambient dimension is determined by context.",
+      "reading": null,
+      "shards": [
+        "5"
+      ],
+      "basis": "687bb64ad1390c9fe9a2dbd3080e930386da069085d575dbcd8d83f38885ab12",
+      "basis_parts": {
+        "source": "0cc49866ae3ffd94",
+        "intro": "fb5419857b3abb6a",
+        "corrected": "80012798d38c1700",
+        "entry": "d10c43867bdc36cf",
+        "refs": "9b3660e9d26e6fbc",
+        "settings": "07bcebf02b23eea8",
+        "listing": "6dff863f2447a6bb",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "839dc507d481d0df"
+      },
+      "source": "896ef8f2648f82bfa441975a1677f3a235a878276a2f0a672b75f19fcb898792",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1452,
+        "file": "main.tex",
+        "line": 889
+      }
+    },
+    {
+      "name": "\\bff",
+      "meaning": "drift",
+      "fix": {
+        "type": "weakly differentiable map",
+        "space": null,
+        "def": "For any weakly differentiable map $\\bff:\\R^{n\\times d}\\to\\R^p$, define $\\calE_{\\bff}:=\\sum_{i=1}^n\\sum_{j=1}^d\\norm{\\pdv{\\bff}{z_{ij}}}^2$; the output dimension $p$ is determined by the map under consideration."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": "Apply the same argument\nafter transposing the design: with $\\bW=\\bZ^\\top\\in\\R^{d\\times n}$ and\n$\\bff(\\bW)=\\br/\\sqrt n$, its second-order fluctuation is exactly",
+      "detail": "The derivative-energy definition permits weak differentiability, which the recorded type does not express. The normalized lemma uses a smooth $d$-dimensional field, while the transposed proof uses an $n$-dimensional residual field.",
+      "reading": {
+        "reading": "$\\bff$ denotes a field on the design-coordinate matrix space, with output dimension determined by the application and derivatives taken in its input coordinates.",
+        "evidence": "Section~\\ref{app:balanced-transfer-setup} defines derivative energy for weakly differentiable maps; the normalized-energy definitions use output dimension $d$; Lemma~\\ref{lem:normalized-Gaussian-Stein} assumes conditional smoothness; the proof of Lemma~\\ref{lem:balanced-trace-Stein-bounds} uses a transposed field.",
+        "scoped": [
+          {
+            "results": [
+              "lem:normalized-gaussian-stein"
+            ],
+            "text": "Conditional on $\\mathcal F$, $\\bff:\\R^{n\\times d}\\to\\R^d$ is $C^\\infty$ and may depend on the fixed value of $\\mathcal F$."
+          },
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds"
+            ],
+            "text": "For the transposed-design argument, $\\bW=\\bZ^\\top\\in\\R^{d\\times n}$ and $\\bff(\\bW)=\\br/\\sqrt n\\in\\R^n$; derivatives are with respect to $w_{ji}=z_{ij}$. In the normalized contraction application, the first field is instead $\\bq_\\eta$, followed by its weak-derivative limit $\\bq$."
+          }
+        ]
+      },
+      "shards": [
+        "4"
+      ],
+      "basis": "427743991fd897f0a32510c64cfe6b3d814801262992231f5acacc2c7a7dfd8e",
+      "basis_parts": {
+        "source": "58746ebe14d11516",
+        "intro": "cc03cf3a040357fe",
+        "corrected": "ca39d908892ebe66",
+        "entry": "ed4cf062c977e152",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "f59ccbf2a59bb20a",
+        "listing": "45991c9965b52337",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "fe5ab54200fa6a81"
+      },
+      "source": "8ac01ff8c9e81b8a5d227cc5cd65bca02264e28b6d782ec548ad50b284b12642",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2721,
+        "file": "main.tex",
+        "line": 2158
+      }
+    },
+    {
+      "name": "\\calE_{\\bff}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded definition correctly refers to the sum of squared coordinate derivatives. The reading makes explicit its domain, index ranges, and pointwise interpretation.",
+      "reading": {
+        "reading": "For a weakly differentiable map $\\bff:\\R^{n\\times d}\\to\\R^p$, $\\calE_{\\bff}=\\sum_{i=1}^n\\sum_{j=1}^d\\norm{\\pdv{\\bff}{z_{ij}}}^2$ is its pointwise derivative energy, with all other arguments held fixed and $p$ determined by the map.",
+        "evidence": "Section~\\ref{app:balanced-transfer-setup} gives the domain, weak differentiability, defining sum, and convention for holding other arguments fixed."
+      },
+      "shards": [
+        "5"
+      ],
+      "basis": "b858d0b1afe6c870ebf99187e6a2334a29ddf6cd0ff4cf1d447bd0dde28c11fa",
+      "basis_parts": {
+        "source": "dee8bd117a7f009b",
+        "intro": "b3470ee6fc27f6c1",
+        "corrected": "653222ce959e2332",
+        "entry": "1266205ead0bb38a",
+        "refs": "a53d652c2c92db9e",
+        "settings": "f59ccbf2a59bb20a",
+        "listing": "df443a1c879db3c2",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "60fd7d748209a6c2"
+      },
+      "source": "4fbcac56201189afa6b81816c3c7854f7bc6be2dfb7e2d6eda12b1d9a5ca00b0",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1457,
+        "file": "main.tex",
+        "line": 894
+      }
+    },
+    {
+      "name": "\\calE_{\\bq}",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\calE_{\\bq}:=\\sum_{i=1}^n\\sum_{j=1}^d\\norm{\\pdv{\\bq}{z_{ij}}}^2$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded label omits the defining sum, including its coordinates and normalization. This is pointwise energy, not its expectation; the general-field uses do not require the least-squares formula for the field.",
+      "reading": {
+        "reading": "$\\calE_{\\bq}$ is the pointwise derivative energy of the field $\\bq$ with respect to the coordinates $z_{ij}$, for $1\\leq i\\leq n$ and $1\\leq j\\leq d$, with its other arguments held fixed.",
+        "evidence": "The derivative-energy definition and pathwise derivative convention in Section~\\ref{app:balanced-transfer-setup}; Lemma~\\ref{lem:derivative-energy-from-inverse-moments} applies it to general fields, and Lemma~\\ref{lem:Stein-remainders-from-moments} explicitly treats $\\bq$ as a field in $\\bZ$ conditional on $(\\bS,\\bep)$."
+      },
+      "shards": [
+        "5"
+      ],
+      "basis": "3a8db5db8c62115a30ce2ee84e9b49a67708acd6c572b8b569a5aaf59ec6237d",
+      "basis_parts": {
+        "source": "b2e0f4f1438fb744",
+        "intro": "742c29ec3de240ab",
+        "corrected": "cddadf8620ec8f16",
+        "entry": "ce8fd8726bae9f2e",
+        "refs": "d34c371ae0ad7052",
+        "settings": "25f786c01e822d9c",
+        "listing": "c15a167a4471d5b3",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "b4977ece774139c8"
+      },
+      "source": "bb8a41a2f9897e3abf1899f14e607cabc3c58fb1bfd537d98fc0a5a6251bdf61",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1938,
+        "file": "main.tex",
+        "line": 1375
+      }
+    },
+    {
+      "name": "\\calE_{\\br}",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\calE_{\\br}:=\\sum_{i=1}^n\\sum_{j=1}^d\\norm{\\partial\\br/\\partial z_{ij}}^2$, where $\\br=\\bA(\\bep-\\bZ\\bq)$ and differentiation holds $\\bS$, $\\bSigma$, $\\bbeta^*$, and $\\bep$ fixed."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded label omits the derivative-energy sum. This is the raw energy of the weighted residual, without the factor $1/n$ used in the normalized stacked energy.",
+      "reading": null,
+      "shards": [
+        "5"
+      ],
+      "basis": "420c2a66eba3174c188d8873bbb5eb7dd22c3dbafaa8553e39b3f2861452a07e",
+      "basis_parts": {
+        "source": "75271e06b552101a",
+        "intro": "78e85148ded52d64",
+        "corrected": "ce486533b9bb9e10",
+        "entry": "d912e38db6d14da9",
+        "refs": "6d2ae1170a8dad72",
+        "settings": "1888d6ddfbed65d6",
+        "listing": "c742dbf4724ba794",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "231d06bf524464dd"
+      },
+      "source": "6c289bdbc5d9b368fa28d2ef4b810b3df96db01b37d2b0698f379c5b6c28b9dc",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2195,
+        "file": "main.tex",
+        "line": 1632
+      }
+    },
+    {
+      "name": "\\bK",
+      "meaning": "drift",
+      "fix": {
+        "type": "real matrix with context-dependent dimensions and definition",
+        "space": "$\\R^{d\\times d}\\cup\\R^{d\\times(n-d)}$",
+        "def": "$\\bK$ is a generic derivative coefficient matrix, specialized to $\\widetilde{\\bM}^{-1}$ in the balanced derivative calculations; in the dense Gaussian sketch proof it instead denotes $(\\bG^\\top\\bG)^{-1}\\bG^\\top\\bH$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": "Choose a measurable orthogonal completion $[\\bU,\\bV]$ and define\n\\begin{align*}\n    \\sqrt m\\,\\bS[\\bU,\\bV]=[\\bG,\\bH],\n    \\qquad\n    \\bK=(\\bG^\\top\\bG)^{-1}\\bG^\\top\\bH,\n    \\qquad\n    \\bP_{\\bG}:=\\bG(\\bG^\\top\\bG)^{-1}\\bG^\\top,\n\\end{align*}",
+      "detail": "The generic derivative-matrix entry is correct only in its original lemma. Balanced applications specialize it to an inverse Gram matrix; the dense Gaussian proof reuses the symbol for a generally rectangular matrix.",
+      "reading": {
+        "reading": "$\\bK$ is a real matrix with dimensions and definition specified in its scoped uses.",
+        "evidence": "Lemma~\\ref{lem:derivative-energy-from-inverse-moments} quantifies over a generic $d\\times d$ matrix. The balanced sufficient-condition and moment proofs set it equal to $\\widetilde{\\bM}^{-1}$. The dense Gaussian proof of Theorem~\\ref{thm:cpal-risk-benchmarks} explicitly introduces a different matrix using the polar-coordinate sketch blocks.",
+        "scoped": [
+          {
+            "results": [
+              "lem:derivative-energy-from-inverse-moments"
+            ],
+            "text": "$\\bK\\in\\R^{d\\times d}$ is a generic random matrix satisfying $\\partial\\bq/\\partial z_{ij}=\\bK\\be_jr_i-\\bL^\\top\\be_iq_j$ almost everywhere."
+          },
+          {
+            "results": [
+              "lem:balanced-stein-sufficient-conditions",
+              "lem:balanced-moment-bounds",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds"
+            ],
+            "text": "$\\bK=\\widetilde{\\bM}^{-1}$ on the full-rank domain."
+          },
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks"
+            ],
+            "text": "In the dense Gaussian proof, $\\bK=(\\bG^\\top\\bG)^{-1}\\bG^\\top\\bH\\in\\R^{d\\times(n-d)}$, where $\\sqrt m\\,\\bS[\\bU,\\bV]=[\\bG,\\bH]$ and $\\bZ=\\bU\\bR$ is the thin polar decomposition."
+          }
+        ]
+      },
+      "shards": [
+        "5"
+      ],
+      "basis": "3274266c0a7344d73c421f0181ebc37e00bb17dc74b54da6677719811e8767be",
+      "basis_parts": {
+        "source": "33ebf09bcf94c4a1",
+        "intro": "e086ae91c2d2101c",
+        "corrected": "f088befb7e86ddb0",
+        "entry": "c58be799a6bd2f61",
+        "refs": "02313c16e3c662ac",
+        "settings": "f67c63243d75a3c3",
+        "listing": "e59f130acaa89d13",
+        "redefinitions": "1366d4e1e6235020",
+        "uses": "f1e27391382f1215"
+      },
+      "source": "e27edbde1d149d4b9d5653539f24ce0a4df87124c7a83fe24e46107c0b94f437",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2043,
+        "file": "main.tex",
+        "line": 1480
+      }
+    },
+    {
+      "name": "B",
+      "meaning": "drift",
+      "fix": {
+        "type": "nonnegative scalar with context-dependent meaning",
+        "space": null,
+        "def": "$B$ denotes either a fixed signal bound or an auxiliary chi-square variable, as specified in its scoped uses."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": "On an auxiliary probability space, take independent variables\n\\begin{align*}\n    T&\\sim\\chi^2_{n-d}, & J&\\sim\\chi^2_d,\n    & V&\\sim\\chi^2_{m-d+1},\\\\\n    U&\\sim\\chi^2_{m-d}, & B&\\sim\\chi^2_{n-d-1}.\n\\end{align*}",
+      "detail": "The signal-bound entry misses a later local reuse as a chi-square variable. These meanings are explicitly separated by context.",
+      "reading": {
+        "reading": "$B$ is a nonnegative real scalar whose meaning is local to its scoped use.",
+        "evidence": "Lemma~\\ref{lem:balanced-moment-bounds} uses $B$ in the optional signal bound. The dense Gaussian proof of Theorem~\\ref{thm:cpal-risk-benchmarks} introduces independent auxiliary variables including $B\\sim\\chi^2_{n-d-1}$.",
+        "scoped": [
+          {
+            "results": [
+              "lem:balanced-moment-bounds",
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds"
+            ],
+            "text": "$B<\\infty$ is a fixed bound, independent of $n$, in the optional assumption $\\norm{\\bSigma^{1/2}\\bbeta^*}\\leq B$; the resulting coefficient moment constants may depend on $B$."
+          },
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks"
+            ],
+            "text": "In the dense Gaussian proof, $B\\sim\\chi^2_{n-d-1}$ is an auxiliary variable independent of $T,J,V,U$, where $T\\sim\\chi^2_{n-d}$, $J\\sim\\chi^2_d$, $V\\sim\\chi^2_{m-d+1}$, and $U\\sim\\chi^2_{m-d}$; these variables give marginal distributional representations, without asserting joint equality of the represented statistics."
+          }
+        ]
+      },
+      "shards": [
+        "5"
+      ],
+      "basis": "289213baed261177dd7cf9f12b02062547e2a019b408da007dadd7e3a778e347",
+      "basis_parts": {
+        "source": "b4679c42866f6d26",
+        "intro": "4bfb85f7db5cd23e",
+        "corrected": "268b5a123855687c",
+        "entry": "7faf95c29c412f76",
+        "refs": "54a017c3b6ce69b7",
+        "settings": "1888d6ddfbed65d6",
+        "listing": "bc4864c56e460080",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "0ec0147dee478ad2"
+      },
+      "source": "0ddea78d876492d619c29c67846dbd5da072285e2a42f2a7333c8f44d696cb29",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2174,
+        "file": "main.tex",
+        "line": 1611
+      }
+    },
+    {
+      "name": "\\Xi_1",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\Xi_1:=\\bep^\\top\\bZ\\bq-\\sum_{i=1}^n\\sum_{j=1}^d\\partial(\\varepsilon_iq_j)/\\partial z_{ij}$, with derivatives taken with respect to $\\bZ$ while $\\bS$, $\\bSigma$, $\\bbeta^*$, and the structural noise $\\bep$ are held fixed."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry omits the fluctuation's defining divergence subtraction. The paper's derivative convention holds structural noise fixed, so the derivative does not differentiate the response through a varying noise vector.",
+      "reading": null,
+      "shards": [
+        "4"
+      ],
+      "basis": "63e825885a44f5a28039951984d1c190bb5ac25f2493ba69e47df496e2b72b2e",
+      "basis_parts": {
+        "source": "f48eedc79b9f58df",
+        "intro": "a8e44dc4293789e6",
+        "corrected": "d65409126af73ad6",
+        "entry": "83d67112066a3629",
+        "refs": "b597594fdfdf2325",
+        "settings": "bcf3e689c2e25c53",
+        "listing": "77a51a69d8c4f590",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "be4b8fa00735eb05"
+      },
+      "source": "cd3b86f53d9447a7128c736d842a2a9c971724412c21195afcea478b18922978",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2345,
+        "file": "main.tex",
+        "line": 1782
+      }
+    },
+    {
+      "name": "\\Xi_2",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\Xi_2:=n\\norm{\\bq}^2-\\sum_{i=1}^n\\left(\\bz_i^\\top\\bq-\\sum_{j=1}^d\\pdv{q_j}{z_{ij}}\\right)^2$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The table names the fluctuation without recording its defining expression. Its sign, rowwise divergence correction, and fixed-noise derivative convention determine the quantity; the general-field lemma uses the same functional beyond the fitted coefficient-error specialization.",
+      "reading": {
+        "reading": "$\\Xi_2$ is the displayed scalar functional of the field $\\bq$ and design $\\bZ$, with derivatives taken in the design coordinates while $\\bS$ and the structural noise $\\bep$ are held fixed.",
+        "evidence": "Lines 2343--2354 define the fluctuation; lines 1428--1430 establish the derivative convention; Lemma~\\ref{lem:Stein-remainders-from-moments} explicitly allows a general conditionally smooth field.",
+        "scoped": [
+          {
+            "results": [
+              "lem:stein-remainders-from-moments"
+            ],
+            "text": "The definition is applied to a general field $\\bq(\\bZ,\\bS,\\bep)$ that is $C^\\infty$ in $\\bZ$ conditional on $(\\bS,\\bep)$."
+          }
+        ]
+      },
+      "shards": [
+        "4"
+      ],
+      "basis": "f88068d669beb148a5784cd88f6b70e213cba0cd835a36604fe62fda5225b5c4",
+      "basis_parts": {
+        "source": "8ca49d9a094fee6f",
+        "intro": "a8e44dc4293789e6",
+        "corrected": "72e598baa03fe273",
+        "entry": "ec7ffe6a0bf1a094",
+        "refs": "7aa00f0fce1112c4",
+        "settings": "bcf3e689c2e25c53",
+        "listing": "77a51a69d8c4f590",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "42ea084e939709b0"
+      },
+      "source": "cbf7e5410d37667e1ccd515d0b732d395d0703a5cce58ac19f275d5646261548",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2349,
+        "file": "main.tex",
+        "line": 1786
+      }
+    },
+    {
+      "name": "Q_{k,\\bSigma}",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "For $k\\in\\{1,2,3,4,5\\}$, the quantities are $Q_{1,\\bSigma}:=\\br^\\top\\bX\\bh+b\\norm{\\bSigma^{1/2}\\bh}^2-t_{\\bSigma}\\norm{\\br}^2$, $Q_{2,\\bSigma}:=\\bh^\\top\\bX^\\top\\bX\\bh-t_{\\bSigma}\\br^\\top\\bX\\bh-(n-d)\\norm{\\bSigma^{1/2}\\bh}^2$, $Q_{3,\\bSigma}:=\\frac1n\\br^\\top\\bX\\bSigma^{-1}\\bX^\\top\\br+\\frac bn\\bh^\\top\\bX^\\top\\br$, $Q_{4,\\bSigma}:=\\frac dn\\norm{\\br}^2-\\frac1n\\norm{\\bSigma^{-1/2}\\bX^\\top\\br+b\\bSigma^{1/2}\\bh}^2$, and $Q_{5,\\bSigma}:=n\\norm{\\bSigma^{1/2}\\bh}^2-\\norm{\\bX\\bh-t_{\\bSigma}\\br}^2$."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry omits all five defining formulas. Whitening preserves their values, and the sketched normal equations imply $Q_{3,\\bSigma}=0$; neither passage changes their definitions. The auxiliary setting recomputes them from its response quantities.",
+      "reading": null,
+      "shards": [
+        "2"
+      ],
+      "basis": "ff5d08feff6f96ca2d78bfb6b602dd766cab0acebebf35f85d5f8a2c1a4aa0ea",
+      "basis_parts": {
+        "source": "f40ea5932deaca17",
+        "intro": "197ddde6c8c0fdd0",
+        "corrected": "14fceb7076571cad",
+        "entry": "65be2219d28b1115",
+        "refs": "5c29b1761617e62f",
+        "settings": "473c11ab8f753615",
+        "listing": "7490e74bfe6fa425",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "b0700b548a934e93"
+      },
+      "source": "774527829261af40fc15679f5c84c58b959c58e57cb44f8a97e36662f7c07323",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2600,
+        "file": "main.tex",
+        "line": 2037
+      }
+    },
+    {
+      "name": "B_{\\bA}",
+      "meaning": "drift",
+      "fix": {
+        "type": "response-dependent weight",
+        "space": null,
+        "def": "$B_{\\bA}:=\\frac{2|\\bu^\\top\\br|}{n}+\\left(|t_{\\bSigma}|+\\frac{d}{b}\\right)\\frac{\\norm{\\br}^2}{n}$."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The reference-only definition omits the paper's explicit response weight. Its formula applies to the response quantities under the law being used; in particular, $B_{\\bA}=0$ when $G_{\\bSigma}=0$.",
+      "reading": null,
+      "shards": [
+        "2"
+      ],
+      "basis": "ec0f9490911c5134a20ed50d902e4b1af207f9c96f910ebd1495c750f065ff0f",
+      "basis_parts": {
+        "source": "71b19c568326a033",
+        "intro": "cce27ba7e364dea5",
+        "corrected": "c867008336857709",
+        "entry": "6bbc38448596e75a",
+        "refs": "83f7f865e2f3bdec",
+        "settings": "473c11ab8f753615",
+        "listing": "828e03663fecec3f",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "cc5b0705949cdd30"
+      },
+      "source": "91907a9319adb0e8e1ee0163d0d633425e5989691207444437d90f5959ddb664",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2652,
+        "file": "main.tex",
+        "line": 2089
+      }
+    },
+    {
+      "name": "\\mathcal T_{\\bA}",
+      "meaning": "drift",
+      "fix": {
+        "type": "response-dependent normalized trace quantity",
+        "space": null,
+        "def": "$\\mathcal T_{\\bA}:=\\frac{n}{b}\\left\\{\\left|\\frac{b}{n}-t_{\\bSigma}\\right|\\frac{|Q_{1,\\bSigma}|}{G_{\\bSigma}}+\\sum_{k=2}^5\\frac{|Q_{k,\\bSigma}|}{G_{\\bSigma}}\\right\\}$, with every ratio defined to be zero on $\\{G_{\\bSigma}=0\\}$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded definition is only a reference label and omits the formula. The zero convention is explicit and applies under the original response law; the auxiliary construction uses the same formula with recomputed response quantities.",
+      "reading": {
+        "reading": "$\\mathcal T_{\\bA}:=\\frac{n}{b}\\left\\{\\left|\\frac{b}{n}-t_{\\bSigma}\\right|\\frac{|Q_{1,\\bSigma}|}{G_{\\bSigma}}+\\sum_{k=2}^5\\frac{|Q_{k,\\bSigma}|}{G_{\\bSigma}}\\right\\}$ is evaluated using the response quantities of the law under consideration, with every displayed ratio defined to be zero on $\\{G_{\\bSigma}=0\\}$.",
+        "evidence": "The defining display and the following zero convention at flat.tex lines 2628--2652 explicitly specify the quantity under both response laws; the auxiliary-law instruction recomputes all response-dependent inputs."
+      },
+      "shards": [
+        "2"
+      ],
+      "basis": "d3184dfbc73135053cb7de0ce8457d6e0f4a6831eae49b64f24055847c8066c1",
+      "basis_parts": {
+        "source": "449a44a86960a67c",
+        "intro": "cce27ba7e364dea5",
+        "corrected": "dbb6f343bd69a73e",
+        "entry": "16bd0223ab697263",
+        "refs": "ebd458c0e060490a",
+        "settings": "473c11ab8f753615",
+        "listing": "9216e38ab822deae",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "89060d1d1774fb13"
+      },
+      "source": "361fda6ab555d0d8268a9eafe9723d9d89cdeabff8ad8deca0a76e3b1bf2fc0c",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2650,
+        "file": "main.tex",
+        "line": 2087
+      }
+    },
+    {
+      "name": "\\boldsymbol\\psi",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The field label and output dimension are correct. Its input domain, conditional smoothness, and residual specialization require explicit scoping.",
+      "reading": {
+        "reading": "$\\boldsymbol\\psi:\\R^{n\\times d}\\to\\R^n$ is the second design-coordinate field in the normalized energies and Gaussian contractions.",
+        "evidence": "The normalized-energy definitions specify its domain and codomain; Lemma~\\ref{lem:normalized-Gaussian-Stein} specifies conditional smoothness; equation~\\eqref{eq:zeta-definitions} specializes it to the residual.",
+        "scoped": [
+          {
+            "results": [
+              "lem:normalized-gaussian-stein"
+            ],
+            "text": "Conditional on $\\mathcal F$, $\\boldsymbol\\psi=\\boldsymbol\\psi(\\bZ)$ is $C^\\infty$ and may depend on the fixed value of $\\mathcal F$."
+          },
+          {
+            "results": [
+              "thm:cpal-corrected-accuracy",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight",
+              "prop:trace-calibration-general"
+            ],
+            "text": "In the specialization defining $\\zeta_s$, $\\boldsymbol\\psi=\\br$; the smooth approximation uses $\\br_\\eta$ before passing to the weak-derivative limit."
+          }
+        ]
+      },
+      "shards": [
+        "4"
+      ],
+      "basis": "ec49aa5b2d01859ed5cb58c986b680f8592ad6daa26363583e40db7bb7680b02",
+      "basis_parts": {
+        "source": "1312f131c327bb34",
+        "intro": "9980e965a9c7959c",
+        "corrected": "6fa2904353a5d17f",
+        "entry": "4a42d8fb697f5b18",
+        "refs": "359d5821527247ca",
+        "settings": "8ab1ba115370c9c4",
+        "listing": "fff21c9d58de11a7",
+        "redefinitions": "4f93e68a3c96856a",
+        "uses": "b66a7ae817bd3a0a"
+      },
+      "source": "e5b2a7a8245c4076be15c77d3c0434edde2d965faa96f12773e18e955ac6b8eb",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2703,
+        "file": "main.tex",
+        "line": 2140
+      }
+    },
+    {
+      "name": "\\mathcal F",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The generic sigma-field entry is correct, but its concrete specialization in the balanced trace argument must be retained.",
+      "reading": {
+        "reading": "$\\mathcal F$ is the conditioning sigma-field independent of $\\bZ$, and expectations conditional on it integrate the Gaussian design while holding the conditioning information fixed.",
+        "evidence": "Lemma~\\ref{lem:normalized-Gaussian-Stein} introduces the independent sigma-field; its conditional inequalities retain it throughout. The proof of Lemma~\\ref{lem:balanced-trace-Stein-bounds} explicitly takes the sigma-field generated by $(\\bA,\\bep)$.",
+        "scoped": [
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds"
+            ],
+            "text": "$\\mathcal F=\\sigma(\\bA,\\bep)$."
+          }
+        ]
+      },
+      "shards": [
+        "4"
+      ],
+      "basis": "5a2a8e760272830f7d25f37d320eb1f5f110b00c11cc51a7958e26cdd523a63f",
+      "basis_parts": {
+        "source": "2377d21e4ea40799",
+        "intro": "4b2d4ce670db1f3b",
+        "corrected": "49d7501ce7c95cf8",
+        "entry": "21213cc942256624",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "8ab1ba115370c9c4",
+        "listing": "8b404f4493a25383",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "2bf46d2d5210439e"
+      },
+      "source": "987b720da2843a909e150c68cf544550b67607712f1899ee01388baca7988585",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2719,
+        "file": "main.tex",
+        "line": 2156
+      }
+    },
+    {
+      "name": "G_{\\bff,\\boldsymbol\\psi}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The formula is correct. The later zero-set passages specify a ratio convention, not a changed definition of the energy.",
+      "reading": {
+        "reading": "$G_{\\bff,\\boldsymbol\\psi}$ is the pointwise squared norm of the stacked field $(\\bff,\\boldsymbol\\psi/\\sqrt n)$, and ratios with this energy as denominator are assigned zero on $\\{G_{\\bff,\\boldsymbol\\psi}=0\\}$.",
+        "evidence": "The normalized-energy display at lines 2660--2667 defines the energy. The conditional-energy definition and Lemma~\\ref{lem:normalized-Gaussian-Stein} explicitly give the zero convention; the balanced trace proof applies it to ridge fields and their limits.",
+        "scoped": [
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds"
+            ],
+            "text": "The fields are $(\\bq_\\eta,\\br_\\eta)$ during ridge approximation and $(\\bq,\\br)$ in the limit; $G_{\\bq,\\br}=G_{\\bSigma}$."
+          }
+        ]
+      },
+      "shards": [
+        "4"
+      ],
+      "basis": "638bd5b5b34e5b8ac5a8de950bb12c97aa79ce97a5c50357cd8511d8d280954a",
+      "basis_parts": {
+        "source": "42ac4c68cbc60241",
+        "intro": "bac8d172155a311b",
+        "corrected": "deab77911f6eb79e",
+        "entry": "63b1de2f914388cc",
+        "refs": "1e327b40527c39d2",
+        "settings": "8ab1ba115370c9c4",
+        "listing": "3bf428d39c54f9c9",
+        "redefinitions": "d27c689c80fc4870",
+        "uses": "e9f68940ebab300a"
+      },
+      "source": "98b30bee2ad17687a79359ec395439389e69b61081dd55ab37065bd25e45db45",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2715,
+        "file": "main.tex",
+        "line": 2152
+      }
+    },
+    {
+      "name": "\\calE_{\\bff,\\boldsymbol\\psi}",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\calE_{\\bff,\\boldsymbol\\psi}:=\\calE_{\\bff}+n^{-1}\\calE_{\\boldsymbol\\psi}=\\sum_{i=1}^n\\sum_{j=1}^d\\left(\\norm{\\partial\\bff/\\partial z_{ij}}^2+n^{-1}\\norm{\\partial\\boldsymbol\\psi/\\partial z_{ij}}^2\\right)$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded definition omits the derivative sum and the factor $1/n$ on the residual-field energy.",
+      "reading": {
+        "reading": "$\\calE_{\\bff,\\boldsymbol\\psi}$ is the pointwise raw derivative energy of $(\\bff,\\boldsymbol\\psi/\\sqrt n)$ with respect to the design coordinates $z_{ij}$, holding any conditioning information fixed.",
+        "evidence": "The derivative-energy definition at lines 1454--1460 and normalized-energy display at lines 2660--2667 give the formula and normalization; the balanced trace proof specifies its field substitutions.",
+        "scoped": [
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds"
+            ],
+            "text": "The fields are $(\\bq_\\eta,\\br_\\eta)$ during ridge approximation and $(\\bq,\\br)$ in the limit, and differentiation holds $(\\bA,\\bep)$ fixed."
+          }
+        ]
+      },
+      "shards": [
+        "4"
+      ],
+      "basis": "436e1c84b115c862fc423ac59a749a2e6e6f927a2f2eaf65ecbaa013f90084cc",
+      "basis_parts": {
+        "source": "1db977173c0c4320",
+        "intro": "9980e965a9c7959c",
+        "corrected": "6bb2bc0658a9a28d",
+        "entry": "52ef76ea750c8b56",
+        "refs": "1e327b40527c39d2",
+        "settings": "8ab1ba115370c9c4",
+        "listing": "8e3e6f57fd139ae1",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "84bca69f8932011e"
+      },
+      "source": "4919ee16fb527c0c0677d06e69aaa5751cfd44c77b2a525e02263caf7c2e346b",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2703,
+        "file": "main.tex",
+        "line": 2140
+      }
+    },
+    {
+      "name": "\\Gamma_s",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\Gamma_1:=\\boldsymbol\\psi^\\top\\bZ\\bff-\\sum_{i=1}^n\\sum_{j=1}^d\\pdv{(\\psi_i f_j)}{z_{ij}}$, $\\Gamma_2:=\\norm{\\bZ\\bff}^2-\\sum_{i=1}^n\\sum_{j=1}^d\\pdv{\\{f_j\\be_i^\\top\\bZ\\bff\\}}{z_{ij}}$, $\\Gamma_3:=n^{-1}\\norm{\\bZ^\\top\\boldsymbol\\psi}^2-n^{-1}\\sum_{i=1}^n\\sum_{j=1}^d\\pdv{\\{\\psi_i\\be_j^\\top\\bZ^\\top\\boldsymbol\\psi\\}}{z_{ij}}$, $\\Gamma_4:=(d/n)\\norm{\\boldsymbol\\psi}^2-n^{-1}\\sum_{j=1}^d(\\boldsymbol\\psi^\\top\\bZ\\be_j-\\sum_{i=1}^n\\pdv{\\psi_i}{z_{ij}})^2$, and $\\Gamma_5:=n\\norm{\\bff}^2-\\sum_{i=1}^n(\\bff^\\top\\bZ^\\top\\be_i-\\sum_{j=1}^d\\pdv{f_j}{z_{ij}})^2$."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry omits all five defining formulas, including the different factors of $n$. These are contractions evaluated at the fields and design, rather than unspecified scalar constants.",
+      "reading": null,
+      "shards": [
+        "4"
+      ],
+      "basis": "168947554b58fefae0adabe8b669f7e52fa687514d0eaf21af6eb25bd1f4b61a",
+      "basis_parts": {
+        "source": "ec922f20c4f14d44",
+        "intro": "84054286a4ae041a",
+        "corrected": "777c00fa8384da8e",
+        "entry": "6b09d5782f7e0de2",
+        "refs": "02ccb3c1897fffb9",
+        "settings": "8ab1ba115370c9c4",
+        "listing": "fc3008ef8126863e",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "28341ddd5e066b0458523fa8d5fddf26d7381d72a3506c8f4e22a1f4b240c973",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3079,
+        "file": "main.tex",
+        "line": 2516
+      }
+    },
+    {
+      "name": "\\Theta_{\\mathcal F}",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\Theta_{\\mathcal F}:=\\E[\\calE_{\\bff,\\boldsymbol\\psi}/G_{\\bff,\\boldsymbol\\psi}\\mid\\mathcal F]$, where the ratio is zero when $G_{\\bff,\\boldsymbol\\psi}=0$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The entry omits the defining ratio and its zero convention. The conditional expectation is a quantity measurable with respect to the conditioning sigma-field, with the stated specialization in the response-normalized argument.",
+      "reading": {
+        "reading": "$\\Theta_{\\mathcal F}$ is the $\\mathcal F$-measurable conditional expectation of the normalized derivative energy, with the zero-denominator convention in its definition.",
+        "evidence": "The defining display at lines 2705--2715 specifies the conditional expectation and zero convention; the proof of Lemma~\\ref{lem:balanced-trace-Stein-bounds} specifies its response-conditioned applications.",
+        "scoped": [
+          {
+            "results": [
+              "lem:balanced-trace-stein-bounds"
+            ],
+            "text": "Here $\\mathcal F=\\sigma(\\bA,\\bep)$; the fields are $(\\bq_\\eta,\\br_\\eta)$ for $\\eta>0$ during the ridge approximation and $(\\bq,\\br)$ in the limit, where the conditional energy is written $\\Theta_{\\bA,\\bep}=\\E_{\\bZ}[\\calE_{\\bq,\\br}/G_{\\bSigma}]$."
+          }
+        ]
+      },
+      "shards": [
+        "4"
+      ],
+      "basis": "dee4b4dbd54e57d85913408dada422b61d208297c4722f37f43b5f51408eb659",
+      "basis_parts": {
+        "source": "469cff674d8783d2",
+        "intro": "7e152df550fd713e",
+        "corrected": "3e0a40c6a506baae",
+        "entry": "24b62d23bea1fc41",
+        "refs": "fd2bea74540e4391",
+        "settings": "8ab1ba115370c9c4",
+        "listing": "eb0f5bf263250257",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "ab5c238dfd5f0039"
+      },
+      "source": "54629b929f6863ca36b759dff6281f4e77df841d045ffc590efa799836fe8721",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2707,
+        "file": "main.tex",
+        "line": 2144
+      }
+    },
+    {
+      "name": "\\Delta_s",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "For $s\\in\\{1,2,4,5\\}$, $\\Delta_1=-2\\br^\\top\\bL\\bq$, $\\Delta_2=-\\norm{\\bq}^2$, $\\Delta_4=\\norm{\\bL^\\top\\br}^2+2b\\bq^\\top\\bL^\\top\\br$, and $\\Delta_5=\\norm{\\bL\\bq}^2+2\\norm{\\bq}^2-2t_{\\bSigma}\\br^\\top\\bL\\bq$."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded entry identifies the remainders only by a definition identifier. The paper explicitly defines four scalar expressions, with no third remainder.",
+      "reading": null,
+      "shards": [
+        "9"
+      ],
+      "basis": "ed8f45de53bbf97d524aa2048ccb8b1471f7abb2540794fcb2e553f234483865",
+      "basis_parts": {
+        "source": "3a2634ebf61e144c",
+        "intro": "b20c58cee4c35901",
+        "corrected": "49f9a8623448e967",
+        "entry": "8c3d921a563148e5",
+        "refs": "4e0181d2275d1ad8",
+        "settings": "473c11ab8f753615",
+        "listing": "3da8f6579614eac2",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "d2bd9c3cdc9705cec2fa0ca9db504ea6dafd419b346f8430c97df5b665db650b",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3057,
+        "file": "main.tex",
+        "line": 2494
+      }
+    },
+    {
+      "name": "\\zeta_s",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\zeta_s:=\\left.\\Gamma_s\\right|_{(\\bff,\\boldsymbol\\psi)=(\\bq,\\br)}$, $s=1,\\ldots,5$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded entry supplies only a reference to a definition. The defining substitution and index range must be explicit; the specialization uses the normalized residual and structural-noise differentiation convention.",
+      "reading": {
+        "reading": "The contractions $\\zeta_s$, $s\\in\\{1,\\ldots,5\\}$, use the trace-normalized residual field $\\br$ and derivatives with respect to $\\bZ$, holding $\\bS$, $\\bSigma$, $\\bbeta^*$ and the structural noise $\\bep$ fixed, with weak derivatives on the full-rank domain.",
+        "evidence": "Section~\\ref{app:balanced-transfer-setup} fixes normalization and differentiation; equation~\\eqref{eq:zeta-definitions} gives the specialization; the proof of Lemma~\\ref{lem:balanced-trace-Stein-bounds} identifies the weak-derivative limits."
+      },
+      "shards": [
+        "4"
+      ],
+      "basis": "3a04b635db73e1dc8458cd4a6f426addfdcea8c323aacd9742bc06363b00c6c4",
+      "basis_parts": {
+        "source": "6191fd1865f9689f",
+        "intro": "84054286a4ae041a",
+        "corrected": "c1b47583141121b7",
+        "entry": "3052fd06ed081c55",
+        "refs": "2dfcaf976b909f81",
+        "settings": "473c11ab8f753615",
+        "listing": "0b4d19fabbf25777",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "2dec0418e74a69c3"
+      },
+      "source": "60e448a7bc6ebe4d54df9e22783c64576c0aed37537d5692135088e141960e43",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3079,
+        "file": "main.tex",
+        "line": 2516
+      }
+    },
+    {
+      "name": "C_0",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The positive event threshold is correctly identified. Its deterministic, uniform choice and its sufficiently large value in the exceptional-event arguments need to be explicit.",
+      "reading": {
+        "reading": "$C_0>0$ is a deterministic threshold independent of $n$ and of the realized sketch, chosen using only the fixed model and balanced-sketch parameters.",
+        "evidence": "Line 3140 introduces a positive constant; Lemma~\\ref{lem:balanced-exceptional-weight} chooses it uniformly over balanced sketches; lines 3190--3213 choose $C_0\\geq eD_J$ and enlarge it for the design and noise norm bounds.",
+        "scoped": [
+          {
+            "results": [
+              "lem:balanced-remainder-bounds",
+              "lem:balanced-trace-stein-bounds",
+              "lem:balanced-exceptional-weight"
+            ],
+            "text": "The threshold is chosen sufficiently large to control all three constraints defining $\\Omega_n$, including $C_0\\geq eD_J$ in the inverse-norm argument."
+          }
+        ]
+      },
+      "shards": [
+        "9"
+      ],
+      "basis": "90c9585c798120a9bfcf06518a73bdf04b78d6757e7ee78a0b1adb8c8571b932",
+      "basis_parts": {
+        "source": "5f4f7fa87d53a9d0",
+        "intro": "632f8a1df0b1ccb6",
+        "corrected": "b882a31993e529d9",
+        "entry": "9d477db68d6c091b",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "473c11ab8f753615",
+        "listing": "3db1230d39bf6256",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4d9680664d904fb6"
+      },
+      "source": "1cc7d16e3d6035d36dfb91b6181be2430f71327ceb65ebe3cbd1a6142c177391",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3140,
+        "file": "main.tex",
+        "line": 2577
+      }
+    },
+    {
+      "name": "\\Omega_n",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\Omega_n:=\\left\\{n\\norm{(\\bG_0^\\top\\bG_0)^{-1}}_{\\rm op}\\leq C_0,\\quad\\norm{\\bZ}_{\\rm op}\\leq C_0\\sqrt n,\\quad\\norm{\\bep}\\leq C_0\\sqrt n\\right\\}$."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The table gives only a definition identifier. The displayed intersection of three norm constraints determines the event used to split weighted expectations and must be recorded explicitly.",
+      "reading": null,
+      "shards": [
+        "9"
+      ],
+      "basis": "fa2c8fe318e662cd39a1fa8353a7921d82496c2adf155cdf378b173d7179b298",
+      "basis_parts": {
+        "source": "a79059fec40686f4",
+        "intro": "632f8a1df0b1ccb6",
+        "corrected": "9c610e8eecc02a93",
+        "entry": "d2d1cedbda95e58b",
+        "refs": "c8075e6206fdeddd",
+        "settings": "473c11ab8f753615",
+        "listing": "3db1230d39bf6256",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "96c943e531799228"
+      },
+      "source": "967947aeeaecad4fdb93ec22f4ac9c2d91a5c33d8ce54dc903be70df29ee569d",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3142,
+        "file": "main.tex",
+        "line": 2579
+      }
+    },
+    {
+      "name": "\\ba",
+      "meaning": "drift",
+      "fix": {
+        "type": "locally bound vector or vector field",
+        "space": "$\\R^p$, with the dimension $p$ determined by the local use",
+        "def": "In elementary norm inequalities, $\\ba$ is an arbitrary vector of the same dimension as $\\bb$; in the matrix Gaussian divergence inequality, $\\ba:\\R^{n\\times d}\\to\\R^d$ is a smooth field; in the dense Gaussian proof, $\\ba=\\bU^\\top\\bep$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": "Write $\\ba=\\bU^\\top\\bep$ and $\\bc=\\bV^\\top\\bep$.",
+      "detail": "The table records only the smooth-field use. The paper also uses arbitrary vectors in elementary inequalities and a specifically defined projected noise vector in the dense Gaussian proof.",
+      "reading": {
+        "reading": "$\\ba$ is locally bound vector notation, with its dimension and dependence determined by the surrounding definition or inequality.",
+        "evidence": "Lines 1951 and 2506 use arbitrary vectors; lines 2800--2820 introduce the smooth field; lines 2984--2996 use arbitrary vectors again; lines 3984--4002 define the projected noise vector using the thin polar factor.",
+        "scoped": [
+          {
+            "results": [
+              "lem:derivative-energy-from-inverse-moments",
+              "lem:influence-from-moments"
+            ],
+            "text": "$\\ba$ and $\\bb$ are arbitrary vectors in the same Euclidean space in $\\norm{\\ba-\\bb}^2\\leq2\\norm{\\ba}^2+2\\norm{\\bb}^2$."
+          },
+          {
+            "results": [
+              "lem:normalized-gaussian-stein",
+              "lem:matrix-gaussian-divergence-cited"
+            ],
+            "text": "In the matrix Gaussian divergence inequality, $\\ba:\\R^{n\\times d}\\to\\R^d$ is a smooth field, interpreted conditionally on $\\mathcal F$ with derivatives taken in $\\bZ$."
+          },
+          {
+            "results": [
+              "lem:normalized-gaussian-stein"
+            ],
+            "text": "In the later elementary comparison beginning with $c\\geq1$ and $\\norm{\\bu}\\leq1$, $\\ba$ and $\\bb$ are arbitrary vectors of the same dimension as $\\bu$."
+          },
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks"
+            ],
+            "text": "In the dense Gaussian proof, $\\ba=\\bU^\\top\\bep\\in\\R^d$, where $\\bU=\\bZ(\\bZ^\\top\\bZ)^{-1/2}$. Conditional on $\\bZ$, $\\ba$ is centered Gaussian with covariance $\\sigma^2\\bI_d$ and is independent of $\\bG,\\bH,\\bc$; the joint conditional law of these blocks does not depend on $\\bZ$."
+          }
+        ]
+      },
+      "shards": [
+        "9"
+      ],
+      "basis": "87128db06824c9f0b0a13379a508aee93a817050e4e223075e8b15c0303c0705",
+      "basis_parts": {
+        "source": "066322deff0608fd",
+        "intro": "3ef82d7d1325d381",
+        "corrected": "1ba38834833f9117",
+        "entry": "935b905223264e13",
+        "refs": "02313c16e3c662ac",
+        "settings": "223cf05a62060a6e",
+        "listing": "af4d7a32fcf7dc67",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "e62a6c6b3b280f43"
+      },
+      "source": "534f625087dfaebeb32cb51d0e5d9f287f82275646f0c3b87f1f8bef632ac1b5",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3997,
+        "file": "main.tex",
+        "line": 3434
+      }
+    },
+    {
+      "name": "\\bb",
+      "meaning": "drift",
+      "fix": {
+        "type": "locally bound vector or vector field",
+        "space": "$\\R^p$, with the dimension $p$ determined by the local use",
+        "def": "In elementary norm inequalities, $\\bb$ is an arbitrary vector of the same dimension as $\\ba$; in the matrix Gaussian divergence inequality, $\\bb:\\R^{n\\times d}\\to\\R^n$ is a smooth field."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": "For $c\\geq1$, $\\norm{\\bu}\\leq1$, and vectors $\\ba,\\bb$, the following\nelementary comparison holds:",
+      "detail": "The smooth field with values in $\\R^n$ is only one local use. Applying that interpretation to the elementary norm inequalities would impose an unsupported dimension and field structure.",
+      "reading": {
+        "reading": "$\\bb$ is locally bound vector notation, with its dimension and dependence determined by the surrounding inequality.",
+        "evidence": "Lines 1951 and 2506 use arbitrary same-dimensional vectors in a norm inequality; lines 2800--2820 introduce smooth matrix fields; lines 2984--2996 again use arbitrary vectors in an elementary comparison.",
+        "scoped": [
+          {
+            "results": [
+              "lem:derivative-energy-from-inverse-moments",
+              "lem:influence-from-moments"
+            ],
+            "text": "$\\ba$ and $\\bb$ are arbitrary vectors in the same Euclidean space in $\\norm{\\ba-\\bb}^2\\leq2\\norm{\\ba}^2+2\\norm{\\bb}^2$."
+          },
+          {
+            "results": [
+              "lem:normalized-gaussian-stein",
+              "lem:matrix-gaussian-divergence-cited"
+            ],
+            "text": "In the matrix Gaussian divergence inequality, $\\bb:\\R^{n\\times d}\\to\\R^n$ is a smooth field, interpreted conditionally on $\\mathcal F$ with derivatives taken in $\\bZ$."
+          },
+          {
+            "results": [
+              "lem:normalized-gaussian-stein"
+            ],
+            "text": "In the later elementary comparison beginning with $c\\geq1$ and $\\norm{\\bu}\\leq1$, $\\ba$ and $\\bb$ are arbitrary vectors of the same dimension as $\\bu$."
+          }
+        ]
+      },
+      "shards": [
+        "9"
+      ],
+      "basis": "20fc963e37c71689c48b6f63028da0354955e411fd5275ea4974176547a6fdf8",
+      "basis_parts": {
+        "source": "76b87a94fff0b9be",
+        "intro": "8ed0f076ff5d18f9",
+        "corrected": "25d98d1b02af0ff3",
+        "entry": "bbc141259bb4a4d9",
+        "refs": "359d5821527247ca",
+        "settings": "223cf05a62060a6e",
+        "listing": "af4d7a32fcf7dc67",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "8bcf7c01fc8273ed"
+      },
+      "source": "d1dc9d38a4402fc68db033b275e192077eba0c5abcc43c7bda484d42bcfe7375",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 1951,
+        "file": "main.tex",
+        "line": 1388
+      }
+    },
+    {
+      "name": "\\bz_i",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded row-vector convention is correct. The index range and the conditioning used for the rowwise calculation are explicit in the paper.",
+      "reading": {
+        "reading": "For $i\\in\\{1,\\ldots,n\\}$, $\\bz_i=(z_{i1},\\ldots,z_{id})^\\top\\in\\R^d$ is the column vector whose transpose is row $i$ of $\\bZ$.",
+        "evidence": "The sentence preceding equation \\eqref{eq:whitened-divergence} specifies the row notation; lines 2393--2403 specify the rowwise conditional expectation in the proof.",
+        "scoped": [
+          {
+            "results": [
+              "lem:stein-remainders-from-moments"
+            ],
+            "text": "In the rowwise proof, $\\E_i$ integrates $\\bz_i$ conditional on $(\\bZ_{-i},\\bS,\\bep)$; consequently $\\ba_i=\\E_i[\\bq]$ does not depend on the integrated row."
+          }
+        ]
+      },
+      "shards": [
+        "8"
+      ],
+      "basis": "c96fa8543bc37e8ee1a4c1c658625006361a3ed9a71019ba65eaa981fab1c6c9",
+      "basis_parts": {
+        "source": "0c96f48ecc50db3c",
+        "intro": "61b35a14e93359ee",
+        "corrected": "62dfa5599b6d3170",
+        "entry": "b38b64af501a5270",
+        "refs": "901e8e81a4ac81b8",
+        "settings": "bcf3e689c2e25c53",
+        "listing": "c136c5e35faf5976",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "d4e3840d224f4129ea5bbfda3cd08bf38ac24020d3b0f8efa4474619e2ad232a",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2393,
+        "file": "main.tex",
+        "line": 1830
+      }
+    },
+    {
+      "name": "T",
+      "meaning": "drift",
+      "fix": {
+        "type": "real-valued random quantity",
+        "space": null,
+        "def": "Local notation for a risk estimate in $\\operatorname{MSE}(T)=\\E[(T-R)^2]$ and the simulation summaries, and for an auxiliary variable $T\\sim\\chi^2_{n-d}$ in the dense Gaussian calculation."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": "On an auxiliary probability space, take independent variables\n\\begin{align*}\n    T&\\sim\\chi^2_{n-d}, & J&\\sim\\chi^2_d,\n    & V&\\sim\\chi^2_{m-d+1},\\\\\n    U&\\sim\\chi^2_{m-d}, & B&\\sim\\chi^2_{n-d-1}.\n\\end{align*}",
+      "detail": "The risk-estimate interpretation is correct at the MSE definition but does not cover the auxiliary chi-square variable in the dense Gaussian proof. The occurrence in an equation label containing T does not introduce another mathematical quantity.",
+      "reading": {
+        "reading": "$T$ is local notation for a real-valued random quantity whose interpretation is specified in its surrounding definition.",
+        "evidence": "Line 676 defines the MSE of a risk estimate and explicitly averages over training data and sketch randomness; lines 4040--4045 introduce a separate auxiliary chi-square variable.",
+        "scoped": [
+          {
+            "results": [
+              "thm:tight-frame-mse-comparison",
+              "thm:cpal-mse-comparison"
+            ],
+            "text": "$T$ denotes a risk estimate of the same fitted predictor's risk $R$, and $\\operatorname{MSE}(T)=\\E[(T-R)^2]$ averages over training data and sketch randomness."
+          },
+          {
+            "results": [
+              "thm:cpal-risk-benchmarks"
+            ],
+            "text": "In the dense Gaussian proof, $T\\sim\\chi^2_{n-d}$ is an auxiliary variable independent of $J,V,U,B$, introduced for marginal distributional representations of residual statistics."
+          }
+        ]
+      },
+      "shards": [
+        "4"
+      ],
+      "basis": "c37501d644e6f8788f9e2e61e57a03c03e2bdf9be505aec7f5ab3f4eee15812e",
+      "basis_parts": {
+        "source": "b1a9a26608e3518f",
+        "intro": "5c29b2d2b3ada03a",
+        "corrected": "2b8dc931040a0b9b",
+        "entry": "dbbc1ec5a135e6a3",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "520f5a6333f8bcd1",
+        "listing": "902093b536fabf9a",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "7d639e90388d4191"
+      },
+      "source": "22e5b9602775b63dde1fa0eba33b392a2b7aed5beee0981b51ad93794eea735e",
+      "graded": "carried",
+      "introduced_at": {
+        "flat_line": 676,
+        "file": "main.tex",
+        "line": 314
+      }
+    },
+    {
+      "name": "\\E_{\\rm aux}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The referenced auxiliary law specifies the expectation completely, including recomputation of response-dependent quantities and preservation of the original design-sketch marginal.",
+      "reading": null,
+      "shards": [
+        "8"
+      ],
+      "basis": "977db30244dff46f442730c6dbc8b5f61692086b3c0203599bc3f86a8cd75e67",
+      "basis_parts": {
+        "source": "6de73fe8536a7edf",
+        "intro": "cce27ba7e364dea5",
+        "corrected": "b61190ef3fbe7baf",
+        "entry": "703daf023f0a2112",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "473c11ab8f753615",
+        "listing": "cb23f731ce2049d0",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "12329df6ca9d415b"
+      },
+      "source": "3097b11562c0943aff8dc431ba80cfb9c1c93d830ea945cce7cc6c21a692929c",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2631,
+        "file": "main.tex",
+        "line": 2068
+      }
+    },
+    {
+      "name": "\\E_\\star",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry correctly records the two allowed expectation operators. The paper establishes the bounds under each response law separately, with response quantities evaluated under the chosen law.",
+      "reading": null,
+      "shards": [
+        "9"
+      ],
+      "basis": "1fe80b8f36655debee76620d80c8ae576742a34b5eea285c3d77bd7e3d734eb3",
+      "basis_parts": {
+        "source": "d375669159b844d1",
+        "intro": "0f75be66483658e9",
+        "corrected": "b6609f9dbe5c0b2f",
+        "entry": "e37159feed255ff2",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "473c11ab8f753615",
+        "listing": "c30dd8945500ef58",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "ee8dae595d493bb8"
+      },
+      "source": "72a655be07c436e14c0c86d2048deb7e9580ffda9549b753ae987be30d06d4b3",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3098,
+        "file": "main.tex",
+        "line": 2535
+      }
+    },
+    {
+      "name": "\\E_{\\bX,\\bS}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The definition matches expectation under the original marginal law of $(\\bX,\\bS)$; it is not conditional expectation given the sketch.",
+      "reading": null,
+      "shards": [
+        "8"
+      ],
+      "basis": "b8eeb473763bb222086f8e05e58c1ed6907df76b4e89a8f54b2a8260ce04df86",
+      "basis_parts": {
+        "source": "b7b8edca11758566",
+        "intro": "8793099e2d77ad24",
+        "corrected": "e561f6aff1ded505",
+        "entry": "7720c7ade3ba9da8",
+        "refs": "07e5603f30d80d7f",
+        "settings": "473c11ab8f753615",
+        "listing": "5dbef5673ddbc546",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "a26f33a9ffebdd1d9d7a3a064746e57e74af778dbaea0810aae1810297fca6ac",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3622,
+        "file": "main.tex",
+        "line": 3059
+      }
+    },
+    {
+      "name": "\\bx_{\\rm new}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry correctly identifies the feature component of the independent test observation, with the stated dimension and model law.",
+      "reading": null,
+      "shards": [
+        "8"
+      ],
+      "basis": "0a37f2f667cd6770517ad6c6e491134f09a88efa57f2f84751634c70b21111eb",
+      "basis_parts": {
+        "source": "3292bd390c2ad19b",
+        "intro": "19e16e052182bfba",
+        "corrected": "ab06c44eddf6a1e1",
+        "entry": "4bdc3ff7a6239c9c",
+        "refs": "02313c16e3c662ac",
+        "settings": "8e0bce79b4fe6064",
+        "listing": "2dcc85c03e295093",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "b90a850a0d1191c0c7e5b5e03c8f46608e8f25f6560eb9f92a05f31d3e08f920",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 504,
+        "file": "main.tex",
+        "line": 142
+      }
+    },
+    {
+      "name": "y_{\\rm new}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry correctly identifies the response component of the independent test observation from the same model; the sampling settings specify its law.",
+      "reading": null,
+      "shards": [
+        "8"
+      ],
+      "basis": "06c8f7ecf428d8c11d955d53c216b3d5381bce57d4dfa54aa4a1b7d19639a944",
+      "basis_parts": {
+        "source": "5067c17d5d30c013",
+        "intro": "19e16e052182bfba",
+        "corrected": "22831b160a01e3cb",
+        "entry": "58ae43c607196002",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "8e0bce79b4fe6064",
+        "listing": "2dcc85c03e295093",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "927828facbc10d8e081b3d12be5c69455615458e51fe7c695110faf4884a76b8",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 504,
+        "file": "main.tex",
+        "line": 142
+      }
+    },
+    {
+      "name": "\\eta",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry correctly specifies a positive ridge parameter. References to $\\eta=0$ describe passage to the unregularized limit as $\\eta\\downarrow0$.",
+      "reading": null,
+      "shards": [
+        "3"
+      ],
+      "basis": "2b8f6a5010f9e060596d4c0dfcf8d75165dae07a48d090599ad8b3dd3caef80d",
+      "basis_parts": {
+        "source": "efbdd5354798a674",
+        "intro": "ff846a4359a0358e",
+        "corrected": "870d7a16fd404aa4",
+        "entry": "21c485ad8df05523",
+        "refs": "4f53cda18c2baa0c",
+        "settings": "473c11ab8f753615",
+        "listing": "7751260b9246ce3f",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "934e2781ac0d36d3"
+      },
+      "source": "0fae31fed8150aa06d75b0ce66d75174cb483c3a4fde2315ea9abc67950a5a0d",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3304,
+        "file": "main.tex",
+        "line": 2741
+      }
+    },
+    {
+      "name": "\\bK_\\eta",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "For $\\eta>0$, $\\bK_\\eta=(\\widetilde{\\bM}+\\eta\\bI_d)^{-1}$."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded label omits the defining inverse and ridge scaling. The paper adds $\\eta\\bI_d$ directly to the whitened Gram matrix.",
+      "reading": null,
+      "shards": [
+        "3"
+      ],
+      "basis": "1e15d1af56f2f75f2ffca415a5494ad161d341d88b3db5fea9aa647f58b41850",
+      "basis_parts": {
+        "source": "905b3c889aed8586",
+        "intro": "2b0f3d28f01c9df4",
+        "corrected": "182f405b02d6bb42",
+        "entry": "dfeee882afcf76a8",
+        "refs": "238e24859d92ea37",
+        "settings": "473c11ab8f753615",
+        "listing": "7751260b9246ce3f",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "3093a7c019851ad2"
+      },
+      "source": "392d8a4c492219d5cf6cfaa7f3b7fb1c011f2a7d4ac0a3f04bb4b2dc94b93616",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2115,
+        "file": "main.tex",
+        "line": 1552
+      }
+    },
+    {
+      "name": "\\bq_\\eta",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\bq_\\eta=\\bK_\\eta\\bZ^\\top\\bA\\bep$, where $\\bK_\\eta=(\\widetilde{\\bM}+\\eta\\bI_d)^{-1}$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded definition omits the actual coefficient-field formula. This is the ridge approximation to the prediction-scale coefficient error, defined for positive ridge parameter; later references use the same field.",
+      "reading": {
+        "reading": "For each $\\eta>0$, $\\bq_\\eta=(\\widetilde{\\bM}+\\eta\\bI_d)^{-1}\\bZ^\\top\\bA\\bep$ is a smooth field on all of $\\R^{n\\times d}$ in the design coordinates $\\bZ$, with $(\\bA,\\bep)$ held fixed.",
+        "evidence": "Lines 2113--2119 give the defining display for positive ridge parameter; lines 2136--2151 discuss uniform bounds and convergence as $\\eta\\downarrow0$. Lines 3373--3382 explicitly give conditional smoothness on the whole design space."
+      },
+      "shards": [
+        "3"
+      ],
+      "basis": "3a820feb920939b4f3a145db17c5fada674f61651d259b0489cd3cf987c3f6e4",
+      "basis_parts": {
+        "source": "47b8a66ee41244db",
+        "intro": "c04d60525dfc206d",
+        "corrected": "4d378331911a1eaf",
+        "entry": "8f8208bf77f7c730",
+        "refs": "11d2df3443f5e688",
+        "settings": "473c11ab8f753615",
+        "listing": "4f53cda18c2baa0c",
+        "redefinitions": "e379684d715d8634",
+        "uses": "52d01e1612d32a63"
+      },
+      "source": "0b7df36b324dce77393925919fa56ee9bccfd17a460cff56742d15c9bf32780c",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2136,
+        "file": "main.tex",
+        "line": 1573
+      }
+    },
+    {
+      "name": "\\bL_\\eta",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "For $\\eta>0$, $\\bL_\\eta=\\bA\\bZ\\bK_\\eta$."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The recorded label omits the defining matrix product. The paper defines this map explicitly as $\\bA\\bZ\\bK_\\eta$.",
+      "reading": null,
+      "shards": [
+        "8"
+      ],
+      "basis": "f04e8c54a2102ab64270b5f883ed20eb1917f62a159b2ecffaa5f1647468c923",
+      "basis_parts": {
+        "source": "a0debcce15b18282",
+        "intro": "fb96d4ce8a845635",
+        "corrected": "a7b63d052b326100",
+        "entry": "eb5563ee09031454",
+        "refs": "99eae923a3d68575",
+        "settings": "473c11ab8f753615",
+        "listing": "7751260b9246ce3f",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "13497ed51db5ed5c"
+      },
+      "source": "3c80c2695eca5ec8706e634c76f4819f9d79f507986e00fbd6d6aa38723cdf1e",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2117,
+        "file": "main.tex",
+        "line": 1554
+      }
+    },
+    {
+      "name": "\\br_\\eta",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\br_\\eta=\\bA(\\bep-\\bZ\\bq_\\eta)$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded definition only points to a node and omits the weighted-residual formula. The ridge parameter is positive, and the field is differentiated in the design coordinates while the sketch Gram matrix and structural noise are held fixed.",
+      "reading": {
+        "reading": "For each $\\eta>0$, $\\br_\\eta=\\bA(\\bep-\\bZ\\bq_\\eta)$ is a smooth field on all of $\\R^{n\\times d}$ in the design coordinates $\\bZ$, with $(\\bA,\\bep)$ held fixed.",
+        "evidence": "The ridge display at lines 2113--2119 defines the field for $\\eta>0$; lines 3373--3382 explicitly assert smoothness on all design matrices conditional on $(\\bA,\\bep)$."
+      },
+      "shards": [
+        "3"
+      ],
+      "basis": "6a5849806962b9a28aebe9552a3ac4991f8a66ea96bf1f7f1d20b8ff736139f8",
+      "basis_parts": {
+        "source": "ccb5a0ad52636a88",
+        "intro": "4ed52231c5d311e8",
+        "corrected": "000ff0b551270779",
+        "entry": "b46a44eb69eaf8f2",
+        "refs": "bd068e0a3ea41d8f",
+        "settings": "473c11ab8f753615",
+        "listing": "7751260b9246ce3f",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "b954cf552264daf3"
+      },
+      "source": "7311e43a4176f276905412c613aeea2e1e623f0ce9d08fc9003d67fcd4ff47d7",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3379,
+        "file": "main.tex",
+        "line": 2816
+      }
+    },
+    {
+      "name": "C_Q",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "A finite constant $C_Q$, independent of $n$, such that $\\E_{\\rm aux}[\\mathcal T_{\\bA}]\\leq C_Q\\sqrt n$ for all sufficiently large $n$, under the standing balanced-sketch assumptions and for the trace-normalized representative."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry omits the defining inequality and its essential $\\sqrt n$ scaling. The paper bounds the auxiliary expected trace quantity by $C_Q\\sqrt n$, rather than by $C_Q$.",
+      "reading": null,
+      "shards": [
+        "8"
+      ],
+      "basis": "d41ca6b3442d0c66e7f405210d22269c4ac24bfbb29a91faa1933587da0e78ee",
+      "basis_parts": {
+        "source": "a767d72778ebac28",
+        "intro": "ff41457a2260a77e",
+        "corrected": "df3420f68de373e9",
+        "entry": "5324712fe16f450e",
+        "refs": "966ce9a51fda5c97",
+        "settings": "473c11ab8f753615",
+        "listing": "cdffe1a008378082",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "f249217b01d7a1da09b26cf87b90bc4f9dd2e94bd128dccdf06fa3c5f8d2165d",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3603,
+        "file": "main.tex",
+        "line": 3040
+      }
+    },
+    {
+      "name": "C_{QB}",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "For the trace-normalized representative, $C_{QB}<\\infty$ is independent of $n$ and satisfies $\\E[B_{\\bA}\\mathcal T_{\\bA}]\\leq C_{QB}\\sqrt n$ for all sufficiently large $n$, where the expectation is under the original response law."
+      },
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry identifies the constant's role correctly but omits the defining rate and normalization: it bounds the weighted expectation by $C_{QB}\\sqrt n$, rather than by a constant independent of $n$.",
+      "reading": null,
+      "shards": [
+        "2"
+      ],
+      "basis": "ef10aca5813f8dbf6e36bf33fbf9048ce85c51997d7784ce292a77008cd01490",
+      "basis_parts": {
+        "source": "a02924389bcc04b8",
+        "intro": "ff41457a2260a77e",
+        "corrected": "37c266ef92a1b304",
+        "entry": "8882eac1d10a57a9",
+        "refs": "6825249d43599177",
+        "settings": "473c11ab8f753615",
+        "listing": "cdffe1a008378082",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "9e368a47b40b29f6c8e20d4837c2a92c3f867d2bac4054b68e040a788de44641",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 3603,
+        "file": "main.tex",
+        "line": 3040
+      }
+    },
+    {
+      "name": "\\E_i",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "ok",
+      "redefined_at": null,
+      "detail": "The entry already specifies integration over row $i$ conditional on the other design rows, sketch and structural errors.",
+      "reading": null,
+      "shards": [
+        "1"
+      ],
+      "basis": "4643cd72c9c442eae9b3ca08b669dbef8825bbd8c7e8421fcbd8135d6ec7c0c7",
+      "basis_parts": {
+        "source": "e4ac35ceef57a9ac",
+        "intro": "61b35a14e93359ee",
+        "corrected": "6e0934c63d6ea8f9",
+        "entry": "b7f5b0007dbf8a5b",
+        "refs": "b1a2e4a4bf9aafac",
+        "settings": "f292e460cde2f27d",
+        "listing": "60cff1eda009476b",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "7082b65e9188cfea"
+      },
+      "source": "284187e98e1d0d977d000904bea8ab31ce8a1ed2e3c1bdab210688d260ea6294",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2393,
+        "file": "main.tex",
+        "line": 1830
+      }
+    },
+    {
+      "name": "\\ba_i",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "This is a row-conditional mean, which can still depend on the other rows, sketch and structural errors.",
+      "reading": {
+        "reading": "For $i\\in\\{1,\\ldots,n\\}$, $\\ba_i=\\E[\\bq\\mid\\bZ_{-i},\\bS,\\bep]$ is measurable with respect to $(\\bZ_{-i},\\bS,\\bep)$ and is held fixed when integrating over $\\bz_i$ under $\\E_i$.",
+        "evidence": "Lines 2393--2403 define $\\E_i$ and $\\ba_i$ and state that $\\ba_i$ depends only on the other design rows under this conditioning."
+      },
+      "shards": [
+        "1"
+      ],
+      "basis": "4677f7c469d636cfe2848ce4c9347ad62832a6369c03fe42b5fbf20204b904ab",
+      "basis_parts": {
+        "source": "775578b9c0925bca",
+        "intro": "624871551aa466e2",
+        "corrected": "d3266f612b13a296",
+        "entry": "48ec5f12b4794920",
+        "refs": "eac95f76e4185b30",
+        "settings": "f292e460cde2f27d",
+        "listing": "3f901a6f440d9f3f",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "eeb6dd0a898e39e1"
+      },
+      "source": "184ee51f2b375ae4b0fa637efd124e0fcdd7453be617dde463f3c3c058c28192",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2428,
+        "file": "main.tex",
+        "line": 1865
+      }
+    },
+    {
+      "name": "\\eta_i",
+      "meaning": "drift",
+      "fix": {
+        "type": null,
+        "space": null,
+        "def": "$\\eta_i:=\\bz_i^\\top(\\bq-\\ba_i)-\\sum_{j=1}^d\\pdv{q_j}{z_{ij}}$."
+      },
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The entry gives only a label and definition reference, omitting the displayed divergence subtraction. The paper defines a rowwise fluctuation centered conditionally on the remaining design rows, sketch and errors.",
+      "reading": {
+        "reading": "For $i\\in\\{1,\\ldots,n\\}$, $\\eta_i=\\bz_i^\\top(\\bq-\\ba_i)-\\sum_{j=1}^d\\pdv{q_j}{z_{ij}}$, where $\\ba_i=\\E_i[\\bq]$ and $\\E_i$ integrates row $\\bz_i$ conditional on $(\\bZ_{-i},\\bS,\\bep)$, so $\\E_i\\eta_i=0$.",
+        "evidence": "Lines 2399--2404 define the rowwise expectation and $\\eta_i$; the following sentences state $\\E_i\\eta_i=0$ by Gaussian integration by parts."
+      },
+      "shards": [
+        "8"
+      ],
+      "basis": "1a87b53cd3345509530b14e2b2201da8da1ea4fb0d368634e9fb51aec89a372b",
+      "basis_parts": {
+        "source": "6bf5a441d01619ea",
+        "intro": "ca4afdd6198bb93f",
+        "corrected": "ea38aac80ee16f79",
+        "entry": "15b2ed7de6ebecbd",
+        "refs": "e654b2a5f15acf1b",
+        "settings": "f292e460cde2f27d",
+        "listing": "60cff1eda009476b",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "90946ef2ff76ece4d0fff34946974c42e56841d84a4fc609f37181f8e5d203ac",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2403,
+        "file": "main.tex",
+        "line": 1840
+      }
+    },
+    {
+      "name": "\\chi_i",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The recorded formula is correct. Its centering is conditional on the other design rows, sketch and errors, with the coefficient $\\ba_i$ obtained by integrating out row $i$.",
+      "reading": {
+        "reading": "For $i\\in\\{1,\\ldots,n\\}$, $\\chi_i=(\\bz_i^\\top\\ba_i)^2-\\norm{\\ba_i}^2$, where $\\ba_i=\\E_i[\\bq]$ and $\\E_i$ integrates row $\\bz_i$ conditional on $(\\bZ_{-i},\\bS,\\bep)$, so $\\E_i\\chi_i=0$.",
+        "evidence": "The defining display at lines 2399--2404 specifies $\\ba_i$ and $\\chi_i$; the following sentences specify the rowwise conditioning and conditional centering."
+      },
+      "shards": [
+        "8"
+      ],
+      "basis": "e54f3226ca4dcd9e6e49cc67ef321253ffe72e67e60681d941fef8ecd3b96b9f",
+      "basis_parts": {
+        "source": "37763a3d3fd39f09",
+        "intro": "24233cf2c80d8313",
+        "corrected": "e3cce0afb70db0b4",
+        "entry": "1692f1dbbef6d5a7",
+        "refs": "7067a2b7555cf881",
+        "settings": "f292e460cde2f27d",
+        "listing": "b9eb728d1d39252b",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "c108d795851c1e91"
+      },
+      "source": "76fe407f130bcf8edaabb309a3720436499fe9cfa4a04560a1285a9c6f696674",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2404,
+        "file": "main.tex",
+        "line": 1841
+      }
+    },
+    {
+      "name": "D_k\\ba_i",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The Jacobian entry is accurate. Its differentiation convention and diagonal case are settled explicitly by the paper.",
+      "reading": {
+        "reading": "For $i,k\\in\\{1,\\ldots,n\\}$, $D_k\\ba_i$ differentiates $\\ba_i$ with respect to $\\bz_k$, holding the other design rows, $\\bS$ and $\\bep$ fixed, with $D_i\\ba_i=0$ and $D_k\\ba_i=\\E_i[D_k\\bq]$ for $k\\ne i$.",
+        "evidence": "Lines 2428--2443 define the Jacobian and explicitly give both differentiation identities."
+      },
+      "shards": [
+        "1"
+      ],
+      "basis": "6f668f3a8da210eccc38a5a170b645076787e93bb308a1c93d423e850c464be1",
+      "basis_parts": {
+        "source": "6ceb537047c5945f",
+        "intro": "624871551aa466e2",
+        "corrected": "0cd8d347c4708fb8",
+        "entry": "d02ce82654dbbb14",
+        "refs": "53891bf0ca7c6091",
+        "settings": "f292e460cde2f27d",
+        "listing": "e14b85184ca70fc9",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "d8c1db6803771f4ffa47083f120b369d7a4fb29d04163be64c569ff226376828",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2428,
+        "file": "main.tex",
+        "line": 1865
+      }
+    },
+    {
+      "name": "b_{ik}",
+      "meaning": "ok",
+      "fix": null,
+      "ambiguity": "pinned",
+      "redefined_at": null,
+      "detail": "The formula is correct. The intermediate two-row conditioning does not change the weights into conditional random quantities.",
+      "reading": {
+        "reading": "For $i,k\\in\\{1,\\ldots,n\\}$, $b_{ik}=\\E[\\norm{D_k\\ba_i}_{\\rm F}^2\\norm{\\ba_i}^2]$ is an unconditional expectation under the original law, rather than an expectation conditional on $(\\bZ_{-\\{i,k\\}},\\bS,\\bep)$; in particular, $b_{ii}=0$.",
+        "evidence": "Lines 2428--2449 define the weights with $\\E$, introduce the two-row conditioning only for the covariance step, and state $D_i\\ba_i=0$."
+      },
+      "shards": [
+        "1"
+      ],
+      "basis": "1077c3e087a2cb33f63f2467498a51d4c9677e89a6ec6fc22a973e1abfee1925",
+      "basis_parts": {
+        "source": "2d027d36b39546cd",
+        "intro": "5b80ae8f8c98063e",
+        "corrected": "ec74166bb1029882",
+        "entry": "0acc25a6a1180e63",
+        "refs": "695d0fc6e4ee856e",
+        "settings": "f292e460cde2f27d",
+        "listing": "7689e7c590342c05",
+        "redefinitions": "4f53cda18c2baa0c",
+        "uses": "4f53cda18c2baa0c"
+      },
+      "source": "0592d47f300d1e767ea0489519cae2b7440aa8a5737cdbc9fc32012c1a95ae0b",
+      "graded": "fresh",
+      "introduced_at": {
+        "flat_line": 2430,
+        "file": "main.tex",
+        "line": 1867
+      }
+    }
+  ]
+}

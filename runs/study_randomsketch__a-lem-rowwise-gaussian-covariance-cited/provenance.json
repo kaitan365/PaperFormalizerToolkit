@@ -1,0 +1,15 @@
+{
+  "origin": {
+    "kind": "proposal",
+    "slug": "randomsketch",
+    "round": "A",
+    "proposal_id": "a-lem-rowwise-gaussian-covariance-cited"
+  },
+  "decision": "accepted",
+  "nearest_existing": [
+    "Causalean.Stat.gaussian_pushforward_covariance",
+    "StatLean.HypothesisTesting.map_quadraticForm_multivariateGaussian_eq_chiSquared"
+  ],
+  "main": "Toolkit.Tricks.Probability.Moments.gaussian_cross_quadratic_covariance_bound",
+  "title": "Gaussian covariance bound for cross-dependent quadratic forms"
+}

@@ -1,0 +1,131 @@
+{
+  "round": 1,
+  "findings": [
+    {
+      "id": "thm:cpal-corrected-accuracy",
+      "axis": "faithfulness",
+      "detail": "All eight lint observations are dismissed as defects. The model and covariance assumptions come from the expressly referenced model conditions; the dimension and rank conditions come from the surrounding least-squares setup. Gaussian design, uniform sub-Gaussian errors, and the spectral gap are explicit. Trace normalization applies to the proof's representative sketch, preserving the theorem's original-scale scope by invariance. Independently expanding the corrected residual gives $n\\norm{\\bq}^2+\\norm{\\bep}^2-\\norm{\\bep-\\bv}^2=n\\norm{\\bq}^2-\\norm{\\bv}^2+2\\bep^\\top\\bv$, exactly matching the printed Stein identity with all three influence terms. The settled fluctuation, influence, and noise-energy bounds yield the asserted rate after division by $n$. The difference of squares gives $|\\hR_u-\\hR_o|\\leq|t_{\\bSigma}-d/b|B_{\\bA}\\leq B_{\\bA}\\mathcal T_{\\bA}/n$, whose expectation has the required rate. On $\\{G_{\\bSigma}=0\\}$, both $\\br$ and $B_{\\bA}$ vanish, so this argument needs no additional exclusion. [global pass, wiring] The theorem permits the original sketch scale, while its proof explicitly passes to the trace-normalized representative before applying the balanced-sketch results. It carries def:normalization-convention, which reuses notation for normalized quantities, but does not reach def:normalized-sketch, which constructs $\\overline{\\bS}=\\{n/\\trace(\\bA)\\}^{1/2}\\bS$. That construction must reach the theorem to connect its original-scale quantities with those in its proof.",
+      "fix": {
+        "add_depends_on": [
+          "def:normalized-sketch"
+        ],
+        "remove_depends_on": null,
+        "wire_into": null,
+        "unwire_from": null,
+        "extend_to": null,
+        "setting": null,
+        "new_assumption": null
+      }
+    },
+    {
+      "id": "lem:m-inverse-bound",
+      "axis": "faithfulness",
+      "detail": "The mathematical transcription is faithful, but the balanced Gaussian setting lists \\texttt{lem:M-inverse-bound} rather than the canonical node \\texttt{lem:m-inverse-bound}, leaving the setting attachment unresolved. All four lint concerns are dismissed: the Gaussian--Stein assumption inherits the noninterpolating assumption, which inherits the model and covariance assumptions. Independently, directional inverse-Wishart moments with $\\nu=m-d+1$, a finite net, and moment order $r=\\lfloor\\nu/4\\rfloor$ give $\\E[\\norm{\\bW^{-1}}_{\\rm op}^k\\mid\\bS]\\leq C_kn^{-k}$. Spectral comparison gives the inverse-Gram bound; the pseudoinverse representation gives $\\E[\\norm{\\bL}_{\\rm op}^k\\mid\\bS]\\leq C_kn^{-k/2}$. Covariance conjugation, the normal equations, and $d\\leq n$ give every remaining displayed claim, uniformly in the sketch. The setting the core's sampling_model must state for it: Attach the balanced Gaussian setting explicitly to \\texttt{lem:m-inverse-bound}, replacing its reference to \\texttt{lem:M-inverse-bound}. Dimensions, coefficients, covariance, and model constants are deterministic at each $n$; $\\bZ$ has independent standard Gaussian entries and is independent of $(\\bS,\\bep)$. Errors are iid, centered, uniformly sub-Gaussian, and independent of the sketch and design. The independent full-row-rank sketch uses its trace-normalized representative, with $\\trace(\\bA)=n$, $c_-\\bI_m\\preceq\\bLambda\\preceq c_+\\bI_m$, and $m-d\\geq\\kappa n$ for sufficiently large $n$. Conditional expectations hold $\\bS$ fixed; unconditional expectations also integrate sketch randomness.",
+      "fix": null
+    },
+    {
+      "id": "lem:balanced-stein-sufficient-conditions",
+      "axis": "faithfulness",
+      "detail": "The balanced Gaussian setting names \\texttt{lem:balanced-Stein-sufficient-conditions}, whereas the core node is \\texttt{lem:balanced-stein-sufficient-conditions}; consequently the canonical node lacks its intended setting assignment. Mathematically, the inverse envelope, $\\bq=\\bL^\\top\\bep$, and the positive-semidefinite residual contraction reproduce the eighth moments. Differentiation gives both terms of the displayed derivative identity; the Frobenius bounds and Cauchy--Schwarz reproduce all remaining mixed moments. The ridge fields have integrable uniform dominators for their squared norms and derivative energies, establishing the asserted weak derivative by convergence in Gaussian $W^{1,2}$. All lint warnings are dismissed: the model, covariance, dimension, and rank assumptions are inherited through Assumption~\\ref{assu:Gaussian-Stein-design}; the optional relative noise bound is unused, and the derivative identity required by the generic energy lemma is proved here rather than imposed as an additional hypothesis. The same ridge estimates provide the smooth approximations needed for the ensuing remainder applications. The setting the core's sampling_model must state for it: Assign lem:balanced-stein-sufficient-conditions to the balanced Gaussian design setting under its canonical identifier. Dimensions, coefficients, covariance, and assumption constants are fixed at each $n$. The entries of $\\bZ$ are independent standard Gaussian variables, independent of $(\\bS,\\bep)$; the errors are independent, identically distributed, centered, uniformly sub-Gaussian with variance $\\sigma^2$, and independent of the sketch and features. The independent full-row-rank sketch may be random and is represented at scale $\\trace(\\bA)=n$, with the stated eventual spectral bounds and gap $m-d\\geq\\kappa n$. The independent test observation follows the original model. Design derivatives hold $(\\bS,\\bSigma,\\bbeta^*,\\bep)$ fixed; unconditional expectations integrate the design, errors, and sketch, while conditional bounds hold the sketch fixed.",
+      "fix": null
+    },
+    {
+      "id": "lem:balanced-moment-bounds",
+      "axis": "faithfulness",
+      "detail": "(a) The proof explicitly uses the ridge approximation constructed for Lemma~\\ref{lem:balanced-Stein-sufficient-conditions}, whereas the core omits that reference edge. Confirm this lint warning and add the edge. Dismiss the relative-tail warning: the proof uses the unconditional noise-energy bounds, without assuming the optional relative sub-Gaussian condition. Both linted noninterpolation assumptions are inherited through Assumption~\\ref{assu:Gaussian-Stein-design}. (b) Independently reproducing the estimates gives bounded moments of $\\norm{\\bq}$ and $\\norm{\\br}/\\sqrt n$, followed by bounded moments of $\\calE_{\\bq}$ using the Frobenius inverse envelopes and Cauchy--Schwarz. The residual derivative inequality then gives bounded moments of $\\calE_{\\br}/n$. Ridge fields satisfy the same bounds uniformly in $\\eta>0$; pointwise convergence and uniform integrability give Gaussian $W^{1,2}$ convergence and establish weak differentiability. The covariance lower bound proves the Euclidean moments. The signal restriction applies only to the fitted-coefficient bounds, as printed; neither the error nor residual bounds require it.",
+      "fix": {
+        "add_depends_on": [
+          "lem:balanced-stein-sufficient-conditions"
+        ],
+        "remove_depends_on": null,
+        "wire_into": null,
+        "unwire_from": null,
+        "extend_to": null,
+        "setting": null,
+        "new_assumption": null
+      }
+    },
+    {
+      "id": "lem:influence-from-moments",
+      "axis": "faithfulness",
+      "detail": "(a) The core records the general mixed-moment setting but does not list this result under the balanced Gaussian setting needed for its final specialization. It also omits the explicit least-squares construction reference for these estimator-derived influence vectors. (b) ``Balanced sketches'' could mean spectral balance alone or the full standing Gaussian-design assumptions; the setup and Lemma~\\ref{lem:balanced-Stein-sufficient-conditions} determine the latter for the final rate. The norm inequalities reproduce pointwise, and the expansion of $\\norm{\\bZ\\bq-t_{\\bSigma}\\br}^2$ has cross term $-2t_{\\bSigma}\\bq^\\top\\bZ^\\top\\br$, which vanishes under the stated orthogonality condition. The cited mixed-moment bound gives the final rate directly. The setting the core's sampling_model must state for it: The direct inequalities in lem:influence-from-moments hold for the random vectors of def:whitened-coordinates under the law under consideration, with expectations integrating that law. Its balanced-sketch specialization additionally lives in balanced_gaussian_design and must be listed there: dimensions, coefficients, covariance and model constants are deterministic at each $n$; $\\bZ$ has independent standard Gaussian entries independent of $(\\bS,\\bep)$; the errors are independent, identically distributed, centered and uniformly sub-Gaussian; and the independent sketch uses the trace-normalized representative with the fixed spectral bounds and dimension gap of Assumption~\\ref{assu:Gaussian-Stein-design}. Expectations in this specialization average the training data and any sketch randomness, and the rate is as $n\\to\\infty$.",
+      "fix": {
+        "add_depends_on": [
+          "def:sketched-least-squares"
+        ],
+        "remove_depends_on": null,
+        "wire_into": null,
+        "unwire_from": null,
+        "extend_to": null,
+        "setting": "The direct inequalities in lem:influence-from-moments hold for the random vectors of def:whitened-coordinates under the law under consideration, with expectations integrating that law. Its balanced-sketch specialization additionally lives in balanced_gaussian_design and must be listed there: dimensions, coefficients, covariance and model constants are deterministic at each $n$; $\\bZ$ has independent standard Gaussian entries independent of $(\\bS,\\bep)$; the errors are independent, identically distributed, centered and uniformly sub-Gaussian; and the independent sketch uses the trace-normalized representative with the fixed spectral bounds and dimension gap of Assumption~\\ref{assu:Gaussian-Stein-design}. Expectations in this specialization average the training data and any sketch randomness, and the rate is as $n\\to\\infty$.",
+        "new_assumption": null
+      }
+    },
+    {
+      "id": "prop:stein-risk-from-moments",
+      "axis": "faithfulness",
+      "detail": "(a) The balanced Gaussian setting names prop:Stein-risk-from-moments rather than the canonical prop:stein-risk-from-moments, leaving this node unlisted. (b) The proof uses the smooth ridge construction, but the core omits its defining construction edge. Uniform ridge moment bounds and Fatou give both Stein bounds; the stated mixed moments give $\\E\\norm{\\bell}^2\\leq C/n$ and $\\E\\norm{\\bv}^2\\leq Cn$. The linted model, covariance, dimension, and rank edges are confirmed: Assumption~\\ref{assu:Gaussian-Stein-design} inherits them. The proposed generic remainder-premise edges are dismissed because their premises are established for the ridge fields; the orthogonality edge is unnecessary because the direct influence inequality suffices. The setting the core's sampling_model must state for it: List prop:stein-risk-from-moments under the balanced Gaussian design setting using this exact canonical identifier. Dimensions, $\\bSigma$, and $\\bbeta^*$ are deterministic at each $n$. The full-row-rank sketch $\\bS$ is independent of the data and may be random; use its trace-normalized representative, so $\\trace(\\bA)=n$. The entries of $\\bZ$ are independent standard Gaussian variables, independently of $(\\bS,\\bep)$, and $\\bX=\\bZ\\bSigma^{1/2}$. The errors are iid, centered, uniformly sub-Gaussian, with variance $\\sigma^2$. The covariance bounds and balanced spectral and dimension-gap conditions hold with constants independent of $n$. Expectations average over the design, errors, and any sketch randomness; design derivatives hold $\\bS$, $\\bSigma$, $\\bbeta^*$, and $\\bep$ fixed.",
+      "fix": {
+        "add_depends_on": [
+          "def:balanced-ridge-fields"
+        ],
+        "remove_depends_on": null,
+        "wire_into": null,
+        "unwire_from": null,
+        "extend_to": null,
+        "setting": "List prop:stein-risk-from-moments under the balanced Gaussian design setting using this exact canonical identifier. Dimensions, $\\bSigma$, and $\\bbeta^*$ are deterministic at each $n$. The full-row-rank sketch $\\bS$ is independent of the data and may be random; use its trace-normalized representative, so $\\trace(\\bA)=n$. The entries of $\\bZ$ are independent standard Gaussian variables, independently of $(\\bS,\\bep)$, and $\\bX=\\bZ\\bSigma^{1/2}$. The errors are iid, centered, uniformly sub-Gaussian, with variance $\\sigma^2$. The covariance bounds and balanced spectral and dimension-gap conditions hold with constants independent of $n$. Expectations average over the design, errors, and any sketch randomness; design derivatives hold $\\bS$, $\\bSigma$, $\\bbeta^*$, and $\\bep$ fixed.",
+        "new_assumption": null
+      }
+    },
+    {
+      "id": "prop:q-identity-sigma",
+      "axis": "faithfulness",
+      "detail": "The mathematical transcription is faithful, but the balanced Gaussian setting lists \\texttt{eq:q-identity-sigma} rather than \\texttt{prop:q-identity-sigma}, leaving the setting attachment unresolved. All eight lint concerns are dismissed: the standing paragraph applies the Gaussian--Stein assumption to this and the preceding three subsections, including its inherited model, covariance, dimension, and rank conditions. Independent expansion yields $\\sum_{k=2}^5Q_{k,\\bSigma}=(t_{\\bSigma}-b/n)\\br^\\top\\bZ\\bq+(d-b^2/n)\\norm{\\bq}^2+(d/n-t_{\\bSigma}^2)\\norm{\\br}^2$. Adding $(b/n-t_{\\bSigma})Q_{1,\\bSigma}$ cancels the mixed term and gives precisely the asserted identity. No normal-equation substitution or probabilistic argument is needed for this algebra. The setting the core's sampling_model must state for it: Attach the balanced Gaussian setting explicitly to \\texttt{prop:q-identity-sigma}, replacing its reference to \\texttt{eq:q-identity-sigma}. Dimensions, coefficients, covariance, and model constants are deterministic at each $n$; $\\bZ$ has independent standard Gaussian entries and is independent of $(\\bS,\\bep)$. Errors are iid, centered, uniformly sub-Gaussian, and independent of the sketch and design. The independent full-row-rank sketch uses its trace-normalized representative, with $\\trace(\\bA)=n$ and the standing spectral and dimension-gap assumptions. The fitted coefficients are sketched least squares, and the residuals, trace coefficients, and five trace-calibration quantities use that same normalized representative. The asserted identity holds pathwise wherever these quantities are defined.",
+      "fix": null
+    },
+    {
+      "id": "lem:normalized-gaussian-stein",
+      "axis": "faithfulness",
+      "detail": "The conditional Gaussian setting names \\texttt{lem:normalized-Gaussian-Stein}, whereas the canonical node is \\texttt{lem:normalized-gaussian-stein}; the intended conditional law therefore needs assignment to the canonical identifier. Independently expanding the three normalized product divergences reproduces exactly the three normalizer remainders. Their squared bounds contribute $n\\calE_{\\bff,\\boldsymbol\\psi}/G_{\\bff,\\boldsymbol\\psi}$ and $\\norm{\\bZ}_{\\rm op}^2\\calE_{\\bff,\\boldsymbol\\psi}/G_{\\bff,\\boldsymbol\\psi}$; direct derivatives of the matrix images supply the stated dimension terms. For the second-order bound, the two separate one-vector applications and the comparison of their divergence vectors reproduce the square-root energy and linear energy terms. First derivatives vanish almost everywhere on the common zero set, and the stated weighted integrability justifies the normalization limit. No mathematical term or additional hypothesis is missing. The setting the core's sampling_model must state for it: Assign lem:normalized-gaussian-stein to the conditional Gaussian fields setting under its canonical identifier. The positive dimensions $n,d$ are fixed, $\\bZ\\in\\R^{n\\times d}$ has independent standard Gaussian entries, and $\\mathcal F$ is independent of $\\bZ$. The fields $\\bff$ and $\\boldsymbol\\psi$ may depend on both $\\mathcal F$ and $\\bZ$ and, conditional on $\\mathcal F$, are smooth functions of the design coordinates. All conditional expectations integrate $\\bZ$ while holding $\\mathcal F$ fixed, and all design derivatives hold that conditioning information fixed. The stated weighted integrability assumption and zero-denominator convention apply.",
+      "fix": null
+    },
+    {
+      "id": "lem:balanced-remainder-bounds",
+      "axis": "faithfulness",
+      "detail": "(a) The printed final assertion uses the defined trace quantity $Q_{3,\\bSigma}$, but the core omits its defining construction. Add the trace-quantities definition. (b) Independently, $2\\norm{\\bq}\\norm{\\br}\\leq\\sqrt n G_{\\bSigma}$ reproduces all four printed pointwise remainder envelopes, with $0<b/n\\leq1$. The inverse moments bound every fixed moment of these envelopes; the response moments bound every fixed moment of $G_{\\bSigma}$, so H\\\"older's inequality also gives the unnormalized estimates. The scaled second-moment assertion follows by division by $n$, and $\\bX^\\top\\br=0$ annihilates both terms of $Q_{3,\\bSigma}$. The zero convention is consistent because all remainders vanish when $G_{\\bSigma}=0$. (c) All listed lint warnings are dismissed: the model, covariance, dimension and rank assumptions are inherited through Assumption~\\ref{assu:Gaussian-Stein-design}; the optional signal bound and relative noise bound are unused. The sufficient-conditions proof supplies notation and an inverse envelope already furnished by the wired definitions and moment lemmas. The omitted Gaussian--Stein results, their hypotheses and zero convention, the product-divergence lemmas, the exceptional-weight lemma, and the companion trace lemma serve the fluctuation and trace portions of the joint proof, not these algebraic remainder estimates. The sampling setting is faithful.",
+      "fix": {
+        "add_depends_on": [
+          "def:trace-quantities"
+        ],
+        "remove_depends_on": null,
+        "wire_into": null,
+        "unwire_from": null,
+        "extend_to": null,
+        "setting": null,
+        "new_assumption": null
+      }
+    },
+    {
+      "id": "lem:balanced-trace-stein-bounds",
+      "axis": "faithfulness",
+      "detail": "(a) Both relevant settings name lem:balanced-trace-Stein-bounds rather than the canonical lem:balanced-trace-stein-bounds. (b) The missing reference to Lemma~\\ref{lem:balanced-Stein-sufficient-conditions} is confirmed: the proof explicitly uses its ridge approximation and uniform bounds. Product differentiation and the moment bounds give the raw fluctuation rates. The response-independent normalized-energy envelope verifies conditional integrability uniformly along the ridge approximation, and Fatou gives the normalized rates. Expansion using the five graded divergence identities gives exactly the printed remainders. The omitted proof ending establishes $B_{\\bA}\\leq C$ on $\\Omega_n$ and invokes the graded exceptional-weight estimate on its complement, closing the weighted bound. The linted standing model, covariance, dimension, and rank edges are confirmed. The remaining lint warnings are dismissed: the optional signal and relative-tail clauses are unused, and the generic Stein premises are verified for the fields to which those inequalities are applied. The setting the core's sampling_model must state for it: List lem:balanced-trace-stein-bounds under both the balanced Gaussian design and auxiliary response settings using this exact canonical identifier. Dimensions, covariance, and model constants are deterministic at each $n$. The independent full-row-rank sketch may be random and is trace-normalized, with $\\trace(\\bA)=n$, balanced positive spectrum, and $m-d\\geq\\kappa n$. The design $\\bZ$ has independent standard Gaussian entries and is independent of $(\\bS,\\bep)$. Under the original response law, errors are iid, centered, uniformly sub-Gaussian, with variance $\\sigma^2$. Under the auxiliary law, retain the joint law of $(\\bX,\\bS)$ and recompute response quantities with $\\bbeta^*=\\boldzero$ and independent $\\bep\\sim\\calN(\\boldzero,\\bI_n)$. The operator $\\E_\\star$ denotes either corresponding unconditional expectation; conditional design calculations hold $(\\bA,\\bep)$ fixed. All design derivatives hold the structural noise fixed.",
+      "fix": {
+        "add_depends_on": [
+          "lem:balanced-stein-sufficient-conditions"
+        ],
+        "remove_depends_on": null,
+        "wire_into": null,
+        "unwire_from": null,
+        "extend_to": null,
+        "setting": "List lem:balanced-trace-stein-bounds under both the balanced Gaussian design and auxiliary response settings using this exact canonical identifier. Dimensions, covariance, and model constants are deterministic at each $n$. The independent full-row-rank sketch may be random and is trace-normalized, with $\\trace(\\bA)=n$, balanced positive spectrum, and $m-d\\geq\\kappa n$. The design $\\bZ$ has independent standard Gaussian entries and is independent of $(\\bS,\\bep)$. Under the original response law, errors are iid, centered, uniformly sub-Gaussian, with variance $\\sigma^2$. Under the auxiliary law, retain the joint law of $(\\bX,\\bS)$ and recompute response quantities with $\\bbeta^*=\\boldzero$ and independent $\\bep\\sim\\calN(\\boldzero,\\bI_n)$. The operator $\\E_\\star$ denotes either corresponding unconditional expectation; conditional design calculations hold $(\\bA,\\bep)$ fixed. All design derivatives hold the structural noise fixed.",
+        "new_assumption": null
+      }
+    },
+    {
+      "id": "lem:matrix-gaussian-divergence-cited",
+      "axis": "faithfulness",
+      "detail": "The attributed inequality agrees exactly with equation (C.3) in the supplied source, including the factor $2$, and the host genuinely uses it. Independence of $\\mathcal F$ permits conditional application. The three normalized pairs are smooth, and their product and derivative moments are controlled by Gaussian matrix moments and the host's weighted derivative-energy assumption. The core describes this conditional Gaussian setting for the host but does not list this cited node under it; the node requires that same setting. The setting the core's sampling_model must state for it: The dimensions $n,d$ are fixed. The matrix $\\bZ\\in\\R^{n\\times d}$ has independent standard Gaussian entries and is independent of $\\mathcal F$. Conditional on $\\mathcal F$, the fields $\\ba:\\R^{n\\times d}\\to\\R^d$ and $\\bb:\\R^{n\\times d}\\to\\R^n$ are smooth functions of $\\bZ$; derivatives hold the conditioning information fixed, and conditional expectations integrate $\\bZ$. This setting is used by lem:matrix-gaussian-divergence-cited in the proof of lem:normalized-gaussian-stein.",
+      "fix": null
+    }
+  ]
+}

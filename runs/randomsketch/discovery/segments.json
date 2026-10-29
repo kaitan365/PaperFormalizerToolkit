@@ -1,0 +1,38 @@
+{
+  "results": [
+    {
+      "id": "eq:Q-identity-Sigma",
+      "kind": "proposition",
+      "printed": "Trace identity",
+      "lines": [
+        2584,
+        2596
+      ],
+      "proof_lines": [
+        2612,
+        2626
+      ],
+      "note": "Numbered identity stated outside a theorem environment and explicitly proved."
+    },
+    {
+      "id": "seg:bellec-rowwise-covariance",
+      "kind": "lemma",
+      "lines": [
+        2431,
+        2435
+      ],
+      "note": "The displayed covariance inequality is explicitly attributed to Bellec2023 Lemma7.1 at main.tex1875\u20131876; recover its cited input without changing the source."
+    }
+  ],
+  "bindings": [
+    {
+      "result": "lem:balanced-trace-Stein-bounds",
+      "proof_lines": [
+        3263,
+        3595
+      ],
+      "note": "The manuscript explicitly gives a shared proof of Lemmas B.20 and B.21."
+    }
+  ],
+  "extend": []
+}

@@ -1,0 +1,10 @@
+{
+  "pin|lem:balanced-stein-sufficient-conditions|For the inverse-defined field $\\bq$, the direct remainder hypotheses mean the displayed moment hypotheses, with the smooth-field inequalities applied to $\\bq_\\eta$ before taking $\\eta\\downarrow0$.": "ass:pin-1",
+  "pin|ass:derivative-energy-from-inverse-moments|The identity $\\pdv{\\bq}{z_{ij}}=\\bK\\be_jr_i-\\bL^\\top\\be_iq_j$ holds almost surely under the joint law of the random fields, for every $i=1,\\ldots,n$ and $j=1,\\ldots,d$.": "ass:pin-2",
+  "pin|ass:gaussian-stein-design-normalization|In the balanced-sketch calculations, $(\\bS,\\bA)$ denote the normalized quantities $(\\overline{\\bS},\\overline{\\bA})$ defined in Section~\\ref{app:proof-setup}, so $\\trace(\\bA)=n$ almost surely.": "ass:pin-3",
+  "pin|ass:cpal-corrected-accuracy-errors|There exists a deterministic $K_\\varepsilon<\\infty$, independent of $n$, such that $\\sup_n\\norm{\\varepsilon_1}_{\\psi_2}\\leq K_\\varepsilon$, where $\\norm{W}_{\\psi_2}:=\\inf\\{t>0:\\E\\exp(W^2/t^2)\\leq2\\}$.": "ass:pin-4",
+  "pin|ass:cpal-corrected-accuracy-spectrum|There exists a deterministic $n_0\\geq1$ such that, for every $n\\geq n_0$, almost surely every positive eigenvalue of $n\\bA/\\trace(\\bA)$ belongs to $[c_-,c_+]$ and $m-d\\geq\\kappa n$, with $c_-,c_+,\\kappa$ deterministic and independent of $n$.": "ass:pin-5",
+  "pin|ass:derivative-energy-from-inverse-moments|For the derivative versions defining $\\calE_{\\bq}$, the identity $\\pdv{\\bq}{z_{ij}}=\\bK\\be_jr_i-\\bL^\\top\\be_iq_j$ holds almost surely under the law used by $\\E$, simultaneously for $1\\leq i\\leq n$ and $1\\leq j\\leq d$.": "ass:pin-6",
+  "pin|ass:stein-remainders-from-moments-first|The expectation in $\\E[\\norm{\\bep}^2(\\norm{\\bq}^2+\\calE_{\\bq})]\\leq C_1n$ is unconditional over the joint law of $(\\bZ,\\bS,\\bep)$.": "ass:pin-7",
+  "pin|def:cpal-observation-geometry|On the almost-sure event $\\rank(\\bS)=m$, $(\\bS\\bS^\\top)^{-1/2}$ denotes the unique symmetric positive definite square root of $(\\bS\\bS^\\top)^{-1}$.": "ass:pin-8"
+}

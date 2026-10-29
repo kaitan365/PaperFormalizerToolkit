@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-29T15:45:54.455751+00:00",
+  "reason": "Latest explicit user instruction defers all three cited inputs; supersedes earlier page accept/apply.",
+  "stopped_pids": [
+    58806,
+    58818,
+    58925,
+    58957,
+    58985,
+    58986,
+    58987,
+    59010,
+    59057,
+    59679
+  ],
+  "earlier_apply_parent": 58806
+}

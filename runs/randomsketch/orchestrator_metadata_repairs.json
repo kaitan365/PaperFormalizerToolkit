@@ -1,0 +1,19 @@
+{
+  "original_math_unchanged": true,
+  "findings_resolved": [
+    "thm:cpal-corrected-accuracy",
+    "lem:m-inverse-bound",
+    "lem:balanced-stein-sufficient-conditions",
+    "lem:balanced-moment-bounds",
+    "lem:influence-from-moments",
+    "prop:stein-risk-from-moments",
+    "prop:q-identity-sigma",
+    "lem:normalized-gaussian-stein",
+    "lem:balanced-remainder-bounds",
+    "lem:balanced-trace-stein-bounds",
+    "lem:matrix-gaussian-divergence-cited"
+  ],
+  "added_cited_input": "lem:rowwise-gaussian-covariance-cited",
+  "candidate_sha256": "40f72e50c36f7577f20727cc97b7a0d1b386f45f10ca9b2ec5e20d1129c4ea4e",
+  "source_sha256": "97e898462c915a794cb9a7b87b0dc010b98b1d33a8bcf7dc32a6f617f44d1913"
+}

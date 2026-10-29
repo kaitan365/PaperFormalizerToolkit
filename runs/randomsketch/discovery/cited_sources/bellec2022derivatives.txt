@@ -1,0 +1,152 @@
+PRIMARY-SOURCE EVIDENCE FOR PAPERFORMALIZER
+
+Purpose: support the manuscript's citations to the proofs of Propositions 14 and 16 of Bellec and Shen (2022), main.tex lines 2237–2375. This evidence file does not modify or certify any manuscript claim.
+
+Publication: Pierre C. Bellec and Yiwei Shen, Derivatives and residual distribution of regularized M-estimators with application to adaptive tuning, Proceedings of Machine Learning Research 178:1912–1947 (2022).
+Primary landing page: https://proceedings.mlr.press/v178/bellec22a.html
+Published PDF: https://proceedings.mlr.press/v178/bellec22a/bellec22a.pdf
+Author source archive: https://arxiv.org/src/2107.05143
+Retrieved: 2026-10-28. The source URL is unversioned; file hashes below identify the exact retrieved bytes. The extracted TeX is colt_2022.tex. The two proof equations below were checked against the published PDF, internal pages 24–25 (PDF page indices 23–24). This does not assert identical source versions beyond the equations checked.
+
+Notation in the source: G is n by p with independent standard Gaussian entries; eta and rho are locally Lipschitz vector fields in R^p and R^n. In the manuscript, G maps to Z, p maps to d, eta maps to a, and rho maps to b for the first inequality. Conditional applications fix an independent sigma-field and apply the same deterministic-field result.
+
+1. FIRST-ORDER MATRIX PRODUCT DIVERGENCE
+Published location: proof of Proposition 14, Appendix C, internal page 24, equation (C.3).
+TeX location: colt_2022.tex lines 2594–2605, label eq:prop63.
+Verbatim mathematical source block:
+
+    \begin{equation}
+    \E\Bigl[\Bigl(\brho^\top\bG\bfeta - \sum_{ij} \frac{\partial (\rho_i\eta_j)}{g_{ij}}\Bigr)^2\Bigr]
+    \le
+    \E\Bigl[\|\brho\|^2 \|\bfeta\|^2\Bigr]
+    +
+    2\E\Bigl[\sum_{ij}
+    \|\bfeta\|^2 \| \frac{\partial \brho}{\partial g_{ij}}\|^2
+    +
+    \|\brho\|^2 \| \frac{\partial \bfeta}{\partial g_{ij}}\|^2
+    \Bigr].
+    \label{eq:prop63}
+    \end{equation}
+
+
+Manuscript mapping: main.tex lines 2241–2258, label eq:matrix-product-divergence. The manuscript's single expectation of the summed terms is the same as the two expectations in the source, by linearity. The manuscript assumes smooth fields, which is stronger than the source's local Lipschitz regularity. Integrability is supplied by the manuscript's displayed hypotheses and ridge/cutoff arguments.
+
+2. NORMALIZED DERIVATIVE IN THE PROOF OF PROPOSITION 14
+Published location: internal page 24, equation (C.5).
+TeX location: colt_2022.tex lines 2640–2656 (the exact block below is selected by label eq:argument-bff).
+This is the relevant proof normalization; its denominator is FIRST power of ||h||^2 + ||psi||^2/n.
+Verbatim mathematical source block:
+
+\begin{equation}
+    \|
+    \frac{\partial \bfeta}{\partial g_{ij}}
+    \|^2
+    +
+    \|
+    \frac{\partial \brho}{\partial g_{ij}}
+    \|^2
+    \le
+    \frac{1}{\|\bh\|^2 + \|\bpsi\|^2/n}
+    \Bigl(
+    \|\frac{\partial \bh}{\partial g_{ij}}\|^2
+    +
+    \frac 1 n \|\frac{\partial \bpsi}{\partial g_{ij}}\|^2
+    \Bigr).
+    \label{eq:argument-bff}
+    \end{equation}
+
+
+3. BOUNDED ONE-VECTOR SECOND-ORDER INEQUALITY
+Published location: proof of Proposition 16, Appendix C, internal page 25, equation (C.6).
+TeX location: colt_2022.tex lines 2756–2762, label eq:cor71.
+Additional assumption: ||rho|| <= 1. Gaussian matrix and local Lipschitz assumptions remain as above.
+Verbatim mathematical source block:
+
+    \begin{equation}
+        \E\Big| p \|\brho\|^2 - \sum_{j=1}^p
+        \Bigl(\brho^\top\bG\be_j -\sum_{i=1}^n \frac{\partial \rho_i }{\partial g_{ij}}\Bigr)^2\Big|
+        \le \C \sqrt p \Bigl( 1+ \E\sum_{ij} \Big\|\frac{\partial \brho}{\partial g_{ij}}\Big\|^2\Bigr)^{1/2}
+        +\C \E\sum_{ij} \Big\|\frac{\partial \brho}{\partial g_{ij}}\Big\|^2.
+        \label{eq:cor71}
+    \end{equation}
+
+
+Manuscript mapping: main.tex lines 2352–2371, label eq:one-vector-second-order, with rho -> u and p -> d. The source has sqrt(1 + E energy); the manuscript uses the weaker bound 1 + sqrt(E energy), which follows from sqrt(1+x) <= 1+sqrt(x) for x >= 0. The source uses an absolute constant, as does the manuscript. The transposed application exchanges n and d. No invalid strengthening is introduced by this mapping.
+
+4. FULL SECOND-ORDER NORMALIZED STATEMENT (PROPOSITION 16)
+Published location: internal page 25, Proposition 16.
+TeX location: colt_2022.tex lines 1996–2041, label prop:chi2-custom immediately preceding the display.
+Verbatim mathematical source block:
+
+    \begin{align*}
+    &\E\Bigl[
+    \frac{
+    \big|
+    \frac p n\|\bpsi\|^2 -
+    \frac 1 n
+    \sum_{j=1}^p
+    \bigl(
+        \bpsi^\top\bG\be_j - \sum_{i=1}^n\frac{\partial \psi_i}{\partial g_{ij}}
+    \bigr)^2
+    \big|
+    }{\|\bh\|^2 + \|\bpsi\|^2/n}
+    \Bigr]
+    +
+    \E\Bigl[
+    \frac{
+    \big|
+    n \|\bh\|^2 - \sum_{i=1}^n
+    \bigl(
+        \bg_i^\top\bh - \sum_{j=1}^p\frac{\partial h_j}{\partial g_{ij}}
+    \bigr)^2
+    \big|
+    }{\|\bh\|^2 + \|\bpsi\|^2/n}
+    \Bigr]
+    \\&\le
+    \C \Bigl(
+        \sqrt{n+p}
+        (1+\Xi^{1/2}) + \Xi
+    \Bigr)
+    \text{ where }\Xi = 
+    \E\Bigl[
+    \frac{1}{\|\bh\|^2 + \|\bpsi\|^2/n}
+    \sum_{i=1}^n
+    \sum_{j=1}^p
+        \Bigl(
+        \Big\|
+        \frac{\partial \bh}{\partial g_{ij}}
+        \Big\|^2
+        +
+        \frac1n
+        \Big\|
+        \frac{\partial \bpsi}{\partial g_{ij}}
+        \Big\|^2
+    \Big)
+        \Bigr].
+    \end{align*}
+
+
+This is consistent with the manuscript's conditional-normalized second-order bound, eq:conditional-normalized-second-order. The manuscript independently supplies regularization at zero response energy, two separate normalized-field applications, the denominator product-rule correction, and the ridge limit.
+
+NORMALIZATION DISCREPANCY: DO NOT USE THE PRINTED PROPOSITION 14 AS A BLACK BOX
+The published Proposition 14 (internal page 24), also in TeX lines 1812–1857, prints a SQUARED denominator (||h||^2 + ||psi||^2/n)^2 multiplying the raw derivative energy on its right-hand side. That expression is not scale invariant under a simultaneous nonzero rescaling of h and psi. The same source proof gives FIRST power in (C.5), as transcribed above. The manuscript explicitly cites the proof, states that it derives the scale-invariant form, and uses the first-order product divergence (C.3) rather than blindly copying the printed normalized statement. Evidence supports that distinction. The discrepancy is in the cited source's printed normalized statement; this evidence does not require changing the manuscript's claimed normalization.
+
+WHAT A REFEREE MUST STILL CHECK IN THE MANUSCRIPT
+- The product-rule remainders R_{s,delta} and their bounds at main.tex lines 2277–2335 are manuscript derivations, not external black-box claims.
+- Conditionalization on an independent sigma-field is a direct application to each fixed conditional field, with the manuscript's integrability assumptions; it is not an additional statistical model assumption from the cited paper.
+- The manuscript's delta-regularization, zero-set convention, dominated-convergence/Fatou passage, and ridge limit must be assessed on their own stated bounds. The source is not being used to bypass these steps.
+
+ADDITIONAL SOURCE NEEDS
+For the narrow citations at main.tex lines 2237–2375, no further external inequality is necessary: (C.3), (C.5), and (C.6) provide the exact mathematical inputs. For a complete-manuscript citation audit, main.tex lines 1868–1876 additionally use Lemma 7.1 of Bellec (2023) for a rowwise covariance bound. That is a distinct input and is not proven by the material saved here. A referee that audits all external ingredients should also be given that primary source (doi:10.1093/imaiai/iaad031; author preprint arXiv:2008.11840) or a verified equivalent proof. The 2022 source itself attributes (C.3) to Proposition 6.3 and (C.6) to Theorem 7.1 of the earlier author preprint, but their explicit mathematical forms already appear in this 2022 primary source.
+
+FILE HASHES (SHA-256)
+
+326b08d5757028a9bf1fee97ea6eb0c7d5879870160f2996fe5d4a3b593074a3  bellec-shen-2022.pdf
+
+e34ec8b4ace357779e40dc08d0b402d9c4ace416e1e0032efe96e30adaea9411  colt_2022.tex
+
+5f9346b6e3df5a0e25cab5d29bbabc2a06c618cffa90a484a2bff9b5adbd7ceb  colt_2022.bbl
+
+2c6d5c4a3937e67f683fd71be0a2a69c17416d504abeee100d6b181ef97e859d  arxiv-2107.05143-source.tar
+
+e7e9ec8a52dcc09c8d436000752747712f7598af60bc25a80137cf584ecf7406  pmlr-provenance.html

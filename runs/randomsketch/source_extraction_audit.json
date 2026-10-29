@@ -1,0 +1,25 @@
+{
+  "env_count": 29,
+  "line_map_preserved": true,
+  "shared_proof_binding": [
+    {
+      "result": "lem:balanced-trace-Stein-bounds",
+      "proof_lines": [
+        3263,
+        3595
+      ],
+      "note": "The manuscript explicitly gives a shared proof of Lemmas B.20 and B.21."
+    }
+  ],
+  "notes": [
+    "segment: Trace identity at flat lines 2584–2596 read as proposition \"eq:q-identity-sigma\" with its proof at 2612–2626 — Numbered identity stated outside a theorem environment and explicitly proved.",
+    "segment: proof at flat lines 3263–3595 bound to lem:balanced-trace-Stein-bounds — The manuscript explicitly gives a shared proof of Lemmas B.20 and B.21."
+  ],
+  "warnings": [
+    "main.tex:2049: \\begin{proof} is attached to no result (its title references eq:Q-identity-Sigma, and it does not directly follow one)",
+    "main.tex:3253: a second \\begin{proof} for thm:cpal-corrected-accuracy; appended to that result's proof (the locator names the first proof only)",
+    "main.tex:3284: a second \\begin{proof} for thm:cpal-corrected-accuracy; appended to that result's proof (the locator names the first proof only)",
+    "main.tex:3317: a second \\begin{proof} for thm:cpal-risk-benchmarks; appended to that result's proof (the locator names the first proof only)",
+    "main.tex:3419: a second \\begin{proof} for thm:cpal-risk-benchmarks; appended to that result's proof (the locator names the first proof only)"
+  ]
+}

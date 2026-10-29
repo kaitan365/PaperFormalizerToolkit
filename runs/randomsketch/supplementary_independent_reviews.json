@@ -1,0 +1,164 @@
+{
+  "status": "supplementary human-style review; not a Lean verification result",
+  "original_main": "/Users/kaitan9/Desktop/RandomSketch/main.tex",
+  "manuscript_commit": "799fd3cd021bb7ddd014f18f25a5ecc2d40c2d21",
+  "definite_mathematical_errors_identified": [],
+  "reviews": [
+    {
+      "reviewer": "Mathematical",
+      "major_issues": [],
+      "checks": [
+        "Complementary conditional law, including zero risk and conditional moments without unconditional integrability",
+        "Derivative identities, inverse moments, and normalized Stein inequalities",
+        "Dense Gaussian limits and scaled orthogonal finite MSE comparison",
+        "Local crossover expansion including the -5/12 coefficient"
+      ],
+      "minor_issues": [
+        {
+          "lines": [
+            270,
+            270
+          ],
+          "issue": "An upper error bound need not have exact order n^(-1/2).",
+          "suggestion": "Use bounded by a constant times n^(-1/2).",
+          "author_judgment": false
+        },
+        {
+          "lines": [
+            257,
+            265
+          ],
+          "issue": "The constants depend on fixed model and sketch bounds.",
+          "suggestion": "Optionally state those fixed dependencies explicitly.",
+          "author_judgment": true
+        }
+      ]
+    },
+    {
+      "reviewer": "Contribution",
+      "major_issues": [],
+      "minor_issues": [
+        {
+          "lines": [
+            111,
+            118
+          ],
+          "issue": "The closest earlier observation-sketch risk correction could be contrasted more explicitly.",
+          "suggestion": "Identify conditional chi-square assessment and the finite MSE crossover as the specific additions over Patil and LeJeune (2024), rather than treating realized-fit risk estimation alone as unique.",
+          "author_judgment": true
+        },
+        {
+          "lines": [
+            89,
+            89
+          ],
+          "issue": "The abstract comparison with the Bellec formula does not specify its original row-sampling scope.",
+          "suggestion": "Optionally distinguish the original row-sampling formula from its empirical use for the other sketch families.",
+          "author_judgment": true
+        }
+      ]
+    },
+    {
+      "reviewer": "Notation",
+      "major_issues": [],
+      "checks": [
+        "149 labels: no duplicate or unresolved references",
+        "All 28 original mathematical environments and 27 proofs present; independent trace identity also segmented",
+        "Shared B.20/B.21 proof assigned to both results in run metadata"
+      ],
+      "minor_issues": [
+        {
+          "lines": [
+            219,
+            222
+          ],
+          "issue": "The subscript m denotes minimum norm while m also denotes sketch size. It is explicitly defined, so this is optional.",
+          "suggestion": "Consider a mnemonic minimum-norm subscript if revising notation.",
+          "author_judgment": true
+        }
+      ]
+    },
+    {
+      "reviewer": "Writing",
+      "major_issues": [],
+      "minor_issues": [
+        {
+          "lines": [
+            421,
+            422
+          ],
+          "issue": "Its conditional sample variance has an unclear antecedent.",
+          "suggestion": "Specify the conditional sample variance of the ratio Rc/R, divided by 2/q.",
+          "author_judgment": false
+        },
+        {
+          "lines": [
+            554,
+            554
+          ],
+          "issue": "Reused risk is unclear.",
+          "suggestion": "Specify whether this means using risk estimates to select a sketch or dependence between the sketch and data.",
+          "author_judgment": true
+        },
+        {
+          "lines": [
+            1810,
+            1810
+          ],
+          "issue": "Independently may be read as probabilistic independence.",
+          "suggestion": "Use separately if only a separate bound is intended.",
+          "author_judgment": false
+        },
+        {
+          "lines": [
+            1389,
+            1389
+          ],
+          "issue": "The generic mixed-moment reference does not name its conclusion.",
+          "suggestion": "Either state the intended mixed bound or remove the extra phrase if the displayed bound is all that is needed.",
+          "author_judgment": true
+        },
+        {
+          "lines": [
+            1091,
+            1091
+          ],
+          "issue": "The next three units are subsubsections.",
+          "suggestion": "Use the three parts below.",
+          "author_judgment": false
+        }
+      ]
+    },
+    {
+      "reviewer": "Numerical experiments",
+      "major_issues": [],
+      "checks": [
+        "Simulation grids, risk formulas, paired Monte Carlo comparisons, counts and intervals agree with saved results",
+        "All six figure PDFs retained and three figures visually inspected",
+        "600 frozen fits, 600000 draws, and coverage 43/45 verified against reported records"
+      ],
+      "minor_issues": [
+        {
+          "lines": [
+            465,
+            465
+          ],
+          "issue": "Mean calibration and per-fit estimation RMSE are distinct. Some Bellec baseline settings have smaller RMSE.",
+          "suggestion": "Optionally connect the discussion explicitly to the paired RMSE and bias tables without suggesting uniform RMSE dominance.",
+          "author_judgment": true
+        },
+        {
+          "lines": [
+            567,
+            568
+          ],
+          "issue": "The code link points to a moving repository state.",
+          "suggestion": "For submission, optionally add a fixed release tag or commit.",
+          "author_judgment": true
+        }
+      ]
+    }
+  ],
+  "edits_to_original": false,
+  "source_repairs_independent_audit": "Passed: only five identity-wrapper removals and four byte-identical figure path substitutions; all lines/proofs retained."
+}

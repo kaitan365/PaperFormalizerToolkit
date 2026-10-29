@@ -1,0 +1,12 @@
+% Provisional CPAL 2027 review adapter.
+% The authentic CPAL 2026 style is kept unchanged in cpal_2026.sty.
+% Only conference metadata is updated; fonts, geometry, spacing, anonymity,
+% bibliography style, and line numbering remain the official style's defaults.
+% Replace this adapter with the official 2027 package when CPAL releases it.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cpal_submission}[2026/10/10 Provisional CPAL 2027 review adapter]
+\RequirePackage{cpal_2026}
+\renewcommand{\@cpalordinal}{Fourth}
+\renewcommand{\@cpalyear}{2027}
+\renewcommand{\@cpallocation}{Tokyo, Japan}
+\endinput

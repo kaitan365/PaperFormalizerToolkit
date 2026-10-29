@@ -1,0 +1,20 @@
+{
+  "a-lem-rowwise-gaussian-covariance-cited": {
+    "kind": "defer",
+    "why": "The generic statement matches Bellec (2023), Lemma 7.1, including all four moment conditions and constant 4, and the independent checker agrees. It is useful for Gaussian cross-dependent quadratic errors, but no recurrence is recorded: this is a first-sighting Tricks entry, so defer its toolkit construction. It remains an explicit cited assumption. The paper must separately prove admissibility, conditioning, derivative exchange and the outer Cauchy-Schwarz specialization.",
+    "of": "c2384706bcc5601b",
+    "at": "2026-10-29T15:38:09.921Z"
+  },
+  "a-lem-matrix-gaussian-divergence-cited": {
+    "kind": "defer",
+    "why": "The statement matches Bellec and Shen (2022), proof of Proposition 14, equation (C.3), with factor 2 and finite right-hand moments; the independent checker agrees. It is reusable for Gaussian bilinear-field errors, but is a first-sighting Tricks entry with no recorded recurrence, so defer toolkit construction. It remains an explicit cited assumption; the paper owns conditionalization, normalization and cutoff limits. Do not substitute the differently normalized printed Proposition 14.",
+    "of": "949bda8229fe482b",
+    "at": "2026-10-29T15:38:09.965Z"
+  },
+  "a-lem-one-vector-second-order-cited": {
+    "kind": "defer",
+    "why": "The statement matches Bellec and Shen (2022), proof of Proposition 16, equation (C.6), with a unit-bounded field, finite derivative energy and a single dimension-uniform constant; the independent checker agrees. It is useful for Gaussian residual-energy approximation, but is a first-sighting Tricks entry without recurrence, so defer toolkit construction. It remains an explicit cited assumption; the paper owns the weaker displayed corollary, dimension transpose and ridge/normalization transfers.",
+    "of": "dd88c20f2e2cc9c3",
+    "at": "2026-10-29T15:38:10.005Z"
+  }
+}

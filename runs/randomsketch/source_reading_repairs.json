@@ -1,0 +1,66 @@
+{
+  "original_main": "/Users/kaitan9/Desktop/RandomSketch/main.tex",
+  "original_sha256": "4f091a5ab05d0e1111ff6e710d49780ac735b9208b635dd160d296852c40403e",
+  "changes": [
+    {
+      "line": 434,
+      "kind": "shallow_figure_path",
+      "from": "reports/conditional-20261012/results/figures/complementary_calibration.pdf",
+      "to": "figures/complementary_calibration.pdf",
+      "figure_sha256": "8a00c7f2ed4b23c48df002c59672ec321212a22e11c670519e9a5459d12ab93e"
+    },
+    {
+      "line": 524,
+      "kind": "shallow_figure_path",
+      "from": "reports/mse-1000-20261012/results/threshold/figures/threshold.pdf",
+      "to": "figures/threshold.pdf",
+      "figure_sha256": "624225c860d1d70aa113ef29293be61ba244d491ab894d2756895757099b367b"
+    },
+    {
+      "line": 711,
+      "kind": "shallow_figure_path",
+      "from": "reports/mse-1000-20261012/results/threshold_shapes/figures/threshold_weighted_haar.pdf",
+      "to": "figures/threshold_weighted_haar.pdf",
+      "figure_sha256": "8e64476ca2e5f0076d19688a65403b57a09c93456c9356ee37a5f097568e9304"
+    },
+    {
+      "line": 728,
+      "kind": "shallow_figure_path",
+      "from": "reports/mse-1000-20261012/results/threshold_shapes/figures/threshold_dense_gaussian.pdf",
+      "to": "figures/threshold_dense_gaussian.pdf",
+      "figure_sha256": "5775e3b834b292e33137038f97c0e1da116798fa0a41b413e741e054374a4775"
+    },
+    {
+      "line": 2421,
+      "kind": "remove_identity_wrapper",
+      "command": "\\rev",
+      "body_unchanged": true
+    },
+    {
+      "line": 3164,
+      "kind": "remove_identity_wrapper",
+      "command": "\\rev",
+      "body_unchanged": true
+    },
+    {
+      "line": 3327,
+      "kind": "remove_identity_wrapper",
+      "command": "\\rev",
+      "body_unchanged": true
+    },
+    {
+      "line": 3434,
+      "kind": "remove_identity_wrapper",
+      "command": "\\rev",
+      "body_unchanged": true
+    },
+    {
+      "line": 3756,
+      "kind": "remove_identity_wrapper",
+      "command": "\\rev",
+      "body_unchanged": true
+    }
+  ],
+  "ui_overrides": 210,
+  "line_count_preserved": true
+}

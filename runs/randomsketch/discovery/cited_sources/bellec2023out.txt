@@ -1,0 +1,136 @@
+PRIMARY-SOURCE EVIDENCE: BELLEC (2023), LEMMA 7.1
+
+Purpose: support the rowwise Gaussian covariance inequality cited in main.tex lines 1868–1876. No manuscript, toolkit, or verification-run record was modified.
+
+Published citation: Pierre C. Bellec, Out-of-sample error estimation for M-estimators with convex penalty, Information and Inference 12(4):2782–2817 (2023), doi:10.1093/imaiai/iaad031.
+Publisher metadata: https://academic.oup.com/imaiai/article/12/4/2782/7330496
+Primary author preprint: https://arxiv.org/abs/2008.11840v5
+Author PDF: https://arxiv.org/pdf/2008.11840v5
+Author source: https://arxiv.org/src/2008.11840v5
+Retrieved 2026-10-28 from unversioned arXiv URLs; saved metadata identifies version 5, revised 30 March 2023. The exact retrieved files are identified by SHA-256 hashes below. The publisher redirect could not be read with the web tool; the saved PDF is the author's primary preprint, not a purported publisher PDF.
+
+Location: author PDF page 26 (PDF index 25), Lemma 7.1, equations (7.2) and (7.3). Its exact source label is lemma:f-g-z_j-z_k in bellec-2023-Out-Of-Sample-Error-estimate.tex lines 3906–3958. The equation numbering and constant 4 agree between the extracted TeX and author PDF.
+
+ASSUMPTIONS (paraphrase)
+Two independent standard Gaussian vectors z_j,z_k in R^n are given. Deterministic f,h:R^n -> R^n have weakly differentiable components. Define random matrices by the following exact mathematical source block:
+
+    $\bA = \bigl(
+            \bz_j^\top f(\bz_k) \bI_n
+            + f(\bz_k)\bz_j^\top
+        \bigr)
+        \nabla f(\bz_k)^\top
+    $ and
+    $\bB =
+         \bigl(
+         \bz_k^\top h(\bz_j) \bI_n
+        + h(\bz_j) \bz_k^\top
+        \bigr)
+    \nabla h(\bz_j)^\top
+    $.
+
+The sum of E||f(z_k)||^4, E||h(z_j)||^4, E||A||_F^2, and E||B||_F^2 must be finite. Verbatim mathematical statements for the conclusion:
+
+\begin{equation}
+    \label{eq:equality-correlation-lemma}
+\E\big[
+    \big\{(\bz_j^{\pb{\top}} f(\bz_k))^2-\|f (\bz_k)\|^2 \big\}
+    \big\{(\bz_k^{\pb{\top}} h(\bz_j))^2-\|h (\bz_j)\|^2 \big\}
+    \big]
+    =
+    \E[
+    \trace
+    \{
+        \bA \bB
+    \}
+    ]
+    \end{equation}
+holds and
+$\E|\trace[\bA\bB]| \le
+        4
+        \E\bigl[\|\nabla f(\bz_k)\|_F^2\|f(\bz_k)\|^2\bigr]^{\frac12}
+        \E\bigl[\|\nabla h(\bz_j)\|_F^2\|h(\bz_j)\|^2\bigr]^{\frac12}
+$.
+
+APPLICATION TO THE MANUSCRIPT
+1. Condition on C = sigma(Z_{-{i,k}}, S, epsilon). The two unfixed design rows z_i,z_k are independent N(0,I_d), because the design has independent standard Gaussian entries and is independent of (S,epsilon).
+2. Source dimension n is manuscript dimension d. Use f(z_k)=a_i=E_i[q] and h(z_i)=a_k=E_k[q], with the remaining rows fixed by C. These fields are deterministic under C and have the orientations required by Lemma 7.1. Their derivatives are D_k a_i and D_i a_k.
+3. The lemma gives, conditionally,
+   |E[chi_i chi_k | C]| <= 4 sqrt(b_{ik,C} b_{ki,C}),
+   where b_{ik,C}=E[||D_k a_i||_F^2 ||a_i||^2 | C].
+   Integrating and applying Cauchy–Schwarz gives
+   |E[chi_i chi_k]| <= 4 sqrt(b_{ik} b_{ki}),
+   with b_{ik}=E[b_{ik,C}], exactly the quantity defined at main.tex lines 1865–1867. This is the displayed bound at main.tex lines 1868–1872.
+4. The source's required moments are available. Conditional Jensen gives E||a_i||^4 <= E||q||^4 and
+   sum_{i,k} E[||D_k a_i||_F^2 ||a_i||^2]
+       <= n sqrt(E||q||^4 * E energy_q^2).
+   The manuscript establishes these moment assumptions at lines 1810–1815 and uses exactly this summed bound at lines 1883–1888. The source proof also shows E||A||_F^2 <= 4 E[||D_k a_i||_F^2 ||a_i||^2], and analogously for B (author TeX lines 4012–4031), so the lemma's matrix-integrability assumptions follow. Smooth cutoffs and the manuscript's ridge-limit step justify the coefficient-field approximation and derivative/conditional-expectation interchange.
+5. The source proof of Theorem 7.2 itself applies Lemma 7.1 to conditional expectation fields E_j[rho], E_k[rho] after conditioning on all remaining Gaussian columns (author TeX lines 4111–4114). The manuscript uses its transposed, row-indexed counterpart. That source application is corroborative; the unbounded-field moment justification above is still needed because the source's later theorem proof additionally assumes ||rho||<=1.
+
+ASSESSMENT
+The cited Lemma 7.1 supports the manuscript's covariance bound with the same constant 4. There is no normalization discrepancy for this lemma and no requirement to assume that q is bounded by one. Its finite mixed moments, not a unit-norm bound, are the relevant conditions. No mathematical change to the manuscript is indicated by this citation check. A formal certificate would still have to import or prove the lemma and separately formalize conditionalization, Jensen/Cauchy–Schwarz, and the ridge/cutoff passage; this evidence is source support rather than such a certificate.
+
+FILE HASHES (SHA-256)
+33df441645e595152cfdb5cbb80fc3bd5345d572c99ed13c9003c14c9368b3c0  bellec-2023-author-preprint.pdf
+afddd252b32016cb0831228c6a945f685e33dfb373df4fbe4d4b931a132716a9  bellec-2023-Out-Of-Sample-Error-estimate.tex
+1fb1dddbc3252991399e036975e570eb8f72a726572f64fe24156372aef4edd6  bellec-2023-Out-Of-Sample-Error-estimate.bbl
+bcd3f602246b762717d65ee60e64f61f49f7bb99d2d02b1f7db129bf6f363c41  arxiv-2008.11840-source.tar
+c1eee70eddc7cfa2676d60707959e11846a784b327a12c52e2663977ab26d3fe  bellec-2023-arxiv-provenance.html
+
+EXACT SOURCE LEMMA INCLUDING ITS ASSUMPTIONS (TeX lines 3906–3958)
+
+\begin{lemma}
+    \label{lemma:f-g-z_j-z_k}
+    Let $\bz_j,\bz_k$ be independent $N({\bf 0},\bI_n)$ random vectors.
+    Let $f,h:\R^n\to\R^n$ deterministic with weakly differentiable
+    components and define the random matrices $\bA,\bB\in\R^{n\times n}$
+    respectively by
+    $\bA = \bigl(
+            \bz_j^\top f(\bz_k) \bI_n
+            + f(\bz_k)\bz_j^\top
+        \bigr)
+        \nabla f(\bz_k)^\top
+    $ and
+    $\bB =
+         \bigl(
+         \bz_k^\top h(\bz_j) \bI_n
+        + h(\bz_j) \bz_k^\top
+        \bigr)
+    \nabla h(\bz_j)^\top
+    $.
+    Assume that
+    \begin{equation}
+        \label{assumption-A-B-sobolev} 
+    \E[\|f(\bz_k)\|^4]
+    +
+    \E[\|h(\bz_j)\|^4]
+    +
+    \E[\|\bA\|_F^2]
+    +
+    \E[\|\bB\|_F^2]
+    < +\infty.
+    \end{equation}
+    Then equality
+\begin{equation}
+    \label{eq:equality-correlation-lemma}
+\E\big[
+    \big\{(\bz_j^{\pb{\top}} f(\bz_k))^2-\|f (\bz_k)\|^2 \big\}
+    \big\{(\bz_k^{\pb{\top}} h(\bz_j))^2-\|h (\bz_j)\|^2 \big\}
+    \big]
+    =
+    \E[
+    \trace
+    \{
+        \bA \bB
+    \}
+    ]
+    \end{equation}
+holds and
+$\E|\trace[\bA\bB]| \le
+        4
+        \E\bigl[\|\nabla f(\bz_k)\|_F^2\|f(\bz_k)\|^2\bigr]^{\frac12}
+        \E\bigl[\|\nabla h(\bz_j)\|_F^2\|h(\bz_j)\|^2\bigr]^{\frac12}
+$.
+\end{lemma}
+
+SOURCE MACRO CONTEXT
+The author source at line 609 defines the revision macro as the identity: \newcommand\pb[1]{{ #1 }}. Thus \pb{\top} in the verbatim lemma is simply the transpose symbol. No colored revision or extra mathematical operator is intended.

@@ -1,0 +1,270 @@
+You are an independent checker of toolkit proposals. Another agent proposed the entries below for the owner's personal Lean toolkit; the owner will decide. You do not decide and you do not rewrite: for EACH proposal give `agrees`, `content_matches`, `duplicate_of` and a short `note` the owner will read next to it.
+
+Check three things, and only these:
+1. Content. What `title` and `content` must say depends on the entry's `path`:
+   - `move` (a proved result that moves as is): exactly what the Lean statement (`lean_type`) proves — the same hypotheses and the same conclusion, neither weaker nor stronger, every object named correctly. Read the Lean, not the words.
+   - `generalize` with a `lean_type` (a proved result rebuilt in general form): a general statement of which `lean_type` is a direct special case, free of the paper's own notation and setting (`paper_shaped` lists what ties the Lean to the paper; none of it may appear in the content). `dropped_hypotheses` lists hypotheses the paper's proof never uses: the content leaves them out, and it must still hold without them.
+   - `generalize` without a `lean_type` (a cited result to be built): what the cited work states (`source_text` when present, else what `reference` and `content` say the cited work states), in its own generality, no weaker and no stronger.
+   `relation_to_paper` is a separate remark on how the paper's result relates; judge `content` alone.
+   `content_matches` is false only when the content fails this (for `generalize`: the general statement is false, or the paper's result does not follow from it); the note says how. A wording or placement objection leaves `content_matches` true.
+2. Duplication. Using `search_hits`, `nearest_existing` and the existing toolkit modules: is the result already available (up to notation, argument order or trivially weaker hypotheses) in a base library or the toolkit? If so, `duplicate_of` is that declaration's full name; otherwise null.
+3. Division and home. Foundations holds standard, textbook results statable in Mathlib's vocabulary alone; Tricks holds results reusable within the owner's lines of work (they may use a domain library's or the toolkit's vocabulary, never one paper's own types). Is the division right (`division_reason`, against `division_signal`), and is `target_module` under the right topic of the TOPIC TREE (an existing module when one fits; `new_topic` only when no topic fits)?
+
+`agrees` is true when all three hold; the note then says briefly why. Do not judge whether the item is worth having — that is the owner's call.
+
+Review every proposal exactly once, by `proposal_id`. Return only the JSON object the output schema describes.
+
+
+=== TOOLKIT ===
+{
+  "lib": "Toolkit",
+  "divisions": [
+    "Foundations",
+    "Tricks"
+  ]
+}
+=== END TOOLKIT ===
+
+=== TOPIC TREE (doc/taxonomy.json) ===
+- Algebra: algebraic identities and structures not specific to a field below
+- Algebra/BigOperators: finite sums and products: rearrangement, double counting, telescoping
+- Algebra/Order: inequalities in ordered rings and fields
+- Analysis: real and functional analysis not specific to a field below
+- Analysis/Calculus: derivatives, Taylor expansions, mean value arguments
+- Analysis/Convex: convex sets and functions, Jensen-type inequalities
+- Analysis/Normed: normed and inner-product spaces, operator bounds
+- Analysis/SpecialFunctions: exp, log, powers, Gamma and similar functions
+- Combinatorics: finite combinatorics not specific to a field below
+- Combinatorics/Counting: counting arguments: binomial and multinomial coefficients, partitions of finite sets
+- Combinatorics/Permutations: permutations and their actions on finite structures
+- Design: randomized designs and design-based inference
+- LinearAlgebra: vector spaces and linear maps
+- LinearAlgebra/Matrix: matrices: traces, determinants, positive definiteness, decompositions
+- MeasureTheory: measures and measurable functions not specific to a field below
+- MeasureTheory/Integral: integration: integrability, interchange of limits and integrals
+- Optimization: optimization not specific to a field below
+- Optimization/Convex: convex optimization: duality, subgradients
+- Optimization/Optimality: optimality conditions: first and second order, KKT
+- Order: orders and lattices
+- Probability: probability not specific to a field below
+- Probability/Concentration: concentration and tail inequalities
+- Probability/Conditioning: conditional probability and conditional expectation
+- Probability/Distributions: named distributions and their properties
+- Probability/Independence: independence and exchangeability
+- Probability/LimitTheorems: laws of large numbers, central limit theorems, convergence in distribution
+- Probability/Moments: expectations, variances, covariances and higher moments
+- Statistics: mathematical statistics not specific to a field below
+- Statistics/Asymptotics: asymptotic theory of estimators and tests
+- Statistics/Estimation: estimators: unbiasedness, efficiency, consistency
+- Statistics/Sampling: sampling from finite populations
+- Statistics/Testing: hypothesis tests, p-values, confidence sets
+- Topology: topology and convergence
+=== END TOPIC TREE (doc/taxonomy.json) ===
+
+=== EXISTING TOOLKIT MODULES ===
+- Toolkit/Foundations.lean: Toolkit.Foundations
+- Toolkit/Tricks.lean: Toolkit.Tricks
+=== END EXISTING TOOLKIT MODULES ===
+
+=== PROPOSALS (paper randomsketch) ===
+[
+ {
+  "id": "a-lem-rowwise-gaussian-covariance-cited",
+  "round": "A",
+  "source": {
+   "kind": "cited",
+   "ref": "lem:rowwise-gaussian-covariance-cited",
+   "citation": "Pierre~C. Bellec. \\newblock Out-of-sample error estimation for {$M$}-estimators with convex penalty. \\newblock \\emph{Information and Inference: A Journal of the IMA}, 12\\penalty0 (4):\\penalty0 2782--2817, 2023. \\newblock \\doi{10.1093/imaiai/iaad031}., Lemma 7.1"
+  },
+  "verdict": "propose",
+  "title": "Gaussian covariance bound for cross-dependent quadratic forms",
+  "reference": "Pierre C. Bellec, Out-of-sample error estimation for M-estimators with convex penalty (2023), Lemma 7.1, equations (7.2)–(7.3).",
+  "content": "Let n be a positive integer, [let z and w be independent standard Gaussian vectors in ℝⁿ](hyp:hGaussian), and let f,h:ℝⁿ → ℝⁿ [have weakly differentiable components](hyp:hWeakDiff). Write ∇f and ∇h for their Jacobian matrices, Iₙ for the identity matrix, tr for matrix trace, ‖·‖ for the Euclidean norm, and ‖·‖F for the Frobenius norm; define A = ((zᵀf(w))Iₙ + f(w)zᵀ)∇f(w)ᵀ and B = ((wᵀh(z))Iₙ + h(z)wᵀ)∇h(z)ᵀ. If [𝔼‖f(w)‖⁴ + 𝔼‖h(z)‖⁴ + 𝔼‖A‖F² + 𝔼‖B‖F² is finite](hyp:hMoments), then [𝔼(((zᵀf(w))² − ‖f(w)‖²)((wᵀh(z))² − ‖h(z)‖²)) = 𝔼(tr(AB)), and 𝔼|tr(AB)| ≤ 4√(𝔼(‖∇f(w)‖F²‖f(w)‖²))√(𝔼(‖∇h(z)‖F²‖h(z)‖²))](goal), where every expectation is under the joint law of z and w.",
+  "relation_to_paper": "The paper applies this result after conditioning on all but two Gaussian design rows, then integrates and uses Cauchy–Schwarz to obtain its unconditional rowwise covariance bound.",
+  "division": "Tricks",
+  "target_module": "Toolkit/Tricks/Probability/Moments/GaussianStein.lean",
+  "new_module_overview": "Gaussian integration-by-parts bounds for data-dependent quadratic forms and vector-field divergences.",
+  "proposed_name": "Toolkit.Tricks.Probability.Moments.gaussian_cross_quadratic_covariance_bound",
+  "nearest_existing": [
+   {
+    "name": "Causalean.Stat.gaussian_pushforward_covariance",
+    "library": "Causalean",
+    "why_not_same": "Computes covariance under a linear Gaussian transformation; it does not control quadratic forms whose coefficient fields depend on the other Gaussian vector."
+   },
+   {
+    "name": "StatLean.HypothesisTesting.map_quadraticForm_multivariateGaussian_eq_chiSquared",
+    "library": "StatLean",
+    "why_not_same": "Identifies the distribution of a fixed Gaussian quadratic form; it provides neither this cross-dependent covariance identity nor its derivative bound."
+   }
+  ],
+  "reuse_evidence": "No recurrence is recorded; offered on judgement as a technique for controlling dependence between Gaussian quadratic errors in risk estimation and random-design statistics. Building weak-derivative Gaussian integration by parts and its approximation arguments is substantial.",
+  "division_reason": "Judgement bar: a general covariance technique for Gaussian quadratic forms with coefficients depending on the other Gaussian vector.",
+  "qualifies_by": "judgement",
+  "division_signal": "Foundations",
+  "path": "generalize",
+  "source_text": "PRIMARY-SOURCE EVIDENCE: BELLEC (2023), LEMMA 7.1\n\nPurpose: support the rowwise Gaussian covariance inequality cited in main.tex lines 1868–1876. No manuscript, toolkit, or verification-run record was modified.\n\nPublished citation: Pierre C. Bellec, Out-of-sample error estimation for M-estimators with convex penalty, Information and Inference 12(4):2782–2817 (2023), doi:10.1093/imaiai/iaad031.\nPublisher metadata: https://academic.oup.com/imaiai/article/12/4/2782/7330496\nPrimary author preprint: https://arxiv.org/abs/2008.11840v5\nAuthor PDF: https://arxiv.org/pdf/2008.11840v5\nAuthor source: https://arxiv.org/src/2008.11840v5\nRetrieved 2026-10-28 from unversioned arXiv URLs; saved metadata identifies version 5, revised 30 March 2023. The exact retrieved files are identified by SHA-256 hashes below. The publisher redirect could not be read with the web tool; the saved PDF is the author's primary preprint, not a purported publisher PDF.\n\nLocation: author PDF page 26 (PDF index 25), Lemma 7.1, equations (7.2) and (7.3). Its exact source label is lemma:f-g-z_j-z_k in bellec-2023-Out-Of-Sample-Error-estimate.tex lines 3906–3958. The equation numbering and constant 4 agree between the extracted TeX and author PDF.\n\nASSUMPTIONS (paraphrase)\nTwo independent standard Gaussian vectors z_j,z_k in R^n are given. Deterministic f,h:R^n -> R^n have weakly differentiable components. Define random matrices by the following exact mathematical source block:\n\n    $\\bA = \\bigl(\n            \\bz_j^\\top f(\\bz_k) \\bI_n\n            + f(\\bz_k)\\bz_j^\\top\n        \\bigr)\n        \\nabla f(\\bz_k)^\\top\n    $ and\n    $\\bB =\n         \\bigl(\n         \\bz_k^\\top h(\\bz_j) \\bI_n\n        + h(\\bz_j) \\bz_k^\\top\n        \\bigr)\n    \\nabla h(\\bz_j)^\\top\n    $.\n\nThe sum of E||f(z_k)||^4, E||h(z_j)||^4, E||A||_F^2, and E||B||_F^2 must be finite. Verbatim mathematical statements for the conclusion:\n\n\\begin{equation}\n    \\label{eq:equality-correlation-lemma}\n\\E\\big[\n    \\big\\{(\\bz_j^{\\pb{\\top}} f(\\bz_k))^2-\\|f (\\bz_k)\\|^2 \\big\\}\n    \\big\\{(\\bz_k^{\\pb{\\top}} h(\\bz_j))^2-\\|h (\\bz_j)\\|^2 \\big\\}\n    \\big]\n    =\n    \\E[\n    \\trace\n    \\{\n        \\bA \\bB\n    \\}\n    ]\n    \\end{equation}\nholds and\n$\\E|\\trace[\\bA\\bB]| \\le\n        4\n        \\E\\bigl[\\|\\nabla f(\\bz_k)\\|_F^2\\|f(\\bz_k)\\|^2\\bigr]^{\\frac12}\n        \\E\\bigl[\\|\\nabla h(\\bz_j)\\|_F^2\\|h(\\bz_j)\\|^2\\bigr]^{\\frac12}\n$.\n\nAPPLICATION TO THE MANUSCRIPT\n1. Condition on C = sigma(Z_{-{i,k}}, S, epsilon). The two unfixed design rows z_i,z_k are independent N(0,I_d), because the design has independent standard Gaussian entries and is independent of (S,epsilon).\n2. Source dimension n is manuscript dimension d. Use f(z_k)=a_i=E_i[q] and h(z_i)=a_k=E_k[q], with the remaining rows fixed by C. These fields are deterministic under C and have the orientations required by Lemma 7.1. Their derivatives are D_k a_i and D_i a_k.\n3. The lemma gives, conditionally,\n   |E[chi_i chi_k | C]| <= 4 sqrt(b_{ik,C} b_{ki,C}),\n   where b_{ik,C}=E[||D_k a_i||_F^2 ||a_i||^2 | C].\n   Integrating and applying Cauchy–Schwarz gives\n   |E[chi_i chi_k]| <= 4 sqrt(b_{ik} b_{ki}),\n   with b_{ik}=E[b_{ik,C}], exactly the quantity defined at main.tex lines 1865–1867. This is the displayed bound at main.tex lines 1868–1872.\n4. The source's required moments are available. Conditional Jensen gives E||a_i||^4 <= E||q||^4 and\n   sum_{i,k} E[||D_k a_i||_F^2 ||a_i||^2]\n       <= n sqrt(E||q||^4 * E energy_q^2).\n   The manuscript establishes these moment assumptions at lines 1810–1815 and uses exactly this summed bound at lines 1883–1888. The source proof also shows E||A||_F^2 <= 4 E[||D_k a_i||_F^2 ||a_i||^2], and analogously for B (author TeX lines 4012–4031), so the lemma's matrix-integrability assumptions follow. Smooth cutoffs and the manuscript's ridge-limit step justify the coefficient-field approximation and derivative/conditional-expectation interchange.\n5. The source proof of Theorem 7.2 itself applies Lemma 7.1 to conditional expectation fields E_j[rho], E_k[rho] after c\n[… later source text omitted …]",
+  "search_hits": [
+   {
+    "name": "Causalean.Stat.gaussian_pushforward_covariance",
+    "library": "Causalean",
+    "module": "Causalean.Stat.Inference.DeltaMethod",
+    "statement": "∀ {G : Type u_4} {H : Type u_5} [inst : NormedAddCommGroup G] [inst_1 : InnerProductSpace ℝ G] [inst_2 : FiniteDimensional ℝ G] [inst_3 : Me",
+    "doc": "**Linear image of a Gaussian law.** For a Gaussian probability law `Q` and a continuous linear map `Dg`, the pushforward is Gaussian and its"
+   },
+   {
+    "name": "Causalean.Stat.gaussianLimit_waldForm_map",
+    "library": "Causalean",
+    "module": "Causalean.Stat.Inference.ChiSquaredWald",
+    "statement": "∀ {X : Type u_1} [inst : MeasurableSpace X] {P : MeasureTheory.Measure X} {E : Type u_2} [inst_1 : NormedAddCommGroup E] [inst_2 : InnerProd",
+    "doc": "**χ² identification of the Wald quadratic form.** When the linear map induced by the asymptotic-variance operator `Σ` is injective, i.e. `Σ`"
+   },
+   {
+    "name": "StatLean.HypothesisTesting.map_quadraticForm_multivariateGaussian_eq_chiSquared",
+    "library": "StatLean",
+    "module": "StatLean.HypothesisTesting.Randomization.MultivariateQuadratic",
+    "statement": "∀ {p : ℕ} [NeZero p] {S : Matrix (Fin p) (Fin p) ℝ}, S.PosDef → MeasureTheory.Measure.map (fun z => z.ofLp ⬝ᵥ S⁻¹.mulVec z.ofLp) (Probabilit",
+    "doc": "**The quadratic form of a nondegenerate centred Gaussian is chi-squared**: if `Z ∼ N(0, S)` with `S` positive definite, then `ZᵀS⁻¹Z ∼ χ²_p`"
+   },
+   {
+    "name": "StatLean.ConcentrationInequalities.gaussian_symmetrization_upper_sqrt",
+    "library": "StatLean",
+    "module": "StatLean.ConcentrationInequalities.Symmetrization.Gaussian",
+    "statement": "∀ {Ω : Type u_1} {mΩ : MeasurableSpace Ω} {μ : MeasureTheory.Measure Ω} [MeasureTheory.IsProbabilityMeasure μ] {E : Type u_2} [inst : Normed",
+    "doc": "**Gaussian symmetrization, upper bound, sharp constant** (HDP §6.6, Lemma 6.6.2): `E‖∑ Xᵢ‖ ≤ √(2π) · E‖∑ gᵢXᵢ‖` — the sharp form of the book"
+   }
+  ]
+ },
+ {
+  "id": "a-lem-matrix-gaussian-divergence-cited",
+  "round": "A",
+  "source": {
+   "kind": "cited",
+   "ref": "lem:matrix-gaussian-divergence-cited",
+   "citation": "Pierre~C. Bellec and Yiwei Shen. \\newblock Derivatives and residual distribution of regularized {$M$}-estimators with application to adaptive tuning. \\newblock In \\emph{Proceedings of the 35th Conference on Learning Theory}, volume 178 of \\emph{Proceedings of Machine Learning Research}, pages 1912--1947. PMLR, 2022. \\newblock URL \\url{https://proceedings.mlr.press/v178/bellec22a.html}., Proposition 14"
+  },
+  "verdict": "propose",
+  "title": "Gaussian divergence bound for a product of vector fields",
+  "reference": "Pierre C. Bellec and Yiwei Shen, Derivatives and residual distribution of regularized M-estimators with application to adaptive tuning (2022), Appendix C, proof of Proposition 14, equation (C.3).",
+  "content": "Let n and p be positive integers, [let G be a real n × p random matrix with independent standard Gaussian entries](hyp:hGaussian), and let η and ρ map real n × p matrices into ℝᵖ and ℝⁿ, respectively, [with both fields locally Lipschitz](hyp:hLocalLip). Evaluate all fields and their almost-everywhere partial derivatives at G, and use Euclidean norms. If [𝔼(‖ρ‖²‖η‖²) and 𝔼(∑ᵢ₌₁ⁿ ∑ⱼ₌₁ᵖ (‖η‖²‖∂ρ/∂gᵢⱼ‖² + ‖ρ‖²‖∂η/∂gᵢⱼ‖²)) are finite](hyp:hIntegrability), then [𝔼((ρᵀGη − ∑ᵢ₌₁ⁿ ∑ⱼ₌₁ᵖ ∂(ρᵢηⱼ)/∂gᵢⱼ)²) ≤ 𝔼(‖ρ‖²‖η‖²) + 2𝔼(∑ᵢ₌₁ⁿ ∑ⱼ₌₁ᵖ (‖η‖²‖∂ρ/∂gᵢⱼ‖² + ‖ρ‖²‖∂η/∂gᵢⱼ‖²))](goal).",
+  "relation_to_paper": "The paper uses smooth fields and applies this deterministic-field inequality conditionally on an independent sigma-field.",
+  "division": "Tricks",
+  "target_module": "Toolkit/Tricks/Probability/Moments/GaussianStein.lean",
+  "new_module_overview": "Gaussian integration-by-parts bounds for data-dependent quadratic forms and vector-field divergences.",
+  "proposed_name": "Toolkit.Tricks.Probability.Moments.gaussian_product_divergence_sq_le",
+  "nearest_existing": [
+   {
+    "name": "Causalean.Mathlib.stdGaussian_map_normSq_eq_pi",
+    "library": "Causalean",
+    "why_not_same": "Describes the law of a standard Gaussian squared norm; it does not estimate divergences of fields depending on a Gaussian matrix."
+   },
+   {
+    "name": "StatLean.ConcentrationInequalities.subGaussianNorm_sum_le",
+    "library": "StatLean",
+    "why_not_same": "Bounds sub-Gaussian norms of sums; it does not supply the derivative correction or the second-moment divergence estimate."
+   }
+  ],
+  "reuse_evidence": "No recurrence is recorded; offered on judgement because the estimate controls Gaussian bilinear estimation errors using only field sizes and first derivatives. Building the multivariate Gaussian divergence identity and extending it to locally Lipschitz fields requires substantial infrastructure.",
+  "division_reason": "Judgement bar: a reusable Gaussian divergence estimate for bilinear statistics with data-dependent vector fields.",
+  "qualifies_by": "judgement",
+  "division_signal": "Foundations",
+  "path": "generalize",
+  "source_text": "[… earlier source text omitted …]\nrning Research 178:1912–1947 (2022).\nPrimary landing page: https://proceedings.mlr.press/v178/bellec22a.html\nPublished PDF: https://proceedings.mlr.press/v178/bellec22a/bellec22a.pdf\nAuthor source archive: https://arxiv.org/src/2107.05143\nRetrieved: 2026-10-28. The source URL is unversioned; file hashes below identify the exact retrieved bytes. The extracted TeX is colt_2022.tex. The two proof equations below were checked against the published PDF, internal pages 24–25 (PDF page indices 23–24). This does not assert identical source versions beyond the equations checked.\n\nNotation in the source: G is n by p with independent standard Gaussian entries; eta and rho are locally Lipschitz vector fields in R^p and R^n. In the manuscript, G maps to Z, p maps to d, eta maps to a, and rho maps to b for the first inequality. Conditional applications fix an independent sigma-field and apply the same deterministic-field result.\n\n1. FIRST-ORDER MATRIX PRODUCT DIVERGENCE\nPublished location: proof of Proposition 14, Appendix C, internal page 24, equation (C.3).\nTeX location: colt_2022.tex lines 2594–2605, label eq:prop63.\nVerbatim mathematical source block:\n\n    \\begin{equation}\n    \\E\\Bigl[\\Bigl(\\brho^\\top\\bG\\bfeta - \\sum_{ij} \\frac{\\partial (\\rho_i\\eta_j)}{g_{ij}}\\Bigr)^2\\Bigr]\n    \\le\n    \\E\\Bigl[\\|\\brho\\|^2 \\|\\bfeta\\|^2\\Bigr]\n    +\n    2\\E\\Bigl[\\sum_{ij}\n    \\|\\bfeta\\|^2 \\| \\frac{\\partial \\brho}{\\partial g_{ij}}\\|^2\n    +\n    \\|\\brho\\|^2 \\| \\frac{\\partial \\bfeta}{\\partial g_{ij}}\\|^2\n    \\Bigr].\n    \\label{eq:prop63}\n    \\end{equation}\n\n\nManuscript mapping: main.tex lines 2241–2258, label eq:matrix-product-divergence. The manuscript's single expectation of the summed terms is the same as the two expectations in the source, by linearity. The manuscript assumes smooth fields, which is stronger than the source's local Lipschitz regularity. Integrability is supplied by the manuscript's displayed hypotheses and ridge/cutoff arguments.\n\n2. NORMALIZED DERIVATIVE IN THE PROOF OF PROPOSITION 14\nPublished location: internal page 24, equation (C.5).\nTeX location: colt_2022.tex lines 2640–2656 (the exact block below is selected by label eq:argument-bff).\nThis is the relevant proof normalization; its denominator is FIRST power of ||h||^2 + ||psi||^2/n.\nVerbatim mathematical source block:\n\n\\begin{equation}\n    \\|\n    \\frac{\\partial \\bfeta}{\\partial g_{ij}}\n    \\|^2\n    +\n    \\|\n    \\frac{\\partial \\brho}{\\partial g_{ij}}\n    \\|^2\n    \\le\n    \\frac{1}{\\|\\bh\\|^2 + \\|\\bpsi\\|^2/n}\n    \\Bigl(\n    \\|\\frac{\\partial \\bh}{\\partial g_{ij}}\\|^2\n    +\n    \\frac 1 n \\|\\frac{\\partial \\bpsi}{\\partial g_{ij}}\\|^2\n    \\Bigr).\n    \\label{eq:argument-bff}\n    \\end{equation}\n\n\n3. BOUNDED ONE-VECTOR SECOND-ORDER INEQUALITY\nPublished location: proof of Proposition 16, Appendix C, internal page 25, equation (C.6).\nTeX location: colt_2022.tex lines 2756–2762, label eq:cor71.\nAdditional assumption: ||rho|| <= 1. Gaussian matrix and local Lipschitz assumptions remain as above.\nVerbatim mathematical source block:\n\n    \\begin{equation}\n        \\E\\Big| p \\|\\brho\\|^2 - \\sum_{j=1}^p\n        \\Bigl(\\brho^\\top\\bG\\be_j -\\sum_{i=1}^n \\frac{\\partial \\rho_i }{\\partial g_{ij}}\\Bigr)^2\\Big|\n        \\le \\C \\sqrt p \\Bigl( 1+ \\E\\sum_{ij} \\Big\\|\\frac{\\partial \\brho}{\\partial g_{ij}}\\Big\\|^2\\Bigr)^{1/2}\n        +\\C \\E\\sum_{ij} \\Big\\|\\frac{\\partial \\brho}{\\partial g_{ij}}\\Big\\|^2.\n        \\label{eq:cor71}\n    \\end{equation}\n\n\nManuscript mapping: main.tex lines 2352–2371, label eq:one-vector-second-order, with rho -> u and p -> d. The source has sqrt(1 + E energy); the manuscript uses the weaker bound 1 + sqrt(E energy), which follows from sqrt(1+x) <= 1+sqrt(x) for x >= 0. The source uses an absolute constant, as does the manuscript. The transposed application exchanges n and d. No invalid strengthening is introduced by this mapping.\n\n4. FULL SECOND-ORDER NORMALIZED STATEMENT (PROPOSITION 16)\nPublished location: internal page 25, Proposition 16.\nTeX location: colt_2022.tex lines 1996–2041, label pr\n[… later source text omitted …]",
+  "search_hits": [
+   {
+    "name": "Causalean.Mathlib.stdGaussian_map_normSq_eq_pi",
+    "library": "Causalean",
+    "module": "Causalean.Mathlib.Probability.Distributions.Gaussian.Standard",
+    "statement": "∀ {E : Type u_1} [inst : NormedAddCommGroup E] [inst_1 : InnerProductSpace ℝ E] [inst_2 : FiniteDimensional ℝ E] [inst_3 : MeasurableSpace E",
+    "doc": "**Product-of-1-D-Gaussians model for the squared norm.** The law of the squared norm under the standard Gaussian measure on `E` equals the l"
+   },
+   {
+    "name": "Causalean.Estimation.OrthogonalLearning.FirstOrderInequality",
+    "library": "Causalean",
+    "module": "Causalean.Estimation.OrthogonalLearning.Population.DirectionalDeriv",
+    "statement": "{Ω : Type u_1} → [inst : MeasurableSpace Ω] → {μ : MeasureTheory.Measure Ω} → {Z : Type u_2} → [inst_1 : MeasurableSpace Z] → {P_Z : Measure",
+    "doc": "The population first-order inequality for an orthogonal statistical-learning system and target-derivative data at the distinguished nuisance"
+   },
+   {
+    "name": "StatLean.ConcentrationInequalities.subGaussianNorm_sum_le",
+    "library": "StatLean",
+    "module": "StatLean.ConcentrationInequalities.Orlicz.SumNorm",
+    "statement": "∀ {Ω : Type u_1} {mΩ : MeasurableSpace Ω} {μ : MeasureTheory.Measure Ω} [MeasureTheory.IsProbabilityMeasure μ] {n : ℕ} {X : Fin n → Ω → ℝ} {",
+    "doc": "**ψ₂-norm of an independent sum** (HDP Proposition 2.7.1, the `v ≡ 1` instance): `‖∑ Xᵢ‖_{ψ₂} ≤ √(18 ∑ Kᵢ²)`."
+   },
+   {
+    "name": "StatLean.ConcentrationInequalities.subGaussianNorm_weighted_sum_le",
+    "library": "StatLean",
+    "module": "StatLean.ConcentrationInequalities.Orlicz.SumNorm",
+    "statement": "∀ {Ω : Type u_1} {mΩ : MeasurableSpace Ω} {μ : MeasureTheory.Measure Ω} [MeasureTheory.IsProbabilityMeasure μ] {n : ℕ} {X : Fin n → Ω → ℝ} {",
+    "doc": "**ψ₂-norm of a weighted independent sum** (HDP Proposition 2.7.1, weighted; frozen constant `C = 18 = 6·3` from B3 ∘ B2)."
+   }
+  ]
+ },
+ {
+  "id": "a-lem-one-vector-second-order-cited",
+  "round": "A",
+  "source": {
+   "kind": "cited",
+   "ref": "lem:one-vector-second-order-cited",
+   "citation": "Pierre~C. Bellec and Yiwei Shen. \\newblock Derivatives and residual distribution of regularized {$M$}-estimators with application to adaptive tuning. \\newblock In \\emph{Proceedings of the 35th Conference on Learning Theory}, volume 178 of \\emph{Proceedings of Machine Learning Research}, pages 1912--1947. PMLR, 2022. \\newblock URL \\url{https://proceedings.mlr.press/v178/bellec22a.html}., Proposition 16"
+  },
+  "verdict": "propose",
+  "title": "Second-order Gaussian divergence bound for a bounded vector field",
+  "reference": "Pierre C. Bellec and Yiwei Shen, Derivatives and residual distribution of regularized M-estimators with application to adaptive tuning (2022), Appendix C, proof of Proposition 16, equation (C.6).",
+  "content": "Let n and p be positive integers, [let G be a real n × p random matrix with independent standard Gaussian entries](hyp:hGaussian), and let ρ map real n × p matrices into ℝⁿ [as a locally Lipschitz vector field](hyp:hLocalLip). Suppose [‖ρ(g)‖ ≤ 1 for every real n × p matrix g](hyp:hBound), and [the derivative energy D = 𝔼(∑ᵢ₌₁ⁿ ∑ⱼ₌₁ᵖ ‖∂ρ/∂gᵢⱼ‖²) is finite](hyp:hEnergy), where the norm is Euclidean and all fields and almost-everywhere derivatives inside expectations are evaluated at G. Writing eⱼ for the jth coordinate vector in ℝᵖ, [𝔼|p‖ρ‖² − ∑ⱼ₌₁ᵖ (ρᵀGeⱼ − ∑ᵢ₌₁ⁿ ∂ρᵢ/∂gᵢⱼ)²| ≤ C√p√(1 + D) + CD for a single absolute constant C > 0 that works for every n, p and such field ρ](goal).",
+  "relation_to_paper": "The paper applies this result conditionally to smooth bounded fields and weakens √(1 + D) to 1 + √D; it also applies the result with the matrix dimensions transposed.",
+  "division": "Tricks",
+  "target_module": "Toolkit/Tricks/Probability/Moments/GaussianStein.lean",
+  "new_module_overview": "Gaussian integration-by-parts bounds for data-dependent quadratic forms and vector-field divergences.",
+  "proposed_name": "Toolkit.Tricks.Probability.Moments.gaussian_bounded_field_divergence_sq_error_le",
+  "nearest_existing": [
+   {
+    "name": "Causalean.Mathlib.stdGaussian_map_normSq_eq_pi",
+    "library": "Causalean",
+    "why_not_same": "Gives a Gaussian norm distribution, without a data-dependent vector field, divergence corrections or a derivative-energy error bound."
+   },
+   {
+    "name": "StatLean.ConcentrationInequalities.measure_sum_ge_le_of_subExponentialNorm_le",
+    "library": "StatLean",
+    "why_not_same": "Controls tail probabilities through sub-exponential norms; it does not establish this absolute-mean approximation for Gaussian divergences."
+   }
+  ],
+  "reuse_evidence": "No recurrence is recorded; offered on judgement for estimating residual energies and squared errors when coefficients depend on Gaussian data. Proving the dimension-uniform second-order bound and its locally Lipschitz extension is substantial work beyond the supplied library hits.",
+  "division_reason": "Judgement bar: a general technique for approximating squared Gaussian divergences by dimension times vector-field energy.",
+  "qualifies_by": "judgement",
+  "division_signal": "Foundations",
+  "path": "generalize",
+  "source_text": "[… earlier source text omitted …]\n The manuscript assumes smooth fields, which is stronger than the source's local Lipschitz regularity. Integrability is supplied by the manuscript's displayed hypotheses and ridge/cutoff arguments.\n\n2. NORMALIZED DERIVATIVE IN THE PROOF OF PROPOSITION 14\nPublished location: internal page 24, equation (C.5).\nTeX location: colt_2022.tex lines 2640–2656 (the exact block below is selected by label eq:argument-bff).\nThis is the relevant proof normalization; its denominator is FIRST power of ||h||^2 + ||psi||^2/n.\nVerbatim mathematical source block:\n\n\\begin{equation}\n    \\|\n    \\frac{\\partial \\bfeta}{\\partial g_{ij}}\n    \\|^2\n    +\n    \\|\n    \\frac{\\partial \\brho}{\\partial g_{ij}}\n    \\|^2\n    \\le\n    \\frac{1}{\\|\\bh\\|^2 + \\|\\bpsi\\|^2/n}\n    \\Bigl(\n    \\|\\frac{\\partial \\bh}{\\partial g_{ij}}\\|^2\n    +\n    \\frac 1 n \\|\\frac{\\partial \\bpsi}{\\partial g_{ij}}\\|^2\n    \\Bigr).\n    \\label{eq:argument-bff}\n    \\end{equation}\n\n\n3. BOUNDED ONE-VECTOR SECOND-ORDER INEQUALITY\nPublished location: proof of Proposition 16, Appendix C, internal page 25, equation (C.6).\nTeX location: colt_2022.tex lines 2756–2762, label eq:cor71.\nAdditional assumption: ||rho|| <= 1. Gaussian matrix and local Lipschitz assumptions remain as above.\nVerbatim mathematical source block:\n\n    \\begin{equation}\n        \\E\\Big| p \\|\\brho\\|^2 - \\sum_{j=1}^p\n        \\Bigl(\\brho^\\top\\bG\\be_j -\\sum_{i=1}^n \\frac{\\partial \\rho_i }{\\partial g_{ij}}\\Bigr)^2\\Big|\n        \\le \\C \\sqrt p \\Bigl( 1+ \\E\\sum_{ij} \\Big\\|\\frac{\\partial \\brho}{\\partial g_{ij}}\\Big\\|^2\\Bigr)^{1/2}\n        +\\C \\E\\sum_{ij} \\Big\\|\\frac{\\partial \\brho}{\\partial g_{ij}}\\Big\\|^2.\n        \\label{eq:cor71}\n    \\end{equation}\n\n\nManuscript mapping: main.tex lines 2352–2371, label eq:one-vector-second-order, with rho -> u and p -> d. The source has sqrt(1 + E energy); the manuscript uses the weaker bound 1 + sqrt(E energy), which follows from sqrt(1+x) <= 1+sqrt(x) for x >= 0. The source uses an absolute constant, as does the manuscript. The transposed application exchanges n and d. No invalid strengthening is introduced by this mapping.\n\n4. FULL SECOND-ORDER NORMALIZED STATEMENT (PROPOSITION 16)\nPublished location: internal page 25, Proposition 16.\nTeX location: colt_2022.tex lines 1996–2041, label prop:chi2-custom immediately preceding the display.\nVerbatim mathematical source block:\n\n    \\begin{align*}\n    &\\E\\Bigl[\n    \\frac{\n    \\big|\n    \\frac p n\\|\\bpsi\\|^2 -\n    \\frac 1 n\n    \\sum_{j=1}^p\n    \\bigl(\n        \\bpsi^\\top\\bG\\be_j - \\sum_{i=1}^n\\frac{\\partial \\psi_i}{\\partial g_{ij}}\n    \\bigr)^2\n    \\big|\n    }{\\|\\bh\\|^2 + \\|\\bpsi\\|^2/n}\n    \\Bigr]\n    +\n    \\E\\Bigl[\n    \\frac{\n    \\big|\n    n \\|\\bh\\|^2 - \\sum_{i=1}^n\n    \\bigl(\n        \\bg_i^\\top\\bh - \\sum_{j=1}^p\\frac{\\partial h_j}{\\partial g_{ij}}\n    \\bigr)^2\n    \\big|\n    }{\\|\\bh\\|^2 + \\|\\bpsi\\|^2/n}\n    \\Bigr]\n    \\\\&\\le\n    \\C \\Bigl(\n        \\sqrt{n+p}\n        (1+\\Xi^{1/2}) + \\Xi\n    \\Bigr)\n    \\text{ where }\\Xi = \n    \\E\\Bigl[\n    \\frac{1}{\\|\\bh\\|^2 + \\|\\bpsi\\|^2/n}\n    \\sum_{i=1}^n\n    \\sum_{j=1}^p\n        \\Bigl(\n        \\Big\\|\n        \\frac{\\partial \\bh}{\\partial g_{ij}}\n        \\Big\\|^2\n        +\n        \\frac1n\n        \\Big\\|\n        \\frac{\\partial \\bpsi}{\\partial g_{ij}}\n        \\Big\\|^2\n    \\Big)\n        \\Bigr].\n    \\end{align*}\n\n\nThis is consistent with the manuscript's conditional-normalized second-order bound, eq:conditional-normalized-second-order. The manuscript independently supplies regularization at zero response energy, two separate normalized-field applications, the denominator product-rule correction, and the ridge limit.\n\nNORMALIZATION DISCREPANCY: DO NOT USE THE PRINTED PROPOSITION 14 AS A BLACK BOX\nThe published Proposition 14 (internal page 24), also in TeX lines 1812–1857, prints a SQUARED denominator (||h||^2 + ||psi||^2/n)^2 multiplying the raw derivative energy on its right-hand side. That expression is not scale invariant under a simultaneous nonzero rescaling of h and psi. The same source proof gives FIRST power in (C.5), as transcri\n[… later source text omitted …]",
+  "search_hits": [
+   {
+    "name": "Causalean.Mathlib.Analysis.Calculus.CubeExtension.leftFaceReflection_iteratedFDeriv_eq_sum",
+    "library": "Causalean",
+    "module": "Causalean.Mathlib.Analysis.Calculus.CubeExtension.ReflectionSampleJets",
+    "statement": "∀ (d m : ℕ) (i : Fin d) (a : Fin (m + 1) → ℝ) (u : (Fin d → ℝ) → ℝ), ContDiffOn ℝ (↑m) u (Causalean.Mathlib.Analysis.Calculus.CubeInterpolat",
+    "doc": "If a response u is m times continuously differentiable within the closed cube, j ≤ m, and x lies in the open exterior collar, then the order"
+   },
+   {
+    "name": "Causalean.Stat.RecurrentEvent.CountingProcess.FiniteJump.Model.jumpIntegral_eq_sum_jumpTime",
+    "library": "Causalean",
+    "module": "Causalean.Stat.RecurrentEvent.CountingProcess.FiniteJump.JumpEnumeration",
+    "statement": "∀ {Ω : Type u_1} [inst : MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω} (M : Causalean.Stat.RecurrentEvent.CountingProcess.FiniteJump.Mode",
+    "doc": "A finite jump sum is the sum over the ordered threshold times below the event count. This is the pathwise enumeration used for measurability"
+   },
+   {
+    "name": "StatLean.ConcentrationInequalities.diam_mul_sqrt_log_two_le_four_mul_dudleySum",
+    "library": "StatLean",
+    "module": "StatLean.ConcentrationInequalities.Chaining.EntropySum",
+    "statement": "∀ {E : Type u_1} [inst : PseudoMetricSpace E] {T : Set E}, T.Finite → T.Nonempty → Metric.diam T * √(Real.log 2) ≤ 4 * StatLean.Concentratio",
+    "doc": "Diameter lower bound on the sum (HDP §8.1, Remark 8.1.6 absorption device): at the last scale `κ'` with `𝒩 = 1`, the `(κ'+1)`-term is `≥ 2^"
+   },
+   {
+    "name": "StatLean.ConcentrationInequalities.measure_sum_ge_le_of_subExponentialNorm_le",
+    "library": "StatLean",
+    "module": "StatLean.ConcentrationInequalities.Orlicz.Bernstein",
+    "statement": "∀ {Ω : Type u_1} {mΩ : MeasurableSpace Ω} {μ : MeasureTheory.Measure Ω} [MeasureTheory.IsProbabilityMeasure μ] {n : ℕ} {X : Fin n → Ω → ℝ} {",
+    "doc": "One-sided ψ₁-Bernstein engine (HDP Theorem 2.9.1, upper tail): Chernoff + `iIndepFun.mgf_sum` + the per-`i` restricted MGF bound of Prop 2.8"
+   }
+  ]
+ }
+]
+=== END PROPOSALS (paper randomsketch) ===
